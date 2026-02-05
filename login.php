@@ -44,7 +44,9 @@ if(!isset($_SESSION['message'])) {
 include '../private_html/csrf_protection.php';
 
 // Set Timezone for Date Information
-define('TIMEZONE', 'America/Los_Angeles');
+if (!defined('TIMEZONE')) {
+    define('TIMEZONE', 'America/Los_Angeles');
+}
 date_default_timezone_set(TIMEZONE);
 $now = new DateTime();
 $mins = $now->getOffset() / 60;
