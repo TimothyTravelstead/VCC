@@ -1,0 +1,82 @@
+# Dependencies
+/vendor/
+node_modules/
+
+# Environment & Credentials
+config.local.php
+.env
+*.p8
+**/db_login.php
+
+# Database files
+*.sql
+
+# Database backups
+/database_backups*/
+
+# Media files
+*.mp4
+*.mp3
+*.wav
+*.m4a
+
+# Logs and debug
+*.log
+/log/
+debug_*.txt
+session_debug.txt
+
+# OS files
+.DS_Store
+
+# Sensitive data
+CalendarNotes*
+
+# Binary media/asset directories
+/Audio/
+/HeadquartersMessage/
+/Images/
+
+# Legacy/Deprecated directories
+/GroupChat-OLD/
+/trainingShare/
+/trainingChat-v1/
+/trainingShare-Beta/
+/trainingShare2-IGNORE/
+
+# Vendored Twilio SDK (use composer instead)
+/twilio-php-main/
+/twilio-php-master/
+
+# Backup files
+*.backup
+*.backup-*
+
+# Documentation notes (keep only CLAUDE.md)
+/*.md
+!CLAUDE.md
+*.rtf
+/session_bridge_integration.md
+
+# Debug/test utility scripts (not the tests/ suite)
+phpinfo.php
+info.php
+test_*.php
+check_*.php
+debug_*.php
+csrf_security_tests.php
+csrf_test_helper.php
+careful_verify.php
+verify_fixes.php
+field_comparison.php
+migrate_with_backups.php
+fix_session_order.php
+populate_callcontrol.php
+cleanup_callcontrol.php
+mysql_Schema_Compare.php
+newTest.php
+testRedisVsSSE.php
+simple-signalling-test.html
+debug_logs_viewer.html
+test_error_email.html
+extract_afghanistan_from_backup.sh

@@ -1,0 +1,4 @@
+# X-Frame-Options
+<IfModule  .c>
+	Header always unset X-Frame-Options
+</IfModule>

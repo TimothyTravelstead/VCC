@@ -1,0 +1,1885 @@
+			#trainingSkypeCall {
+				display:			none;
+			}
+
+
+			body {
+				font-family:		"Times New Roman",Georgia,Serif;
+				padding:			0px;
+				text-align:			center;
+				background-color:	gray;
+				lang:				en;
+				hyphens:			auto;	
+				color:				silver;		
+				height:				auto;
+			}
+			
+			.redGradient {
+			    background: 		linear-gradient(#550000,  #770000);
+			}
+			
+			.blueGradient {
+			    background: 		linear-gradient(#550000,  #770000);
+			}
+			
+			p {
+				hyphens:			auto;
+			}
+			
+			input[type='button'], input[type="Submit"] {
+				background-color:	white;
+				border-radius:		10px;
+			}
+
+			input[type='button']:hover, input[type='submit']:hover, #resourceDetail span:hover{
+				background:	linear-gradient(rgba(100,100,250,1),white);
+			}
+			
+			
+			#titleBar {
+				position:			relative;
+				top:				0px;
+				left:				0px;
+				height:				55px;
+				width:				805px;
+				border:				1px solid gray;
+				text-align:			center;
+				border-radius:		10px;
+				color:				rgba(150,150,150,1);
+				background-color:	white;
+
+
+			}
+			
+			#titleBar h1 {
+				position:			absolute;
+				top:				-20px;
+				width:				805px;
+			}
+			
+			#volunteerDetails {
+				position:           absolute;
+				top:                2px;
+				left:               5px;
+				font-size:          80%;
+				line-height:        110%;
+				color:              silver;
+				text-align:         left;
+				z-index:			100000;
+			}
+
+
+			#volunteerDetailsTitle {
+				color:				yellow;
+				cursor:				pointer;
+			}
+
+			#volunteerDetailsButtons {
+				position:			relative;
+				top:				0px;
+				visibility:			hidden;
+			}
+			
+
+			.defaultButton  {
+				border-radius:		5px;
+				background-image: -o-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+				background-image: -moz-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+				background-image: -webkit-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+				background-image: -ms-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+				background-image: linear-gradient(to top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+			}
+
+	
+			#start-call-monitor {
+				position:	absolute;
+				top:		500px;
+				left:		400px;
+				padding: 15px 30px;
+				font-size: 18px;
+				background-color: #007bff;
+				color: white;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				transition: background-color 0.3s ease;
+			}
+	
+			#start-call-monitor:hover {
+				background-color: #0056b3;
+			}
+
+			#searchParameters {
+				float:				right;
+				line-height:		15pt;
+				padding-right:		5px;
+				margin-top:			15px;
+				border:				none;
+				font-weight:		bold;
+				text-align:			right;
+			}
+
+			
+			#searchBox  {
+				position:			absolute;
+				top:				90px;
+				left:				212px;
+				width:				380px;
+				height:				170px;
+				border:				inherit;
+				margin:				0px auto;
+				box-shadow:			10px 10px 10px black;
+				border-radius:		10px;
+				background-color:	rgba(244,184,106,1);      			
+				padding:			5px;
+				display:			none;
+				color:				black;
+			}
+			
+			
+			.mainSearch {
+				position:			absolute;
+				top:				5px;
+				left:				258px;
+				width:				105px;
+				height:				50px;
+				text-align:			center;
+				font-weight:		bold;
+				font-size:			95%;
+			}
+			
+			
+			.nationalSearch {
+				position:			absolute;
+				top:				65px;
+				left:				258px;
+				width:				105px;
+				height:				50px;
+				background: 		linear-gradient(to top, green 0%, aqua 50%,aqua 50%,green 100%);
+				text-align:			center;
+				font-weight:		bold;
+				font-size:			95%;
+			}
+			
+			.internationalSearch {
+				position:			absolute;
+				top:				125px;
+				left:				258px;
+				width:				105px;
+				height:				50px;
+				background: 		linear-gradient(to top, pink 0%, white 50%,white 50%,pink 100%);
+				font-weight:		bold;
+ 			    border: 0 !important;  /*Removes border*/
+		      	-webkit-appearance: none;  /*Removes default chrome and safari style*/
+    		  	-moz-appearance: none; /* Removes Default Firefox style*/
+		      	text-indent: 0.01px; /* Removes default arrow from firefox*/
+      			text-overflow: "";  /*Removes default arrow from firefox*/
+				font-size:			70%;
+				padding-left:		5px;
+
+			}
+
+			#videoPlayButton {
+				position:			absolute;
+				top:				510px;
+				left:				285px;
+				height:				25px;
+				width:				180px;
+				background:			rgba(250,250,0,1);;
+				font-size:			100%;
+				font-weight:		bold;
+			}
+			
+			#testPane {
+				position:			absolute;
+				top:				10px;
+				left:				7px;
+				width:				790px;
+				height:				275px;
+				z-index:			10000000000000000000000;
+				background-color:	yellow;
+				border-radius:		5px;
+			}
+
+			#resourceList, #resourceDetail, #newSearchPane, #infoCenterPane, #timelinePane  {
+				position:			relative;
+				top:				3px;
+				left:				0px;
+				height:				549px;
+				width:				805px;
+				white-space:		nowrap;
+				overflow:			hidden;
+				border:				1px solid gray;
+				border-color:		gray;
+				border-style:		solid;
+				display:			none;
+				border-radius:		10px;
+				margin-bottom:		0px;
+			}
+			
+
+		   #timelineFrame {
+				width:				805px;
+				height:				510px;
+		    }
+
+
+
+			#timelineData {
+				height:				510px;
+				width:				inherit;
+				overflow:			auto;
+			}
+
+
+			#videoWindow {
+				position:			absolute;
+				top:				3px;
+				left:				0px;
+				height:				549px;
+				width:				805px;
+				box-shadow:			10px 10px 10px black;
+				display:			none;
+				border-radius:		10px;
+				margin-bottom:		0px;
+			    background: 		linear-gradient(#550000,  #770000);
+				z-Index:			5000;
+				text-align:			center;
+				display:			none;
+				color:				white;
+				border:				3px solid white;
+			}
+			
+			
+			#videoWindowClose {
+				margin-left:		750px;
+				margin-top:			5px;
+				z-Index:			100;
+			}
+			
+			#videoWindow video {
+				position:			absolute;
+				top:				50px;
+				left:				10px;
+				height:				449px;
+				width:				785px;
+			}
+
+			#newSearchPane {
+				display:			block;
+			}
+
+			#newSearchPane a {
+				text-decoration:	none;
+			}
+
+
+			#newSearchPaneControls, #resourceDetailControl {
+				position:			relative;
+				top:				-35px;
+				left:				0px;
+				height:				30px;
+				width:				805px;
+				white-space:		nowrap;
+				overflow:			hidden;
+				border:				1px solid gray;
+				line-height:		12pt;
+				padding-top:		3px;
+				padding-bottom:		3px;
+				color:				white;
+				border-radius:		10px;
+				vertical-align:		middle;
+			}
+			
+			#newSearchPaneControls {
+				display:			block;
+			}
+
+
+			
+			#resourceDetailControl {
+				position:			relative;
+				border:				none;
+				top:				-70px;
+				left:				120px;
+				height:				30px;
+				width:				190px;
+				background:			transparent;
+				display:			block;
+				text-align:			left;
+				visibility:			hidden;
+			}
+			
+			.smallButton {
+				height:				30px;
+				width:				40px;
+			}
+			
+			
+
+			#mainNewSearchButton {
+				position:			absolute;
+				left:				600px;
+				height:				30px;
+				width:				200px;
+				font-size:			110%;
+				font-weight:		bold;
+			}
+
+
+			#infoCenterButtons {
+				position:           absolute;
+				top:                60px;
+				left:               2px;
+				width:              200px;
+				height:             200px;
+				border-radius:		0px;
+				height:				479px;
+				overflow:			scroll;
+				font-size:			90%;	
+			}
+
+
+			#adminIMButton {
+				position:			absolute;
+				top:				5px;
+				left:				5px;
+			    background: 		linear-gradient(silver,  white);
+				font-family:        Arial, Sans-Serif;
+				font-size:          12px;
+				line-height:        12px;
+				font-weight:        bold;
+				text-align:         left;
+				width:              120px;
+			}
+			
+
+			.infoCenterButton {
+			    background: 		linear-gradient(silver,  white);
+				font-family:        Arial, Sans-Serif;
+				font-size:          16px;
+				line-height:        10px;
+				font-weight:        bold;
+				text-align:         left;
+				display:            block;
+				width:              200px;
+				padding-top:        7px;
+				padding-bottom:     7px;
+				padding-left:       3px;
+				font-size:          93%;
+			}
+
+
+			#infoCenterText {
+				background-color:	silver;
+				position:			absolute;
+				top:				60px;
+				left:				205px;
+				height:				365px;
+				width:				575px;
+				border-radius:		5px;
+				white-space:		normal;
+				overflow:			hidden;
+				color:              black;
+				padding:            5px;
+				background: -moz-linear-gradient(bottom,  #DDDDDD,  silver); /* for firefox 3.6+ */
+				text-align:			left;
+				font-size:			95%;
+			}
+
+			#infoCenterText table {
+				position:           relative;
+				top:                30px;
+				left:               0px;
+				text-align:         center;
+			}
+
+			#infoCenterText td {
+				border:             2px solid black;
+				padding:            3px;
+				text-align:         left;
+			}
+
+			#infoCenterClose, #timelineClose {
+				position:			absolute;
+				top:				5px;
+				left:				750px;
+				z-index:			500000000000000;
+			}
+
+
+
+
+			#infoCenterMenu {
+				color:              black;
+				font-weight:		bold;
+				padding-left:		5px;
+				width:              195px;
+				height:				25px;
+				font-size:			9pt;
+				white-space:		nowrap;
+				cursor:             pointer;
+				left:				175px;
+				margin-left:		25px;
+				margin-top:			1px;
+				margin-bottom:		1px;
+				font-size:			130%;
+
+ 			    border: 0 !important;  /*Removes border*/
+		      	-webkit-appearance: none;  /*Removes default chrome and safari style*/
+    		  	-moz-appearance: none; /* Removes Default Firefox style*/
+		      	text-indent: 0.01px; /* Removes default arrow from firefox*/
+      			text-overflow: "";  /*Removes default arrow from firefox*/
+				
+				background-color:	rgba(100,250,100,1);
+			}
+
+			#trainingSessionMuteIndicator {
+				position:			absolute;
+				top:				6px;
+				left:				140px;
+				visibility:			hidden;
+				line-height:		20px;
+				width:				120px;
+				background-color:	yellow;				
+				margin-left:		30px;
+				border:				2px inset silver;
+				display:			block;
+				color:				black;
+				vertical-align:		middle;
+				
+			}
+
+			#mainPane {
+				position:			relative;
+				top:				0px;
+				left:				0px;
+				display:			block;
+			}
+			
+			#volunteerMessage {
+				position:			absolute;
+				top:				75px;
+				left:				17px;
+				height:				220px;
+				width:				745px;
+				background: 		white;
+				padding:			5px;
+				border:				5px inset silver;
+				margin-bottom:		140px;
+				color:				maroon;
+				white-space:		normal;
+				word-wrap: 			break-word;	
+				font-size:			120%;
+				font-weight:		bold;
+			}
+
+			#volunteerListLabel {
+				position:			absolute;
+				top:				240px;
+				width:				inherit;
+				text-align:			center;
+			}
+
+			#volunteerList {
+				position:			absolute;
+				top:				330px;
+				left:				150px;
+				height:				150px;
+				width:				500px;
+				background: 		radial-gradient(rgba(160,160,160,1), rgba(200,200,200,1));
+				padding:			5px;
+				display:			block;
+				overflow:			auto;
+				border:				5px inset silver;
+				color:				maroon;
+			}
+
+						
+			#volunteerList table {
+				margin:				auto;
+			}
+			
+			#volunteerList th {
+				width:				150px;
+				text-decoration:	underline;
+			}
+			
+			.hover:hover {
+				cursor:				pointer;
+				background: linear-gradient(to top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+			}
+
+
+
+
+/* Category Menu Formatting */
+
+			.category-wrapper {
+				position:			relative;
+				display:			inline-block;
+				vertical-align:		middle;
+			}
+
+			.category-button {
+				display:			inline-block;
+				width:              110px;
+				height:				16px;
+				margin-left:		4px;
+				margin-top:			1px;
+				margin-bottom:		1px;
+				border:				0;
+				border-radius:		3px;
+				background-color:	rgba(200,175,175,1);
+				color:              black;
+				font-weight:		bold;
+				font-size:			9pt;
+				padding-left:		5px;
+				text-align:			left;
+				cursor:             pointer;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				vertical-align:		middle;
+				box-sizing:			border-box;
+			}
+
+			.category-button:hover {
+				background:			radial-gradient(white,rgba(200,175,175,1));
+			}
+
+			.category-trigger {
+				position:			absolute;
+				top:				0;
+				left:				0;
+				width:              110px;
+				height:				16px;
+				margin-left:		4px;
+				margin-top:			1px;
+				margin-bottom:		1px;
+				border:				none;
+				background:			transparent;
+				cursor:             pointer;
+				z-index:			1;
+			}
+
+			#Categories select {
+				position:			relative;
+				z-index:			2;
+				pointer-events:		none;
+				font-weight:		bold;
+				padding-left:		5px;
+				width:              110px;
+				height:				16px;
+				font-size:			9pt;
+				white-space:		nowrap;
+				cursor:             pointer;
+				margin-left:		4px;
+				margin-top:			1px;
+				margin-bottom:		1px;
+				border-radius:		3px;
+				vertical-align:		middle;
+				box-sizing:			border-box;
+			}
+			
+			#Categories select:hover {
+				background:			radial-gradient(white,rgba(200,175,175,1));
+			}
+
+			select.normalMenu {
+ 			    border: 0 !important;  /*Removes border*/
+		      	-webkit-appearance: none;  /*Removes default chrome and safari style*/
+    		  	-moz-appearance: none; /* Removes Default Firefox style*/
+		      	text-indent: 0.01px; /* Removes default arrow from firefox*/
+      			text-overflow: "";  /*Removes default arrow from firefox*/
+				
+				background-color:	rgba(200,175,175,1);  
+				color:              black;
+    			
+			}
+
+			select.highlightMenu {
+ 			    border: 0 !important;  /*Removes border*/
+		      	-webkit-appearance: none;  /*Removes default chrome and safari style*/
+    		  	-moz-appearance: none; /* Removes Default Firefox style*/
+		      	text-indent: 0.01px; /* Removes default arrow from firefox*/
+      			text-overflow: "";  /*Removes default arrow from firefox*/
+				
+				background-color:	white;
+				color:				red;
+			}
+
+			#Categories option {
+				background-color:   transparent;
+				text-align:			left;
+			}			
+
+			#Categories {
+				position:           relative;
+				top:                0px;
+				left:               0px;
+				width:              inherit;
+				height:             77px;
+				text-align:         left;
+				font-size:          10pt;
+				white-space:		normal;
+				border-bottom:		1px solid black;
+				background-color:	#EEEEEE;
+			}
+
+/* END Category Menu Formatting */
+
+
+/* START Resource List formatting  */
+
+			#resourceResults {
+				position:			relative;
+				top:				0px;
+				left:				0px;
+				height:				390px;
+				width:				805px;
+				color:				silver;
+				white-space:		nowrap;
+				overflow-y:			scroll;
+				overflow-x:			hidden;
+				border-top:			1px solid black;
+				border-bottom:		1px solid black;
+				margin-bottom:      8px;
+				background:			radial-gradient(white,#EEEEEE);
+			}			
+			
+
+			#resourceListCategory {
+				width:				300px;
+				float:				left;
+				display:			inline-block;
+				text-align:			left;
+				margin-left:		5px;
+				font-weight:		bold;
+			}
+			
+			#resourceListCount {
+				width: 				33px;
+				margin-left:		650px;
+			}
+			
+			
+		
+			td div {
+				color:              #550000;
+				border-color:       #333333;
+				height:             19px;
+				overflow: 			hidden;
+				text-overflow: 		ellipsis;
+				line-height:		19px;
+				background-color:	transparent;
+			}
+
+			.resourceCounter {
+				width:				30px;
+			}
+
+			.Name {
+				width: 				213px;
+				text-align:			left;
+			}
+					
+			#sortByType1Button, #sortByType2Button {
+				width:				136px;
+			}	
+			
+			
+			.Distance {
+				text-align:			right;
+				width:				35px;
+			}
+						
+			.Type1, .Type2, .Type3, .Type4 {
+				width:	 			140px;
+				text-align:			left;
+			
+			}
+			
+			.Type3, .Type4 {
+				display:			none;
+			}
+			
+			.Location {
+				width:				135px;
+				text-align:			left;
+			}
+
+			.Zip {
+				width:				60px;
+				text-align:			center;
+			}
+
+			
+			
+			
+			#resourceResultsControlButtons {
+				position:			relative;
+				width:				1150px;
+				height:				40px;
+			}
+
+			#resourceShowListButton {
+				width:				50px;
+				font-weight:		bold;
+				height:				30px;
+			}
+			
+			
+			#resourceResults td {
+				border-right:		1px dotted gray;
+				border-bottom:		1px solid gray;
+			}
+			
+			#resourceResults tr:hover {
+				cursor:				pointer;
+				background-color: 	#87C5FB;
+			}
+			
+			
+			
+/* Log Pane Formatting Stuff */
+			
+			
+			.logPane tr {	
+				height:					25px;
+			}
+
+			.logPane th {
+				display:				table-cell;
+				width:					140px;					
+				font-weight:			bold;
+				font-size:				80%;
+				text-align:				left;
+				vertical-align:			middle;
+				padding-left:			3px;
+			}
+
+
+			.logPane span {
+				font-weight:			normal;
+				display:				block;
+				font-size:				75%;
+				line-height:			1.4;
+			}
+			
+			
+			.OtherCallLogData select {
+				width:				80px;
+				vertical-align:		top;
+			}
+
+
+			.OtherCallLogData {
+				position:				absolute;
+				left:					870px;
+				top:					0px;
+				width:					170px;
+				height:					inherit;
+				border-left:			2px dotted gray;				
+				border-bottom:			2px dotted gray;		
+			}
+
+
+			#NuisanceButtons, #EndLogButtons {
+				position:				absolute;
+				top:					148px;
+				left:					618px;
+				display:				block;
+				vertical-align:			middle;
+				text-align:				center;
+				width:					253px;
+				border-top:				2px dotted gray;
+				padding-top:			6px;
+
+			}
+					
+			#EndLogButtons {
+				left:					875px;
+				width:					180px;
+			}
+			
+			#callLogSaveButton {
+				width:					80px;
+				font-weight:			bold;
+
+			}
+	
+			.DiscoveredCategories span {
+				line-height:			1.5;
+			}
+
+			.DiscoveredCategories {
+				position:				absolute;
+				top:					0px;
+				left:					625px;
+			 	width:					260px;
+				height:					132px;				
+				-moz-column-count:		2	; /* Firefox */
+				-webkit-column-count:	2; /* Safari and Chrome */
+				column-count:			2;
+
+			}
+			
+			#sageDiscoveredCategories {
+				display:				none;
+			}
+
+			#nonSageDiscoveredCategories {
+				display:				block;
+			}
+
+			
+			.SageDiscoveredCategories {
+				position:				absolute;
+				top:					0px;
+				padding:				2px;
+				left:					617px;
+			 	width:					250px;
+				height:					131px;
+    			overflow: 				normal;
+				-moz-column-count:		1	; /* Firefox */
+				-webkit-column-count:	1; /* Safari and Chrome */
+				column-count:			1;
+				background-color:		#ffffb3;
+			}
+			
+			.SageDiscoveredCategories span {
+				display:				inline-block;
+				width:					245px;
+				padding-left:			5px;
+				line-height:			1;
+				font-size:				85%;
+				margin-bottom:			10px;
+			}
+			
+			.SageDiscoveredCategories select {
+				width:					120px;
+				padding:				2px;
+				margin-top:				2px;
+			}
+			
+			.SageDiscoveredCategories label {
+				display:				inline-block;
+				width:					116px;
+				text-align:				right;
+				margin-right:			4px;
+			}
+			
+			
+			.ResourceCategories {
+				position:				absolute;
+				top:					0px;
+				left:					255px;
+				width:					360px;				
+				height:					148px;
+				-moz-column-count:		4; /* Firefox */
+				-webkit-column-count:	4; /* Safari and Chrome */
+				column-count:			4;
+				border-right:			2px dotted gray;
+				line-height:			12px;
+				border-bottom:			2px dotted gray;
+
+
+			}
+
+
+			.CallType span {
+				line-height:			1.65;
+			}
+			
+			.CallType {
+				width:					245px;				
+				height:					148px;
+				-moz-column-count:		2; /* Firefox */
+				-webkit-column-count:	2; /* Safari and Chrome */
+				column-count:			2;
+				border-right:			2px dotted gray;
+				font-size:				110%;
+				border-bottom:			2px dotted gray;
+
+			}
+			
+			#logPaneNotes {
+				position:				absolute;
+				top:					147px;
+				left:					0px;
+				width:					615px;
+				border-right:			2px dotted gray;
+			}
+			
+			
+			#logTextArea  {
+				position:				relative;
+				left:					10px;
+				width:					490px;
+				height:					29px;
+				font-size:				90%;
+				line-height:			1;
+				margin:					2px;
+				vertical-align:			middle;
+				display:				inline-block;
+			}
+			
+			#logPaneNotes label {
+				margin-left:			10px;
+			}
+				
+				
+			#activeLogPane div {
+				display:				inline-block;
+				vertical-align:			top;
+				-moz-column-gap:		2px; /* Firefox */
+				-webkit-column-gap:		2px; /* Safari and Chrome */
+				column-gap:				2px;
+			}
+			
+			#inActiveLogPane {
+				display:				block;
+				height:					inherit;
+				width:					inherit;
+			}
+			
+			#activeLogPane {
+				display:				none;
+				height:					inherit;
+				width:					inherit;
+				background:				yellow;
+			}
+
+
+			.logPane {
+				position:			relative;
+				top:				-68px;
+				left:				0px;
+				padding-left:		5px;
+				vertical-align:		top;
+				width:				1050px;
+				height:				185px;
+				overflow:			visible;
+				border:				1px solid gray;
+				text-align:			left;
+				border-radius:		10px;
+				color:				black;
+
+
+			}
+			
+			
+			#logPaneForm, #logPaneFormSage {
+				height:				inherit;
+			}
+
+
+			#seniorInternetSubcategories  {
+				position:		absolute;
+				top:			-300px;
+				left:			600px;
+				height:			auto;
+				width:			auto;
+				padding:			10px;
+				border:				3px solid blue;
+				border-radius:		10px;
+				background:			#ffffb3;
+				color:				black;
+				visibility:			hidden;
+			}
+
+
+			#seniorSubcategories {
+				position:		absolute;
+				top:			-300px;
+				left:			200px;
+				height:			auto;
+				width:			auto;
+				padding:			10px;
+				border:				3px solid blue;
+				border-radius:		10px;
+				background:			#ffffb3;
+				color:				black;
+				visibility:			hidden;
+			}
+
+
+			#seniorSubcategories span {
+				display:		inline-block;
+				width:			150px;
+			}
+			
+/* END Log Pane Formatting Stuff */
+
+		
+		
+/* Chat Pane Formatting Stuff */
+			
+			#chatPane, #callHistoryPane {
+				position:			absolute;
+				top:				8px;
+				left:				820px;
+				height:				609px;
+				margin-bottom:		10px;
+				width:				482px;
+				display:			block;
+				border:				1px solid gray;
+				border-radius:		10px;
+			}
+			
+			#chatPane div {
+				position:			relative;
+				left:				10px;
+				height:				210px;
+				width:				450px;
+				text-align:			left;
+				overflow:			auto;
+				text-wrap:			auto;
+				border-radius:		5px;
+				color:				black;
+				font-size:			12pt;
+			}
+
+			#chatPane p {
+				margin-left:		10px;
+			}
+
+			#chatPane textarea {
+				margin-left:		6px;
+				margin-top:			1px;
+				width:				453px;
+				height:				53px;
+				border-radius:		5px;
+				display:			block;
+				font-size:			12pt;
+				font-family:		Times New Roman;
+				visibility:			hidden;			
+			}
+			
+
+			#chat1Controls, #chat2Controls {
+				visibility:			hidden;
+			}
+
+			#chatBody1 {
+				background-color:	rgba(255,255,225,1);
+			}
+
+			#chatBody2 {
+				position:			absolute;
+				margin-top:			15px;
+				background-color:	rgba(225,255,255,1);
+			}
+			
+			#AcceptChat, #RejectChat {
+				font-family:        Arial, Sans-Serif;
+				font-size:          18px;
+				font-weight:        bold;
+				margin-top:         30px;
+				margin-left:        140px;
+				width:              170px;
+
+			}
+			
+			#chatPane select {
+				position:				relative;
+				display:				inline;
+				width:					140px;
+				margin-left:			45px;
+			}
+			
+			#chat1PostButton, #chat2PostButton {
+				margin-left:		50px;
+				height:				20px;
+				width:				40px;
+			}
+			
+			#chat1EndButton, #chat2EndButton {
+				margin-right:		5px;
+			}
+			
+/* END Chat Pane Formatting Stuff */
+
+
+/* Resource Detail Pane Formatting Stuff */
+
+			.resourceDetailNormalWidth {
+				width:				300px;
+			}
+			
+			.resourceDetailNormalLabelWidth {
+				width:				80px;
+			}
+			
+			.resourceDetailPhoneLabelWidth {
+				width:				63px;
+			}
+			
+			.resourceDetailZipWidth {
+				width:					45px;
+			}
+
+			.resourceDetailPhoneWidth {
+				max-width:				112px;
+			}
+			
+			.resourceDetailTypeWidth {
+				width:					144px;
+			}
+
+
+			#resourceDetailDescription {
+				position:				absolute;
+				top:					94px;
+				left:					410px;
+				width:					380px;
+				height:					44px;
+				background:				white;
+				border:					1px solid maroon;
+				color:					black;
+				white-space:			normal;
+				padding:				2px;
+				overflow:				auto;
+				font-size:				95%;
+				font-weight:			normal;
+				white-space:			normal;
+
+			}
+
+			#resourceDetailNote, #resourceDetailStreetview {
+				position:				absolute;
+				top:					169px;
+				left:					410px;
+				width:					380px;
+				height:					318px;
+				background:				white;
+				border:					1px solid maroon;
+				color:					black;
+				white-space:			pre-wrap;
+				padding:				2px;
+				overflow:				auto;
+				font-size:				95%;
+				font-weight:			bold;
+				display:				block;
+			}
+			
+			#resourceDetailLabelNote, #resourceDetailLabelDescription {
+				left:					410px;
+			}
+			
+			#resourceDetailLabelDescription {
+				position:				absolute;
+				top:					74px;
+				left:					410px;
+				text-align:			right;
+				vertical-align:		top;
+				height:				25px;
+				line-height:		22px;
+				display:			inline-block;
+				overflow:			hidden;
+				color:				maroon;
+				font-size:			100%;
+				font-style:			italic;			
+			}
+
+			
+			#resourceDetailLabelStreetview {
+				left:					510px;
+			}
+			
+			#resourceDetailLabelNote, #resourceDetailLabelStreetview {
+				position:				absolute;
+				top:					149px;
+				color:					black;
+				display:				inline-block;
+				width:					100px;
+				height:					20px;
+				text-align:				center;
+				border-radius:			5px;
+				border:					1px solid maroon;
+				margin-left:			5px;
+				user-select:			none;
+				-moz-user-select:		none;
+				-webkit-user-select:	none;
+				-webkit-touch-callout:	none;
+			}
+
+
+			#resourceDetailStreetview {
+				display:				none;
+			}
+
+			.resourceDetailidnum, .resourceDetailEdate {
+				background-color:		transparent;
+				top:					2px;
+				border:					none;
+				color:					rgba(100,100,100,1);
+			}
+			
+			#resourceDetailidnum {
+				position:				absolute;
+				left:					15px;
+				top:					4px;
+				font-size:				85%;
+			}
+
+			#resourceDetailEdate {
+				position:				absolute;
+				left:					650px;
+				top:					4px;
+				font-size:				85%;
+			}
+			
+			#resourceDetailWWWEB a {
+				overflow:				hidden;
+				height:					20px;
+				white-space:			nowrap;
+
+			}
+
+	
+			
+			#resourceDetailWWWEB, #resourceDetailWWWEB2, #resourceDetailWWWEB3 {
+				white-space:			nowrap;
+			}
+
+			#resourceDetailDistance, #resourceDetailAddress1, #resourceDetailName, #resourceDetailWWWEB, #resourceDetailWWWEB2, #resourceDetailWWWEB3 {
+				margin-left:			5px;
+				width:					300px;
+				display:				inline-block;
+				font-weight:			bold;
+				background-color:		white;
+				font-size:				100%;
+				padding-left:			2px;
+				color:					black;
+				height:					22px;
+				overflow:				hidden;
+			}
+			
+
+			
+			#resourceDetailAddress1 {
+				background-color:		white;
+				height:					55px;
+			}
+			
+			#resourceDetail {
+			    background:		 		radial-gradient(#DDDDDD, silver);
+				background-color:		silver;
+			}
+			
+			#resourceDetailName {
+				margin-top:				15px;
+				color:					black;
+				height:					48px;
+				font-size:				140%;
+				font-weight:			bold;
+				background-color:		white;
+				width:					590px;
+				text-align:				center;
+				overflow:				hidden;
+				text-overflow: 			ellipsis;
+				background-color:		transparent;
+				margin-bottom:			10px;
+			}
+
+			#resourceDetailForm {		
+				text-align:				left;		
+				height:					450px;
+				font-size:				100%;
+
+			}
+
+			
+			#resourceDetail input[type="text"] {
+				display:			inline-block;
+				height:				18px;
+				line-height:		15px;
+				font-size:			inherit;
+				text-overflow: 		ellipsis;
+				font-weight:		bold;
+				border:				none;
+				font-family:		inherit;
+				margin-left:		5px;
+				padding-left:		2px;
+				padding-top:		0px;
+				padding-bottom:		0px;
+				padding-right:		0px;
+			}
+			
+			#resourceDetail label {
+				text-align:			right;
+				vertical-align:		top;
+				height:				25px;
+				line-height:		22px;
+				display:			inline-block;
+				overflow:			hidden;
+				color:				maroon;
+				font-size:			100%;
+				font-style:			italic;				
+			}
+
+			
+			#resourceDetailCount {
+				float:				left;
+				width:				80px;
+				height:				30px;
+				line-height:		30px;
+				text-align:			left;
+				padding-left:		8px;
+				color:				white;
+				font-size:			10pt;
+			}
+			
+			
+			
+			#translateButton {
+				position:			absolute;
+				left:				673px;
+				top:				350px;
+				display:			none;
+				font-size:			110%;
+				width:				130px;
+				white-space:		normal;
+				padding-top:		10px;
+				padding-bottom:		10px;
+			}
+			
+			#cancelTranslateButton {
+				display:			none;
+			}
+
+			#translateMessage{
+				position:			absolute;
+				left:				170px;
+				top:				300px;
+				width:				auto;
+				height:				auto;
+				padding:			10px;
+				border:				3px solid blue;
+				border-radius:		10px;
+				background:			#ffffb3;
+				color:				black;
+				display:			none;
+				font-size:			150%;
+			}			
+/* END Resource Detail Pane Formatting Stuff */
+
+
+/* IM Pane Formatting */
+
+			.imPane {
+				position:			absolute;
+				top:				470px;
+				left:				20px;
+				height:				290px;
+				width:				280px;
+				background:			rgba(265,165,0,1);
+				z-index:			100000;
+				box-shadow:			10px 10px 10px black;
+				border-radius:		10px;
+				display:			none;
+				color:				black;
+
+			}
+				
+			.imPane div {
+				position:			relative;
+				margin-left:		10px;
+				margin-top:			20px;
+				height:				140px;
+				width:				257px;
+				text-align:			left;
+				overflow:			auto;
+				text-wrap:			auto;
+				border-radius:		5px;
+				background-color:	white;
+			}	
+			
+			.imMessage {
+				display:			block;
+				position:			relative;
+				margin-left:		10px;
+				margin-top:			5px;
+				width:				252px;
+				height:				38px;
+				border-radius:		5px;
+				display:			block;
+				background-color:	white;
+				font-family:		Times New Roman;
+				font-size:			12pt;
+			}
+			
+			
+			
+			#timer1 {
+				position:			absolute;
+				background-color:	#A89070;
+				left:				1094px;
+				background-color:	rgba(255,255,225,1);
+
+			}
+			
+			#timer2 {
+				position:			absolute;
+				background-color:	#A89070;
+				left:				1193px;
+				background-color:	rgba(225,255,255,1);
+
+			}
+			
+
+			.timers {
+				top:				658px;
+				height:				51px;
+				width:				85px;
+				white-space:		normal;
+				overflow:			hidden;
+				display:			block;
+				border:             3px outset #A08010;
+				font-family:        arial, san-serif;
+				font-size:          130%;
+				text-align:         center;
+				font-weight:        bold;
+				color:              green;
+				border-radius:		25px;
+				line-height:		51px;
+			}
+			
+			#oneChatOnlyDiv {
+				position:			absolute;
+				background-color:	#A89070;
+				top:				622px;
+				left:				1120px;
+				height:				32px;
+				width:				131px;
+				white-space:		normal;
+				overflow:			hidden;
+				display:			block;
+				font-size:          75%;
+				text-align:         center;
+				font-weight:        bold;
+				color:              silver;
+				background-color:   #770000;
+				line-height:		32px;
+				border-radius:		15px;
+			}
+			
+			
+			#ExitButton, #statsButton {
+				position:			absolute;
+				background-color:	#990000;
+				top:				718px;
+				left:				1120px;
+				height:				32px;
+				width:				131px;
+				white-space:		nowrap;
+				overflow:			hidden;
+				display:			block;
+				border:             3px outset #A08010;
+				font-family:        arial, san-serif;
+				font-size:          75%;
+				text-align:         center;
+				font-weight:        bold;
+				cursor:             pointer;
+			    background:		 	radial-gradient(#BB0000, #880000);
+				border-radius:		15px;
+				line-height:		32px;
+			}
+			
+			#statsButton {
+				top:				758px;
+				left:				1120px;
+				height:				18px;
+				width:				131px;
+				line-height:		18px;
+			    background:		 	radial-gradient(white, silver);
+				color:				black;
+			}
+			
+
+
+
+
+/* Call Formatting */
+
+
+			#callPane {
+				position:			absolute;
+				top:				5px;
+				left:				2px;
+				height:				320px;
+				width:				805px;
+				display:			none;
+				background:			yellow;
+				color:				black;
+				border-radius:		5px;
+				z-Index:			10;
+			}
+
+			/* Accessibility: Preserve h1 appearance when changed to h2 for proper heading hierarchy */
+			#infoCenterPane h2,
+			#callPane h2 {
+				font-size:			2em;
+				margin:				0.67em 0;
+			}
+
+			#callHistoryPane {
+				display:			none;
+			}
+
+			/* Accessibility: Heading hierarchy fix - h1→h2, h2→h3, h3→h4 */
+			#callHistoryPane h3, #callHistoryPane h2 {
+				position:			relative;
+			}
+
+			#callHistoryPane h2 {
+				top:				-20px;
+				font-size:			2em; /* Preserve h1 appearance */
+			}
+
+			#callHistoryPane h3 {
+				top:				-30px;
+				font-size:			1.5em; /* Preserve h2 appearance */
+			}
+
+			#callHistoryPane h4 {
+				position:			relative;
+				top:				-45px;
+				margin-left:		90px;
+				margin-top:			10px;
+				margin-bottom:		0px;
+				width:				300px;
+				border:				2px solid silver;
+				font-size:			1.17em; /* Preserve h3 appearance */
+			}
+			
+			#callHistoryLocation {
+				position:			relative;
+				top:				-100px;
+				color:				green;
+				margin-top:			0px;
+				margin-bottom:		2px;
+			}
+			
+			#callHistoryData div {
+				border:				1px dotted maroon;
+			}
+			
+			#callHistoryData {
+				position:			relative;
+				top:				-30px;
+				color:				maroon;
+				overflow:			auto;
+				margin-left:		4px;
+				height:				350px;
+				width:				465px;
+				background: 		radial-gradient(rgba(160,160,160,1), rgba(200,200,200,1));
+				border:				3px inset gray;
+			}
+
+
+			#incomingCall {
+				display:			block;
+			}
+	
+			#callInProgress {
+				display:			none;
+			}
+
+			#answerCall, #connectingCall {
+				position:			absolute;
+				display:			block;
+				background-color:	transparent;
+				cursor:				pointer;
+			}
+				
+			
+			.answerCallLeft {
+				top:				100px;
+				left:				220px;
+				height:				140px;
+				width:				140px;
+			}
+
+			.answerCallCenter {
+				top:				100px;
+				left:				337px;
+				height:				140px;
+				width:				140px;
+				transition:			left 1.5s, top 1.5s, height 1.5s, width 1.5s;
+			}
+
+			.answerCallVanish {
+				top:				175px;
+				left:				426px;
+				height:				0px;
+				width:				0px;
+				transition:			left 3, top 3s, height 3s, width 3s;
+				transition-delay:	3s;
+			}
+
+			#rejectCall {
+				position:			absolute;
+				display:			block;
+				top:				100px;
+				left:				450px;
+				height:				140px;
+				width:				140px;
+				background-color:	transparent;
+				cursor:				pointer;
+			}
+			
+			#callHistoryButtons {
+				position:			absolute;
+				top:				550px;
+				width:				inherit;
+				text-align:			left;
+			}
+
+
+			#callHangUpButton {
+				position:			relative;
+				height:				40px;
+				width:				120px;
+				font-size:			120%;
+				font-weight:		bold;
+				left:				20px;
+				cursor:				pointer;
+				vertical-align: 	middle;
+
+			}
+			
+			#genderDisplayMessage {
+				position:			relative;
+				height:				40px;
+				width:				140px;
+				font-size:			120%;
+				font-weight:		bold;
+				left:				50px;
+				cursor:				pointer;
+				display:			inline-block;
+				text-align:			center;
+				color:				white;
+				vertical-align: 	middle;
+
+			}
+			
+			#callBlockButton {
+				position:			relative;
+				left:				80px;
+				cursor:				pointer;
+				font-size:			100%;
+				font-weight:		bold;
+				height:				40px;
+				width:				120px;
+				vertical-align: 	middle;
+			}
+			
+			.callHistorydate {
+				width:				80px;
+			}
+
+			.callHistorytime {
+				width:				90px;
+			}
+			
+			.callHistoryhotline {
+				width:				70px;
+			}
+			
+			.callHistorylength {
+				width:				90px;
+			}
+
+			.callHistorycategory {
+				width:				100px;
+			}
+
+			/* Call history expandable rows (accessibility) */
+			.callHistoryRowExpandable {
+				cursor:				pointer;
+			}
+
+			.callHistoryRowExpandable:hover {
+				background:			rgba(74, 144, 226, 0.15);
+			}
+
+			.callHistoryRowExpandable:focus {
+				outline:			2px solid #4A90E2;
+				outline-offset:		-2px;
+			}
+
+			.callHistoryRowExpandable[aria-expanded="true"] {
+				background:			rgba(74, 144, 226, 0.1);
+			}
+
+			/* Call History Modal */
+			#callHistoryModal {
+				display:			none;
+				position:			fixed;
+				top:				0;
+				left:				0;
+				width:				100%;
+				height:				100%;
+				background:			rgba(0, 0, 0, 0.5);
+				z-index:			10000;
+				justify-content:	center;
+				align-items:		center;
+			}
+
+			#callHistoryModal.open {
+				display:			flex;
+			}
+
+			.callHistoryModalContent {
+				background:			#fffff8;
+				border:				3px solid #666;
+				border-radius:		8px;
+				padding:			20px;
+				max-width:			500px;
+				min-width:			350px;
+				max-height:			70vh;
+				overflow-y:			auto;
+				box-shadow:			0 4px 20px rgba(0, 0, 0, 0.3);
+			}
+
+			.callHistoryModalHeader {
+				display:			flex;
+				justify-content:	space-between;
+				align-items:		center;
+				margin-bottom:		15px;
+				padding-bottom:		10px;
+				border-bottom:		2px solid #ccc;
+			}
+
+			.callHistoryModalHeader h3 {
+				margin:				0;
+				color:				#333;
+				font-size:			1.2em;
+			}
+
+			.callHistoryModalClose {
+				background:			#666;
+				color:				white;
+				border:				none;
+				font-size:			1.5em;
+				width:				35px;
+				height:				35px;
+				border-radius:		50%;
+				cursor:				pointer;
+				line-height:		1;
+			}
+
+			.callHistoryModalClose:hover {
+				background:			#444;
+			}
+
+			.callHistoryModalClose:focus {
+				outline:			2px solid #4A90E2;
+				outline-offset:		2px;
+			}
+
+			.callHistoryModalBody {
+				font-size:			1.1em;
+				line-height:		1.6;
+				color:				#333;
+				white-space:		pre-wrap;
+			}
+
+			.callHistoryModalDemographics {
+				font-weight:		bold;
+				color:				#555;
+				margin-bottom:		12px;
+				padding-bottom:		8px;
+				border-bottom:		1px solid #ddd;
+			}
+
+			.callHistoryModalNotes {
+				background:			#fff;
+				padding:			12px;
+				border:				1px solid #ddd;
+				border-radius:		4px;
+			}
+
+
+#bradStatsButton {
+	position:	relative;
+	top:		35px;
+
+}
+
+#localVideo, #remoteVideo {
+	display:	none;
+}
+
+
+/* ========================================
+   Screen Reader Accessibility Utilities
+   ======================================== */
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Screen reader announcement regions */
+#sr-announcements,
+#sr-announcements-urgent {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Skip navigation link - visible only when focused */
+.sr-only-focusable:focus {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: auto;
+	height: auto;
+	padding: 10px 20px;
+	margin: 0;
+	overflow: visible;
+	clip: auto;
+	white-space: normal;
+	background: #000;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+	z-index: 10000;
+}
+
+/* Focus indicator improvements for keyboard navigation */
+*:focus {
+	outline: 2px solid #4A90E2;
+	outline-offset: 2px;
+}
+
+/* Ensure buttons and interactive elements have visible focus */
+input[type='button']:focus,
+input[type='submit']:focus,
+select:focus,
+textarea:focus,
+a:focus {
+	outline: 2px solid #4A90E2;
+	outline-offset: 2px;
+}
+
+

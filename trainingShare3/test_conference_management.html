@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conference Management Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .button { padding: 10px 20px; margin: 5px; font-size: 16px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>Conference Management Test</h1>
+    
+    <div id="status" class="status info">Ready to test conference management...</div>
+    
+    <h2>Manual Testing</h2>
+    <button class="button" onclick="testMuteTrainees()">Test Mute Trainees</button>
+    <button class="button" onclick="testEndConference()">Test End Conference</button>
+    <button class="button" onclick="testNotifyRestart()">Test Notify Restart</button>
+    
+    <h2>Conference ID</h2>
+    <input type="text" id="conferenceId" placeholder="Enter conference ID" value="TestConference" style="width: 300px; padding: 5px;">
+    
+    <script>
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = 'status ' + type;
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+        
+        async function testMuteTrainees() {
+            const conferenceId = document.getElementById('conferenceId').value;
+            if (!conferenceId) {
+                updateStatus('Please enter a conference ID', 'error');
+                return;
+            }
+            
+            updateStatus('Testing mute trainees...', 'info');
+            
+            try {
+                const response = await fetch('/trainingShare3/muteConferenceParticipants.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        conferenceId: conferenceId,
+                        action: 'mute_trainees'
+                    })
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    updateStatus(`Success: ${result.message}`, 'success');
+                } else {
+                    updateStatus(`Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                updateStatus(`Failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testEndConference() {
+            const conferenceId = document.getElementById('conferenceId').value;
+            if (!conferenceId) {
+                updateStatus('Please enter a conference ID', 'error');
+                return;
+            }
+            
+            updateStatus('Testing end conference...', 'info');
+            
+            try {
+                const response = await fetch('/trainingShare3/endConference.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        conferenceId: conferenceId
+                    })
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    updateStatus(`Success: ${result.message}`, 'success');
+                } else {
+                    updateStatus(`Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                updateStatus(`Failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testNotifyRestart() {
+            const conferenceId = document.getElementById('conferenceId').value;
+            if (!conferenceId) {
+                updateStatus('Please enter a conference ID', 'error');
+                return;
+            }
+            
+            updateStatus('Testing notify restart...', 'info');
+            
+            try {
+                const response = await fetch('/trainingShare3/notifyConferenceRestart.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        trainerId: 'TestTrainer',
+                        newConferenceId: conferenceId + '_new',
+                        trainees: ['TestTrainee1', 'TestTrainee2']
+                    })
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    updateStatus(`Success: ${result.message}`, 'success');
+                } else {
+                    updateStatus(`Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                updateStatus(`Failed: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

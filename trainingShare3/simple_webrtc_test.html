@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple WebRTC Test</title>
+</head>
+<body>
+    <!-- Required DOM elements -->
+    <input type="hidden" id="volunteerID" value="TestUser">
+    <input type="hidden" id="currentUserName" value="TestUser">
+    <input type="hidden" id="trainerID" value="TestRoom">
+    <input type="hidden" id="traineeID" value="">
+    
+    <h1>Simple WebRTC Test</h1>
+    <button onclick="testBasicCreation()">Test Basic Creation</button>
+    <button onclick="testWithoutWebSocket()">Test Without WebSocket</button>
+    
+    <div id="output"></div>
+    
+    <script src="trainingWebSocketClient.js"></script>
+    <script src="webrtcScreenSharingClient.js"></script>
+    
+    <script>
+        function log(message) {
+            document.getElementById('output').innerHTML += '<br>' + message;
+            console.log(message);
+        }
+        
+        function testBasicCreation() {
+            log('Testing basic WebRTC client creation...');
+            
+            try {
+                // Test if class exists
+                if (typeof WebRTCScreenSharingClient === 'undefined') {
+                    log('❌ WebRTCScreenSharingClient class not found');
+                    return;
+                }
+                log('✅ WebRTCScreenSharingClient class found');
+                
+                // Test creation
+                const client = new WebRTCScreenSharingClient();
+                log('✅ WebRTC client created successfully');
+                
+                // Test status
+                const status = client.getStatus();
+                log('✅ Status method works: ' + JSON.stringify(status));
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+                console.error('Detailed error:', error);
+            }
+        }
+        
+        function testWithoutWebSocket() {
+            log('Testing WebRTC client without WebSocket initialization...');
+            
+            try {
+                const client = new WebRTCScreenSharingClient();
+                log('✅ Client created');
+                
+                // Test role setting
+                client.role = 'trainer';
+                client.userId = 'TestUser';
+                client.roomId = 'TestRoom';
+                client.sessionId = 'test-123';
+                
+                log('✅ Properties set manually');
+                
+                // Test session info extraction
+                client._extractSessionInfo();
+                log('✅ Session info extraction works');
+                log('User ID: ' + client.userId + ', Room ID: ' + client.roomId);
+                
+                // Test video setup
+                client._setupVideoElements();
+                log('✅ Video elements setup works');
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+                console.error('Detailed error:', error);
+            }
+        }
+        
+        log('Page loaded. Ready for testing.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+body {
+	padding:			00px;
+    background: 		linear-gradient(#550000,  #770000);
+	color:				silver;
+	-webkit-print-color-adjust: exact; 
+	width:				805px;
+}
+
+#legend p span {
+	display:	inline-block;
+}
+
+#legend {
+	position:			absolute;
+	top:				10px;
+	left:				5px;
+	width:				240px;
+	height:				auto;
+	background-color:	WHITE;
+	border:				1px solid black;
+	padding:			5px;
+	border-radius:		5px;
+	font-size:			80%;
+	color:				black;
+}
+
+.legendHeader {
+	font-size:			12pt;
+}
+
+#legend table th {
+	text-align:			center;
+}
+
+
+
+#volunteers {
+	position:			absolute;
+	top:				10px;
+	left:				570px;
+	width:				300px;
+	height:				auto;
+	background-color:	WHITE;
+	border:				1px solid black;
+	padding:			5px;
+	border-radius:		5px;
+	font-size:			80%;
+	color:				black;
+}
+
+
+TH.volunteerName {
+	width:				100px;
+	text-align:			left;
+	text-decoration:	underline;
+	
+}
+
+TH.volunteerTime {
+	width:				75px;
+	text-align:			center;
+	text-decoration:	underline;
+}
+
+TD.volunteerTime {
+	width:				75px;
+	text-align:			center;
+}
+
+.unansweredCall {
+	background-color:	blue;
+	width:				6px;
+	height:				5px;
+	margin-left:		3px;
+	border:				1px solid white;
+}
+
+
+.repeatUnansweredCall {
+	background-color:	rgb(137, 207, 240);
+	width:				6px;
+	height:				5px;
+	margin-left:		3px;
+	border:				1px solid white;
+}
+
+
+.answeredCall {
+	background-color:	rgba(100,250,100,.65);
+	width:				10px;
+	height:				10px;
+	margin-top:			0px;
+	border:				1px solid black;
+}
+
+
+
+.chat {
+	background-color:	RGBA(255, 135, 0, .6);
+	width:				10px;
+	height:				10px;
+	margin-top:			0px;
+	border:				1px solid black;
+}
+
+
+.doubleChat {
+	background-color:	RGBA(255, 135, 0, .85);
+	width:				10px;
+	height:				10px;
+	margin-top:			0px;
+	border:				1px solid black;
+}
+
+
+.hangUp {
+	background-color:	red;
+	width:				6px;
+	height:				15px;
+	margin-left:		3px;
+}
+
+.unanswered {
+	position:			relative;
+	height:				70px;
+	margin-left:		0px;
+	display:			block;
+	margin-bottom:		10px;
+	-webkit-print-color-adjust: exact; 
+
+}
+
+
+h1 {
+	width:				inherit;
+	text-align:			center;
+	color:				white;
+	-webkit-print-color-adjust: exact; 
+	font-size:			180%;
+}
+
+
+.subTitle {
+	width:				805px;
+	text-align:			center;
+	color:				white;
+	-webkit-print-color-adjust: exact; 
+	font-size:			120%;
+	margin-botton:		-10px;
+}
+
+.answeredLabel {
+	width:				250px;
+	text-align:			right;	
+	border:				0px dotted gray;
+	font-size:			75%;	
+	-webkit-print-color-adjust: exact; 
+
+}
+
+
+
+.answered {
+	position:			relative;
+	height:				20px;
+	display:			block;
+	border:				1px dotted black;
+	padding-top:		2px;
+	margin-bottom:		10px;
+	-webkit-print-color-adjust: exact; 
+}
+
+
+.shiftBlock {
+	position:			relative;
+	background-color:	white;
+	min-height:			100px;
+	border:				1px solid black;
+	margin-left:		140px;
+	margin-bottom:		55px;
+	margin-top:			25px;
+	display:			block;
+	-webkit-print-color-adjust: exact; 
+}
+
+
+@media print {
+   .pagebreak { 
+		page-break-after: always;
+	}
+	.noprint {
+		  display: none;
+	}
+	
+   body ,  th, td {
+		font-size: 10pt;
+		color:		black;
+		background: transparent;
+	}
+
+
+	h1 {
+		width:				inherit;
+		text-align:			center;
+		color:				Black;
+		-webkit-print-color-adjust: exact; 
+		font-size:			180%;
+	}
+
+
+	.subTitle {
+		width:				805px;
+		text-align:			center;
+		color:				Black;
+		-webkit-print-color-adjust: exact; 
+		font-size:			120%;
+		margin-botton:		-10px;
+	}
+
+	.answeredLabel {
+		width:				250px;
+		text-align:			right;	
+		font-size:			75%;
+		vertical-align:		top:	
+		-webkit-print-color-adjust: exact; 
+		 transform: translate(0px,-64px);
+}
+
+	}
+
+
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training System Test - No Auth</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .role-section { border: 2px solid #ccc; margin: 20px 0; padding: 20px; border-radius: 8px; }
+        .trainer { border-color: #007bff; background-color: #f8f9fa; }
+        .trainee { border-color: #28a745; background-color: #f8fff8; }
+        button { padding: 10px 20px; margin: 10px; font-size: 16px; }
+        video { border: 2px solid #333; margin: 10px 0; }
+        #remoteVideo { display: none; }
+        .debug { font-family: monospace; font-size: 12px; background: #f0f0f0; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Training System Test - No Authentication</h1>
+        
+        <div class="role-section trainer">
+            <h2>Trainer Test</h2>
+            <p>Click to test as trainer (auto-starts screen sharing):</p>
+            <button onclick="startAsTrainer()">Start as Trainer</button>
+            <button onclick="manualSignalTest('trainer')">Send Test Signal</button>
+            <div id="trainerStatus"></div>
+        </div>
+        
+        <div class="role-section trainee">
+            <h2>Trainee Test</h2>
+            <p>Click to test as trainee (receives trainer's screen):</p>
+            <button onclick="startAsTrainee()">Start as Trainee</button>
+            <button onclick="manualSignalTest('trainee')">Send Test Signal</button>
+            <div id="traineeStatus"></div>
+        </div>
+        
+        <div class="role-section" style="border-color: #dc3545; background-color: #fff8f8;">
+            <h2>Manual Tests</h2>
+            <button onclick="testSignalingServer()">Test Signaling Server</button>
+            <button onclick="testPolling()">Test Polling</button>
+            <button onclick="clearSignalFiles()">Clear Signal Files</button>
+            <button onclick="debugVideo()">Debug Video Element</button>
+        </div>
+        
+        <div id="videoContainer">
+            <video id="localVideo" autoplay muted playsinline style="width: 200px; height: auto;"></video>
+            <video id="remoteVideo" autoplay muted playsinline controls style="width: 100%; height: auto; background: #000; border: 2px solid red;"></video>
+        </div>
+        
+        <div class="debug">
+            <h3>Debug Output:</h3>
+            <div id="debugOutput"></div>
+        </div>
+        
+        <!-- Hidden form fields for compatibility -->
+        <input type="hidden" id="trainer" value="">
+        <input type="hidden" id="trainerID" value="">
+        <input type="hidden" id="volunteerID" value="">
+    </div>
+
+    <script src="screenSharingControlMulti.js"></script>
+    <script>
+        let screenSharing = null;
+        
+        function log(message) {
+            const debugOutput = document.getElementById('debugOutput');
+            const timestamp = new Date().toLocaleTimeString();
+            debugOutput.innerHTML += `[${timestamp}] ${message}<br>`;
+            debugOutput.scrollTop = debugOutput.scrollHeight;
+        }
+        
+        // Add system status checker
+        function checkSystemStatus() {
+            if (screenSharing) {
+                log(`📊 System Status: ${screenSharing.role} | Polling: ${screenSharing.pollingActive ? '✅' : '❌'} | Participants: ${screenSharing.participants.size} | Sharing: ${screenSharing.isSharing ? '✅' : '❌'}`);
+                
+                // Check for signal files on server
+                fetch('/trainingShare3/test_signal_files.php')
+                    .then(response => response.text())
+                    .then(data => {
+                        log(`📁 Signal Files: ${data}`);
+                    })
+                    .catch(error => {
+                        log(`❌ Error checking signal files: ${error.message}`);
+                    });
+            }
+        }
+        
+        // Check status every 5 seconds
+        setInterval(checkSystemStatus, 5000);
+        
+        function startAsTrainer() {
+            log('🎓 Starting as TRAINER');
+            
+            // Set up page elements for trainer
+            document.getElementById('trainer').value = 'TestTrainer';
+            document.getElementById('trainerID').value = 'TestTrainer';
+            document.getElementById('volunteerID').value = 'TestTrainer';
+            
+            // Create screen sharing instance
+            screenSharing = new MultiTraineeScreenSharing({
+                role: 'trainer',
+                participantId: 'TestTrainer',
+                trainerId: 'TestTrainer',
+                roomId: 'TestTrainer'
+            });
+            
+            document.getElementById('trainerStatus').innerHTML = 
+                '<div style="color: green;">✅ Trainer started - screen sharing should auto-start</div>';
+            
+            log('Trainer initialized. Screen sharing should start automatically.');
+        }
+        
+        function startAsTrainee() {
+            log('👥 Starting as TRAINEE');
+            
+            // Set up page elements for trainee
+            document.getElementById('trainer').value = 'TestTrainer';
+            document.getElementById('trainerID').value = 'TestTrainer';
+            document.getElementById('volunteerID').value = 'TestTrainee';
+            
+            // Create screen sharing instance
+            screenSharing = new MultiTraineeScreenSharing({
+                role: 'trainee',
+                participantId: 'TestTrainee',
+                trainerId: 'TestTrainer',
+                roomId: 'TestTrainer'
+            });
+            
+            document.getElementById('traineeStatus').innerHTML = 
+                '<div style="color: green;">✅ Trainee started - waiting for trainer screen</div>';
+            
+            log('Trainee initialized. Waiting for trainer screen sharing.');
+        }
+        
+        function manualSignalTest(role) {
+            const testSignal = {
+                type: 'test-signal',
+                participantId: role === 'trainer' ? 'TestTrainer' : 'TestTrainee',
+                participantRole: role,
+                roomId: 'TestTrainer',
+                timestamp: Date.now()
+            };
+            
+            log(`🧪 Sending manual test signal as ${role}`);
+            
+            fetch(`/trainingShare3/signalingServerMulti.php?trainingShareRoom=TestTrainer&participantId=${testSignal.participantId}&role=${role}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(testSignal)
+            })
+            .then(response => response.text())
+            .then(data => {
+                log(`✅ Manual signal response: ${data}`);
+            })
+            .catch(error => {
+                log(`❌ Manual signal error: ${error.message}`);
+            });
+        }
+        
+        function testSignalingServer() {
+            log('🔧 Testing signaling server directly...');
+            fetch('/trainingShare3/test_write_file.php')
+                .then(response => response.text())
+                .then(data => {
+                    log(`🔧 File write test: ${data}`);
+                })
+                .catch(error => {
+                    log(`❌ File write test error: ${error.message}`);
+                });
+        }
+        
+        function testPolling() {
+            log('📡 Testing polling endpoint...');
+            fetch('/trainingShare3/pollSignals.php?participantId=TestUser&role=trainee')
+                .then(response => response.json())
+                .then(data => {
+                    log(`📡 Polling test result: ${data.messages.length} messages found`);
+                })
+                .catch(error => {
+                    log(`❌ Polling test error: ${error.message}`);
+                });
+        }
+        
+        function clearSignalFiles() {
+            log('🗑️ Clearing signal files...');
+            fetch('/trainingShare3/clear_signals.php')
+                .then(response => response.text())
+                .then(data => {
+                    log(`🗑️ Clear result: ${data}`);
+                })
+                .catch(error => {
+                    log(`❌ Clear error: ${error.message}`);
+                });
+        }
+        
+        function debugVideo() {
+            const remoteVideo = document.getElementById('remoteVideo');
+            if (remoteVideo) {
+                log(`📺 Video Debug:`);
+                log(`  - srcObject: ${remoteVideo.srcObject ? 'SET' : 'NULL'}`);
+                log(`  - readyState: ${remoteVideo.readyState}`);
+                log(`  - videoWidth: ${remoteVideo.videoWidth}`);
+                log(`  - videoHeight: ${remoteVideo.videoHeight}`);
+                log(`  - paused: ${remoteVideo.paused}`);
+                log(`  - style.display: ${remoteVideo.style.display}`);
+                log(`  - style.visibility: ${remoteVideo.style.visibility}`);
+                
+                if (remoteVideo.srcObject) {
+                    const stream = remoteVideo.srcObject;
+                    log(`  - Stream active: ${stream.active}`);
+                    log(`  - Video tracks: ${stream.getVideoTracks().length}`);
+                    stream.getVideoTracks().forEach((track, i) => {
+                        log(`    Track ${i}: enabled=${track.enabled}, readyState=${track.readyState}`);
+                    });
+                }
+                
+                // Force video to show
+                remoteVideo.style.display = 'block';
+                remoteVideo.style.position = 'fixed';
+                remoteVideo.style.top = '50px';
+                remoteVideo.style.left = '50px';
+                remoteVideo.style.width = '400px';
+                remoteVideo.style.height = '300px';
+                remoteVideo.style.zIndex = '10000';
+                remoteVideo.style.border = '3px solid lime';
+                remoteVideo.style.background = 'black';
+                
+                if (remoteVideo.paused) {
+                    remoteVideo.play().then(() => {
+                        log('📺 Forced video to play');
+                    }).catch(e => {
+                        log(`❌ Force play failed: ${e.message}`);
+                    });
+                }
+            } else {
+                log('❌ No remote video element found');
+            }
+        }
+        
+        log('Test page loaded. Ready to test training system.');
+    </script>
+</body>
+</html>

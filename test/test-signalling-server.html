@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Signalling Server Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .test-result { padding: 8px; margin: 5px 0; border-radius: 3px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        button:disabled { background: #6c757d; cursor: not-allowed; }
+        #log { height: 300px; overflow-y: scroll; background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; font-family: monospace; font-size: 12px; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 10px 0; }
+        .stat-box { padding: 10px; background: #e9ecef; border-radius: 4px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 WebRTC Signalling Server Test Suite</h1>
+        <p><strong>Testing server:</strong> <span id="serverUrl">https://share.volunteerlogin.org</span></p>
+        
+        <div class="test-section">
+            <h3>🔧 Test Controls</h3>
+            <button onclick="runAllTests()">Run All Tests</button>
+            <button onclick="clearLog()">Clear Log</button>
+            <button onclick="testConnection()">Test Connection</button>
+            <button onclick="testAuthentication()">Test Authentication</button>
+            <button onclick="testSignaling()">Test Signaling</button>
+            <button onclick="stressTest()">Stress Test</button>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Test Statistics</h3>
+            <div class="stats">
+                <div class="stat-box">
+                    <strong>Tests Run:</strong><br>
+                    <span id="testsRun">0</span>
+                </div>
+                <div class="stat-box">
+                    <strong>Tests Passed:</strong><br>
+                    <span id="testsPassed">0</span>
+                </div>
+                <div class="stat-box">
+                    <strong>Tests Failed:</strong><br>
+                    <span id="testsFailed">0</span>
+                </div>
+                <div class="stat-box">
+                    <strong>Success Rate:</strong><br>
+                    <span id="successRate">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Test Results</h3>
+            <div id="testResults"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🖥️ Live Log</h3>
+            <div id="log"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+        const serverUrl = 'https://share.volunteerlogin.org';
+        let testStats = { run: 0, passed: 0, failed: 0 };
+        let activeConnections = [];
+
+        // Logging functions
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.innerHTML = `[${timestamp}] ${message}`;
+            entry.className = type;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            document.getElementById('testResults').innerHTML = '';
+            testStats = { run: 0, passed: 0, failed: 0 };
+            updateStats();
+        }
+
+        function addTestResult(testName, passed, message) {
+            testStats.run++;
+            if (passed) {
+                testStats.passed++;
+            } else {
+                testStats.failed++;
+            }
+            
+            const resultsDiv = document.getElementById('testResults');
+            const result = document.createElement('div');
+            result.className = `test-result ${passed ? 'success' : 'error'}`;
+            result.innerHTML = `<strong>${testName}:</strong> ${passed ? '✅ PASSED' : '❌ FAILED'} - ${message}`;
+            resultsDiv.appendChild(result);
+            
+            updateStats();
+            log(`${testName}: ${passed ? 'PASSED' : 'FAILED'} - ${message}`, passed ? 'success' : 'error');
+        }
+
+        function updateStats() {
+            document.getElementById('testsRun').textContent = testStats.run;
+            document.getElementById('testsPassed').textContent = testStats.passed;
+            document.getElementById('testsFailed').textContent = testStats.failed;
+            
+            const successRate = testStats.run > 0 ? Math.round((testStats.passed / testStats.run) * 100) : 0;
+            document.getElementById('successRate').textContent = `${successRate}%`;
+        }
+
+        // Test helper function to create authenticated connection
+        function createTestConnection(userId, authToken = 'valid-test-token-1234567890') {
+            return new Promise((resolve, reject) => {
+                const socket = io(serverUrl, {
+                    transports: ['polling', 'websocket'],
+                    forceNew: true
+                });
+
+                const timeout = setTimeout(() => {
+                    socket.disconnect();
+                    reject(new Error('Connection timeout'));
+                }, 5000);
+
+                socket.on('connect', () => {
+                    clearTimeout(timeout);
+                    log(`Connected: ${socket.id} for user ${userId}`);
+                    resolve(socket);
+                });
+
+                socket.on('connect_error', (error) => {
+                    clearTimeout(timeout);
+                    reject(error);
+                });
+            });
+        }
+
+        // Test 1: Basic Connection Test
+        async function testConnection() {
+            log('🔗 Testing basic connection...', 'info');
+            
+            try {
+                const socket = await createTestConnection('test-user-1');
+                
+                addTestResult('Basic Connection', true, 'Successfully connected to signalling server');
+                
+                socket.disconnect();
+                return true;
+            } catch (error) {
+                addTestResult('Basic Connection', false, `Connection failed: ${error.message}`);
+                return false;
+            }
+        }
+
+        // Test 2: Authentication Tests
+        async function testAuthentication() {
+            log('🔐 Testing authentication...', 'info');
+            
+            const tests = [
+                {
+                    name: 'Valid Auth',
+                    userId: 'test-user-valid',
+                    authToken: 'valid-test-token-1234567890',
+                    shouldPass: true
+                },
+                {
+                    name: 'Invalid Token',
+                    userId: 'test-user-invalid',
+                    authToken: 'fake-token',
+                    shouldPass: false
+                },
+                {
+                    name: 'Short Token',
+                    userId: 'test-user-short',
+                    authToken: 'short',
+                    shouldPass: false
+                },
+                {
+                    name: 'Missing UserId',
+                    userId: '',
+                    authToken: 'valid-test-token-1234567890',
+                    shouldPass: false
+                }
+            ];
+
+            for (const test of tests) {
+                try {
+                    const socket = await createTestConnection('temp-user');
+                    
+                    const result = await new Promise((resolve) => {
+                        const timeout = setTimeout(() => resolve({ success: false, reason: 'timeout' }), 3000);
+                        
+                        socket.on('join-confirmed', (data) => {
+                            clearTimeout(timeout);
+                            resolve({ success: true, data });
+                        });
+                        
+                        socket.on('auth-failed', (data) => {
+                            clearTimeout(timeout);
+                            resolve({ success: false, reason: data.reason });
+                        });
+                        
+                        socket.on('error', (data) => {
+                            clearTimeout(timeout);
+                            resolve({ success: false, reason: data.message });
+                        });
+                        
+                        // Attempt to join room
+                        socket.emit('join-room', {
+                            room: 'test-room-auth',
+                            userId: test.userId,
+                            authToken: test.authToken
+                        });
+                    });
+                    
+                    const passed = (result.success === test.shouldPass);
+                    const message = test.shouldPass ? 
+                        (result.success ? 'Authentication succeeded' : `Unexpected failure: ${result.reason}`) :
+                        (result.success ? 'Authentication should have failed' : `Correctly rejected: ${result.reason}`);
+                    
+                    addTestResult(`Auth: ${test.name}`, passed, message);
+                    
+                    socket.disconnect();
+                } catch (error) {
+                    addTestResult(`Auth: ${test.name}`, false, `Test error: ${error.message}`);
+                }
+            }
+        }
+
+        // Test 3: Room Join and Signaling
+        async function testSignaling() {
+            log('📡 Testing signaling functionality...', 'info');
+            
+            try {
+                // Create two test connections
+                const socket1 = await createTestConnection('trainer-123');
+                const socket2 = await createTestConnection('trainee-456');
+                
+                // Test room joining
+                const roomJoinTest = await new Promise((resolve) => {
+                    let confirmCount = 0;
+                    const timeout = setTimeout(() => resolve(false), 5000);
+                    
+                    const checkComplete = () => {
+                        confirmCount++;
+                        if (confirmCount === 2) {
+                            clearTimeout(timeout);
+                            resolve(true);
+                        }
+                    };
+                    
+                    socket1.on('join-confirmed', checkComplete);
+                    socket2.on('join-confirmed', checkComplete);
+                    
+                    socket1.emit('join-room', {
+                        room: 'test-room-signal',
+                        userId: 'trainer-123',
+                        authToken: 'valid-test-token-1234567890'
+                    });
+                    
+                    socket2.emit('join-room', {
+                        room: 'test-room-signal',
+                        userId: 'trainee-456',
+                        authToken: 'valid-test-token-1234567890'
+                    });
+                });
+                
+                addTestResult('Room Join', roomJoinTest, roomJoinTest ? 'Both users joined room successfully' : 'Room join failed');
+                
+                if (roomJoinTest) {
+                    // Test peer notification
+                    const peerNotificationTest = await new Promise((resolve) => {
+                        const timeout = setTimeout(() => resolve(false), 3000);
+                        
+                        socket1.on('peer-joined', (data) => {
+                            clearTimeout(timeout);
+                            resolve(data.userId === 'trainee-456');
+                        });
+                        
+                        // Socket2 should have already joined, triggering the event
+                        // If not received, create a new connection to trigger it
+                        setTimeout(() => {
+                            const socket3 = io(serverUrl, { forceNew: true });
+                            socket3.on('connect', () => {
+                                socket3.emit('join-room', {
+                                    room: 'test-room-signal',
+                                    userId: 'trainee-789',
+                                    authToken: 'valid-test-token-1234567890'
+                                });
+                            });
+                        }, 500);
+                    });
+                    
+                    addTestResult('Peer Notification', peerNotificationTest, peerNotificationTest ? 'Peer join notifications working' : 'Peer notifications failed');
+                    
+                    // Test signal delivery
+                    const signalTest = await new Promise((resolve) => {
+                        const timeout = setTimeout(() => resolve(false), 3000);
+                        
+                        socket2.on('signal', (data) => {
+                            clearTimeout(timeout);
+                            resolve(data.type === 'test-signal' && data.fromUserId === 'trainer-123');
+                        });
+                        
+                        socket1.emit('signal', {
+                            room: 'test-room-signal',
+                            to: 'trainee-456',
+                            type: 'test-signal',
+                            payload: { message: 'Hello trainee!' }
+                        });
+                    });
+                    
+                    addTestResult('Signal Delivery', signalTest, signalTest ? 'Signals delivered correctly' : 'Signal delivery failed');
+                }
+                
+                socket1.disconnect();
+                socket2.disconnect();
+                
+            } catch (error) {
+                addTestResult('Signaling Test', false, `Signaling test error: ${error.message}`);
+            }
+        }
+
+        // Test 4: Session Replacement
+        async function testSessionReplacement() {
+            log('🔄 Testing session replacement...', 'info');
+            
+            try {
+                // Create first connection
+                const socket1 = await createTestConnection('user-session-test');
+                
+                await new Promise((resolve) => {
+                    socket1.on('join-confirmed', resolve);
+                    socket1.emit('join-room', {
+                        room: 'test-room-session',
+                        userId: 'duplicate-user',
+                        authToken: 'valid-test-token-1234567890'
+                    });
+                });
+                
+                // Create second connection with same user ID
+                const socket2 = await createTestConnection('user-session-test-2');
+                
+                const sessionReplacementTest = await new Promise((resolve) => {
+                    const timeout = setTimeout(() => resolve(false), 5000);
+                    
+                    socket1.on('session-replaced', (data) => {
+                        clearTimeout(timeout);
+                        resolve(true);
+                    });
+                    
+                    socket2.emit('join-room', {
+                        room: 'test-room-session',
+                        userId: 'duplicate-user', // Same user ID
+                        authToken: 'valid-test-token-1234567890'
+                    });
+                });
+                
+                addTestResult('Session Replacement', sessionReplacementTest, 
+                    sessionReplacementTest ? 'Session replacement working correctly' : 'Session replacement failed');
+                
+                socket1.disconnect();
+                socket2.disconnect();
+                
+            } catch (error) {
+                addTestResult('Session Replacement', false, `Session replacement error: ${error.message}`);
+            }
+        }
+
+        // Test 5: Stress Test
+        async function stressTest() {
+            log('💪 Running stress test...', 'info');
+            
+            const connectionCount = 10;
+            const connections = [];
+            
+            try {
+                // Create multiple connections
+                const connectionPromises = [];
+                for (let i = 0; i < connectionCount; i++) {
+                    connectionPromises.push(createTestConnection(`stress-user-${i}`));
+                }
+                
+                const sockets = await Promise.all(connectionPromises);
+                connections.push(...sockets);
+                
+                // Join all to same room
+                const joinPromises = sockets.map((socket, index) => {
+                    return new Promise((resolve) => {
+                        socket.on('join-confirmed', resolve);
+                        socket.emit('join-room', {
+                            room: 'stress-test-room',
+                            userId: `stress-user-${index}`,
+                            authToken: 'valid-test-token-1234567890'
+                        });
+                    });
+                });
+                
+                await Promise.all(joinPromises);
+                
+                // Send signals from each socket
+                let signalsReceived = 0;
+                const expectedSignals = connectionCount * (connectionCount - 1); // Each sends to all others
+                
+                const signalTest = await new Promise((resolve) => {
+                    const timeout = setTimeout(() => resolve(signalsReceived), 10000);
+                    
+                    sockets.forEach(socket => {
+                        socket.on('signal', () => {
+                            signalsReceived++;
+                            if (signalsReceived >= expectedSignals) {
+                                clearTimeout(timeout);
+                                resolve(signalsReceived);
+                            }
+                        });
+                    });
+                    
+                    // Send signals
+                    sockets.forEach((socket, fromIndex) => {
+                        sockets.forEach((_, toIndex) => {
+                            if (fromIndex !== toIndex) {
+                                socket.emit('signal', {
+                                    room: 'stress-test-room',
+                                    to: `stress-user-${toIndex}`,
+                                    type: 'stress-test-signal',
+                                    payload: { from: fromIndex, to: toIndex }
+                                });
+                            }
+                        });
+                    });
+                });
+                
+                const successRate = (signalsReceived / expectedSignals) * 100;
+                addTestResult('Stress Test', successRate > 90, 
+                    `${signalsReceived}/${expectedSignals} signals delivered (${successRate.toFixed(1)}%)`);
+                
+            } catch (error) {
+                addTestResult('Stress Test', false, `Stress test error: ${error.message}`);
+            } finally {
+                // Clean up connections
+                connections.forEach(socket => socket.disconnect());
+            }
+        }
+
+        // Run all tests
+        async function runAllTests() {
+            clearLog();
+            log('🚀 Starting comprehensive test suite...', 'info');
+            
+            const tests = [
+                { name: 'Connection Test', fn: testConnection },
+                { name: 'Authentication Test', fn: testAuthentication },
+                { name: 'Signaling Test', fn: testSignaling },
+                { name: 'Session Replacement Test', fn: testSessionReplacement },
+                { name: 'Stress Test', fn: stressTest }
+            ];
+            
+            for (const test of tests) {
+                log(`\n--- Running ${test.name} ---`, 'info');
+                try {
+                    await test.fn();
+                } catch (error) {
+                    addTestResult(test.name, false, `Test suite error: ${error.message}`);
+                }
+                
+                // Brief pause between tests
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            
+            log('\n🏁 All tests completed!', 'info');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            log('🧪 WebRTC Signalling Server Test Suite loaded', 'info');
+            log(`📡 Target server: ${serverUrl}`, 'info');
+            updateStats();
+        });
+    </script>
+</body>
+</html>

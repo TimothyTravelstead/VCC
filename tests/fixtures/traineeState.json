@@ -1,0 +1,44 @@
+{
+  "standard": {
+    "volunteerID": "TestTrainee1",
+    "trainerID": "TestTrainer",
+    "role": "trainee",
+    "fullName": "Test Trainee 1",
+    "isController": false,
+    "currentlyOnCall": false,
+    "muted": false,
+    "incomingCallsTo": "TestTrainer"
+  },
+  "withControl": {
+    "volunteerID": "TestTrainee1",
+    "trainerID": "TestTrainer",
+    "role": "trainee",
+    "fullName": "Test Trainee 1",
+    "isController": true,
+    "currentlyOnCall": false,
+    "muted": false,
+    "incomingCallsTo": "TestTrainee1"
+  },
+  "onCall": {
+    "volunteerID": "TestTrainee1",
+    "trainerID": "TestTrainer",
+    "role": "trainee",
+    "fullName": "Test Trainee 1",
+    "isController": false,
+    "currentlyOnCall": true,
+    "muted": true,
+    "incomingCallsTo": "TestTrainer",
+    "callSid": "CA_test_call_123"
+  },
+  "onCallWithControl": {
+    "volunteerID": "TestTrainee1",
+    "trainerID": "TestTrainer",
+    "role": "trainee",
+    "fullName": "Test Trainee 1",
+    "isController": true,
+    "currentlyOnCall": true,
+    "muted": false,
+    "incomingCallsTo": "TestTrainee1",
+    "callSid": "CA_test_call_123"
+  }
+}

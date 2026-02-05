@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Integration Test - Screen Sharing</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button { padding: 10px 20px; margin: 5px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Screen Sharing Integration Test</h1>
+    
+    <div id="status" class="status info">Ready to test...</div>
+    
+    <h2>Test as Trainer</h2>
+    <button onclick="testAsTrainer()">Initialize as Trainer</button>
+    
+    <h2>Test as Trainee</h2>
+    <button onclick="testAsTrainee()">Initialize as Trainee</button>
+    
+    <h2>Manual Controls</h2>
+    <button onclick="checkSignals()">Check Signal Files</button>
+    <button onclick="clearSignals()">Clear Signals</button>
+    
+    <!-- Hidden fields for compatibility -->
+    <input type="hidden" id="volunteerID" value="">
+    <input type="hidden" id="trainer" value="">
+    <input type="hidden" id="trainerID" value="">
+    <input type="hidden" id="trainee" value="">
+    <input type="hidden" id="traineeID" value="">
+    
+    <!-- Video elements -->
+    <div style="margin-top: 20px;">
+        <h3>Video Elements</h3>
+        <video id="localVideo" autoplay muted style="width: 200px; border: 1px solid #ccc;"></video>
+        <video id="remoteVideo" autoplay playsinline style="width: 400px; border: 1px solid #ccc;"></video>
+    </div>
+    
+    <script src="screenSharingControlMulti.js"></script>
+    <script>
+        let screenSharing = null;
+        
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = 'status ' + type;
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+        
+        function testAsTrainer() {
+            updateStatus('Initializing as Trainer...', 'info');
+            
+            // Set up fields
+            document.getElementById('volunteerID').value = 'TestTrainer';
+            document.getElementById('trainer').value = 'TestTrainer';
+            document.getElementById('trainerID').value = 'TestTrainer';
+            
+            try {
+                screenSharing = new MultiTraineeScreenSharing({
+                    role: 'trainer',
+                    participantId: 'TestTrainer',
+                    trainerId: 'TestTrainer',
+                    roomId: 'TestRoom'
+                });
+                
+                updateStatus('Trainer initialized - screen sharing should start automatically', 'success');
+            } catch (error) {
+                updateStatus('Failed to initialize trainer: ' + error.message, 'error');
+            }
+        }
+        
+        function testAsTrainee() {
+            updateStatus('Initializing as Trainee...', 'info');
+            
+            // Set up fields
+            document.getElementById('volunteerID').value = 'TestTrainee';
+            document.getElementById('trainer').value = 'TestTrainer';
+            document.getElementById('trainerID').value = 'TestTrainer';
+            document.getElementById('trainee').value = 'TestTrainee';
+            document.getElementById('traineeID').value = 'TestTrainee';
+            
+            try {
+                screenSharing = new MultiTraineeScreenSharing({
+                    role: 'trainee',
+                    participantId: 'TestTrainee',
+                    trainerId: 'TestTrainer',
+                    roomId: 'TestRoom'
+                });
+                
+                updateStatus('Trainee initialized - waiting for trainer screen', 'success');
+            } catch (error) {
+                updateStatus('Failed to initialize trainee: ' + error.message, 'error');
+            }
+        }
+        
+        function checkSignals() {
+            fetch('/trainingShare3/test_signal_files.php')
+                .then(response => response.text())
+                .then(data => {
+                    updateStatus('Signal files: ' + data, 'info');
+                })
+                .catch(error => {
+                    updateStatus('Failed to check signals: ' + error.message, 'error');
+                });
+        }
+        
+        function clearSignals() {
+            fetch('/trainingShare3/clear_signals.php')
+                .then(response => response.text())
+                .then(data => {
+                    updateStatus('Signals cleared: ' + data, 'success');
+                })
+                .catch(error => {
+                    updateStatus('Failed to clear signals: ' + error.message, 'error');
+                });
+        }
+        
+        // Auto-check status every 3 seconds
+        setInterval(() => {
+            if (screenSharing) {
+                const participantCount = screenSharing.participants ? screenSharing.participants.size : 0;
+                const isSharing = screenSharing.isSharing ? 'Yes' : 'No';
+                const role = screenSharing.role || 'Unknown';
+                console.log(`Status: Role=${role}, Participants=${participantCount}, Sharing=${isSharing}`);
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

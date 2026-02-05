@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple WebRTC Caller</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #e3f2fd; }
+        button { padding: 10px 20px; margin: 5px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        #log { background: #f5f5f5; padding: 10px; height: 400px; overflow-y: auto; font-family: monospace; font-size: 12px; }
+        video { width: 300px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Simple WebRTC Screen Share Caller</h1>
+    <button onclick="startSharing()">Start Screen Share</button>
+    <button onclick="clearLog()">Clear Log</button>
+    
+    <div>
+        <h3>Screen Preview:</h3>
+        <video id="localVideo" autoplay muted></video>
+    </div>
+    
+    <div>
+        <h3>Log:</h3>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        const myId = 'caller';
+        let peerConnections = new Map();
+        let localStream = null;
+        let lastMessageTime = 0;
+        
+        function log(msg) {
+            const logDiv = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${time}] ${msg}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(msg);
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        async function sendMessage(message, targetId = 'receiver') {
+            message.from = myId;
+            message.to = targetId;
+            
+            try {
+                const response = await fetch('minimal_signaling_test.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(message)
+                });
+                const result = await response.json();
+                log(`SENT: ${message.type} to ${targetId}`);
+            } catch (error) {
+                log(`ERROR sending: ${error.message}`);
+            }
+        }
+        
+        async function pollMessages() {
+            try {
+                const response = await fetch(`minimal_signaling_test.php?to=${myId}&since=${lastMessageTime}`);
+                const result = await response.json();
+                
+                if (result.messages) {
+                    for (const msg of result.messages) {
+                        lastMessageTime = Math.max(lastMessageTime, msg.timestamp);
+                        handleMessage(msg);
+                    }
+                }
+            } catch (error) {
+                // Silent error - too noisy
+            }
+        }
+        
+        async function handleMessage(msg) {
+            const senderId = msg.from;
+            log(`RECEIVED: ${msg.type} from ${senderId}`);
+            
+            switch (msg.type) {
+                case 'join-request':
+                    await handleJoinRequest(senderId);
+                    break;
+                case 'answer':
+                    await handleAnswer(senderId, msg.answer);
+                    break;
+                case 'ice-candidate':
+                    await handleIceCandidate(senderId, msg.candidate);
+                    break;
+            }
+        }
+        
+        async function handleJoinRequest(receiverId) {
+            log(`Creating connection for ${receiverId}`);
+            
+            const pc = new RTCPeerConnection({
+                iceServers: [{'urls': 'stun:stun.l.google.com:19302'}]
+            });
+            
+            peerConnections.set(receiverId, pc);
+            
+            // Add ICE candidate handler
+            pc.onicecandidate = (event) => {
+                if (event.candidate) {
+                    sendMessage({
+                        type: 'ice-candidate',
+                        candidate: event.candidate
+                    }, receiverId);
+                }
+            };
+            
+            // Add local stream tracks if available
+            if (localStream) {
+                localStream.getTracks().forEach(track => {
+                    pc.addTrack(track, localStream);
+                    log(`Added ${track.kind} track to connection for ${receiverId}`);
+                });
+            }
+            
+            // Create and send offer
+            try {
+                const offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+                
+                sendMessage({
+                    type: 'offer',
+                    offer: offer
+                }, receiverId);
+                
+                log(`Sent offer to ${receiverId}`);
+            } catch (error) {
+                log(`Error creating offer: ${error.message}`);
+            }
+        }
+        
+        async function handleAnswer(senderId, answer) {
+            const pc = peerConnections.get(senderId);
+            if (pc) {
+                try {
+                    await pc.setRemoteDescription(new RTCSessionDescription(answer));
+                    log(`Set remote description for ${senderId}`);
+                } catch (error) {
+                    log(`Error setting remote description: ${error.message}`);
+                }
+            }
+        }
+        
+        async function handleIceCandidate(senderId, candidate) {
+            const pc = peerConnections.get(senderId);
+            if (pc) {
+                try {
+                    await pc.addIceCandidate(new RTCIceCandidate(candidate));
+                } catch (error) {
+                    log(`Error adding ICE candidate: ${error.message}`);
+                }
+            }
+        }
+        
+        async function startSharing() {
+            log('Starting screen share...');
+            
+            try {
+                // Get screen share
+                localStream = await navigator.mediaDevices.getDisplayMedia({
+                    video: true,
+                    audio: false
+                });
+                
+                document.getElementById('localVideo').srcObject = localStream;
+                
+                // Handle stream end
+                localStream.getVideoTracks()[0].onended = () => {
+                    log('Screen share ended');
+                    localStream = null;
+                    document.getElementById('localVideo').srcObject = null;
+                };
+                
+                log('Screen share active - receivers can now join');
+                
+                // Send active signal
+                sendMessage({
+                    type: 'caller-active'
+                }, 'broadcast');
+                
+            } catch (error) {
+                log(`ERROR: ${error.message}`);
+            }
+        }
+        
+        // Poll for messages every second
+        setInterval(pollMessages, 1000);
+        
+        // Send heartbeat every 30 seconds
+        setInterval(() => {
+            if (localStream) {
+                sendMessage({
+                    type: 'caller-active'
+                }, 'broadcast');
+            }
+        }, 30000);
+        
+        log('Simple caller ready');
+    </script>
+</body>
+</html>

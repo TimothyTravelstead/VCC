@@ -1,0 +1,48 @@
+[2025-12-28 09:12:35] === Convert CITY/REGION to ZIP_ONLY ===
+[2025-12-28 09:12:35] Dry run: NO
+[2025-12-28 09:12:35] Records to process: 3806
+[2025-12-28 09:13:02] [2.6%] 100/3806 - Updated: 93, Unsupported: 0, Failed: 7 (ETA: 16.7m)
+[2025-12-28 09:13:29] [5.3%] 200/3806 - Updated: 192, Unsupported: 0, Failed: 8 (ETA: 16.2m)
+[2025-12-28 09:13:56] [7.9%] 300/3806 - Updated: 292, Unsupported: 0, Failed: 8 (ETA: 15.8m)
+[2025-12-28 09:14:23] [10.5%] 400/3806 - Updated: 392, Unsupported: 0, Failed: 8 (ETA: 15.3m)
+[2025-12-28 09:14:49] [13.1%] 500/3806 - Updated: 490, Unsupported: 1, Failed: 9 (ETA: 14.8m)
+[2025-12-28 09:15:17] [15.8%] 600/3806 - Updated: 589, Unsupported: 1, Failed: 10 (ETA: 14.4m)
+[2025-12-28 09:15:44] [18.4%] 700/3806 - Updated: 687, Unsupported: 2, Failed: 11 (ETA: 14m)
+[2025-12-28 09:16:11] [21%] 800/3806 - Updated: 787, Unsupported: 2, Failed: 11 (ETA: 13.5m)
+[2025-12-28 09:16:37] [23.6%] 900/3806 - Updated: 887, Unsupported: 2, Failed: 11 (ETA: 13m)
+[2025-12-28 09:17:05] [26.3%] 1000/3806 - Updated: 985, Unsupported: 2, Failed: 13 (ETA: 12.6m)
+[2025-12-28 09:17:32] [28.9%] 1100/3806 - Updated: 1085, Unsupported: 2, Failed: 13 (ETA: 12.2m)
+[2025-12-28 09:18:00] [31.5%] 1200/3806 - Updated: 1185, Unsupported: 2, Failed: 13 (ETA: 11.8m)
+[2025-12-28 09:18:28] [34.2%] 1300/3806 - Updated: 1283, Unsupported: 4, Failed: 13 (ETA: 11.3m)
+[2025-12-28 09:18:55] [36.8%] 1400/3806 - Updated: 1381, Unsupported: 5, Failed: 14 (ETA: 10.9m)
+[2025-12-28 09:19:24] [39.4%] 1500/3806 - Updated: 1481, Unsupported: 5, Failed: 14 (ETA: 10.5m)
+[2025-12-28 09:19:53] [42%] 1600/3806 - Updated: 1580, Unsupported: 5, Failed: 15 (ETA: 10.1m)
+[2025-12-28 09:20:22] [44.7%] 1700/3806 - Updated: 1680, Unsupported: 5, Failed: 15 (ETA: 9.6m)
+[2025-12-28 09:20:50] [47.3%] 1800/3806 - Updated: 1775, Unsupported: 10, Failed: 15 (ETA: 9.2m)
+[2025-12-28 09:21:18] [49.9%] 1900/3806 - Updated: 1875, Unsupported: 10, Failed: 15 (ETA: 8.7m)
+[2025-12-28 09:21:45] [52.5%] 2000/3806 - Updated: 1975, Unsupported: 10, Failed: 15 (ETA: 8.3m)
+[2025-12-28 09:22:12] [55.2%] 2100/3806 - Updated: 2075, Unsupported: 10, Failed: 15 (ETA: 7.8m)
+[2025-12-28 09:22:39] [57.8%] 2200/3806 - Updated: 2175, Unsupported: 10, Failed: 15 (ETA: 7.3m)
+[2025-12-28 09:23:06] [60.4%] 2300/3806 - Updated: 2275, Unsupported: 10, Failed: 15 (ETA: 6.9m)
+[2025-12-28 09:23:33] [63.1%] 2400/3806 - Updated: 2373, Unsupported: 12, Failed: 15 (ETA: 6.4m)
+[2025-12-28 09:24:00] [65.7%] 2500/3806 - Updated: 2473, Unsupported: 12, Failed: 15 (ETA: 6m)
+[2025-12-28 09:24:27] [68.3%] 2600/3806 - Updated: 2573, Unsupported: 12, Failed: 15 (ETA: 5.5m)
+[2025-12-28 09:24:54] [70.9%] 2700/3806 - Updated: 2672, Unsupported: 13, Failed: 15 (ETA: 5m)
+[2025-12-28 09:25:22] [73.6%] 2800/3806 - Updated: 2772, Unsupported: 13, Failed: 15 (ETA: 4.6m)
+[2025-12-28 09:25:50] [76.2%] 2900/3806 - Updated: 2866, Unsupported: 19, Failed: 15 (ETA: 4.1m)
+[2025-12-28 09:26:17] [78.8%] 3000/3806 - Updated: 2965, Unsupported: 20, Failed: 15 (ETA: 3.7m)
+[2025-12-28 09:26:44] [81.5%] 3100/3806 - Updated: 3065, Unsupported: 20, Failed: 15 (ETA: 3.2m)
+[2025-12-28 09:27:11] [84.1%] 3200/3806 - Updated: 3165, Unsupported: 20, Failed: 15 (ETA: 2.8m)
+[2025-12-28 09:27:38] [86.7%] 3300/3806 - Updated: 3264, Unsupported: 21, Failed: 15 (ETA: 2.3m)
+[2025-12-28 09:28:05] [89.3%] 3400/3806 - Updated: 3364, Unsupported: 21, Failed: 15 (ETA: 1.9m)
+[2025-12-28 09:28:32] [92%] 3500/3806 - Updated: 3464, Unsupported: 21, Failed: 15 (ETA: 1.4m)
+[2025-12-28 09:28:58] [94.6%] 3600/3806 - Updated: 3561, Unsupported: 24, Failed: 15 (ETA: 0.9m)
+[2025-12-28 09:29:25] [97.2%] 3700/3806 - Updated: 3660, Unsupported: 25, Failed: 15 (ETA: 0.5m)
+[2025-12-28 09:29:52] [99.8%] 3800/3806 - Updated: 3760, Unsupported: 25, Failed: 15 (ETA: 0m)
+[2025-12-28 09:29:54] [100%] 3806/3806 - Updated: 3766, Unsupported: 25, Failed: 15 (ETA: 0m)
+[2025-12-28 09:29:54] === Complete ===
+[2025-12-28 09:29:54] Processed: 3806
+[2025-12-28 09:29:54] Updated to ZIP_ONLY: 3766
+[2025-12-28 09:29:54] Marked UNSUPPORTED: 25
+[2025-12-28 09:29:54] Failed: 15
+[2025-12-28 09:29:54] Log: /home/1203785.cloudwaysapps.com/hrbnxbfdau/public_html/Admin/Search/convert_city_zip_log_20251228_091235.txt

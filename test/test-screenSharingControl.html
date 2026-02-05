@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScreenSharingControl Test Suite</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #f5f5f5; 
+            margin: 0;
+        }
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            background: #fafafa;
+        }
+        .test-result { 
+            padding: 8px; 
+            margin: 5px 0; 
+            border-radius: 3px; 
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { 
+            padding: 10px 20px; 
+            margin: 5px; 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 14px;
+        }
+        button:hover { background: #0056b3; }
+        button:disabled { background: #6c757d; cursor: not-allowed; }
+        button.danger { background: #dc3545; }
+        button.danger:hover { background: #c82333; }
+        button.success { background: #28a745; }
+        button.success:hover { background: #218838; }
+        #log { 
+            height: 400px; 
+            overflow-y: scroll; 
+            background: #f8f9fa; 
+            border: 1px solid #dee2e6; 
+            padding: 10px; 
+            font-family: monospace; 
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        .stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 10px; 
+            margin: 10px 0; 
+        }
+        .stat-box { 
+            padding: 15px; 
+            background: #e9ecef; 
+            border-radius: 4px; 
+            text-align: center; 
+            font-weight: bold;
+        }
+        .video-container { 
+            display: flex; 
+            gap: 20px; 
+            margin: 20px 0; 
+            flex-wrap: wrap;
+        }
+        .video-box { 
+            border: 2px solid #ddd; 
+            border-radius: 5px; 
+            padding: 10px; 
+            min-width: 300px;
+            background: #000;
+        }
+        video { 
+            width: 100%; 
+            max-width: 400px; 
+            height: 300px; 
+            background: #000; 
+            border-radius: 3px;
+        }
+        .connection-status { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 10px; 
+            margin: 10px 0; 
+        }
+        .status-indicator { 
+            padding: 8px; 
+            border-radius: 3px; 
+            text-align: center; 
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .status-connected { background: #d4edda; color: #155724; }
+        .status-disconnected { background: #f8d7da; color: #721c24; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .mock-session { 
+            border: 2px dashed #007bff; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+            background: #f8f9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 ScreenSharingControl Test Suite</h1>
+        <p><strong>Testing enhanced SSE/API + WebRTC architecture</strong></p>
+        
+        <div class="test-section">
+            <h3>🎮 Test Controls</h3>
+            <button onclick="runFullSuite()">Run Full Test Suite</button>
+            <button onclick="runInitializationTests()">Test Initialization</button>
+            <button onclick="runConnectionTests()">Test Connections</button>
+            <button onclick="runWebRTCTests()">Test WebRTC</button>
+            <button onclick="runUITests()">Test UI Updates</button>
+            <button onclick="clearLog()">Clear Log</button>
+            <br><br>
+            <button onclick="createMockTrainer()" class="success">Create Mock Trainer</button>
+            <button onclick="createMockTrainee()" class="success">Create Mock Trainee</button>
+            <button onclick="cleanupMockSessions()" class="danger">Cleanup Sessions</button>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Test Statistics</h3>
+            <div class="stats">
+                <div class="stat-box">
+                    <strong>Tests Run:</strong><br>
+                    <span id="testsRun">0</span>
+                </div>
+                <div class="stat-box">
+                    <strong>Tests Passed:</strong><br>
+                    <span id="testsPassed">0</span>
+                </div>
+                <div class="stat-box">
+                    <strong>Tests Failed:</strong><br>
+                    <span id="testsFailed">0</span>
+                </div>
+                <div class="stat-box">
+                    <strong>Success Rate:</strong><br>
+                    <span id="successRate">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 Connection Status</h3>
+            <div class="connection-status">
+                <div id="apiStatus" class="status-indicator status-disconnected">API: Disconnected</div>
+                <div id="sseStatus" class="status-indicator status-disconnected">SSE: Disconnected</div>
+                <div id="webrtcStatus" class="status-indicator status-disconnected">WebRTC: Disconnected</div>
+                <div id="signalingStatus" class="status-indicator status-disconnected">Signaling: Disconnected</div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎥 Mock Training Sessions</h3>
+            <div id="mockSessions"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Test Results</h3>
+            <div id="testResults"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🖥️ Live Log</h3>
+            <div id="log"></div>
+        </div>
+
+        <div class="video-container">
+            <div class="video-box">
+                <h4>Trainer Video (Sharing)</h4>
+                <video id="trainerVideo" muted autoplay></video>
+            </div>
+            <div class="video-box">
+                <h4>Trainee Video (Receiving)</h4>
+                <video id="traineeVideo" muted autoplay></video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Socket.IO for WebRTC signaling tests -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <!-- Load the ScreenSharingControl class -->
+    <script src="trainingShare/screenSharingControl.js"></script>
+
+    <script>
+        // Test framework variables
+        let testStats = { run: 0, passed: 0, failed: 0 };
+        let mockSessions = [];
+        let currentTest = null;
+
+        // Mock API responses for testing
+        const mockApiResponses = {
+            '/health': { success: true, status: 'healthy' },
+            '/rooms/test-room/join': { success: true, roomId: 'room-123' },
+            '/rooms/room-123/screenshare/start': { success: true, sessionId: 'session-456' },
+            '/rooms/room-123/screenshare/stop': { success: true },
+            '/rooms/room-123/leave': { success: true }
+        };
+
+        // Override fetch for testing
+        const originalFetch = window.fetch;
+        
+        function enableMockAPI() {
+            window.fetch = async (url, options) => {
+                log(`MOCK API: ${options?.method || 'GET'} ${url}`);
+                
+                // Extract endpoint from URL
+                const endpoint = url.replace('https://share.volunteerlogin.org/api.php', '');
+                
+                if (mockApiResponses[endpoint]) {
+                    await new Promise(resolve => setTimeout(resolve, 100)); // Simulate network delay
+                    return {
+                        ok: true,
+                        status: 200,
+                        json: async () => mockApiResponses[endpoint]
+                    };
+                }
+                
+                return {
+                    ok: false,
+                    status: 404,
+                    json: async () => ({ success: false, error: 'Mock endpoint not found' })
+                };
+            };
+        }
+        
+        function disableMockAPI() {
+            window.fetch = originalFetch;
+        }
+
+        // Logging functions
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logDiv = document.getElementById('log');
+            logDiv.textContent += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        function clearLog() {
+            document.getElementById('log').textContent = '';
+            document.getElementById('testResults').innerHTML = '';
+            testStats = { run: 0, passed: 0, failed: 0 };
+            updateStats();
+        }
+
+        function addTestResult(testName, passed, message) {
+            testStats.run++;
+            if (passed) {
+                testStats.passed++;
+            } else {
+                testStats.failed++;
+            }
+            
+            const resultsDiv = document.getElementById('testResults');
+            const result = document.createElement('div');
+            result.className = `test-result ${passed ? 'success' : 'error'}`;
+            result.innerHTML = `<strong>${testName}:</strong> ${passed ? '✅ PASSED' : '❌ FAILED'} - ${message}`;
+            resultsDiv.appendChild(result);
+            
+            updateStats();
+            log(`${testName}: ${passed ? 'PASSED' : 'FAILED'} - ${message}`, passed ? 'success' : 'error');
+        }
+
+        function updateStats() {
+            document.getElementById('testsRun').textContent = testStats.run;
+            document.getElementById('testsPassed').textContent = testStats.passed;
+            document.getElementById('testsFailed').textContent = testStats.failed;
+            
+            const successRate = testStats.run > 0 ? Math.round((testStats.passed / testStats.run) * 100) : 0;
+            document.getElementById('successRate').textContent = `${successRate}%`;
+        }
+
+        function updateConnectionStatus(type, connected) {
+            const statusElement = document.getElementById(`${type}Status`);
+            if (statusElement) {
+                statusElement.textContent = `${type.toUpperCase()}: ${connected ? 'Connected' : 'Disconnected'}`;
+                statusElement.className = `status-indicator ${connected ? 'status-connected' : 'status-disconnected'}`;
+            }
+        }
+
+        // Mock session management
+        function createMockSession(role, id) {
+            const sessionDiv = document.createElement('div');
+            sessionDiv.className = 'mock-session';
+            sessionDiv.id = `session-${id}`;
+            
+            const video = role === 'trainee' ? document.getElementById('traineeVideo') : document.getElementById('trainerVideo');
+            
+            const options = {
+                volunteerID: id,
+                role: role,
+                roomName: 'test-room',
+                trainerID: role === 'trainer' ? id : 'trainer-123',
+                trainees: role === 'trainer' ? [{ id: 'trainee-456', isSignedOn: true }] : [],
+                sessionToken: 'mock-session-token-12345678901234567890'
+            };
+
+            const session = new ScreenSharingControl(options);
+            
+            // Override remoteVideo to use our test video elements
+            session.remoteVideo = video;
+            
+            sessionDiv.innerHTML = `
+                <h4>${role.charAt(0).toUpperCase() + role.slice(1)}: ${id}</h4>
+                <div>Status: <span id="status-${id}">Created</span></div>
+                <div>Room: ${session.roomName}</div>
+                <button onclick="initializeSession('${id}')" class="success">Initialize</button>
+                <button onclick="startSharing('${id}')" ${role === 'trainee' ? 'disabled' : ''}>Start Sharing</button>
+                <button onclick="stopSharing('${id}')">Stop Sharing</button>
+                <button onclick="destroySession('${id}')" class="danger">Destroy</button>
+                <div id="session-log-${id}" style="font-size: 10px; color: #666; max-height: 100px; overflow-y: auto;"></div>
+            `;
+            
+            document.getElementById('mockSessions').appendChild(sessionDiv);
+            
+            // Store session reference
+            mockSessions.push({ id, role, session, element: sessionDiv });
+            
+            return session;
+        }
+
+        function createMockTrainer() {
+            const trainerId = `trainer-${Date.now()}`;
+            const session = createMockSession('trainer', trainerId);
+            log(`Created mock trainer session: ${trainerId}`);
+            return session;
+        }
+
+        function createMockTrainee() {
+            const traineeId = `trainee-${Date.now()}`;
+            const session = createMockSession('trainee', traineeId);
+            log(`Created mock trainee session: ${traineeId}`);
+            return session;
+        }
+
+        function findMockSession(id) {
+            return mockSessions.find(s => s.id === id);
+        }
+
+        async function initializeSession(id) {
+            const mockSession = findMockSession(id);
+            if (!mockSession) return;
+            
+            const statusElement = document.getElementById(`status-${id}`);
+            
+            try {
+                statusElement.textContent = 'Initializing...';
+                enableMockAPI(); // Use mock API for testing
+                
+                await mockSession.session.init();
+                
+                statusElement.textContent = 'Initialized';
+                statusElement.style.color = 'green';
+                log(`Session ${id} initialized successfully`);
+                
+            } catch (error) {
+                statusElement.textContent = 'Init Failed';
+                statusElement.style.color = 'red';
+                log(`Session ${id} initialization failed: ${error.message}`);
+            } finally {
+                disableMockAPI();
+            }
+        }
+
+        async function startSharing(id) {
+            const mockSession = findMockSession(id);
+            if (!mockSession) return;
+            
+            const statusElement = document.getElementById(`status-${id}`);
+            
+            try {
+                statusElement.textContent = 'Starting Share...';
+                enableMockAPI();
+                
+                // Mock screen capture for testing
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                mockSession.session.localStream = stream;
+                
+                await mockSession.session.startScreenShare();
+                
+                statusElement.textContent = 'Sharing';
+                statusElement.style.color = 'blue';
+                log(`Session ${id} started sharing`);
+                
+            } catch (error) {
+                statusElement.textContent = 'Share Failed';
+                statusElement.style.color = 'red';
+                log(`Session ${id} sharing failed: ${error.message}`);
+            } finally {
+                disableMockAPI();
+            }
+        }
+
+        async function stopSharing(id) {
+            const mockSession = findMockSession(id);
+            if (!mockSession) return;
+            
+            const statusElement = document.getElementById(`status-${id}`);
+            
+            try {
+                statusElement.textContent = 'Stopping...';
+                enableMockAPI();
+                
+                await mockSession.session.stopScreenShare();
+                
+                statusElement.textContent = 'Stopped';
+                statusElement.style.color = 'orange';
+                log(`Session ${id} stopped sharing`);
+                
+            } catch (error) {
+                statusElement.textContent = 'Stop Failed';
+                statusElement.style.color = 'red';
+                log(`Session ${id} stop failed: ${error.message}`);
+            } finally {
+                disableMockAPI();
+            }
+        }
+
+        async function destroySession(id) {
+            const mockSession = findMockSession(id);
+            if (!mockSession) return;
+            
+            try {
+                enableMockAPI();
+                await mockSession.session.destroy();
+                
+                // Remove from DOM and array
+                mockSession.element.remove();
+                mockSessions = mockSessions.filter(s => s.id !== id);
+                
+                log(`Session ${id} destroyed`);
+                
+            } catch (error) {
+                log(`Session ${id} destroy failed: ${error.message}`);
+            } finally {
+                disableMockAPI();
+            }
+        }
+
+        function cleanupMockSessions() {
+            mockSessions.forEach(session => {
+                session.session.destroy().catch(() => {});
+                session.element.remove();
+            });
+            mockSessions = [];
+            log('All mock sessions cleaned up');
+        }
+
+        // Test suites
+        async function runInitializationTests() {
+            log('🔧 Running Initialization Tests...');
+            
+            // Test 1: Constructor with valid options
+            try {
+                const control = new ScreenSharingControl({
+                    volunteerID: 'test-volunteer',
+                    role: 'trainer',
+                    roomName: 'test-room',
+                    sessionToken: 'test-token-1234567890'
+                });
+                
+                addTestResult('Constructor', true, 'Created with valid options');
+            } catch (error) {
+                addTestResult('Constructor', false, `Constructor failed: ${error.message}`);
+            }
+            
+            // Test 2: Initialization with mock API
+            try {
+                enableMockAPI();
+                
+                const control = new ScreenSharingControl({
+                    volunteerID: 'test-volunteer',
+                    role: 'trainer',
+                    roomName: 'test-room',
+                    sessionToken: 'test-token-1234567890'
+                });
+                
+                await control.init();
+                addTestResult('Initialization', true, 'Successfully initialized with mock API');
+                
+                await control.destroy();
+                
+            } catch (error) {
+                addTestResult('Initialization', false, `Init failed: ${error.message}`);
+            } finally {
+                disableMockAPI();
+            }
+            
+            // Test 3: Authentication token validation
+            try {
+                // Test 3a: With no token (expected in test environment)
+                const control1 = new ScreenSharingControl({
+                    volunteerID: 'test-volunteer',
+                    role: 'trainer',
+                    roomName: 'test-room'
+                });
+                
+                const token1 = control1.getSessionToken();
+                addTestResult('Auth Token (No Token)', token1 === null, 'No token found in test environment (expected)');
+                
+                // Test 3b: With provided token (should work)
+                const control2 = new ScreenSharingControl({
+                    volunteerID: 'test-volunteer',
+                    role: 'trainer',
+                    roomName: 'test-room',
+                    sessionToken: 'test-token-1234567890'
+                });
+                
+                const token2 = control2.sessionToken;
+                addTestResult('Auth Token (Provided)', token2 !== null && token2.length > 10, token2 ? `Token found: ${token2.substring(0, 20)}...` : 'Token not set');
+                
+                // Test 3c: Token validation logic
+                const authHeaders = control2.buildAuthHeaders();
+                const hasAuthHeader = authHeaders['Authorization'] && authHeaders['X-Session-Token'];
+                addTestResult('Auth Headers', hasAuthHeader, hasAuthHeader ? 'Auth headers built correctly' : 'Auth headers missing');
+                
+            } catch (error) {
+                addTestResult('Auth Token Tests', false, `Auth test failed: ${error.message}`);
+            }
+        }
+
+        async function runConnectionTests() {
+            log('🔗 Running Connection Tests...');
+            
+            enableMockAPI();
+            
+            try {
+                const control = new ScreenSharingControl({
+                    volunteerID: 'test-volunteer',
+                    role: 'trainer',
+                    roomName: 'test-room',
+                    sessionToken: 'test-token-1234567890'
+                });
+                
+                // Test API connection
+                try {
+                    await control.initializeAPI();
+                    addTestResult('API Connection', true, 'API connected successfully');
+                    updateConnectionStatus('api', true);
+                } catch (error) {
+                    addTestResult('API Connection', false, `API connection failed: ${error.message}`);
+                    updateConnectionStatus('api', false);
+                }
+                
+                // Test room joining
+                try {
+                    await control.joinRoomViaAPI();
+                    addTestResult('Room Join', true, `Joined room with ID: ${control.roomId}`);
+                } catch (error) {
+                    addTestResult('Room Join', false, `Room join failed: ${error.message}`);
+                }
+                
+                // Test WebRTC signaler connection (will fail in test environment)
+                try {
+                    await control.initializeWebRTCSignalling();
+                    addTestResult('WebRTC Signaler', true, 'WebRTC signaler connected');
+                    updateConnectionStatus('webrtc', true);
+                } catch (error) {
+                    addTestResult('WebRTC Signaler', false, `WebRTC signaler failed: ${error.message}`);
+                    updateConnectionStatus('webrtc', false);
+                }
+                
+                await control.destroy();
+                
+            } catch (error) {
+                addTestResult('Connection Tests', false, `Test suite error: ${error.message}`);
+            } finally {
+                disableMockAPI();
+            }
+        }
+
+        async function runWebRTCTests() {
+            log('📡 Running WebRTC Tests...');
+            
+            try {
+                const control = new ScreenSharingControl({
+                    volunteerID: 'test-volunteer',
+                    role: 'trainer',
+                    roomName: 'test-room',
+                    sessionToken: 'test-token-1234567890'
+                });
+                
+                // Test peer connection creation
+                try {
+                    const peer = control.getOrCreatePeer('test-peer');
+                    addTestResult('Peer Creation', peer instanceof RTCPeerConnection, 'Peer connection created');
+                    
+                    // Test peer cleanup
+                    control.cleanupPeer('test-peer');
+                    addTestResult('Peer Cleanup', !control.peers.has('test-peer'), 'Peer cleaned up successfully');
+                    
+                } catch (error) {
+                    addTestResult('Peer Management', false, `Peer management failed: ${error.message}`);
+                }
+                
+                // Test signal validation
+                try {
+                    const validSignal = {
+                        type: 'offer',
+                        fromUserId: 'test-sender',
+                        payload: { sdp: 'mock-sdp', type: 'offer' }
+                    };
+                    
+                    // This should not throw an error
+                    control.handleWebRTCSignal(validSignal);
+                    addTestResult('Signal Validation', true, 'Valid signal processed');
+                    
+                } catch (error) {
+                    addTestResult('Signal Validation', false, `Signal validation failed: ${error.message}`);
+                }
+                
+                await control.destroy();
+                
+            } catch (error) {
+                addTestResult('WebRTC Tests', false, `WebRTC test suite error: ${error.message}`);
+            }
+        }
+
+        async function runUITests() {
+            log('🎨 Running UI Tests...');
+            
+            try {
+                const trainerVideo = document.getElementById('trainerVideo');
+                const traineeVideo = document.getElementById('traineeVideo');
+                
+                const control = new ScreenSharingControl({
+                    volunteerID: 'test-volunteer',
+                    role: 'trainee',
+                    roomName: 'test-room'
+                });
+                
+                control.remoteVideo = traineeVideo;
+                
+                // Test UI status detection
+                try {
+                    control.isSharing = false;
+                    control.activeSharer = null;
+                    let status = control.getUIStatus();
+                    addTestResult('UI Status - None', status === null, `Status: ${status}`);
+                    
+                    control.activeSharer = 'trainer-123';
+                    status = control.getUIStatus();
+                    addTestResult('UI Status - Other', status === 'other', `Status: ${status}`);
+                    
+                } catch (error) {
+                    addTestResult('UI Status', false, `UI status test failed: ${error.message}`);
+                }
+                
+                // Test UI updates
+                try {
+                    control.updateUI('other');
+                    addTestResult('UI Update', traineeVideo.style.display === 'block', 'UI updated for viewing mode');
+                    
+                    control.updateUI(null);
+                    addTestResult('UI Reset', traineeVideo.style.display === 'none', 'UI reset to hidden');
+                    
+                } catch (error) {
+                    addTestResult('UI Updates', false, `UI update test failed: ${error.message}`);
+                }
+                
+                await control.destroy();
+                
+            } catch (error) {
+                addTestResult('UI Tests', false, `UI test suite error: ${error.message}`);
+            }
+        }
+
+        async function runFullSuite() {
+            clearLog();
+            log('🚀 Starting ScreenSharingControl Full Test Suite...');
+            
+            const tests = [
+                { name: 'Initialization Tests', fn: runInitializationTests },
+                { name: 'Connection Tests', fn: runConnectionTests },
+                { name: 'WebRTC Tests', fn: runWebRTCTests },
+                { name: 'UI Tests', fn: runUITests }
+            ];
+            
+            for (const test of tests) {
+                log(`\n--- Running ${test.name} ---`);
+                try {
+                    await test.fn();
+                } catch (error) {
+                    addTestResult(test.name, false, `Test suite error: ${error.message}`);
+                }
+                
+                // Brief pause between test suites
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+            
+            log('\n🏁 Full test suite completed!');
+            
+            if (testStats.passed === testStats.run) {
+                log(`🎉 All ${testStats.run} tests passed! ScreenSharingControl is working correctly.`);
+            } else {
+                log(`⚠️ ${testStats.failed} of ${testStats.run} tests failed.`);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            log('🧪 ScreenSharingControl Test Suite loaded');
+            log('📡 Target server: https://share.volunteerlogin.org');
+            log('ℹ️ Create mock sessions to test real functionality');
+            updateStats();
+        });
+    </script>
+</body>
+</html>

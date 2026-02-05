@@ -1,0 +1,31 @@
+{
+  "name": "vccfeed-eventsource-server",
+  "version": "1.0.0",
+  "description": "Real-time EventSource server for VCC Feed using Redis Pub/Sub",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop vccfeed-eventsource",
+    "pm2:restart": "pm2 restart vccfeed-eventsource",
+    "pm2:logs": "pm2 logs vccfeed-eventsource",
+    "pm2:status": "pm2 status"
+  },
+  "keywords": [
+    "eventsource",
+    "redis",
+    "pubsub",
+    "real-time",
+    "volunteer",
+    "coordination"
+  ],
+  "author": "Claude Code",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "redis": "^4.6.0",
+    "mysql2": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

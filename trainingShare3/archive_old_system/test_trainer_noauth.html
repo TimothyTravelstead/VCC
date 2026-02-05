@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No-Auth Trainer Test - Screen Sharing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #2196F3, #21CBF3);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+        
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+        
+        .stop-btn {
+            background: #f44336;
+        }
+        
+        .stop-btn:hover {
+            background: #da190b;
+        }
+        
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        #debugLog {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            border: 2px solid #333;
+        }
+        
+        .video-container {
+            margin: 20px 0;
+        }
+        
+        video {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .participants {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .participant {
+            padding: 5px;
+            margin: 2px 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 No-Auth Trainer Test Page</h1>
+            <p>Testing screen sharing with non-authenticated signaling server</p>
+        </div>
+        
+        <div class="info">
+            <h3>📋 Instructions:</h3>
+            <ol>
+                <li>Click "Initialize Trainer" to connect to the signaling server</li>
+                <li>Open the trainee test page in another browser</li>
+                <li>Click "Start Screen Sharing" to begin sharing your screen</li>
+                <li>Monitor the debug log for detailed information</li>
+            </ol>
+            <p><strong>Role:</strong> Trainer | <strong>Room:</strong> test_room_noauth | <strong>Participant ID:</strong> <span id="participantDisplay">trainer_test</span></p>
+        </div>
+        
+        <div class="controls">
+            <button id="initBtn" onclick="initializeTrainer()">Initialize Trainer</button>
+            <button id="startBtn" onclick="startSharing()" disabled>Start Screen Sharing</button>
+            <button id="stopBtn" class="stop-btn" onclick="stopSharing()" disabled>Stop Screen Sharing</button>
+            <button onclick="clearDebug()">Clear Debug Log</button>
+        </div>
+        
+        <div class="participants">
+            <h3>👥 Participants:</h3>
+            <div id="participantsList">None connected</div>
+        </div>
+        
+        <div class="video-container">
+            <h3>📹 Local Preview:</h3>
+            <video id="localVideo" autoplay muted style="display: none; width: 300px;"></video>
+        </div>
+        
+        <div>
+            <h3>🐛 Debug Log:</h3>
+            <div id="debugLog">Debug log will appear here...\n</div>
+        </div>
+        
+        <!-- Hidden video for remote stream (not used by trainer but needed by class) -->
+        <video id="remoteVideo" autoplay style="display: none;"></video>
+    </div>
+
+    <script src="noAuthScreenSharing.js"></script>
+    <script>
+        let screenSharing = null;
+        
+        function addDebugLog(message) {
+            const debugDiv = document.getElementById('debugLog');
+            const timestamp = new Date().toLocaleTimeString();
+            debugDiv.textContent += `[${timestamp}] ${message}\n`;
+            debugDiv.scrollTop = debugDiv.scrollHeight;
+        }
+        
+        function updateParticipants() {
+            if (!screenSharing) return;
+            
+            const participantsList = document.getElementById('participantsList');
+            const participants = screenSharing.getParticipants();
+            
+            if (participants.length === 0) {
+                participantsList.textContent = 'None connected';
+            } else {
+                participantsList.innerHTML = participants.map(id => 
+                    `<div class="participant">🧑‍💼 ${id} (${screenSharing.getConnectionStatus(id)})</div>`
+                ).join('');
+            }
+        }
+        
+        function initializeTrainer() {
+            addDebugLog("INFO: Trainer page loaded");
+            addDebugLog("INFO: Initializing trainer with no-auth signaling...");
+            
+            try {
+                screenSharing = new NoAuthScreenSharing({
+                    participantId: 'trainer_test',
+                    roomId: 'test_room_noauth',
+                    role: 'trainer'
+                });
+                
+                // Update UI
+                document.getElementById('initBtn').disabled = true;
+                document.getElementById('startBtn').disabled = false;
+                
+                addDebugLog("SUCCESS: Trainer initialized successfully");
+                
+                // Update participants list periodically
+                setInterval(updateParticipants, 2000);
+                
+            } catch (error) {
+                addDebugLog("ERROR: Failed to initialize trainer: " + error.message);
+                console.error("Failed to initialize trainer:", error);
+            }
+        }
+        
+        function startSharing() {
+            if (!screenSharing) {
+                addDebugLog("ERROR: Screen sharing not initialized");
+                return;
+            }
+            
+            addDebugLog("INFO: Starting screen sharing...");
+            
+            screenSharing.startScreenSharing().then(() => {
+                // Update UI
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = false;
+                addDebugLog("SUCCESS: Screen sharing started");
+                
+            }).catch(error => {
+                addDebugLog("ERROR: Failed to start screen sharing: " + error.message);
+                console.error("Failed to start screen sharing:", error);
+            });
+        }
+        
+        function stopSharing() {
+            if (!screenSharing) {
+                addDebugLog("ERROR: Screen sharing not initialized");
+                return;
+            }
+            
+            addDebugLog("INFO: Stopping screen sharing...");
+            
+            try {
+                screenSharing.stopScreenSharing();
+                
+                // Update UI
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('stopBtn').disabled = true;
+                addDebugLog("SUCCESS: Screen sharing stopped");
+                
+            } catch (error) {
+                addDebugLog("ERROR: Failed to stop screen sharing: " + error.message);
+                console.error("Failed to stop screen sharing:", error);
+            }
+        }
+        
+        function clearDebug() {
+            document.getElementById('debugLog').textContent = 'Debug log cleared...\n';
+        }
+        
+        // Add page load info
+        window.addEventListener('load', function() {
+            addDebugLog("INFO: No-Auth Trainer test page loaded");
+            addDebugLog("INFO: Ready to initialize trainer");
+        });
+        
+        // Add beforeunload cleanup
+        window.addEventListener('beforeunload', function() {
+            if (screenSharing) {
+                screenSharing.closeConnection();
+            }
+        });
+    </script>
+</body>
+</html>

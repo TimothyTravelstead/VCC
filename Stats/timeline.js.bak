@@ -1,0 +1,1161 @@
+callData = {};
+
+// ═══════════════════════════════════════════════════════════════
+// COMPREHENSIVE ERROR MODAL FUNCTION
+// Shows detailed error information in a modal dialog
+// ═══════════════════════════════════════════════════════════════
+function showTimelineError(message, errorObject) {
+	// Log to console first
+	console.group('🚨 TIMELINE ERROR - DETAILED DIAGNOSTICS');
+	console.error('Error Message:', message);
+	console.error('Error Object:', errorObject);
+	console.log('Timestamp:', new Date().toISOString());
+	if (errorObject && errorObject.stack) {
+		console.error('Stack Trace:', errorObject.stack);
+	}
+	console.groupEnd();
+
+	// Remove any existing error modal
+	var existingModal = document.getElementById('timeline-error-modal');
+	if (existingModal) {
+		existingModal.remove();
+	}
+
+	// Create modal container
+	var modal = document.createElement('div');
+	modal.id = 'timeline-error-modal';
+	modal.style.cssText = `
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.8);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 100000;
+		font-family: monospace;
+	`;
+
+	// Create modal content
+	var content = document.createElement('div');
+	content.style.cssText = `
+		background: white;
+		padding: 20px;
+		border-radius: 8px;
+		max-width: 900px;
+		max-height: 85vh;
+		overflow-y: auto;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+	`;
+
+	// Create header
+	var header = document.createElement('div');
+	header.style.cssText = `
+		background: #dc3545;
+		color: white;
+		padding: 15px;
+		margin: -20px -20px 20px -20px;
+		border-radius: 8px 8px 0 0;
+		font-size: 18px;
+		font-weight: bold;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	`;
+	header.innerHTML = `
+		<span>🚨 Timeline Error - Comprehensive Diagnostics</span>
+		<button id="timeline-error-close" style="
+			background: rgba(255,255,255,0.2);
+			border: 1px solid white;
+			color: white;
+			padding: 5px 15px;
+			cursor: pointer;
+			border-radius: 4px;
+			font-size: 14px;
+		">✕ Close</button>
+	`;
+
+	// Create message area
+	var messageArea = document.createElement('pre');
+	messageArea.style.cssText = `
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		background: #f8f9fa;
+		padding: 15px;
+		border-radius: 4px;
+		border-left: 4px solid #dc3545;
+		font-size: 12px;
+		line-height: 1.6;
+		max-height: 450px;
+		overflow-y: auto;
+		margin-bottom: 15px;
+	`;
+	messageArea.textContent = message;
+
+	// Create button container
+	var buttonContainer = document.createElement('div');
+	buttonContainer.style.cssText = `
+		display: flex;
+		gap: 10px;
+		justify-content: flex-end;
+	`;
+
+	// Create copy button
+	var copyButton = document.createElement('button');
+	copyButton.textContent = '📋 Copy Error Details';
+	copyButton.style.cssText = `
+		background: #007bff;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 14px;
+	`;
+	copyButton.onclick = function() {
+		navigator.clipboard.writeText(message).then(function() {
+			copyButton.textContent = '✅ Copied!';
+			setTimeout(function() {
+				copyButton.textContent = '📋 Copy Error Details';
+			}, 2000);
+		});
+	};
+
+	// Create OK button
+	var okButton = document.createElement('button');
+	okButton.textContent = 'OK';
+	okButton.style.cssText = `
+		background: #6c757d;
+		color: white;
+		border: none;
+		padding: 10px 30px;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 14px;
+	`;
+	okButton.onclick = function() {
+		modal.remove();
+	};
+
+	// Assemble modal
+	buttonContainer.appendChild(copyButton);
+	buttonContainer.appendChild(okButton);
+	content.appendChild(header);
+	content.appendChild(messageArea);
+	content.appendChild(buttonContainer);
+	modal.appendChild(content);
+
+	// Add close button handler
+	var closeButton = header.querySelector('#timeline-error-close');
+	closeButton.onclick = function() {
+		modal.remove();
+	};
+
+	// Close on backdrop click
+	modal.onclick = function(e) {
+		if (e.target === modal) {
+			modal.remove();
+		}
+	};
+
+	// Add to document
+	document.body.appendChild(modal);
+
+	// Focus OK button for keyboard accessibility
+	okButton.focus();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// GLOBAL ERROR HANDLER - CATCHES ALL UNCAUGHT ERRORS
+// ═══════════════════════════════════════════════════════════════
+window.addEventListener('error', function(event) {
+	var errorDetails = '═══════════════════════════════════════\n';
+	errorDetails += '      UNCAUGHT JAVASCRIPT ERROR\n';
+	errorDetails += '═══════════════════════════════════════\n\n';
+	errorDetails += '🔴 ERROR:\n';
+	errorDetails += '   ' + event.message + '\n\n';
+	errorDetails += '📍 LOCATION:\n';
+	errorDetails += '   File: ' + event.filename + '\n';
+	errorDetails += '   Line: ' + event.lineno + '\n';
+	errorDetails += '   Column: ' + event.colno + '\n\n';
+	errorDetails += '⏰ TIMESTAMP:\n';
+	errorDetails += '   ' + new Date().toLocaleString() + '\n\n';
+	if (event.error && event.error.stack) {
+		errorDetails += '📋 STACK TRACE:\n';
+		var stackLines = event.error.stack.split('\n').slice(0, 10);
+		stackLines.forEach(function(line) {
+			errorDetails += '   ' + line.trim() + '\n';
+		});
+		errorDetails += '\n';
+	}
+	errorDetails += '═══════════════════════════════════════\n';
+	errorDetails += '💡 TIP: Check browser console for more details\n';
+	errorDetails += '═══════════════════════════════════════\n';
+
+	showTimelineError(errorDetails, event.error);
+});
+
+// ═══════════════════════════════════════════════════════════════
+// UNHANDLED PROMISE REJECTION HANDLER
+// ═══════════════════════════════════════════════════════════════
+window.addEventListener('unhandledrejection', function(event) {
+	var errorDetails = '═══════════════════════════════════════\n';
+	errorDetails += '      UNHANDLED PROMISE REJECTION\n';
+	errorDetails += '═══════════════════════════════════════\n\n';
+	errorDetails += '🔴 ERROR:\n';
+	errorDetails += '   ' + (event.reason ? event.reason.message || event.reason : 'Unknown promise rejection') + '\n\n';
+	errorDetails += '⏰ TIMESTAMP:\n';
+	errorDetails += '   ' + new Date().toLocaleString() + '\n\n';
+	if (event.reason && event.reason.stack) {
+		errorDetails += '📋 STACK TRACE:\n';
+		var stackLines = event.reason.stack.split('\n').slice(0, 10);
+		stackLines.forEach(function(line) {
+			errorDetails += '   ' + line.trim() + '\n';
+		});
+		errorDetails += '\n';
+	}
+	errorDetails += '═══════════════════════════════════════\n';
+	errorDetails += '💡 TIP: This is an async error. Check browser console.\n';
+	errorDetails += '═══════════════════════════════════════\n';
+
+	showTimelineError(errorDetails, event.reason);
+});
+
+var timeZones = {
+
+	"PST": "Pacific Standard Time",
+	"PDT": "Pacific Daylight Time",
+	"MST": "Mountain Standard Time",
+	"MDT": "Mountain Daylight Time",
+	"CST": "Central Standard Time",
+	"CDT": "Central Daylight Time",
+	"EST": "Eastern Standard Time",
+	"EDT": "Eastern Daylight Time",
+	"HST": "Hawaii Standard Time",
+	"HDT": "Hawaii Daylight Time",
+	"BST":	"British Summer Time",
+	"GMT":	"Greenwich Mean Time"
+}
+
+
+
+Date.prototype.stdTimezoneOffset = function () {
+    var jan = new Date(this.getFullYear(), 0, 1);
+    var jul = new Date(this.getFullYear(), 6, 1);
+    return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+}
+
+Date.prototype.isDstObserved = function () {
+    return this.getTimezoneOffset() < this.stdTimezoneOffset();
+}
+
+
+function convertPacificToLocal(pacificTimestamp) {
+    const pacificDate = new Date(pacificTimestamp);
+    
+    // Helper function to determine if a date is in DST for a given timezone offset
+    function isDST(date) {
+        // Get timestamp for Jan 1 of that year
+        const jan = new Date(date.getFullYear(), 0, 1);
+        // Get timestamp for Jul 1 of that year
+        const jul = new Date(date.getFullYear(), 6, 1);
+        
+        // If timezone observes DST, the offset will be different between Jan and Jul
+        const stdOffset = Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+        
+        // If current offset is less than standard offset, we're in DST
+        return date.getTimezoneOffset() < stdOffset;
+    }
+    
+    // Helper function for Pacific DST specifically
+    function isPacificDST(date) {
+        const year = date.getFullYear();
+        
+        // Second Sunday in March
+        const dstStart = new Date(year, 2, 8 + (7 - new Date(year, 2, 8).getDay()) % 7);
+        dstStart.setUTCHours(10); // 2 AM Pacific = 10 UTC
+        
+        // First Sunday in November
+        const dstEnd = new Date(year, 10, 1 + (7 - new Date(year, 10, 1).getDay()) % 7);
+        dstEnd.setUTCHours(9); // 2 AM Pacific = 9 UTC (due to DST)
+        
+        return date >= dstStart && date < dstEnd;
+    }
+    
+    // Get historical Pacific offset
+    const pacificOffset = isPacificDST(pacificDate) ? -420 : -480; // -7 or -8 hours * 60
+    
+    // Create a date object for the user's timezone on the same date
+    const localDate = new Date(pacificDate);
+    
+    // Get historical local offset for that date, considering DST
+    const localDST = isDST(localDate);
+    const jan = new Date(localDate.getFullYear(), 0, 1);
+    const jul = new Date(localDate.getFullYear(), 6, 1);
+    const stdOffset = Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+    const dstOffset = Math.min(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+    const userOffset = localDST ? dstOffset : stdOffset;
+    
+    // Calculate the difference in offsets
+    const offsetDiff = userOffset + pacificOffset;
+    
+    // Apply the offset difference
+    return new Date(pacificDate.getTime() + offsetDiff * 60000);
+}
+
+// Format time in 12-hour format with AM/PM
+Date.prototype.formattedTime = function() {
+    const hours = this.getHours();
+    const minutes = this.getMinutes();
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    
+    let displayHours = hours;
+    let appendix = 'am';
+    
+    if (hours === 0) {
+        displayHours = 12;
+    } else if (hours >= 12) {
+        appendix = 'pm';
+        if (hours > 12) {
+            displayHours -= 12;
+        }
+    }
+    
+    return `${displayHours}:${formattedMinutes}${appendix}`;
+}
+
+
+
+
+function fromMysqlDate(timestamp) {
+  let jsDate = new Date();
+  jsDate = jsDate.createFromMysql(timestamp);
+  return jsDate;
+}			
+
+
+function toMysqlDate(currentDate) {
+  const mysqlDate = currentDate.toMysqlDate();
+	return mysqlDate;
+}
+
+
+function getOpenHourBlock(call) {
+	var minutesFromStart = callData.time - callData.hours.openTime; 
+}
+
+window.onbeforeunload = function()  {
+}
+
+
+
+function moveDays(days) {
+	var displayedDate = document.getElementById("displayedDate").value;
+	var date = mysqlToTimestamp(displayedDate);
+	var newDate = date.getNextDay(days);
+	
+	return newDate;
+}
+
+
+
+window.onload = function() {
+	var priorDay = document.getElementById("priorDay");
+	var nextDay = document.getElementById("nextDay");
+	var printButton = document.getElementById("printButton");
+	var displayedDate = document.getElementById("displayedDate").value;
+	var date = new Date(displayedDate + " 00:00:00");
+	var now = new Date();
+    var diff = (now.getTime() - date.getTime()) /1000/60/60/24;
+	if(diff > 7) {
+		priorDay.style.visibility = "hidden";
+	}		 
+	if(diff < 1) {
+		nextDay.style.visibility = "hidden";
+	}		 
+	
+	
+	priorDay.onclick = function() {
+		var dateToMoveTo = moveDays(-1);
+		var newDate = toMysqlDate(dateToMoveTo);
+		window.location.assign("timeline.php?date=" + newDate + "&pixelsPerMinute=5");
+	}
+	nextDay.onclick = function() {
+		var dateToMoveTo = moveDays(1);
+		var newDate = toMysqlDate(dateToMoveTo);
+		window.location.assign("timeline.php?date=" + newDate + "&pixelsPerMinute=5");
+	}
+
+	printButton.onclick = function() {
+		window.print();
+	}
+
+	updateTimeline();
+	var dataRefreshInterval = setInterval("updateTimeline()",60000);
+}
+
+
+function updateTimeline() {
+	var body = document.getElementById("timelineGraph");
+	removeElements(body);
+	var date = document.getElementById("timeLineDate").value;
+	if(!date) {
+		date = toMysqlDate(new Date());
+	}
+	callData = new GetTimeLine(date);
+	callData.init();
+}
+	
+function GetTimeLine(date) {
+	self = this;
+	this.date = date;
+	this.callData = {};
+	this.callGraphData = [];
+	this.hours = {};
+	this.url = 'timeLineData.php';
+	this.blockLengthInMinutes = 120;
+	this.pixelsPerMinute = document.getElementById("pixelsPerMinute").value;
+	this.openBlocks = "";
+	this.blockData = [];
+	this.volunteerNumber = 1;
+	this.volunteers = [];
+	this.now = new Date();
+
+
+	this.getCallData = function() {
+		var params = 'date=' + this.date;
+		searchRequest = new AjaxRequest(this.url, params, this.getcallDataResults, this);
+	};	
+
+	this.callMinuteAnalysis = function(call) {
+		if(call.callEnd > self.hours.closeTime) {
+			call.callEnd = new Date(self.hours.closeTime).addMinutes(-.01);
+		}
+
+		if(call.callerCategory == 9) {
+			const dateCheck = moveDays(0);
+			if(call.callEnd < dateCheck) {
+				call.callEnd = call.callStart;
+				call.callerCategory = 'hand Up While Ringing';		
+			} else {
+				call.callEnd = self.now;
+				call.callerCategory = 'In Progress';
+			}
+		}
+
+		call.lengthSeconds = (call.callEnd - call.callStart) / 1000;
+		
+		if(!call.displayLengthSeconds) {					// Record original length before splitting call across blocks
+			call.displayLengthSeconds = call.lengthSeconds;
+		}
+		if(!call.displayCallEnd) { 							// Record original end before splitting call across blocks
+			call.displayCallEnd = call.callEnd;
+		}
+		if(!call.displayCallStart) {						// Record original start before splitting call across blocks
+			call.displayCallStart = call.callStart;
+		}
+
+		call.startMinuteFromOpen = Math.floor((call.callStart - callData.hours.openTime) / 1000 / 60); 
+		call.openBlockStartMinute = Math.floor((call.startMinuteFromOpen) / self.blockLengthInMinutes) + 1;
+		call.endMinutesFromOpen = Math.floor((call.callEnd - callData.hours.openTime) / 1000 / 60); 
+		if(call.startMinutesFromOpen == call.endMinutesFromOpen) {
+			call.openBlockEndMinute = call.openBlockStartMinute;
+		} else {
+			call.openBlockEndMinute = Math.floor((call.endMinutesFromOpen) / self.blockLengthInMinutes) + 1;
+		}
+		if(call.openBlockEndMinute > callData.openBlocks) {
+			call.openBlockEndMinute = callData.openBlocks;
+		}
+		// Defensive check: ensure openBlockStartMinute is within valid range
+		if(call.openBlockStartMinute < 1) {
+			call.openBlockStartMinute = 1;
+		}
+		if(call.openBlockStartMinute > callData.openBlocks) {
+			call.openBlockStartMinute = callData.openBlocks;
+		}
+		if(call.openBlockStartMinute != call.openBlockEndMinute) {
+			var call1 = call;
+			var call2 = new cloneObject(call);
+			call1.callEnd = self.blockData[call1.openBlockStartMinute].endTime;
+			this.callMinuteAnalysis(call1);
+			call2.callStart = self.blockData[call2.openBlockEndMinute].startTime;
+			if(call2.callEnd > self.hours.closeTime) {
+				call2.callEnd = self.blockData[call2.openBlockEndMinute].endTime;
+			}
+			this.callMinuteAnalysis(call2);
+		} else {
+			// Defensive check: ensure callGraphData array exists at this index
+			if(!self.callGraphData[call.startMinuteFromOpen]) {
+				self.callGraphData[call.startMinuteFromOpen] = [];
+			}
+			self.callGraphData[call.startMinuteFromOpen].push(call);				
+			if(call.volunteer) {
+				if(!self.volunteers[call.volunteer]) {
+					self.volunteers[call.volunteer] = self.volunteerNumber;
+					call.volunteerNumber = self.volunteerNumber;
+					self.volunteerNumber += 1;
+				} else {
+					call.volunteerNumber = self.volunteers[call.volunteer];
+				}
+			} else if (call.callerCategory && call.callerCategory < 3) {
+				call.volunteer = 'Unknown Volunteer';
+				call.volunteerNumber = 99;
+				self.volunteers[call.volunteer] = 99;
+				callData.users[call.volunteer] = {};
+				callData.users[call.volunteer].firstName = "Unknown"
+				callData.users[call.volunteer].lastName = "Volunteer";
+			} else {
+				call.volunteerNumber = 0;
+			}
+			return call;
+		}
+	};
+
+	this.getcallDataResults = function (results, resultObject) {
+		try {
+			if(!resultObject.results) {
+				resultObject.callData = {};
+				resultObject.hours = {};
+				resultObject.users = {};
+
+				// Validate results is not empty
+				if (!results || results.trim() === '') {
+					throw new Error('Empty response received from server. Expected JSON data.');
+				}
+
+				// Try to parse JSON with detailed error handling
+				var totalResults;
+				try {
+					totalResults = JSON.parse(results);
+				} catch (jsonError) {
+					var errorDetails = '═══════════════════════════════════════\n';
+					errorDetails += '      JSON PARSING ERROR\n';
+					errorDetails += '═══════════════════════════════════════\n\n';
+					errorDetails += '🔴 ERROR:\n';
+					errorDetails += '   Failed to parse server response as JSON\n\n';
+					errorDetails += '📍 LOCATION:\n';
+					errorDetails += '   File: timeline.js\n';
+					errorDetails += '   Function: getcallDataResults()\n';
+					errorDetails += '   Line: ~298\n\n';
+					errorDetails += '🔧 ERROR MESSAGE:\n';
+					errorDetails += '   ' + jsonError.message + '\n\n';
+					errorDetails += '📦 SERVER RESPONSE (first 500 chars):\n';
+					errorDetails += '   ' + results.substring(0, 500) + '\n';
+					if (results.length > 500) {
+						errorDetails += '   ... (truncated, total length: ' + results.length + ' chars)\n';
+					}
+					errorDetails += '\n═══════════════════════════════════════\n';
+					showTimelineError(errorDetails, jsonError);
+					throw jsonError;
+				}
+
+				// Validate response structure
+				if (!totalResults || !Array.isArray(totalResults) || totalResults.length < 2) {
+					throw new Error('Invalid response structure. Expected array with at least 2 elements, got: ' + JSON.stringify(totalResults));
+				}
+
+				if (!totalResults[0] || !totalResults[0].hours) {
+					throw new Error('Missing hours data in response[0]. Got: ' + JSON.stringify(totalResults[0]));
+				}
+
+				if (!totalResults[1] || !totalResults[1].callData) {
+					throw new Error('Missing callData in response[1]. Got: ' + JSON.stringify(totalResults[1]));
+				}
+
+				resultObject.hours = totalResults[0].hours;
+				resultObject.users = totalResults[0].users;
+				resultObject.callData = totalResults[1].callData;
+			}
+
+			// Extract just the date part (YYYY-MM-DD) in case self.date contains time
+			if (!self.date) {
+				throw new Error('self.date is null or undefined');
+			}
+			var dateOnly = self.date.split(' ')[0];
+
+			// Validate hours data
+			if (!resultObject.hours.openTime) {
+				throw new Error('openTime is missing or null in hours data. Hours object: ' + JSON.stringify(resultObject.hours));
+			}
+			if (!resultObject.hours.closeTime) {
+				throw new Error('closeTime is missing or null in hours data. Hours object: ' + JSON.stringify(resultObject.hours));
+			}
+
+			// Parse times with validation
+			try {
+				resultObject.hours.openTime = fromMysqlDate(dateOnly + " " + resultObject.hours.openTime);
+				if (!resultObject.hours.openTime || isNaN(resultObject.hours.openTime.getTime())) {
+					throw new Error('fromMysqlDate returned invalid date for openTime. Input was: "' + dateOnly + " " + resultObject.hours.openTime + '"');
+				}
+			} catch (dateError) {
+				var errorDetails = '═══════════════════════════════════════\n';
+				errorDetails += '      DATE PARSING ERROR (openTime)\n';
+				errorDetails += '═══════════════════════════════════════\n\n';
+				errorDetails += '🔴 ERROR:\n';
+				errorDetails += '   ' + dateError.message + '\n\n';
+				errorDetails += '📍 DATA:\n';
+				errorDetails += '   dateOnly: "' + dateOnly + '"\n';
+				errorDetails += '   openTime from server: "' + resultObject.hours.openTime + '"\n';
+				errorDetails += '   Combined: "' + dateOnly + " " + resultObject.hours.openTime + '"\n\n';
+				errorDetails += '═══════════════════════════════════════\n';
+				showTimelineError(errorDetails, dateError);
+				throw dateError;
+			}
+
+			try {
+				resultObject.hours.closeTime = fromMysqlDate(dateOnly + " " + resultObject.hours.closeTime);
+				if (!resultObject.hours.closeTime || isNaN(resultObject.hours.closeTime.getTime())) {
+					throw new Error('fromMysqlDate returned invalid date for closeTime. Input was: "' + dateOnly + " " + resultObject.hours.closeTime + '"');
+				}
+			} catch (dateError) {
+				var errorDetails = '═══════════════════════════════════════\n';
+				errorDetails += '      DATE PARSING ERROR (closeTime)\n';
+				errorDetails += '═══════════════════════════════════════\n\n';
+				errorDetails += '🔴 ERROR:\n';
+				errorDetails += '   ' + dateError.message + '\n\n';
+				errorDetails += '📍 DATA:\n';
+				errorDetails += '   dateOnly: "' + dateOnly + '"\n';
+				errorDetails += '   closeTime from server: "' + resultObject.hours.closeTime + '"\n';
+				errorDetails += '   Combined: "' + dateOnly + " " + resultObject.hours.closeTime + '"\n\n';
+				errorDetails += '═══════════════════════════════════════\n';
+				showTimelineError(errorDetails, dateError);
+				throw dateError;
+			}
+
+			resultObject.hours.shiftInMinutes = (resultObject.hours.closeTime - resultObject.hours.openTime) / 1000 / 60;
+
+			// Validate shift calculation
+			if (isNaN(resultObject.hours.shiftInMinutes) || resultObject.hours.shiftInMinutes <= 0) {
+				throw new Error('Invalid shiftInMinutes calculation: ' + resultObject.hours.shiftInMinutes + '. openTime: ' + resultObject.hours.openTime + ', closeTime: ' + resultObject.hours.closeTime);
+			}
+
+			self.openBlocks = Math.round((resultObject.hours.shiftInMinutes + 30) / self.blockLengthInMinutes);
+
+			if (self.openBlocks <= 0) {
+				throw new Error('Invalid openBlocks calculation: ' + self.openBlocks + '. shiftInMinutes: ' + resultObject.hours.shiftInMinutes + ', blockLengthInMinutes: ' + self.blockLengthInMinutes);
+			}
+
+			for (var i = 1 ; i <= self.openBlocks ; i++) {
+				self.blockData[i] = {};
+				var startMinutesToAdd = callData.blockLengthInMinutes * (i-1);
+				var endMinutesToAdd = startMinutesToAdd + callData.blockLengthInMinutes - .01;
+				self.blockData[i].startTime = new Date(callData.hours.openTime).addMinutes(startMinutesToAdd);
+				self.blockData[i].endTime = new Date(callData.hours.openTime).addMinutes(endMinutesToAdd);
+			}
+
+			for (var i = 0; i < self.hours.shiftInMinutes ; i++ ) {
+				self.callGraphData[i] = [];
+			}
+			var callNumber = 0;
+
+			resultObject.callData.forEach(function(call) {
+				try {
+					if(!call.callStart) {
+						call.callStart = fromMysqlDate(dateOnly + " " + call.time);
+						if (!call.callStart || isNaN(call.callStart.getTime())) {
+							throw new Error('Invalid callStart date for call. time: "' + call.time + '"');
+						}
+						var lengthParts = call.length.split(":");
+						var lengthMinutes = lengthParts[0] * 60 + lengthParts[1] + lengthParts[2] / 60;
+						call.callEnd = call.callStart.addMinutes(lengthMinutes);
+					} else {
+						call.callStart = fromMysqlDate(call.callStart);
+						call.callEnd = fromMysqlDate(call.callEnd);
+					}
+					call.callNumber = callNumber;
+					call = self.callMinuteAnalysis(call);
+					callNumber += 1;
+				} catch (callError) {
+					var errorDetails = '═══════════════════════════════════════\n';
+					errorDetails += '      CALL DATA PROCESSING ERROR\n';
+					errorDetails += '═══════════════════════════════════════\n\n';
+					errorDetails += '🔴 ERROR:\n';
+					errorDetails += '   ' + callError.message + '\n\n';
+					errorDetails += '📍 CALL DATA:\n';
+					errorDetails += '   Call Number: ' + callNumber + '\n';
+					errorDetails += '   Call Object: ' + JSON.stringify(call, null, 2) + '\n\n';
+					errorDetails += '═══════════════════════════════════════\n';
+					showTimelineError(errorDetails, callError);
+					throw callError;
+				}
+			});
+
+			graphCallData();
+		} catch (error) {
+			// Catch-all for any errors not caught above
+			var errorDetails = '═══════════════════════════════════════\n';
+			errorDetails += '      TIMELINE DATA PROCESSING ERROR\n';
+			errorDetails += '═══════════════════════════════════════\n\n';
+			errorDetails += '🔴 ERROR:\n';
+			errorDetails += '   ' + error.message + '\n\n';
+			errorDetails += '📍 LOCATION:\n';
+			errorDetails += '   File: timeline.js\n';
+			errorDetails += '   Function: getcallDataResults()\n\n';
+			errorDetails += '🔧 ERROR TYPE:\n';
+			errorDetails += '   ' + error.name + '\n\n';
+			if (error.stack) {
+				errorDetails += '📋 STACK TRACE:\n';
+				var stackLines = error.stack.split('\n').slice(0, 10);
+				stackLines.forEach(function(line) {
+					errorDetails += '   ' + line.trim() + '\n';
+				});
+				errorDetails += '\n';
+			}
+			errorDetails += '📦 CONTEXT:\n';
+			errorDetails += '   Date: ' + (self.date || 'undefined') + '\n';
+			errorDetails += '   Results length: ' + (results ? results.length : 'null') + ' chars\n\n';
+			errorDetails += '═══════════════════════════════════════\n';
+			errorDetails += '💡 TIP: Check browser console for more details\n';
+			errorDetails += '═══════════════════════════════════════\n';
+
+			showTimelineError(errorDetails, error);
+			throw error;
+		}
+	};
+	
+			
+	this.init = function() {
+		this.getCallData();
+	};
+	
+}	
+
+
+function cloneObject(source) {
+    for (i in source) {
+        if (typeof source[i] == 'source') {
+            this[i] = new cloneObject(source[i]);
+        }
+        else{
+            this[i] = source[i];
+	}
+    }
+}
+	
+function graphCallData() {
+	try {
+		console.log('═══════════════════════════════════════');
+		console.log('🔵 graphCallData() FUNCTION START');
+		console.log('═══════════════════════════════════════');
+
+		var body = document.getElementById("timelineGraph");
+		console.log('LINE 361: body element =', body);
+
+		if (!body) {
+			throw new Error('Timeline graph container element not found. Expected element with id="timelineGraph".');
+		}
+
+	var blocks = [];
+	console.log('LINE 362: blocks array initialized');
+
+	var blockData = [];
+	console.log('LINE 363: blockData array initialized');
+
+	var openBlocks = Math.round((callData.hours.shiftInMinutes + 30) / callData.blockLengthInMinutes);
+	console.log('LINE 364: openBlocks =', openBlocks, '(shiftInMinutes=', callData.hours.shiftInMinutes, 'blockLengthInMinutes=', callData.blockLengthInMinutes, ')');
+
+	var blockLabel = [];
+	console.log('LINE 365: blockLabel array initialized');
+
+	var volunteerCalls = [];
+	console.log('LINE 366: volunteerCalls array initialized');
+
+	var blockGrid = [];
+	console.log('LINE 367: blockGrid array initialized');
+
+	var firstCallArray= [];
+	console.log('LINE 368: firstCallArray initialized');
+
+	console.log('─────────────────────────────────────');
+	console.log('🔵 CREATING BLOCK ELEMENTS (1 to', openBlocks, ')');
+	console.log('─────────────────────────────────────');
+
+	for (var i = 1 ; i <= openBlocks ; i++) {
+		blocks[i] = document.createElement("div");
+		console.log('LINE 371: Created blocks[' + i + '] =', blocks[i]);
+
+		blocks[i].setAttribute('class','shiftBlock ' + i);
+		console.log('LINE 372: Set class for blocks[' + i + ']');
+
+		blocks[i].style.left = "2px";
+		console.log('LINE 373: Set left style for blocks[' + i + ']');
+
+		blocks[i].style.width = callData.pixelsPerMinute * callData.blockLengthInMinutes + "px";
+		console.log('LINE 375: Set width for blocks[' + i + '] =', blocks[i].style.width);
+	}
+
+	console.log('LINE 376: BLOCKS ARRAY CREATED. Indices:', Object.keys(blocks));
+
+	console.log('─────────────────────────────────────');
+	console.log('🔵 PROCESSING CALL DATA');
+	console.log('─────────────────────────────────────');
+
+	callData.callGraphData.forEach(function(minute, minuteIndex) {
+		console.log('LINE 378: Processing minute', minuteIndex, 'with', minute.length, 'calls');
+
+		var i = 0;
+		console.log('LINE 379: i initialized to 0');
+
+		minute.forEach(function(call, callIndex) {
+			console.log('  LINE 380: Processing call', callIndex, 'in minute', minuteIndex, 'call =', call);
+
+			// CRITICAL: Ensure openBlockStartMinute is valid (1-based array)
+			console.log('  LINE 381: BEFORE validation: call.openBlockStartMinute =', call.openBlockStartMinute);
+
+			if(!call.openBlockStartMinute || call.openBlockStartMinute < 1) {
+				console.log('  LINE 382: FIXING openBlockStartMinute from', call.openBlockStartMinute, 'to 1');
+				call.openBlockStartMinute = 1;
+			}
+			console.log('  LINE 383: After < 1 check: call.openBlockStartMinute =', call.openBlockStartMinute);
+
+			if(call.openBlockStartMinute > openBlocks) {
+				console.log('  LINE 385: FIXING openBlockStartMinute from', call.openBlockStartMinute, 'to', openBlocks);
+				call.openBlockStartMinute = openBlocks;
+			}
+			console.log('  LINE 387: AFTER validation: call.openBlockStartMinute =', call.openBlockStartMinute);
+
+			if(!call.volunteer) {
+				console.log('  LINE 389: No volunteer, setting volunteerNumber = 0');
+				call.volunteerNumber = 0;
+			}
+			console.log('  LINE 391: call.volunteerNumber =', call.volunteerNumber);
+
+			if(!blockLabel[call.openBlockStartMinute]) {
+				console.log('  LINE 392: Creating blockLabel[' + call.openBlockStartMinute + ']');
+				blockLabel[call.openBlockStartMinute] = [];
+				console.log('  LINE 393: blockLabel[' + call.openBlockStartMinute + '] created');
+
+				volunteerCalls[call.openBlockStartMinute] = [];
+				console.log('  LINE 394: volunteerCalls[' + call.openBlockStartMinute + '] = []');
+
+				volunteerCalls[call.openBlockStartMinute][0] = document.createElement("div");
+				console.log('  LINE 395: volunteerCalls[' + call.openBlockStartMinute + '][0] = DIV element');
+
+				volunteerCalls[call.openBlockStartMinute][0].setAttribute('class','unanswered');
+				console.log('  LINE 396: Set class=unanswered');
+
+				volunteerCalls[call.openBlockStartMinute][0].style.width = callData.blockLengthInMinutes * callData.pixelsPerMInute + "px";
+				console.log('  LINE 397: Set width =', volunteerCalls[call.openBlockStartMinute][0].style.width);
+			}
+
+			if(!volunteerCalls[call.openBlockStartMinute]) {
+				console.log('  LINE 399: Creating volunteerCalls[' + call.openBlockStartMinute + '] (shouldn\'t happen)');
+				volunteerCalls[call.openBlockStartMinute] = [];
+			}
+			console.log('  LINE 401: volunteerCalls[' + call.openBlockStartMinute + '] exists');
+
+			if(!volunteerCalls[call.openBlockStartMinute][call.volunteerNumber]) {
+				console.log('  LINE 402: Creating volunteerCalls[' + call.openBlockStartMinute + '][' + call.volunteerNumber + ']');
+				volunteerCalls[call.openBlockStartMinute][call.volunteerNumber] = document.createElement("div");
+				console.log('  LINE 403: Created DIV element');
+
+				volunteerCalls[call.openBlockStartMinute][call.volunteerNumber].setAttribute('class','answered ' + call.openBlockStartMinute + " " + call.volunteerNumber);
+				console.log('  LINE 404: Set class');
+
+				volunteerCalls[call.openBlockStartMinute][call.volunteerNumber].style.width = callData.blockLengthInMinutes * callData.pixelsPerMinute + "px";
+				console.log('  LINE 406: Set width =', volunteerCalls[call.openBlockStartMinute][call.volunteerNumber].style.width);
+			}
+
+			if(call.volunteerNumber == 0) {
+				console.log('  LINE 408: Setting blockLabel for unanswered call');
+				blockLabel[call.openBlockStartMinute][call.volunteerNumber] =  "Unanswered Calls";
+				console.log('  LINE 409: blockLabel set');
+			} else {
+				if(!blockLabel[call.openBlockStartMinute][call.volunteerNumber]) {
+					blockLabel[call.openBlockStartMinute][call.volunteerNumber] = {};
+					if(!callData.users[call.volunteer]) {
+						callData.users[call.volunteer] = {};
+						callData.users[call.volunteer].firstName = "UserName: ";
+						callData.users[call.volunteer].lastName = call.volunteer;
+					}
+					blockLabel[call.openBlockStartMinute][call.volunteerNumber].name =  callData.users[call.volunteer].firstName + " " + callData.users[call.volunteer].lastName;
+				}
+			}
+			var span = document.createElement("span");
+			span.style.zIndex = '10';
+			span.style.position = 'absolute';
+			span.style.left = (call.startMinuteFromOpen * callData.pixelsPerMinute) - (callData.blockLengthInMinutes * callData.pixelsPerMinute) * (call.openBlockStartMinute - 1)  + "px";
+			span.style.width = Math.round(call.lengthSeconds / (60 / callData.pixelsPerMinute)) + "px";
+			if(call.callerCategory < 4 || call.callerCategory == "In Progress") {
+				span.style.height = '15px';
+
+				switch (call.callerCategory) {
+					case '0':
+						span.style.backgroundColor = 'RGBA(255, 135, 0, .55)';
+						call.callerCategory = "Chat";
+						span.style.border = '1px solid black';
+						span.style.width = Math.round(call.lengthSeconds / (60 / callData.pixelsPerMinute)) + "px";
+						span.style.zIndex = '1000';
+						break;
+					case '1':
+						span.style.backgroundColor = 'rgba(100,250,100,.65)';
+						call.callerCategory = "Conversation";
+						span.style.border = '1px solid black';
+						span.style.width = Math.round(call.lengthSeconds / (60 / callData.pixelsPerMinute)) + "px";
+						span.style.zIndex = '1000';
+						break;
+					case '2':
+						span.style.backgroundColor = 'red';
+						call.callerCategory = "Hung Up On Volunteer";
+						span.style.border = '1px solid white';
+						span.style.width = callData.pixelsPerMinute + "px";
+						span.style.zIndex = '500';
+						break;
+					case '3':
+						if(!call.volunteer) {
+							span.style.top = (i * 10) + "px";
+							span.style.width = callData.pixelsPerMinute + "px";
+							span.style.border =	'1px solid white';
+							span.style.backgroundColor = 'blue';
+							span.style.height = '5px';
+							span.title = "Category: " + call.callerCategory;
+						} else {
+							span.style.backgroundColor = 'red';
+							call.callerCategory = "Hung Up On Volunteer";
+							span.style.border = '1px solid white';
+							span.style.height = '5px';
+							span.style.zIndex = '500';
+						}
+						break;
+					case 'In Progress':
+						span.style.backgroundColor = 'rgba(100,250,100,.65)';
+						call.callerCategory = "In Progress";
+						var now = new Date();
+						var lengthInSeconds = Math.abs(now - call.callStart) / 1000;
+						span.style.border = '1px solid black';
+						span.style.zIndex = '1000';
+						break;
+				}
+				span.title = "Start: " + call.displayCallStart.toLocaleTimeString() + "\rEnd: " + call.displayCallEnd.toLocaleTimeString() + 
+							"\rLength: " + Math.round(call.displayLengthSeconds / 60) + " minutes\rCategory: " + call.callerCategory
+							+ "\rVolunteer: " + blockLabel[call.openBlockStartMinute][call.volunteerNumber].name;
+			} else {
+				if(!firstCallArray[call.caller]) {
+					firstCallArray[call.caller] = call.time;
+					span.style.backgroundColor = 'blue';
+				} else {
+					span.style.backgroundColor = '#89CFF0';
+				}
+				span.style.top = (i * 10) + "px";
+				span.style.width = callData.pixelsPerMinute + "px";
+				span.style.border =	'1px solid white';
+				span.style.height = '5px';
+				span.style.zIndex = '500';
+
+				switch(call.callerCategory) {
+					case '4':
+					case '5':
+						call.callerCategory = 'No Volunteers';
+						break;
+					case '6':
+						call.callerCategory = 'Block-User';
+						break;
+					case '7':
+						call.callerCategory = 'Block-Admin';
+						break;
+					case '8':
+						call.callerCategory = 'Block-Admin-Internet Cal';
+						break;
+					case '9':
+					case '10':
+						call.callerCategory = 'Other';
+						break;
+					case '11':
+						call.callerCategory = 'Unanswered Call';
+						break;
+				}		
+				span.title = "Category: " + call.callerCategory;
+			}			
+			
+			volunteerCalls[call.openBlockStartMinute][call.volunteerNumber].appendChild(span);
+			if (i < 8) {
+				i += 1;
+			}
+		});
+	});
+	console.log('═══════════════════════════════════════');
+	console.log('🔵 APPENDING VOLUNTEER BLOCKS TO SHIFT BLOCKS');
+	console.log('═══════════════════════════════════════');
+	console.log('openBlocks =', openBlocks);
+	console.log('blocks.length =', blocks.length);
+	console.log('blocks indices:', Object.keys(blocks));
+	console.log('volunteerCalls.length =', volunteerCalls.length);
+	console.log('volunteerCalls indices:', Object.keys(volunteerCalls));
+
+	// IMPORTANT: Use traditional for loop for sparse arrays
+	// forEach gives iteration index (0,1,2...), not array index (1,3,5...)
+	for (var blockNumber = 1; blockNumber <= openBlocks; blockNumber++) {
+		console.log('─────────────────────────────────────');
+		console.log('LOOP: blockNumber =', blockNumber);
+
+		var block = volunteerCalls[blockNumber];
+		console.log('LOOP: block = volunteerCalls[' + blockNumber + '] =', block);
+
+		if (!block) {
+			console.log('LOOP: Block is undefined, SKIPPING');
+			continue; // Skip undefined slots
+		}
+
+		console.log('LOOP: Block EXISTS with length =', block.length);
+		console.log('LOOP: Block indices:', Object.keys(block));
+
+		// Iterate through volunteer blocks (also sparse array)
+		for (var volunteerNumber = 0; volunteerNumber < block.length; volunteerNumber++) {
+			console.log('  INNER LOOP: volunteerNumber =', volunteerNumber);
+
+			var volunteerBlock = block[volunteerNumber];
+			console.log('  INNER LOOP: volunteerBlock = block[' + volunteerNumber + '] =', volunteerBlock);
+
+			if (!volunteerBlock) {
+				console.log('  INNER LOOP: volunteerBlock is undefined, SKIPPING');
+				continue; // Skip undefined slots
+			}
+
+			console.log('  INNER LOOP: volunteerBlock EXISTS, childNodes =', volunteerBlock.childNodes);
+
+			if(!volunteerBlock.childNodes) {
+				console.log('  INNER LOOP: No childNodes, setting display = none');
+				volunteerBlock.style.display = 'none';
+			}
+
+			console.log('  INNER LOOP: Checking if blocks[' + blockNumber + '] exists...');
+			console.log('  INNER LOOP: blocks[' + blockNumber + '] =', blocks[blockNumber]);
+
+			// Append to corresponding block (both are 1-based)
+			if (blocks[blockNumber]) {
+				console.log('  INNER LOOP: ✅ APPENDING volunteerBlock to blocks[' + blockNumber + ']');
+				blocks[blockNumber].appendChild(volunteerBlock);
+				console.log('  INNER LOOP: ✅ APPEND SUCCESSFUL');
+			} else {
+				console.error('  INNER LOOP: ❌ CRITICAL ERROR: blocks[' + blockNumber + '] DOES NOT EXIST!');
+				console.error('  INNER LOOP: ❌ blockNumber =', blockNumber, 'openBlocks =', openBlocks);
+				console.error('  INNER LOOP: ❌ blocks array keys:', Object.keys(blocks));
+			}
+		}
+		console.log('LOOP: Finished processing block', blockNumber);
+	}
+	console.log('═══════════════════════════════════════');
+	console.log('🔵 FINISHED APPENDING VOLUNTEER BLOCKS');
+	console.log('═══════════════════════════════════════');
+		
+		
+	console.log('═══════════════════════════════════════');
+	console.log('🔵 APPENDING BLOCKS TO BODY');
+	console.log('═══════════════════════════════════════');
+	console.log('body element =', body);
+	console.log('openBlocks =', openBlocks);
+
+	for (var i = 1 ; i <= openBlocks ; i++) {
+		console.log('Appending blocks[' + i + '] to body. blocks[' + i + '] =', blocks[i]);
+		body.appendChild(blocks[i]);
+		console.log('✅ blocks[' + i + '] appended to body');
+		for (var j = 0 ; j < 5 ; j++) {
+			var span = document.createElement("span");
+			var time = new Date(callData.blockData[i].startTime).addMinutes(callData.blockLengthInMinutes / 4 * j);
+			const displayableTime = convertPacificToLocal(time);
+			span.appendChild(document.createTextNode(displayableTime.formattedTime(true)));
+			var blockLocation = blocks[i].getBoundingClientRect();
+			span.style.position = 'absolute';
+			span.style.fontSize = "75%";
+			span.style.left = (blockLocation.width / 4) * j - 20 + "px";
+			span.style.top = blockLocation.height + 10 + "px";
+			blocks[i].appendChild(span);
+		}
+	}
+
+	var placeVolunteerLabels = document.getElementsByTagName("div");
+	for (var i = 0 ; i < placeVolunteerLabels.length ; i++) {
+		var div = placeVolunteerLabels[i];
+		if(!div.getAttribute('class')) {
+			div.setAttribute("class","none");
+		}
+		var className = div.getAttribute('class').split(" ");
+		if(className[2]) {	
+			var blockNumber = 		className[1];
+			var volunteerNumber = 	className[2];
+			var volunteerBlockLocation = div.getBoundingClientRect();
+			var span = document.createElement("div");
+			span.style.position = 'absolute';
+			span.setAttribute("class",'answeredLabel');
+			span.style.top = volunteerBlockLocation.top + "px";
+			span.style.left = volunteerBlockLocation.left - 260 + "px";
+			span.appendChild(document.createTextNode(blockLabel[blockNumber][volunteerNumber].name));
+			body.appendChild(span);
+		} else if (className[0] == 'shiftBlock') {
+			for(var j = 0 ; j < 4 ; j++) {
+				var blockNumber = className[1];
+				var blockLocation = div.getBoundingClientRect();
+				blockGrid[j] = document.createElement("div");
+				blockGrid[j].style.position = 'absolute';
+				blockGrid[j].style.height = blockLocation.height + "px";
+				blockGrid[j].style.width = Math.round(blockLocation.width / 4) - 2 + "px";
+				blockGrid[j].style.left = blockLocation.width / 4 * j + "px";
+				blockGrid[j].style.top = "0px";
+				blockGrid[j].style.borderRight = "1px solid gray";
+				blockGrid[j].style.backgroundColor = "transparent";
+				blockGrid[j].style.zIndex = "100";
+				div.appendChild(blockGrid[j]);
+			}
+		}	
+	}
+	
+	
+	let volunteerTable = document.getElementById("volunteerTable");
+	removeElements(volunteerTable);
+
+
+
+
+	var VolunteerTableData = callData.volunteers;
+	const sortable = Object.fromEntries(
+		Object.entries(VolunteerTableData).sort(([,a],[,b]) => a-b)
+	);
+
+
+
+
+    
+	for (const [key, value] of Object.entries(sortable)) {
+		let volunteer = callData.users[key];
+		
+		if(volunteer.loggedOnTime) {		  	
+			var startTime = fromMysqlDate(volunteer.loggedOnTime).formattedTime();
+			var endTime = "";
+			if(volunteer.loggedOffTime) {
+				endTime = fromMysqlDate(volunteer.loggedOffTime).formattedTime();
+			  } else {
+				endTime = "--";
+			  }
+		
+			var row = document.createElement("TR");
+
+			var cell = document.createElement("TD");
+			cell.className = "volunteerName";
+			cell.innerHTML = volunteer.firstName + " " + volunteer.lastName;
+			row.appendChild(cell);		  	
+				
+			var cell = document.createElement("TD");
+			cell.className = "volunteerTime";		  	
+			cell.innerHTML = startTime;
+			row.appendChild(cell);		  	
+		
+			var cell = document.createElement("TD");
+			cell.className = "volunteerTime";		  	
+			cell.innerHTML = endTime;
+			row.appendChild(cell);		  	
+		
+			var cell = document.createElement("TD");
+			cell.className = "volunteerTime";
+			if(volunteer.chatOnly == 0 ) {						  	
+				cell.innerHTML = "";				
+			} else {
+				cell.innerHTML = volunteer.chatOnly;
+			}
+			row.appendChild(cell);		  	
+
+			volunteerTable.appendChild(row);
+		}
+   }
+}

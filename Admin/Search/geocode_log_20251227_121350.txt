@@ -1,0 +1,2430 @@
+[2025-12-27 12:13:50] === Batch Re-Geocoding Started ===
+[2025-12-27 12:13:50] Dry run: NO
+[2025-12-27 12:13:50] Start offset: 500
+[2025-12-27 12:13:50] Limit: ALL
+[2025-12-27 12:13:50] Total open resources: 20982
+[2025-12-27 12:13:50] Resources to process in this run: 20482
+[2025-12-27 12:13:52] ID 1561: Moved 1.8km - Kent State University
+[2025-12-27 12:13:54] ID 1579: Moved 1.3km - SUNY Purchase
+[2025-12-27 12:13:58] ID 1635: Moved 1km - Rainbow Alley
+[2025-12-27 12:13:59] ID 1651: Moved 3.1km - University Of Colorado
+[2025-12-27 12:14:00] ID 1671: Moved 1.2km - OutWrite Newsmagazine
+[2025-12-27 12:14:03] ID 1699: Moved 13.1km - Equality Michigan
+[2025-12-27 12:14:03] ID 1706: Moved 2.2km - Syracuse University
+[2025-12-27 12:14:07] ID 1760: Moved 5.7km - American Civil Liberties Union Of Kansas
+[2025-12-27 12:14:09] ID 1784: Moved 5.9km - Chicago Spirit Brigade
+[2025-12-27 12:14:09] ID 1791: Moved 1038.5km - University Of California Santa Barbara
+[2025-12-27 12:14:14] ID 1835: Moved 9562.9km - PFLAG - Baltimore
+[2025-12-27 12:14:16] ID 1861: Moved 3.8km - Baltimore Frontrunners
+[2025-12-27 12:14:17] ID 1874: Moved 2.2km - FreeState Justice
+[2025-12-27 12:14:19] ID 1903: Moved 1.3km - Albany Damien Center
+[2025-12-27 12:14:22] ID 1930: Moved 428.6km - SUNY Oswego Women's Center
+[2025-12-27 12:14:24] ID 1963: Moved 16.7km - American Civil Liberties Union of Montana
+[2025-12-27 12:14:25] ID 1968: Moved 2.2km - Crystal Meth Anonymous
+[2025-12-27 12:14:25] ID 1973: Moved 11.6km - Montana State University
+[2025-12-27 12:14:26] ID 1978: Moved 15.2km - University Of Montana
+[2025-12-27 12:14:27] ID 1989: Moved 11.2km - Saint Paul Lutheran and Roman Catholic
+[2025-12-27 12:14:29] ID 2017: Moved 4.2km - AIDS Response Seacoast
+[2025-12-27 12:14:31] ID 2024: Moved 1km - Epiphany Lutheran Church
+[2025-12-27 12:14:32] ID 2053: Moved 2.6km - Hotlanta Volleyball Association
+[2025-12-27 12:14:32] ID 2058: Moved 1.3km - Overeaters Anonymous
+[2025-12-27 12:14:35] ID 2116: Moved 2.9km - PFLAG - Athens Area
+[2025-12-27 12:14:36] ID 2125: Moved 2.6km - Ion Arizona
+[2025-12-27 12:14:39] ID 2159: Moved 2.6km - American Civil Liberties Union Oregon
+[2025-12-27 12:14:40] ID 2163: Moved 2.3km - Portland Gay Men's Chorus
+[2025-12-27 12:14:41] ID 2191: Moved 1.9km - American Civil Liberties Union
+[2025-12-27 12:14:43] ID 2204: Moved 2km - Birmingham AIDS Outreach
+[2025-12-27 12:14:44] ID 2215: Moved 2.8km - AIDS Alabama South
+[2025-12-27 12:14:44] ID 2217: Moved 17.2km - University Of South Alabama
+[2025-12-27 12:14:46] ID 2239: Moved 2.5km - Alabama Public Health
+[2025-12-27 12:14:47] ID 2255: Moved 3.7km - Phoenix Gay Men's Chorus
+[2025-12-27 12:14:49] ID 2298: Moved 9.2km - Hendrix College
+[2025-12-27 12:14:53] ID 2364: Moved 3km - Long Beach Gay and Lesbian Chamber of
+[2025-12-27 12:14:55] ID 2392: Moved 10.5km - Golden State Gay Rodeo Association
+[2025-12-27 12:14:57] ID 2414: Moved 2.1km - Sacramento Gay Men's Chorus
+[2025-12-27 12:15:00] ID 2447: Moved 1.1km - University Of California Santa Barbara
+[2025-12-27 12:15:01] ID 2455: Moved 1038.5km - University Of California Santa Barbara
+[2025-12-27 12:15:05] ID 2489: Moved 2.1km - POZabilities
+[2025-12-27 12:15:12] ID 2607: Moved 2.5km - Generation Q
+[2025-12-27 12:15:16] ID 2659: Moved 1.1km - PFLAG - Milwaukee
+[2025-12-27 12:15:19] ID 2707: Moved 10km - Saturday Softball Beer League
+[2025-12-27 12:15:20] ID 2718: Moved 2.1km - Outlook Video
+[2025-12-27 12:15:20] ID 2720: Moved 1.2km - Gunnison Congregational Church
+[2025-12-27 12:15:24] ID 2755: Moved 1.6km - San Francisco Unified School District
+[2025-12-27 12:15:28] ID 2805: Moved 3.4km - Al-Anon Information Services
+[2025-12-27 12:15:32] ID 2850: Moved 2.3km - Bowling Green University
+[2025-12-27 12:15:32] ID 2851: Moved 20477km - Bowling Green State University
+[2025-12-27 12:15:34] ID 2891: Moved 1.6km - Moveable Feast
+[2025-12-27 12:15:38] ID 2942: Moved 2km - CrescentCare Legal Services
+[2025-12-27 12:15:40] ID 2977: Moved 23.1km - PFLAG - New Orleans
+[2025-12-27 12:15:40] ID 2979: Moved 6.6km - Belle Reve New Orleans
+[2025-12-27 12:15:41] ID 2993: Moved 20.3km - Forum For Equality
+[2025-12-27 12:15:42] ID 3008: Moved 1.5km - Minnesota State University LGBT Center
+[2025-12-27 12:15:43] ID 3010: Moved 1.5km - Gustavus Adolphus College
+[2025-12-27 12:15:43] ID 3016: Moved 1.3km - St. Olaf College
+[2025-12-27 12:15:44] ID 3017: Moved 2.8km - Carleton College
+[2025-12-27 12:15:47] ID 3071: Moved 8.2km - Eastern Washington University
+[2025-12-27 12:15:53] ID 3183: Moved 1.3km - Ohio Department Of Health
+[2025-12-27 12:15:55] ID 3204: Moved 2.4km - Drake University
+[2025-12-27 12:15:56] ID 3224: Moved 3.9km - PFLAG - Mount Pleasant
+[2025-12-27 12:15:56] ID 3228: Moved 74.3km - Central Michigan University
+[2025-12-27 12:15:59] ID 3290: Moved 9223.2km - Lowell High School
+[2025-12-27 12:16:01] ID 3327: Moved 1.6km - Lafayette College
+[2025-12-27 12:16:04] ID 3368: Moved 5km - Vanderbilt AIDS Clinical Trials Center
+[2025-12-27 12:16:06] ID 3391: Moved 2.2km - Wildflower Church
+[2025-12-27 12:16:09] ID 3427: Moved 5.8km - National Lesbian And Gay Journalists Association
+[2025-12-27 12:16:12] ID 3466: Moved 2.6km - Coldwell Banker
+[2025-12-27 12:16:13] ID 3477: Moved 6.4km - Twin Cities Country Dancers
+[2025-12-27 12:16:15] ID 3509: Moved 4.8km - Otterbein University
+[2025-12-27 12:16:18] ID 3580: Moved 2.9km - Community AIDS Resource And
+[2025-12-27 12:16:18] ID 3585: Moved 2.3km - Western Michigan University
+[2025-12-27 12:16:19] ID 3594: Moved 11.3km - PFLAG - Traverse City
+[2025-12-27 12:16:20] ID 3610: Moved 1.9km - Unitarian Universalist Association
+[2025-12-27 12:16:20] ID 3614: Moved 1.4km - Bay Windows
+[2025-12-27 12:16:20] ID 3628: Moved 1km - Equality Loudoun
+[2025-12-27 12:16:25] ID 3718: Moved 5.4km - Triad Softball League
+[2025-12-27 12:16:30] ID 3780: Moved 12.8km - PFLAG - Alamance County
+[2025-12-27 12:16:31] ID 3793: Moved 3km - PFLAG - Charlotte
+[2025-12-27 12:16:33] ID 3818: Moved 2.2km - PFLAG - Hendersonville
+[2025-12-27 12:16:34] ID 3831: Moved 1.6km - Wesley-Luther Campus Ministry
+[2025-12-27 12:16:35] ID 3854: Moved 5.5km - PFLAG - Michigan City / Indiana Dunes
+[2025-12-27 12:16:35] ID 3862: Moved 1.5km - Narcotics Anonymous
+[2025-12-27 12:16:40] ID 3932: Moved 3km - PFLAG - Chambersburg
+[2025-12-27 12:16:41] ID 3939: Moved 3.6km - Unitarian Universalists of New Braunfels
+[2025-12-27 12:16:43] ID 3973: Moved 5.2km - PFLAG - Fort Collins / Northern Colorado
+[2025-12-27 12:16:45] ID 3996: Moved 256.5km - Alcoholics Anonymous
+[2025-12-27 12:16:45] ID 4001: Moved 6.8km - American Civil Liberties Union Of Vermont
+[2025-12-27 12:16:47] ID 4029: Moved 8km - Al-Anon/Alateen
+[2025-12-27 12:16:49] ID 4049: Moved 8km - South Carolina Equality Coalition
+[2025-12-27 12:16:51] ID 4087: Moved 2.1km - PFLAG - Greenville
+[2025-12-27 12:16:51] ID 4089: Moved 3.7km - Alcoholics Anonymous
+[2025-12-27 12:16:53] ID 4109: Moved 1.6km - Side by Side
+[2025-12-27 12:16:54] ID 4138: Moved 1.9km - American Civil Liberties Union - VA
+[2025-12-27 12:16:55] ID 4146: Moved 1km - Virginia Commonwealth University HIV Services
+[2025-12-27 12:16:56] ID 4162: Moved 20.2km - PFLAG - Santa Barbara
+[2025-12-27 12:16:56] ID 4172: Moved 5.6km - PFLAG - Lubbock
+[2025-12-27 12:17:01] ID 4239: Moved 2km - PFLAG - Fort Myers
+[2025-12-27 12:17:02] ID 4244: Moved 4.7km - PFLAG - Sarasota
+[2025-12-27 12:17:03] ID 4282: Moved 6.4km - Bucknell University LGBTQA Alumni Committee
+[2025-12-27 12:17:08] ID 4329: Moved 4.2km - Alcoholics Anonymous
+[2025-12-27 12:17:12] ID 4384: Moved 10.8km - University Of Colorado at Boulder
+[2025-12-27 12:17:12] ID 4385: Moved 1.2km - University of Colorado School of Law
+[2025-12-27 12:17:13] ID 4390: Moved 30.8km - University Of Memphis
+[2025-12-27 12:17:13] ID 4395: Moved 2km - OUT Memphis
+[2025-12-27 12:17:16] ID 4456: Moved 7.2km - PFLAG - Fairbanks
+[2025-12-27 12:17:21] ID 4515: Moved 10068.8km - University Of North Carolina
+[2025-12-27 12:17:21] ID 4523: Moved 6.9km - Coastal Horizons
+[2025-12-27 12:17:22] ID 4532: Moved 1.5km - Al-Anon/Alateen Information Services of Metrolina
+[2025-12-27 12:17:24] ID 4553: Moved 2.5km - PFLAG - El Paso
+[2025-12-27 12:17:25] ID 4563: Moved 1.3km - University Of North Carolina
+[2025-12-27 12:17:25] ID 4574: Moved 8.2km - Unitarian Universalist Congregation
+[2025-12-27 12:17:27] ID 4596: Moved 12.6km - American Civil Liberties Union of North Carolina
+[2025-12-27 12:17:31] ID 4682: Moved 9.9km - Colby College
+[2025-12-27 12:17:31] ID 4683: Moved 2.7km - Family Centers
+[2025-12-27 12:17:33] ID 4709: Moved 2.5km - Community Health Services
+[2025-12-27 12:17:34] ID 4714: Moved 2km - The Center of Empowerment and Education
+[2025-12-27 12:17:35] ID 4741: Moved 6.9km - Crisis Clinic of Thurston and Mason Counties
+[2025-12-27 12:17:36] ID 4755: Moved 2km - University Of Washington Q Center
+[2025-12-27 12:17:38] ID 4778: Moved 2km - PFLAG - Seattle
+[2025-12-27 12:17:44] ID 4846: Moved 2.4km - Seattle Men's Chorus
+[2025-12-27 12:17:48] ID 4937: Moved 121.3km - Texas Gay Rodeo Assoc. - San Antonio
+[2025-12-27 12:17:53] ID 4997: Moved 1.2km - University Of Texas Law School
+[2025-12-27 12:17:56] ID 5034: Moved 4.6km - St. Michaels College
+[2025-12-27 12:17:57] ID 5045: Moved 1.6km - Houston Area Women's Center
+[2025-12-27 12:18:03] ID 5119: Moved 9km - City Of Brotherly Love Softball League
+[2025-12-27 12:18:06] ID 5167: Moved 11.7km - PFLAG - Akron
+[2025-12-27 12:18:07] ID 5192: Moved 1.8km - American Civil Liberties Union Of Ohio
+[2025-12-27 12:18:08] ID 5201: Moved 9.3km - Lovers Playground
+[2025-12-27 12:18:14] ID 5273: Moved 1.1km - Lesbian Sex Mafia (LSM)
+[2025-12-27 12:18:20] ID 5379: Moved 8.6km - New Jersey Department Of Heath and Senior Services
+[2025-12-27 12:18:22] ID 5412: Moved 9.1km - Matrix Human Services
+[2025-12-27 12:18:23] ID 5425: Moved 10756.9km - PFLAG - Lafayette/Acadiana
+[2025-12-27 12:18:24] ID 5439: Moved 3.6km - Alcoholics Anonymous
+[2025-12-27 12:18:25] ID 5440: Moved 1.2km - Pinnacles Family
+[2025-12-27 12:18:26] ID 5462: Moved 1km - Gerber/Hart Library and Archives
+[2025-12-27 12:18:28] ID 5470: Moved 2.8km - Community Counseling Centers Of Chicago
+[2025-12-27 12:18:29] ID 5477: Moved 17.3km - Prime Timers - Chicago
+[2025-12-27 12:18:38] ID 5595: Moved 1.1km - International Association Of
+[2025-12-27 12:18:41] ID 5633: Moved 34.8km - Absolute Paradise: Gay Hawaii Bed And Breakfast
+[2025-12-27 12:18:42] ID 5640: Moved 1.8km - American Civil Liberties Union
+[2025-12-27 12:18:42] ID 5647: Moved 1.1km - Atlanta Feminist Women's Health Center
+[2025-12-27 12:18:45] ID 5689: Moved 1.1km - Hotspots Magazine
+[2025-12-27 12:18:45] ID 5691: Moved 2.2km - Lewis and Clark Law School
+[2025-12-27 12:18:46] ID 5695: Moved 1.7km - Poverello Center
+[2025-12-27 12:18:46] ID 5704: Moved 2.2km - South Florida Pride Wind Ensemble
+[2025-12-27 12:18:47] ID 5713: Moved 1.3km - Rosie's Bar
+[2025-12-27 12:18:47] ID 5719: Moved 19km - Congregation Etz Chaim
+[2025-12-27 12:18:49] ID 5741: Moved 1.5km - DC's Different Drummers
+[2025-12-27 12:18:55] ID 5835: Moved 11.5km - LGBTQ Student Resource Center At Auraria Campus
+[2025-12-27 12:18:56] ID 5854: Moved 2.6km - Alliance for Housing and Healing
+[2025-12-27 12:18:57] ID 5864: Moved 1.1km - June L. Mazer Lesbian Archives
+[2025-12-27 12:18:58] ID 5870: Moved 1km - Lambda Legal Defense
+[2025-12-27 12:19:01] ID 5912: Moved 1.9km - California State University Los Angeles
+[2025-12-27 12:19:03] ID 5947: Moved 2.7km - Metropolitan Community Churches (MCC)
+[2025-12-27 12:19:03] ID 5951: Moved 2.7km - Asian Pacific AIDS Intervention Team
+[2025-12-27 12:19:05] ID 5979: Moved 15.3km - Affirming Christian Fellowship
+[2025-12-27 12:19:21] ID 6291: Moved 3.3km - BayLands FrontRunners
+[2025-12-27 12:19:28] ID 6431: Moved 1.6km - University Of Montevallo
+[2025-12-27 12:19:31] ID 6460: Moved 15.9km - Community College Of Allegheny County
+[2025-12-27 12:19:31] ID 6474: Moved 6.6km - Alcoholics Anonymous
+[2025-12-27 12:19:31] ID 6476: Moved 14.3km - American Civil Liberties Union - New Mexico
+[2025-12-27 12:19:33] ID 6518: Moved 1.2km - PFLAG - Youngstown
+[2025-12-27 12:19:41] ID 6612: Moved 7.3km - NYC Police Department Hate Crime Task Force
+[2025-12-27 12:19:44] ID 6668: Moved 8.9km - Fire Island Pines
+[2025-12-27 12:19:45] ID 6684: Moved 4.6km - Narcotics Anonymous
+[2025-12-27 12:19:45] ID 6685: Moved 5.1km - Rocky Mountain Equality
+[2025-12-27 12:19:45] ID 6688: Moved 7.3km - South Central AIDS Education and Training Center
+[2025-12-27 12:19:47] ID 6717: Moved 2km - Nebraska HIV Clinic
+[2025-12-27 12:19:51] ID 6806: Moved 3.3km - Unitarian Universalist Fellowship Of Wayne County
+[2025-12-27 12:19:52] ID 6841: Moved 1.2km - Silverado
+[2025-12-27 12:19:58] ID 6998: Moved 12.9km - Holy Trinity Episcopal Church
+[2025-12-27 12:20:00] ID 7022: Moved 2.8km - Hidden Door
+[2025-12-27 12:20:05] ID 7101: Moved 1.5km - 2015 Place
+[2025-12-27 12:20:09] ID 7190: Moved 3.5km - Eagle
+[2025-12-27 12:20:13] ID 7278: Moved 2.2km - Last Frontier Men's Club
+[2025-12-27 12:20:15] ID 7313: Moved 7.4km - Prime Timers - Tucson
+[2025-12-27 12:20:17] ID 7350: Moved 3.6km - Club 1220
+[2025-12-27 12:20:18] ID 7358: Moved 2.6km - Flux
+[2025-12-27 12:20:26] ID 7503: Moved 1.8km - Chung, Mark
+[2025-12-27 12:20:28] ID 7527: Moved 2.7km - Hole in the Wall
+[2025-12-27 12:20:32] ID 7563: Moved 1.7km - Al-Anon/Alateen
+[2025-12-27 12:20:36] ID 7637: Moved 2.6km - Cambridge Rindge And Latin School Project 10 East
+[2025-12-27 12:20:36] ID 7639: Moved 2.6km - Milton Academy
+[2025-12-27 12:20:37] ID 7648: Moved 3.2km - NYC Al-ANON
+[2025-12-27 12:20:38] ID 7652: Moved 11.3km - Amherst Community Church
+[2025-12-27 12:20:38] ID 7654: Moved 3.6km - Bellevue Hospital Center
+[2025-12-27 12:20:40] ID 7675: Moved 1.3km - Church Of The Redeemer
+[2025-12-27 12:20:58] ID 7994: Moved 3km - Philanthrofund Foundation (PFUND)
+[2025-12-27 12:20:59] ID 7997: Moved 3.5km - East Carolina University
+[2025-12-27 12:21:06] ID 8083: Moved 1.2km - Capaldini, Lisa
+[2025-12-27 12:21:09] ID 8129: Moved 1.2km - Pilsner Inn
+[2025-12-27 12:21:10] ID 8152: Moved 1.4km - Maine Street
+[2025-12-27 12:21:12] ID 8203: Moved 11.9km - New York State Department of Health
+[2025-12-27 12:21:16] ID 8302: Moved 5.6km - Sexual Minorities Archives
+[2025-12-27 12:21:16] ID 8305: Moved 453.1km - National Women's Music Festival /
+[2025-12-27 12:21:17] ID 8312: Moved 7.3km - Gender & Sexuality Action Committee
+[2025-12-27 12:21:18] ID 8324: Moved 2.2km - Rice University Alumni Pride
+[2025-12-27 12:21:19] ID 8338: Moved 1.4km - Pride Guide Arizona
+[2025-12-27 12:21:19] ID 8387: Moved 1.4km - Christopher Newport University
+[2025-12-27 12:21:24] ID 8489: Moved 18.7km - Palm Travel
+[2025-12-27 12:21:24] ID 8498: Moved 1.8km - Boy Next Door Menswear
+[2025-12-27 12:21:27] ID 8557: Moved 11.3km - University Of Arizona
+[2025-12-27 12:21:31] ID 8730: Moved 5.4km - ACBS Travel Agency
+[2025-12-27 12:21:33] ID 8805: Moved 2.8km - Historic Mardi Gras Inn
+[2025-12-27 12:21:38] ID 8994: Moved 1.3km - C R C Travel
+[2025-12-27 12:21:39] ID 9045: Moved 3km - Alcoholics Anonymous
+[2025-12-27 12:21:40] ID 9054: Moved 9.1km - Dan Howell Travel
+[2025-12-27 12:21:40] ID 9079: Moved 6.5km - Austin Front Runners
+[2025-12-27 12:21:41] ID 9128: Moved 9.4km - Vista Grande Villa
+[2025-12-27 12:21:44] ID 9235: Moved 15.8km - Narcotics Anonymous
+[2025-12-27 12:21:49] ID 9315: Moved 3.1km - Akron Steam and Sauna
+[2025-12-27 12:21:49] ID 9342: Moved 2.6km - Falango, Mark
+[2025-12-27 12:21:54] ID 9544: Moved 3.7km - The Brewster Inn
+[2025-12-27 12:21:56] ID 9597: Moved 1.6km - Gifford House
+[2025-12-27 12:21:56] ID 9605: Moved 1.7km - Lotus Guest House
+[2025-12-27 12:21:58] ID 9634: Moved 9.6km - Windover Women's Resort
+[2025-12-27 12:21:58] ID 9646: Moved 5.1km - Emory Village Flowers And Gifts
+[2025-12-27 12:22:03] ID 9777: Moved 5km - Grunberg Haus Bed and Breakfast
+[2025-12-27 12:22:03] ID 9778: Moved 3.4km - Phineas Swann Bed and Breakfast
+[2025-12-27 12:22:07] ID 9860: Moved 9km - Schneider, Kathleen D.
+[2025-12-27 12:22:08] ID 9864: Moved 5.2km - Family And Medical Counseling Service, Inc.
+[2025-12-27 12:22:09] ID 9873: Moved 1km - American Veterans For Equal Rights
+[2025-12-27 12:22:09] ID 9888: Moved 1.8km - Ignite Drop-In Community Hub & Resource Center
+[2025-12-27 12:22:10] ID 9900: Moved 14.7km - Al-Anon/Alateen
+[2025-12-27 12:22:11] ID 9932: Moved 3.7km - Alcoholics Anonymous
+[2025-12-27 12:22:12] ID 9935: Moved 1.6km - Massachusetts Institute Of Technology
+[2025-12-27 12:22:18] ID 10054: Moved 1.9km - Lesbian, Gay, Bisexual, and Transgender
+[2025-12-27 12:22:18] ID 10073: Moved 1.6km - Pride Factory
+[2025-12-27 12:22:20] ID 10122: Moved 4.3km - Lanzet, Steven I.
+[2025-12-27 12:22:24] ID 10220: Moved 1.2km - Taylor, Robert
+[2025-12-27 12:22:24] ID 10232: Moved 1.8km - Gibson Sotheby's International Realty
+[2025-12-27 12:22:25] ID 10249: Moved 1km - Benowitz, Mindy
+[2025-12-27 12:22:28] ID 10295: Moved 1.4km - Ross, Joellyn
+[2025-12-27 12:22:35] ID 10420: Moved 1.6km - Axis Nightclub
+[2025-12-27 12:22:36] ID 10443: Moved 1.1km - Lathrop, Brian
+[2025-12-27 12:22:36] ID 10446: Moved 1.2km - Cocktails
+[2025-12-27 12:22:44] ID 10569: Moved 1.7km - Iona College
+[2025-12-27 12:22:44] ID 10578: Moved 8.1km - Bob Howard Real Estate
+[2025-12-27 12:22:49] ID 10666: Moved 10.4km - Pride Fest Of Central Pennsylvania
+[2025-12-27 12:22:52] ID 10748: Moved 1.2km - David Powell Clinic, Inc.
+[2025-12-27 12:22:53] ID 10774: Moved 2km - Houston Invitational Tournament
+[2025-12-27 12:22:53] ID 10791: Moved 1.4km - Atria Collective
+[2025-12-27 12:22:57] ID 10855: Moved 1.9km - Seattle University School Of Law
+[2025-12-27 12:22:58] ID 10877: Moved 1.8km - PFLAG - Broward
+[2025-12-27 12:22:59] ID 10885: Moved 2.6km - PFLAG - Bloomington / Normal
+[2025-12-27 12:22:59] ID 10890: Moved 7.1km - St. Cloud Unitarian Universalist Fellowship
+[2025-12-27 12:23:00] ID 10905: Moved 11965.5km - PFLAG - Amarillo
+[2025-12-27 12:23:05] ID 11027: Moved 3.7km - Unitarian Universalist Congregation Of Phoenix
+[2025-12-27 12:23:05] ID 11031: Moved 2.4km - Bears Of Los Angeles
+[2025-12-27 12:23:06] ID 11037: Moved 161km - St. Mark's Lutheran Church
+[2025-12-27 12:23:07] ID 11045: Moved 1km - Pathways - A Transgender Support Group
+[2025-12-27 12:23:07] ID 11062: Moved 9.4km - Boots In Squares
+[2025-12-27 12:23:08] ID 11070: Moved 14009.3km - Bradley University
+[2025-12-27 12:23:10] ID 11090: Moved 4km - Bemidji State University
+[2025-12-27 12:23:11] ID 11095: Moved 2km - Winona State University
+[2025-12-27 12:23:12] ID 11106: Moved 6km - University Of Wisconsin Pride Center
+[2025-12-27 12:23:12] ID 11107: Moved 2.6km - University Of Wisconsin
+[2025-12-27 12:23:13] ID 11112: Moved 3.6km - Depauw University
+[2025-12-27 12:23:13] ID 11116: Moved 4.1km - Coe College Alliance
+[2025-12-27 12:23:20] ID 11239: Moved 4.6km - HeadQuarters Kansas
+[2025-12-27 12:23:21] ID 11243: Moved 4.7km - Willow Domestic Violence Center
+[2025-12-27 12:23:22] ID 11284: Moved 2.2km - Strick, Elliott
+[2025-12-27 12:23:27] ID 11357: Moved 1.7km - Panhandle AIDS Support Organization
+[2025-12-27 12:23:28] ID 11364: Moved 3.9km - First Unitarian Universalist Church
+[2025-12-27 12:23:29] ID 11379: Moved 2.3km - Maltbie, Alice
+[2025-12-27 12:23:32] ID 11435: Moved 1.4km - Ronald Rex Piselli Funeral Chapels
+[2025-12-27 12:23:36] ID 11536: Moved 1.6km - Tracks
+[2025-12-27 12:23:40] ID 11604: Moved 6.8km - Culinary Institute Of America
+[2025-12-27 12:23:41] ID 11621: Moved 2.4km - University Of Nevada
+[2025-12-27 12:23:43] ID 11672: Moved 1.3km - Lambda Phoenix Center
+[2025-12-27 12:23:46] ID 11748: Moved 2.5km - Buffalo Historic Bowling League
+[2025-12-27 12:23:48] ID 11773: Moved 2.1km - San Diego Tennis Federation
+[2025-12-27 12:23:52] ID 11858: Moved 2.1km - Washington Plaza Baptist Church
+[2025-12-27 12:23:53] ID 11896: Moved 1.8km - MAAP
+[2025-12-27 12:23:54] ID 11919: Moved 46.9km - University Of Georgia
+[2025-12-27 12:23:55] ID 11931: Moved 1.4km - American Civil Liberties Union of Minnesota
+[2025-12-27 12:23:58] ID 12004: Moved 1.2km - Laughrun II, George V.
+[2025-12-27 12:24:04] ID 12129: Moved 1.7km - CUNY Brooklyn College Women's Center
+[2025-12-27 12:24:06] ID 12157: Moved 4.8km - Russell Sage College of Albany
+[2025-12-27 12:24:08] ID 12188: Moved 4.7km - CenterLink: The Community of LGBT Centers
+[2025-12-27 12:24:08] ID 12197: Moved 1.1km - American Civil Liberties Union Wyoming
+[2025-12-27 12:24:09] ID 12205: Moved 5.8km - Gay Naturists International (GNI)
+[2025-12-27 12:24:11] ID 12234: Moved 5.3km - Underground
+[2025-12-27 12:24:12] ID 12242: Moved 1km - Goldstein, Nancy R.
+[2025-12-27 12:24:12] ID 12250: Moved 6km - Youth Alliance For Diversity
+[2025-12-27 12:24:21] ID 12469: Moved 1.8km - Steps to End Domestic Violence
+[2025-12-27 12:24:24] ID 12513: Moved 1.1km - North Carolina Department Of Health
+[2025-12-27 12:24:24] ID 12518: Moved 1.6km - Philadelphia Family Pride
+[2025-12-27 12:24:26] ID 12541: Moved 1.1km - Out Film CT - Connecticut LGBTQ Film Festival
+[2025-12-27 12:24:28] ID 12561: Moved 17.6km - Tampa International Gay and Lesbian Film Festival
+[2025-12-27 12:24:32] ID 12627: Moved 7.6km - Louisiana State University
+[2025-12-27 12:24:33] ID 12659: Moved 2.1km - Bulldogs
+[2025-12-27 12:24:35] ID 12701: Moved 5.1km - Kate's Lazy Cabin
+[2025-12-27 12:24:37] ID 12735: Moved 1.1km - Cell Block
+[2025-12-27 12:24:39] ID 12801: Moved 1.4km - The Garden
+[2025-12-27 12:24:44] ID 12871: Moved 2.8km - AllWays Lounge & Cabaret
+[2025-12-27 12:24:45] ID 12905: Moved 2.5km - Baltimore Eagle
+[2025-12-27 12:24:49] ID 13025: Moved 1.6km - Side Traxx Night Club
+[2025-12-27 12:24:57] ID 13220: Moved 1.8km - Philadelphia Falcons Soccer Club
+[2025-12-27 12:24:59] ID 13268: Moved 1.6km - AIDS Support Group of Cape Cod
+[2025-12-27 12:25:02] ID 13359: Moved 12km - Mid Atlantic Amateur Softball Association
+[2025-12-27 12:25:04] ID 13411: Moved 3.7km - GayStPete.com
+[2025-12-27 12:25:15] ID 13733: Moved 1.5km - McMackin, Christopher
+[2025-12-27 12:25:16] ID 13760: Moved 3km - GAMMA - DC
+[2025-12-27 12:25:18] ID 13801: Moved 1.7km - County College Of Morris
+[2025-12-27 12:25:24] ID 13939: Moved 74.4km - Central Michigan University
+[2025-12-27 12:25:29] ID 14033: Moved 2.7km - Serra, Rudolph A.
+[2025-12-27 12:25:30] ID 14038: Moved 775.3km - American Civil Liberties Union of Alaska
+[2025-12-27 12:25:31] ID 14048: Moved 2.9km - Tsakos, John
+[2025-12-27 12:25:31] ID 14069: Moved 1.1km - Kirby, Carole
+[2025-12-27 12:25:32] ID 14076: Moved 5.2km - Boybutante AIDS Foundation, Inc.
+[2025-12-27 12:25:34] ID 14143: Moved 2.5km - Grey Fox Pub
+[2025-12-27 12:25:46] ID 14330: Moved 2.3km - Long Yang Club New Jersey
+[2025-12-27 12:25:46] ID 14338: Moved 1km - Narcotics Anonymous
+[2025-12-27 12:25:49] ID 14407: Moved 1.9km - Atlanta Eagle
+[2025-12-27 12:25:52] ID 14464: Moved 3km - Glacier Unitarian Universalist Fellowship
+[2025-12-27 12:26:00] ID 14596: Moved 2.4km - Partners of Trans/Gender Nonconforming Folx
+[2025-12-27 12:26:00] ID 14598: Moved 2.2km - Queer Resource Center of the Claremont
+[2025-12-27 12:26:01] ID 14636: Moved 3.2km - American University
+[2025-12-27 12:26:09] ID 14764: Moved 1.7km - Worcester Polytechnic Institute
+[2025-12-27 12:26:10] ID 14804: Moved 2.3km - Unity Savannah
+[2025-12-27 12:26:11] ID 14818: Moved 1.9km - Noble And Greenough School
+[2025-12-27 12:26:14] ID 14864: Moved 10.6km - Duke University Fuqua School Of Business
+[2025-12-27 12:26:15] ID 14874: Moved 8.3km - New Mexico Genders and Sexualities
+[2025-12-27 12:26:16] ID 14895: Moved 488.3km - University Of Texas McCombs School Of Business
+[2025-12-27 12:26:21] ID 15042: Moved 14.3km - Central Ohio Bears
+[2025-12-27 12:26:24] ID 15107: Moved 1.3km - Circle Health Services
+[2025-12-27 12:26:26] ID 15162: Moved 1.4km - Gregory, James G.
+[2025-12-27 12:26:27] ID 15183: Moved 2.9km - Savoy Orlando
+[2025-12-27 12:26:32] ID 15281: Moved 1.5km - Kerman, Richard J.
+[2025-12-27 12:26:32] ID 15287: Moved 2.9km - Muehl, Jeff
+[2025-12-27 12:26:33] ID 15294: Moved 2.2km - Gay, Bisexual, Transgender (GBT) Men
+[2025-12-27 12:26:34] ID 15343: Moved 13.5km - American Civil Liberties Union Of Idaho
+[2025-12-27 12:26:35] ID 15356: Moved 2.7km - Arizona Gay Volleyball
+[2025-12-27 12:26:35] ID 15365: Moved 7.2km - Tucson Pride, Inc.
+[2025-12-27 12:26:35] ID 15368: Moved 1.1km - Tucson LGBT Chamber of Commerce
+[2025-12-27 12:26:36] ID 15376: Moved 44.9km - University Of Central Arkansas
+[2025-12-27 12:26:42] ID 15478: Moved 6.8km - La Trattoria
+[2025-12-27 12:26:44] ID 15508: Moved 2.3km - Corner Pub
+[2025-12-27 12:26:46] ID 15586: Moved 1.6km - PFLAG - Montgomery
+[2025-12-27 12:26:47] ID 15598: Moved 2.1km - PFLAG - Greater Providence
+[2025-12-27 12:26:49] ID 15628: Moved 3.7km - Sherby, Linda B.
+[2025-12-27 12:26:50] ID 15646: Moved 7.9km - Summit Psychological Services
+[2025-12-27 12:26:51] ID 15676: Moved 4.3km - Escapade
+[2025-12-27 12:26:53] ID 15733: Moved 2.4km - Chumley's
+[2025-12-27 12:26:55] ID 15783: Moved 3.2km - Show Me Bears
+[2025-12-27 12:27:01] ID 15874: Moved 1.5km - My Sister's Room
+[2025-12-27 12:27:03] ID 15917: Moved 5.3km - Northeast Florida AIDS Network
+[2025-12-27 12:27:05] ID 15959: Moved 3.1km - Pride Counseling
+[2025-12-27 12:27:05] ID 15982: Moved 17.5km - American Civil Liberties Union of West Virginia
+[2025-12-27 12:27:08] ID 16074: Moved 7.2km - Alcoholics Anonymous
+[2025-12-27 12:27:19] ID 16214: Moved 1.2km - Imperial Sovereign Court Of Tacoma,
+[2025-12-27 12:27:19] ID 16232: Moved 2.8km - Washington State University
+[2025-12-27 12:27:22] ID 16267: Moved 3km - Basix
+[2025-12-27 12:27:23] ID 16276: Moved 1.4km - University of Iowa
+[2025-12-27 12:27:33] ID 16371: Moved 2.6km - Saint Andrew's Presbyterian
+[2025-12-27 12:27:49] ID 16513: Moved 3.1km - Cross Lutheran Church
+[2025-12-27 12:27:51] ID 16526: Moved 2.8km - PFLAG - Waukesha
+[2025-12-27 12:27:52] ID 16543: Moved 3.1km - Accotink Unitarian Universalist Church
+[2025-12-27 12:27:53] ID 16560: Moved 2.4km - Seattle Women's Chorus
+[2025-12-27 12:27:53] ID 16572: Moved 2.1km - Gay Straight Alliance For Safe Schools
+[2025-12-27 12:27:57] ID 16650: Moved 1.5km - Chevy Chase Beach Cabins
+[2025-12-27 12:27:59] ID 16679: Moved 46.9km - University Of Georgia
+[2025-12-27 12:28:04] ID 16732: Moved 1.5km - Hollingshead, Agnes
+[2025-12-27 12:28:05] ID 16749: Moved 4.7km - Barr, Daniel M.
+[2025-12-27 12:28:05] ID 16755: Moved 3.4km - White, Geneva
+[2025-12-27 12:28:05] ID 16756: Moved 3km - Ultimate Smile
+[2025-12-27 12:28:06] ID 16760: Moved 1.4km - South Florida Center for Cosmetic Surgery
+[2025-12-27 12:28:09] ID 16812: Moved 1.1km - Caribbean Women's Health Association
+[2025-12-27 12:28:14] ID 16898: Moved 3.9km - Al-Anon/Alateen
+[2025-12-27 12:28:20] ID 17018: Moved 1.9km - Grand Resort and Spa
+[2025-12-27 12:28:21] ID 17048: Moved 1.1km - North Quincy High School
+[2025-12-27 12:28:21] ID 17053: Moved 1.7km - Mad Myrna's
+[2025-12-27 12:28:21] ID 17056: Moved 2.2km - Women's Relationship Violence Treatment and
+[2025-12-27 12:28:21] ID 17058: Moved 2.1km - Southerners On New Ground (SONG)
+[2025-12-27 12:28:23] ID 17077: Moved 4.6km - Lakewood United Church Of Christ
+[2025-12-27 12:28:23] ID 17086: Moved 5.1km - Portland International Guesthouse
+[2025-12-27 12:28:25] ID 17107: Moved 1.4km - International Imperial Court Of Long Beach, Inc.
+[2025-12-27 12:28:27] ID 17143: Moved 4.3km - Bates College
+[2025-12-27 12:28:29] ID 17165: Moved 14.3km - California State University Fullerton
+[2025-12-27 12:28:29] ID 17198: Moved 3.5km - Coral Isles Church
+[2025-12-27 12:28:33] ID 17249: Moved 2.1km - Imperial Court Of The Rhode Island At Providence
+[2025-12-27 12:28:39] ID 17338: Moved 32.7km - Step Up, Inc
+[2025-12-27 12:28:40] ID 17346: Moved 31.1km - Northwest College
+[2025-12-27 12:28:40] ID 17365: Moved 6.6km - American Civil Liberties Union of Utah
+[2025-12-27 12:28:41] ID 17372: Moved 1.1km - Utah Bears Inc
+[2025-12-27 12:28:42] ID 17384: Moved 11.3km - Riviera Presbyterian Church
+[2025-12-27 12:28:42] ID 17388: Moved 2.7km - Club Diversity
+[2025-12-27 12:28:43] ID 17407: Moved 1.1km - De Laurentis, Brian
+[2025-12-27 12:28:44] ID 17437: Moved 1.1km - South Burlington High School
+[2025-12-27 12:28:46] ID 17472: Moved 2.8km - Health Care Advocates International
+[2025-12-27 12:28:47] ID 17476: Moved 1.1km - Washington Women Outdoors
+[2025-12-27 12:28:48] ID 17495: Moved 2.3km - Imperial Court Of Massachusetts
+[2025-12-27 12:28:51] ID 17550: Moved 1.1km - Christian Science Group
+[2025-12-27 12:28:53] ID 17590: Moved 1.3km - West Hollywood Aquatics
+[2025-12-27 12:28:54] ID 17600: Moved 2.3km - Frontrunners Rhode Island
+[2025-12-27 12:28:57] ID 17660: Moved 2.5km - Schuman, Lisa
+[2025-12-27 12:28:58] ID 17688: Moved 2.4km - Central New York Pride
+[2025-12-27 12:29:02] ID 17840: Moved 2km - Delta Lambda Phi Omega Chapter
+[2025-12-27 12:29:02] ID 17847: Moved 4.3km - Mt. Baker Lodging
+[2025-12-27 12:29:03] ID 17864: Moved 2.9km - Stein, Linda J.
+[2025-12-27 12:29:04] ID 17876: Moved 27.2km - Marshall University Women's Center
+[2025-12-27 12:29:08] ID 17947: Moved 2.1km - Villanova University
+[2025-12-27 12:29:09] ID 17980: Moved 1.2km - Lefferts, Deborah
+[2025-12-27 12:29:09] ID 17981: Moved 1.7km - Gaus, Joseph
+[2025-12-27 12:29:14] ID 18083: Moved 3.8km - Tievsky, Debra L.
+[2025-12-27 12:29:17] ID 18153: Moved 3km - Voices: Lesbian Choral Ensemble
+[2025-12-27 12:29:17] ID 18170: Moved 2.2km - American Civil Liberties Union of NH
+[2025-12-27 12:29:24] ID 18258: Moved 1.9km - University Of California San Francisco
+[2025-12-27 12:29:29] ID 18327: Moved 18.4km - Southern Oregon University
+[2025-12-27 12:29:29] ID 18330: Moved 2.6km - Episcopal Church of the Reedemer
+[2025-12-27 12:29:31] ID 18371: Moved 2.7km - Los Angeles County Public Health
+[2025-12-27 12:29:32] ID 18378: Moved 2.1km - San Diego Bulldogs Wrestling Club
+[2025-12-27 12:29:32] ID 18380: Moved 2.1km - San Diego Sparks
+[2025-12-27 12:29:36] ID 18443: Moved 2.3km - Kelem, Thomas
+[2025-12-27 12:29:36] ID 18448: Moved 1.3km - Sanctuary LAX
+[2025-12-27 12:29:37] ID 18472: Moved 2km - NAMES Project, Delaware Coordinator
+[2025-12-27 12:29:43] ID 18561: Moved 2.8km - Utah Pride
+[2025-12-27 12:29:45] ID 18581: Moved 2.5km - Parliament Resort
+[2025-12-27 12:29:49] ID 18646: Moved 13.6km - Western Oregon University
+[2025-12-27 12:29:51] ID 18704: Moved 1.5km - Rainbow Chorale Of Delaware
+[2025-12-27 12:29:54] ID 18753: Moved 3000.9km - Murray State University Pride Center
+[2025-12-27 12:29:54] ID 18754: Moved 1.3km - Northwest Missouri State University
+[2025-12-27 12:29:55] ID 18761: Moved 1.1km - American Civil Liberties Union - Missouri
+[2025-12-27 12:29:58] ID 18794: Moved 1.4km - Epworth Children & Family Services
+[2025-12-27 12:30:00] ID 18860: Moved 12.5km - Grand Rapids Women's Chorus
+[2025-12-27 12:30:01] ID 18866: Moved 10.1km - Council Oak Vocal Pride Foundation
+[2025-12-27 12:30:02] ID 18872: Moved 1.9km - Samara Fund, a component fund of the Vermont
+[2025-12-27 12:30:07] ID 18931: Moved 9.6km - CDI-NYC CrossGender Community
+[2025-12-27 12:30:09] ID 18974: Moved 17520.8km - SUNY Oswego
+[2025-12-27 12:30:10] ID 18993: Moved 15.9km - University Of Rochester
+[2025-12-27 12:30:14] ID 19038: Moved 3.5km - Quad Citians Affirming Diversity (QCAD)
+[2025-12-27 12:30:15] ID 19043: Moved 2km - University Of Washington School Of Law
+[2025-12-27 12:30:16] ID 19060: Moved 6.6km - Dartmouth College
+[2025-12-27 12:30:20] ID 19140: Moved 1.9km - Pt's 1109
+[2025-12-27 12:30:27] ID 19293: Moved 1.5km - University Of Illinois at Urbana-Champaign
+[2025-12-27 12:30:31] ID 19337: Moved 2.3km - American Civil Liberties Union - Southern Nevada
+[2025-12-27 12:30:32] ID 19359: Moved 3.5km - Meals On Wheels
+[2025-12-27 12:30:35] ID 19407: Moved 2.1km - Stonewall Democrats Of Austin
+[2025-12-27 12:30:35] ID 19416: Moved 2.9km - Pride At Work San Diego
+[2025-12-27 12:30:36] ID 19453: Moved 1.9km - Hernandez, Tony III
+[2025-12-27 12:30:37] ID 19466: Moved 363.7km - American Civil Liberties Union Of North Dakota
+[2025-12-27 12:30:38] ID 19481: Moved 8.4km - Gromko, Linda
+[2025-12-27 12:30:40] ID 19507: Moved 1.5km - Women's Building
+[2025-12-27 12:30:43] ID 19547: Moved 2.7km - National Coalition Of Anti-Violence Programs
+[2025-12-27 12:30:46] ID 19586: Moved 5.3km - New Hope Celebrates
+[2025-12-27 12:30:52] ID 19702: Moved 5.1km - PFLAG - Marshall / Buffalo Ridge
+[2025-12-27 12:30:52] ID 19706: Moved 3.2km - PFLAG - Genesse County
+[2025-12-27 12:30:52] ID 19717: Moved 2.2km - PFLAG - Annapolis/Anne Arundel
+[2025-12-27 12:30:53] ID 19729: Moved 2.8km - PFLAG - McHenry County
+[2025-12-27 12:30:53] ID 19755: Moved 2.2km - PFLAG - Oxford / Oxford Area
+[2025-12-27 12:31:01] ID 19913: Moved 4.8km - Wysack-Rood, Kathryn
+[2025-12-27 12:31:04] ID 19953: Moved 21.2km - Ohio University LGBTA  Society Of Alumni
+[2025-12-27 12:31:06] ID 19977: Moved 7.5km - Ozment, Joseph S.
+[2025-12-27 12:31:07] ID 20006: Moved 15586.9km - University Of Missouri
+[2025-12-27 12:31:09] ID 20037: Moved 2.2km - Ballew, John R.
+[2025-12-27 12:31:09] ID 20043: Moved 1.2km - Owen, Margo B.
+[2025-12-27 12:31:10] ID 20046: Moved 1.8km - Hamar, Michael B.
+[2025-12-27 12:31:10] ID 20050: Moved 3.5km - Brown, William RJP
+[2025-12-27 12:31:11] ID 20066: Moved 2.6km - Dubois, Matthew R.
+[2025-12-27 12:31:12] ID 20076: Moved 19.7km - Advocates for Trans Equality
+[2025-12-27 12:31:13] ID 20089: Moved 3.9km - Freeman, Donald T.
+[2025-12-27 12:31:13] ID 20092: Moved 3.2km - Koelle, Jonathan
+[2025-12-27 12:31:14] ID 20096: Moved 1.5km - Young, Keith W.
+[2025-12-27 12:31:19] ID 20194: Moved 14.5km - Out Spokin'
+[2025-12-27 12:31:21] ID 20242: Moved 11km - Horizon Guest House
+[2025-12-27 12:31:23] ID 20274: Moved 6km - PFLAG - Tupelo
+[2025-12-27 12:31:26] ID 20313: Moved 3km - Timberlake, Jassy
+[2025-12-27 12:31:28] ID 20331: Moved 1.1km - Trombold, Kevin J.
+[2025-12-27 12:31:32] ID 20402: Moved 1.4km - Amlani, Alzak
+[2025-12-27 12:31:36] ID 20444: Moved 1.2km - LGBT National Youth Talkline
+[2025-12-27 12:31:40] ID 20491: Moved 2.6km - Van Ness Recovery House
+[2025-12-27 12:31:41] ID 20506: Moved 2.4km - Houston Pride Band
+[2025-12-27 12:31:42] ID 20514: Moved 5.5km - Face To Face Health And Counseling Services
+[2025-12-27 12:31:45] ID 20581: Moved 2.1km - The Project of the Quad Cities
+[2025-12-27 12:31:46] ID 20582: Moved 3.5km - DeLaCerda House, Inc.
+[2025-12-27 12:31:48] ID 20644: Moved 1.1km - Out Traveler
+[2025-12-27 12:31:49] ID 20669: Moved 1.5km - TLAgay.com
+[2025-12-27 12:31:52] ID 20714: Moved 14.7km - MidMO Pridefest
+[2025-12-27 12:31:54] ID 20743: Moved 1.5km - Men Alive -
+[2025-12-27 12:31:57] ID 20781: Moved 1.4km - Haverford College LGBTQI+ Network
+[2025-12-27 12:31:57] ID 20783: Moved 6.9km - Kenyon College
+[2025-12-27 12:32:00] ID 20829: Moved 2.1km - San Diego Armada Rugby Football
+[2025-12-27 12:32:01] ID 20843: Moved 5.6km - Youth Outlook
+[2025-12-27 12:32:01] ID 20862: Moved 12.4km - PFLAG - Jersey Shore / Toms River
+[2025-12-27 12:32:14] ID 21034: Moved 1km - Shapiro, Joan E.
+[2025-12-27 12:32:14] ID 21037: Moved 9.1km - Contra Costa Crisis Center
+[2025-12-27 12:32:16] ID 21073: Moved 32.4km - Lambda Legal Defense And Education Fund
+[2025-12-27 12:32:20] ID 21140: Moved 1.1km - Immigration Equality
+[2025-12-27 12:32:21] ID 21159: Moved 9.4km - Gay And Lesbian Softball
+[2025-12-27 12:32:23] ID 21205: Moved 2.9km - 800 Live Nightclub
+[2025-12-27 12:32:24] ID 21221: Moved 2.7km - Gulf Coast Archive and Museum of GLBT History, Inc
+[2025-12-27 12:32:25] ID 21226: Moved 1.1km - Gay and Lesbian Alliance of North Texas
+[2025-12-27 12:32:32] ID 21295: Moved 3.5km - Bowers, Marci
+[2025-12-27 12:32:35] ID 21333: Moved 14km - First Grace United Church Of Christ
+[2025-12-27 12:32:41] ID 21390: Moved 7.9km - Stanley Street Treatment And Resources/
+[2025-12-27 12:32:58] ID 21525: Moved 10km - SavoirFlair Magazine
+[2025-12-27 12:33:20] ID 21769: Moved 5.3km - Kappa Xi Omega
+[2025-12-27 12:33:21] ID 21778: Moved 2.1km - Keystone College
+[2025-12-27 12:33:22] ID 21796: Moved 4.4km - Thornton Academy
+[2025-12-27 12:33:28] ID 21873: Moved 11.8km - Syosset High School
+[2025-12-27 12:33:30] ID 21894: Moved 7.8km - Albany High School GSA
+[2025-12-27 12:33:34] ID 21967: Moved 2.5km - Hamilton College
+[2025-12-27 12:33:35] ID 21979: Moved 4km - SUNY Cobleskill
+[2025-12-27 12:33:35] ID 21982: Moved 1482.8km - Richard Stockton College of NJ
+[2025-12-27 12:33:37] ID 22002: Moved 2.8km - Merrimack College
+[2025-12-27 12:33:38] ID 22019: Moved 1318.1km - Ursinus College
+[2025-12-27 12:33:48] ID 22150: Moved 11.2km - Cornell University
+[2025-12-27 12:33:49] ID 22154: Moved 4.6km - Binghamton Pride Coalition
+[2025-12-27 12:33:50] ID 22199: Moved 4km - Annabessacook Farm
+[2025-12-27 12:33:54] ID 22283: Moved 3.3km - Fasulo, JoAnna
+[2025-12-27 12:33:55] ID 22294: Moved 2779.6km - Puerto Rico Concra
+[2025-12-27 12:34:07] ID 22381: Moved 2.8km - Unity of Carlsbad
+[2025-12-27 12:34:22] ID 22495: Moved 2km - First Congregational Church of Riverside
+[2025-12-27 12:34:29] ID 22543: Moved 6.4km - Lumina Alliance
+[2025-12-27 12:34:30] ID 22571: Moved 1.9km - American Civil Liberties Union San Diego
+[2025-12-27 12:34:31] ID 22580: Moved 5km - Foothill AIDS Project
+[2025-12-27 12:34:35] ID 22673: Moved 2.3km - Rainbow Times
+[2025-12-27 12:34:37] ID 22689: Moved 1.5km - Schaim, Judi
+[2025-12-27 12:34:38] ID 22714: Moved 7.1km - Charles Bass House
+[2025-12-27 12:34:41] ID 22783: Moved 1.5km - Gray Alliance
+[2025-12-27 12:34:43] ID 22810: Moved 24632km - The Billys
+[2025-12-27 12:34:48] ID 22881: Moved 1.3km - AALA Roundup
+[2025-12-27 12:34:49] ID 22885: Moved 364.4km - Touro University
+[2025-12-27 12:34:51] ID 22921: Moved 1.3km - Beckman, Deborah
+[2025-12-27 12:34:51] ID 22932: Moved 7.3km - Stroebe, Carolyn S.
+[2025-12-27 12:34:51] ID 22933: Moved 6.4km - University Of Wisconsin-Milwaukee
+[2025-12-27 12:34:54] ID 22993: Moved 1.5km - Out Loud:  The Colorado Springs Men's Chorus
+[2025-12-27 12:34:55] ID 23016: Moved 3.4km - HCH510
+[2025-12-27 12:34:57] ID 23045: Moved 3km - Elder Help of San Diego
+[2025-12-27 12:35:02] ID 23114: Moved 1.4km - Boulder County Public Health
+[2025-12-27 12:35:03] ID 23128: Moved 5.3km - Polansky, Lisa A.
+[2025-12-27 12:35:04] ID 23131: Moved 11.5km - Metropolitan State College Of Denver
+[2025-12-27 12:35:11] ID 23248: Moved 3.6km - Riot Youth Program
+[2025-12-27 12:35:12] ID 23255: Moved 6.2km - Living Word Lutheran Church
+[2025-12-27 12:35:12] ID 23257: Moved 2.3km - St. Cloud University
+[2025-12-27 12:35:12] ID 23264: Moved 4.1km - Naples Area Intergroup
+[2025-12-27 12:35:13] ID 23277: Moved 4.5km - AA Central Office - Tri-District Intergroup
+[2025-12-27 12:35:14] ID 23315: Moved 3km - Law Office of Debora A. Diaz
+[2025-12-27 12:35:17] ID 23366: Moved 11.7km - La Crosse Pride
+[2025-12-27 12:35:22] ID 23429: Moved 9.1km - Desert Daily Guide
+[2025-12-27 12:35:24] ID 23454: Moved 4.3km - Richmond/Ermet Aid Foundation
+[2025-12-27 12:35:27] ID 23481: Moved 1.1km - The Stockroom
+[2025-12-27 12:35:29] ID 23501: Moved 5.9km - Alcoholics Anonymous
+[2025-12-27 12:35:31] ID 23527: Moved 1.1km - Alliance:
+[2025-12-27 12:35:33] ID 23577: Moved 12.3km - Gay Cove Lake Lanier
+[2025-12-27 12:35:34] ID 23586: Moved 2.9km - Imperial Sovereign Court of Hawai'i
+[2025-12-27 12:35:41] ID 23743: Moved 3km - Flint Hills Human Rights Project
+[2025-12-27 12:35:49] ID 23899: Moved 1.1km - Longmire, David
+[2025-12-27 12:35:52] ID 23944: Moved 14946.1km - Sonoma State University The HUB: Cultural
+[2025-12-27 12:35:53] ID 23961: Moved 25km - Arch and Column Pub
+[2025-12-27 12:35:56] ID 24006: Moved 4.1km - American Civil Liberties Union of Nevada
+[2025-12-27 12:35:58] ID 24073: Moved 3.2km - Spirit Journeys
+[2025-12-27 12:36:04] ID 24199: Moved 2.5km - Jans Rainbow Bowling League
+[2025-12-27 12:36:05] ID 24200: Moved 5.6km - Rural Organizing Project
+[2025-12-27 12:36:07] ID 24229: Moved 3.1km - Catalyst Domestic Violence Services
+[2025-12-27 12:36:07] ID 24230: Moved 4km - Tempo Young Adult Recource Center
+[2025-12-27 12:36:09] ID 24266: Moved 1.9km - AIDSNET
+[2025-12-27 12:36:09] ID 24271: Moved 2.5km - Bettiker, Robert
+[2025-12-27 12:36:11] ID 24318: Moved 4.3km - Tia Maria's Liquor Store
+[2025-12-27 12:36:13] ID 24363: Moved 18.8km - Lesbian Social Group
+[2025-12-27 12:36:13] ID 24365: Moved 17.7km - K-Town Softball league
+[2025-12-27 12:36:14] ID 24382: Moved 8.1km - Beta Phi Omega
+[2025-12-27 12:36:14] ID 24386: Moved 1.6km - Beta Phi Omega
+[2025-12-27 12:36:15] ID 24387: Moved 1.4km - Emerald Theatre Company
+[2025-12-27 12:36:15] ID 24398: Moved 1km - Lone Star Lambdas
+[2025-12-27 12:36:16] ID 24416: Moved 2.8km - South Plains Leatherfest-
+[2025-12-27 12:36:17] ID 24418: Moved 1.1km - Frisco Pride
+[2025-12-27 12:36:19] ID 24469: Moved 2.3km - Diversity Richmond
+[2025-12-27 12:36:23] ID 24522: Moved 2km - Farnesi, Darren A.
+[2025-12-27 12:36:24] ID 24537: Moved 4.2km - Checke, Christopher
+[2025-12-27 12:36:28] ID 24583: Moved 1.7km - Kamiak, Sandra
+[2025-12-27 12:36:28] ID 24587: Moved 2.7km - Appelbaum, Jonathan S.
+[2025-12-27 12:36:31] ID 24627: Moved 33.8km - Health Transitions
+[2025-12-27 12:36:35] ID 24673: Moved 7.2km - Neely, Katherine
+[2025-12-27 12:36:38] ID 24720: Moved 3.1km - Stone, Rev. Moonhawk River
+[2025-12-27 12:36:52] ID 24866: Moved 1.8km - Marijuana Anonymous World Services
+[2025-12-27 12:36:52] ID 24867: Moved 1.1km - Marijuana Anonymous
+[2025-12-27 12:37:00] ID 24920: Moved 3km - Unitarian Universalist Church in Cherry Hill
+[2025-12-27 12:37:28] ID 25065: Moved 4km - Unitarian Universalist Congregation of
+[2025-12-27 12:37:36] ID 25176: Moved 8.6km - Cochran, M. Christian
+[2025-12-27 12:37:36] ID 25177: Moved 2km - Kreutzer, Jan
+[2025-12-27 12:37:36] ID 25191: Moved 1km - Delta Lambda Phi
+[2025-12-27 12:37:41] ID 25279: Moved 2km - Leopard, John A.
+[2025-12-27 12:37:45] ID 25323: Moved 2.4km - Sinclair Prosser, Gasior
+[2025-12-27 12:37:47] ID 25346: Moved 1.1km - Connelly, Christopher A.
+[2025-12-27 12:37:47] ID 25347: Moved 2.1km - Davis, B. Joan
+[2025-12-27 12:37:48] ID 25355: Moved 2.5km - Overfield, John Covington
+[2025-12-27 12:37:49] ID 25367: Moved 5.1km - Davidson, Karen
+[2025-12-27 12:37:50] ID 25382: Moved 3km - Henderhan, Wendi A.
+[2025-12-27 12:37:58] ID 25429: Moved 1.5km - Asbury United Methodist Church
+[2025-12-27 12:38:03] ID 25467: Moved 5.4km - Mungas, Craig
+[2025-12-27 12:38:04] ID 25480: Moved 3.6km - McVittie, James D.
+[2025-12-27 12:38:06] ID 25497: Moved 3km - University of Iowa College of Law
+[2025-12-27 12:38:08] ID 25529: Moved 11.5km - Rocky Mountain Leather Alliance
+[2025-12-27 12:38:10] ID 25558: Moved 1.6km - Prime Timers - Rhode Island
+[2025-12-27 12:38:11] ID 25571: Moved 13.6km - Tulsa Lambda Bowling
+[2025-12-27 12:38:12] ID 25591: Moved 3.3km - American Civil Liberties Union of Arizona
+[2025-12-27 12:38:12] ID 25596: Moved 6.7km - San Francisco Earthquakes Ice Hockey
+[2025-12-27 12:38:13] ID 25597: Moved 1.3km - Madison Gay Hockey Association
+[2025-12-27 12:38:14] ID 25616: Moved 4.5km - Community Helpline
+[2025-12-27 12:38:16] ID 25651: Moved 1.2km - Singer, Michael C.
+[2025-12-27 12:38:22] ID 25727: Moved 2.1km - Southeastern Louisiana University
+[2025-12-27 12:38:23] ID 25746: Moved 2.7km - Alaskans Together
+[2025-12-27 12:38:25] ID 25767: Moved 3.2km - Knights Out
+[2025-12-27 12:38:30] ID 25835: Moved 1.1km - Schierholz, Neil
+[2025-12-27 12:38:33] ID 25879: Moved 3.5km - Washington BLADE
+[2025-12-27 12:38:37] ID 25925: Moved 2.2km - Chelmsford High School
+[2025-12-27 12:38:41] ID 25998: Moved 2.2km - Mark Keppel High School GSA
+[2025-12-27 12:38:44] ID 26061: Moved 5.7km - PFLAG - Tulare & Kings Counties
+[2025-12-27 12:38:46] ID 26088: Moved 7.5km - Grand Valley State University Faculty and Staff
+[2025-12-27 12:38:47] ID 26105: Moved 1.2km - Appalachian State University
+[2025-12-27 12:38:55] ID 26222: Moved 7.2km - GALA "Q" Youth Group
+[2025-12-27 12:38:59] ID 26254: Moved 3.7km - Bear Radio Network
+[2025-12-27 12:39:00] ID 26269: Moved 1.6km - DotOUT
+[2025-12-27 12:39:00] ID 26279: Moved 1.9km - GAY FOR GOOD - San Diego
+[2025-12-27 12:39:02] ID 26289: Moved 3.7km - SUNY Adirondack
+[2025-12-27 12:39:04] ID 26331: Moved 1.9km - Bucks County Real Estate
+[2025-12-27 12:39:05] ID 26338: Moved 7.1km - St. Cloud Pride
+[2025-12-27 12:39:12] ID 26421: Moved 4.3km - University of Illinois Springfield
+[2025-12-27 12:39:15] ID 26461: Moved 1.8km - Arnaldo! Drag Chanteuse
+[2025-12-27 12:39:16] ID 26474: Moved 10.9km - Brattleboro Union High School
+[2025-12-27 12:39:21] ID 26531: Moved 1.3km - Avenues for Youth
+[2025-12-27 12:39:21] ID 26532: Moved 7.3km - PFLAG - Manitowoc County
+[2025-12-27 12:39:22] ID 26551: Moved 2.1km - Chabot College
+[2025-12-27 12:39:24] ID 26575: Moved 5.7km - PFLAG - Oregon Central Coast
+[2025-12-27 12:39:33] ID 26667: Moved 12.6km - San Jose State University
+[2025-12-27 12:39:34] ID 26675: Moved 5km - Any Lab Test Now
+[2025-12-27 12:39:35] ID 26683: Moved 1.2km - Pasadena City College
+[2025-12-27 12:39:35] ID 26687: Moved 15.3km - Asians and Friends Chicago
+[2025-12-27 12:39:37] ID 26698: Moved 2.3km - Episcopal Diocese of Washington
+[2025-12-27 12:39:41] ID 26741: Moved 108.2km - Church of One Love
+[2025-12-27 12:39:41] ID 26744: Moved 1.4km - Pride Guide New Mexico
+[2025-12-27 12:39:42] ID 26752: Moved 4.2km - Coastal Carolina University LGBTQ Ally Network
+[2025-12-27 12:39:44] ID 26773: Moved 6.7km - American Civil Liberties Union of South Dakota
+[2025-12-27 12:39:44] ID 26782: Moved 1.6km - Muscular Rehab Center of Florida
+[2025-12-27 12:39:47] ID 26827: Moved 1km - PFLAG - Savannah
+[2025-12-27 12:39:50] ID 26871: Moved 1.3km - Los Angeles Bi+ Task Force
+[2025-12-27 12:39:54] ID 26916: Moved 2.3km - Diversity Thrift
+[2025-12-27 12:39:55] ID 26926: Moved 54.9km - Queer Urban Orchestra
+[2025-12-27 12:39:56] ID 26936: Moved 15.7km - We'Moon
+[2025-12-27 12:39:58] ID 26954: Moved 2.5km - OUTreach Center
+[2025-12-27 12:39:58] ID 26970: Moved 3207.6km - Rainbow Depot
+[2025-12-27 12:40:00] ID 26984: Moved 23.3km - PFLAG - Rehoboth Beach
+[2025-12-27 12:40:02] ID 27006: Moved 8.3km - Eidelson, Richard
+[2025-12-27 12:40:04] ID 27023: Moved 1.5km - Castro Street Fair
+[2025-12-27 12:40:04] ID 27025: Moved 2.9km - Cascades RainBow Community Center
+[2025-12-27 12:40:06] ID 27051: Moved 8.5km - Palm Springs Leather Pride
+[2025-12-27 12:40:07] ID 27083: Moved 2.2km - LGBT Life Center
+[2025-12-27 12:40:08] ID 27085: Moved 10.6km - Moab Pride
+[2025-12-27 12:40:09] ID 27099: Moved 4.8km - Huntington Open Women's Land (HOWL)
+[2025-12-27 12:40:10] ID 27126: Moved 1.4km - La Cueva
+[2025-12-27 12:40:11] ID 27136: Moved 8.5km - WOW Cafe Theatre
+[2025-12-27 12:40:13] ID 27148: Moved 14.4km - Spokane Falls Community College
+[2025-12-27 12:40:14] ID 28018: Moved 4.2km - Phillips Exeter Academy GSA
+[2025-12-27 12:40:16] ID 28032: Moved 9.4km - Palm Springs Sisters of Perpetual Indulgence
+[2025-12-27 12:40:16] ID 28037: Moved 1.1km - NYC (dis)Order of Sisters of Perpetual Indulgence
+[2025-12-27 12:40:17] ID 28043: Moved 1.6km - U.S. National Longitudinal
+[2025-12-27 12:40:17] ID 28045: Moved 4.4km - San Francisco Transgender Film Festival
+[2025-12-27 12:40:17] ID 28047: Moved 1.2km - TransGender New Hampshire (TG-NH)
+[2025-12-27 12:40:18] ID 28052: Moved 3.1km - She Leads Justice
+[2025-12-27 12:40:18] ID 28057: Moved 5.1km - Trans Youth Equality Foundation
+[2025-12-27 12:40:19] ID 28086: Moved 1.1km - WORD
+[2025-12-27 12:40:21] ID 28136: Moved 6.3km - Celebration on the Lake Chruch
+[2025-12-27 12:40:28] ID 28205: Moved 8km - American Civil Liberties Union of South Carolina
+[2025-12-27 12:40:29] ID 28216: Moved 2.8km - Biddeford High School Allies
+[2025-12-27 12:40:29] ID 28217: Moved 3.5km - Gorham High School
+[2025-12-27 12:40:29] ID 28221: Moved 1.2km - LGBTNearMe.org
+[2025-12-27 12:40:31] ID 28241: Moved 1.4km - DC LGBT Board Gamers
+[2025-12-27 12:40:32] ID 28253: Moved 2.6km - Pride Alive
+[2025-12-27 12:40:37] ID 28343: Moved 4.5km - Riptide Publishing
+[2025-12-27 12:40:39] ID 28377: Moved 4.1km - Clubcard Printing
+[2025-12-27 12:40:40] ID 28391: Moved 1.8km - Gagliardi, Camille
+[2025-12-27 12:40:41] ID 28394: Moved 3.8km - Acadiana Gay Men's Wellness Center
+[2025-12-27 12:40:42] ID 28415: Moved 1.6km - Brubeck, Marcia
+[2025-12-27 12:40:48] ID 28500: Moved 1.8km - Birds of a Feather LGBT Community
+[2025-12-27 12:40:51] ID 28542: Moved 1.1km - National Suicide Prevention Lifeline
+[2025-12-27 12:40:52] ID 28549: Moved 1.2km - Sister Louisa's Church of the Living room
+[2025-12-27 12:41:00] ID 28655: Moved 1.1km - Bisexual Queer Alliance Chicago Meetup
+[2025-12-27 12:41:07] ID 28759: Moved 3.5km - PFLAG - Franklin
+[2025-12-27 12:41:09] ID 28784: Moved 8.4km - Crime Victim Services
+[2025-12-27 12:41:12] ID 28832: Moved 1.3km - HomoRadio
+[2025-12-27 12:41:15] ID 28872: Moved 1.7km - Bureau of General Services - Queer Division
+[2025-12-27 12:41:18] ID 28926: Moved 1.6km - University of California
+[2025-12-27 12:41:18] ID 28927: Moved 12.3km - University of Colorado, Boulder
+[2025-12-27 12:41:22] ID 28987: Moved 2.6km - Boyd, Sue
+[2025-12-27 12:41:27] ID 29049: Moved 3.5km - Irmo High School
+[2025-12-27 12:41:28] ID 29063: Moved 5.2km - Hagerty High School
+[2025-12-27 12:41:31] ID 29103: Moved 1.1km - Hebro
+[2025-12-27 12:41:32] ID 29122: Moved 9.4km - Victim Services, Serving Dodge, Fillmore,
+[2025-12-27 12:41:36] ID 29172: Moved 1.1km - Nasty Pig
+[2025-12-27 12:41:37] ID 29175: Moved 4.3km - Gamma Rho Lambda UH - Kappa Chapter
+[2025-12-27 12:41:38] ID 29198: Moved 3.7km - PFLAG - Ventura
+[2025-12-27 12:41:38] ID 29204: Moved 1km - East Bay Stonewall Democratic Club
+[2025-12-27 12:41:41] ID 29232: Moved 2.5km - Translations: Seattle Transgender Film
+[2025-12-27 12:41:41] ID 29235: Moved 3.9km - Diversity Alliance of the Puget Sound
+[2025-12-27 12:41:43] ID 29251: Moved 7.7km - Out North LA Film Festival
+[2025-12-27 12:41:46] ID 29291: Moved 12.8km - Community Against Violence
+[2025-12-27 12:41:47] ID 29299: Moved 1.1km - (AVEN) Asexual Visibility and Education Network
+[2025-12-27 12:41:49] ID 29329: Moved 1.2km - Athlete Ally
+[2025-12-27 12:41:53] ID 29361: Moved 1.1km - Tacoma Tmen
+[2025-12-27 12:41:53] ID 29367: Moved 3.8km - Laura's House
+[2025-12-27 12:41:55] ID 29387: Moved 10.6km - Bowers, Marci
+[2025-12-27 12:41:56] ID 29400: Moved 1.1km - Posture Media
+[2025-12-27 12:41:58] ID 29414: Moved 1.1km - James House
+[2025-12-27 12:42:00] ID 29430: Moved 2.7km - Killingly High School
+[2025-12-27 12:42:00] ID 29432: Moved 4.9km - Loomis Chaffee School
+[2025-12-27 12:42:01] ID 29441: Moved 106.6km - North Haven High School
+[2025-12-27 12:42:02] ID 29451: Moved 1.3km - Southington High School
+[2025-12-27 12:42:03] ID 29457: Moved 1.8km - Trumbull High School
+[2025-12-27 12:42:03] ID 29460: Moved 3.5km - Wheeler High School
+[2025-12-27 12:42:03] ID 29461: Moved 1.5km - Hall High School GSA
+[2025-12-27 12:42:12] ID 29510: Moved 19.6km - Green Candy Press
+[2025-12-27 12:42:14] ID 29546: Moved 8.1km - PFLAG - Boerne
+[2025-12-27 12:42:16] ID 29566: Moved 1252.8km - LGBTIQ+ Health Australia
+[2025-12-27 12:42:16] ID 29568: Moved 12075.5km - Courage - Vienna
+[2025-12-27 12:42:22] ID 29620: Moved 5973.8km - Equity Partnership
+[2025-12-27 12:42:23] ID 29627: Moved 10997.8km - Centre LGBT Paris
+[2025-12-27 12:42:23] ID 29629: Moved 5630.2km - J'En Suis, J'y Reste Centre Lesbien gai Bi Trans
+[2025-12-27 12:42:24] ID 29633: Moved 12479.1km - La Station, Centre Lesbien Gay Bi Trans Intersexe
+[2025-12-27 12:42:25] ID 29638: Moved 11814.9km - Lesbian and Gay Association of Hamburg
+[2025-12-27 12:42:25] ID 29642: Moved 7525.3km - Samtokin'78
+[2025-12-27 12:42:25] ID 29645: Moved 9028.2km - SAATHII
+[2025-12-27 12:42:27] ID 29654: Moved 26681.4km - OUTWEST Ireland
+[2025-12-27 12:42:27] ID 29657: Moved 2.3km - The Aguda - The Association for LGBT in Israel
+[2025-12-27 12:42:28] ID 29661: Moved 11669.2km - MILK - Verona LGBT Community Center
+[2025-12-27 12:42:29] ID 29672: Moved 4.9km - SETAC - Tu Centro Comunitario Puerto Vallarta
+[2025-12-27 12:42:30] ID 29674: Moved 2684.3km - ICM Casa De Luz (MCC)
+[2025-12-27 12:42:30] ID 29679: Moved 19825.3km - OutLine Aotearoa
+[2025-12-27 12:42:31] ID 29691: Moved 4893.6km - Epicentro
+[2025-12-27 12:42:32] ID 29707: Moved 9511km - Triangle Project
+[2025-12-27 12:42:33] ID 29722: Moved 4505.2km - FELGTB - Federacion Estatal LGTBI+
+[2025-12-27 12:42:33] ID 29724: Moved 9660km - LGBT Cymru Helpline and Counselling Service
+[2025-12-27 12:42:37] ID 29756: Moved 1.6km - Cincinnati Tri State Invitational Tournament
+[2025-12-27 12:42:43] ID 29848: Moved 3.9km - Barraza, Irene
+[2025-12-27 12:42:43] ID 29854: Moved 2.9km - Dykes on Bikes - Portland Oregon Chapter
+[2025-12-27 12:42:47] ID 29893: Moved 7938.4km - BreakOUT Donegal
+[2025-12-27 12:42:51] ID 29938: Moved 3km - California Community of Men (CalComMen)
+[2025-12-27 12:42:55] ID 29976: Moved 2.1km - Sunday Assembly San Diego
+[2025-12-27 12:42:56] ID 29984: Moved 1.1km - Resources for Gay and Lesbian Orthodox Jews
+[2025-12-27 12:42:57] ID 29989: Moved 1.8km - PRIDE Council
+[2025-12-27 12:42:57] ID 29992: Moved 11.8km - TransPonder
+[2025-12-27 12:43:02] ID 30041: Moved 1km - PFLAG - Floyd
+[2025-12-27 12:43:04] ID 30058: Moved 5.4km - Azimuth Psychological
+[2025-12-27 12:43:05] ID 30064: Moved 4.3km - The Cambridge School of Weston
+[2025-12-27 12:43:08] ID 30090: Moved 1.1km - Geeks Out
+[2025-12-27 12:43:09] ID 30105: Moved 1km - WORD
+[2025-12-27 12:43:11] ID 30132: Moved 2069.8km - PFLAG - Halton Region
+[2025-12-27 12:43:14] ID 30165: Moved 11.6km - Montana State University
+[2025-12-27 12:43:15] ID 30170: Moved 8.6km - Entre Amigos
+[2025-12-27 12:43:16] ID 30183: Moved 1.2km - F2M Binders at Underworks
+[2025-12-27 12:43:17] ID 30186: Moved 1824km - Malta LGBTIQ Rights Movement
+[2025-12-27 12:43:18] ID 30202: Moved 9.1km - Transgender Michigan - Sault Ste. Marie Chapter
+[2025-12-27 12:43:19] ID 30206: Moved 1.5km - TransCend
+[2025-12-27 12:43:20] ID 30229: Moved 2.7km - Geib, Kevin Shane
+[2025-12-27 12:43:20] ID 30233: Moved 6.6km - Bennett, Richard
+[2025-12-27 12:43:21] ID 30236: Moved 2.4km - Ehrenfeld, Jesse
+[2025-12-27 12:43:23] ID 30263: Moved 1.1km - Muslims for Progressive Values - New York City
+[2025-12-27 12:43:25] ID 30285: Moved 2.1km - Camp Fire
+[2025-12-27 12:43:26] ID 30296: Moved 2.2km - Adams, Diana
+[2025-12-27 12:43:27] ID 30299: Moved 1km - Calabrese, Teresa
+[2025-12-27 12:43:27] ID 30304: Moved 1.9km - Goldberg, Lisa
+[2025-12-27 12:43:28] ID 30305: Moved 1km - Klein, Christine J.
+[2025-12-27 12:43:28] ID 30307: Moved 6.4km - Martell, Amy H.
+[2025-12-27 12:43:29] ID 30314: Moved 1.1km - Fiesta Youth
+[2025-12-27 12:43:30] ID 30328: Moved 5.4km - Goldman, Janet
+[2025-12-27 12:43:31] ID 30330: Moved 5km - Catrelle, Kara
+[2025-12-27 12:43:32] ID 30350: Moved 6.9km - Connextions Magazine
+[2025-12-27 12:43:32] ID 30352: Moved 3.1km - Reiley, Marnee
+[2025-12-27 12:43:33] ID 30364: Moved 1.2km - DC Rawhides
+[2025-12-27 12:43:34] ID 30373: Moved 4.1km - Imperial Court of Washington DC
+[2025-12-27 12:43:37] ID 30415: Moved 1.6km - Ruffier, John
+[2025-12-27 12:43:37] ID 30417: Moved 7.8km - Marquez, Milton Toro
+[2025-12-27 12:43:38] ID 30423: Moved 4.8km - Ossining High School SAGA
+[2025-12-27 12:43:38] ID 30426: Moved 1.8km - The Growth Center - A Feminist Counseling
+[2025-12-27 12:43:43] ID 30462: Moved 1.1km - Out My Closet
+[2025-12-27 12:43:50] ID 30537: Moved 5.8km - Franklin and Marshall College
+[2025-12-27 12:43:50] ID 30538: Moved 10787.5km - Lancashire LGBT
+[2025-12-27 12:44:01] ID 30679: Moved 1.1km - YOUth Matters
+[2025-12-27 12:44:02] ID 30687: Moved 7.2km - Trans Tuesday
+[2025-12-27 12:44:02] ID 30691: Moved 3.1km - Avon High School
+[2025-12-27 12:44:04] ID 30709: Moved 6.7km - M and J's Lounge
+[2025-12-27 12:44:04] ID 30710: Moved 3.1km - Lyman Hall High School
+[2025-12-27 12:44:05] ID 30720: Moved 5.1km - Youth Program
+[2025-12-27 12:44:09] ID 30770: Moved 4.7km - PT Foundation
+[2025-12-27 12:44:14] ID 30826: Moved 8385.7km - Dumfries and Galloway LGBT PLUS
+[2025-12-27 12:44:14] ID 30828: Moved 1.1km - Bi Writers Association (BWA)
+[2025-12-27 12:44:16] ID 30848: Moved 5285.3km - CEL: Center for Equality and Liberty for
+[2025-12-27 12:44:20] ID 30924: Moved 1.6km - Out! Riverside
+[2025-12-27 12:44:21] ID 30942: Moved 1.1km - Black Lez Be Friends
+[2025-12-27 12:44:22] ID 30952: Moved 2.1km - amBI - San Diego Chapter
+[2025-12-27 12:44:22] ID 30961: Moved 2.1km - OutLoud Sports - San Diego
+[2025-12-27 12:44:23] ID 30962: Moved 2.1km - LGBTQ Humanists
+[2025-12-27 12:44:36] ID 31293: Moved 5574km - SPOD -  Social Policy, Gender Identity, and Sexual
+[2025-12-27 12:44:37] ID 31318: Moved 2km - NoVA LGBTQ+ Professionals
+[2025-12-27 12:44:38] ID 31337: Moved 2.7km - Lez Read Book Group
+[2025-12-27 12:44:43] ID 31420: Moved 1.1km - Gay Beach Bums
+[2025-12-27 12:44:43] ID 31421: Moved 1.1km - NYC LGBTQ Supportive Connections
+[2025-12-27 12:44:43] ID 31427: Moved 1.1km - Gay Catholics
+[2025-12-27 12:44:43] ID 31429: Moved 1.1km - New York LGBTQ+ Photographers
+[2025-12-27 12:44:44] ID 31432: Moved 1.1km - Gay Jews in their 20s/30s/40s
+[2025-12-27 12:44:44] ID 31441: Moved 1.1km - LGBTQ Women of NYC
+[2025-12-27 12:44:44] ID 31447: Moved 1.1km - Bisexual, Non-Monosexual and Queer
+[2025-12-27 12:44:44] ID 31449: Moved 1.1km - NYC Gay Guys' Book Club
+[2025-12-27 12:44:45] ID 31459: Moved 1.1km - Queer Women and Non-binary Book Club & Stuff
+[2025-12-27 12:44:45] ID 31467: Moved 1.1km - Gay Mens Hiking Group
+[2025-12-27 12:44:51] ID 31529: Moved 1.1km - Baez, Maritza
+[2025-12-27 12:44:54] ID 31565: Moved 11.2km - The Armorettes
+[2025-12-27 12:44:54] ID 31571: Moved 2km - Medford Vocational Technical High School
+[2025-12-27 12:44:55] ID 31579: Moved 6.8km - Bundy, Joan
+[2025-12-27 12:44:56] ID 31590: Moved 4.3km - University at Buffalo
+[2025-12-27 12:44:57] ID 31591: Moved 2km - Rainbow Pride Youth Alliance
+[2025-12-27 12:44:58] ID 31602: Moved 4.9km - Senior Services
+[2025-12-27 12:44:58] ID 31608: Moved 1.6km - Somos Familia
+[2025-12-27 12:44:59] ID 31617: Moved 1.2km - Precinct
+[2025-12-27 12:45:01] ID 31626: Moved 1.1km - Queer Housing: New York City
+[2025-12-27 12:45:03] ID 31636: Moved 4.9km - Saint Louis University
+[2025-12-27 12:45:05] ID 31655: Moved 1.1km - Steele Luxury Travel
+[2025-12-27 12:45:06] ID 31665: Moved 3.7km - SUNY Stony Brook
+[2025-12-27 12:45:07] ID 31674: Moved 1.4km - LGBTQ-Affirmative Psychotherapist Guild
+[2025-12-27 12:45:11] ID 31709: Moved 233km - Queer Newark Oral History Project
+[2025-12-27 12:45:14] ID 31753: Moved 2km - HIV Modernization Movement
+[2025-12-27 12:45:18] ID 31784: Moved 13.4km - PFLAG - Gillette
+[2025-12-27 12:45:18] ID 31788: Moved 5.1km - Trans & Gender Expansive Programs
+[2025-12-27 12:45:20] ID 31811: Moved 2.7km - OUT MetroWest
+[2025-12-27 12:45:20] ID 31815: Moved 3.8km - Santa Fe Gay
+[2025-12-27 12:45:20] ID 31816: Moved 2.2km - Albuquerque Sunday Night Out
+[2025-12-27 12:45:24] ID 31842: Moved 5.1km - LGBTQ+ Center Honolulu
+[2025-12-27 12:45:24] ID 31843: Moved 5.1km - Youth Programs of the Hawaii LGBT
+[2025-12-27 12:45:29] ID 31876: Moved 605.8km - A Wider Bridge
+[2025-12-27 12:45:40] ID 32063: Moved 4819.2km - Ciudadanias
+[2025-12-27 12:45:41] ID 32189: Moved 10.7km - Out & Out
+[2025-12-27 12:45:42] ID 32305: Moved 11.8km - Side by Side
+[2025-12-27 12:45:42] ID 32355: Moved 1.1km - Tomboy Toes
+[2025-12-27 12:45:43] ID 32358: Moved 4.9km - Older Women Embracing Life
+[2025-12-27 12:45:45] ID 32385: Moved 1.9km - Kentucky Youth Law Project, Inc.
+[2025-12-27 12:45:46] ID 32389: Moved 1.2km - LGBT National Senior Hotline
+[2025-12-27 12:45:46] ID 32391: Moved 4.2km - Athens Casuals Georgia
+[2025-12-27 12:45:49] ID 32446: Moved 1.9km - MERGE for Equality
+[2025-12-27 12:45:55] ID 32648: Moved 39.9km - Boulder County Area Agency on Aging
+[2025-12-27 12:45:56] ID 32718: Moved 1.8km - AvitaCARE
+[2025-12-27 12:45:56] ID 32719: Moved 8.6km - LGBTQ friends in Cheboygan
+[2025-12-27 12:45:57] ID 32734: Moved 1.4km - Pickle, Sarah
+[2025-12-27 12:46:00] ID 32896: Moved 2.5km - John F. Kennedy High School
+[2025-12-27 12:46:03] ID 32921: Moved 2.8km - River Valley Transgender Support Group
+[2025-12-27 12:46:05] ID 32946: Moved 8.2km - Edna's
+[2025-12-27 12:46:06] ID 32947: Moved 2.8km - Long Beach City College
+[2025-12-27 12:46:10] ID 32990: Moved 2.1km - Stonewall Sports - Greensboro
+[2025-12-27 12:46:11] ID 32996: Moved 2.8km - Stonewall Sports - Wilmington
+[2025-12-27 12:46:14] ID 33022: Moved 8km - Non-Binary Support Group
+[2025-12-27 12:46:27] ID 33157: Moved 6.2km - Tulane University
+[2025-12-27 12:46:28] ID 33159: Moved 6.2km - Tulane University
+[2025-12-27 12:46:31] ID 33193: Moved 3.6km - Thomas Austen Salon
+[2025-12-27 12:46:32] ID 33197: Moved 2.8km - Glam Salon
+[2025-12-27 12:46:32] ID 33202: Moved 11245.5km - SOS Homophobie
+[2025-12-27 12:46:34] ID 33213: Moved 16.8km - Lower Columbia College
+[2025-12-27 12:46:35] ID 33214: Moved 18.5km - Columbia College
+[2025-12-27 12:46:38] ID 33242: Moved 6.5km - Fall Mountain Regional High School
+[2025-12-27 12:46:41] ID 33266: Moved 2.1km - Oregon GSA Connect
+[2025-12-27 12:46:42] ID 33276: Moved 1.3km - South Carolina GSA Network
+[2025-12-27 12:46:44] ID 33293: Moved 1.3km - The Youth & Gender Media Project
+[2025-12-27 12:46:45] ID 33295: Moved 3.5km - Scarborough High School
+[2025-12-27 12:46:45] ID 33296: Moved 3.4km - Generational Q
+[2025-12-27 12:46:46] ID 33302: Moved 2.3km - Acton-Boxborough Regional High School
+[2025-12-27 12:46:46] ID 33303: Moved 5.2km - Silver Lake High School
+[2025-12-27 12:46:48] ID 33322: Moved 3.1km - Barnstable High School
+[2025-12-27 12:46:48] ID 33323: Moved 1.2km - Bay Path Regional Vocational Tech High School
+[2025-12-27 12:46:49] ID 33339: Moved 2.9km - Brighton High School
+[2025-12-27 12:46:50] ID 33343: Moved 2.8km - Bridgewater-Raynham Regional High School
+[2025-12-27 12:46:51] ID 33347: Moved 1.6km - Monomoy Regional High School
+[2025-12-27 12:46:54] ID 33377: Moved 133.1km - Durango High School
+[2025-12-27 12:46:58] ID 33415: Moved 3.8km - Hudson High School
+[2025-12-27 12:46:58] ID 33416: Moved 2.5km - Innovation Academy Charter School
+[2025-12-27 12:46:59] ID 33422: Moved 2.4km - Ludlow High School
+[2025-12-27 12:46:59] ID 33426: Moved 1.6km - Marlborough High School
+[2025-12-27 12:46:59] ID 33427: Moved 3km - Marshfield High School
+[2025-12-27 12:46:59] ID 33429: Moved 1.8km - Mashpee Middle High School
+[2025-12-27 12:46:59] ID 33436: Moved 1.1km - Millbury Memorial Jr/Sr High School
+[2025-12-27 12:47:01] ID 33446: Moved 1.5km - Natick High School
+[2025-12-27 12:47:01] ID 33448: Moved 1.3km - New Mission High School
+[2025-12-27 12:47:01] ID 33456: Moved 2.6km - Northeast Metropolitan Regional Vocational High
+[2025-12-27 12:47:02] ID 33457: Moved 5.1km - Northfield Mount Hermon School
+[2025-12-27 12:47:02] ID 33461: Moved 3.8km - Pittsfield High School
+[2025-12-27 12:47:02] ID 33462: Moved 7.7km - Plymouth North High School
+[2025-12-27 12:47:02] ID 33464: Moved 3.5km - Ralph C. Mahar High School
+[2025-12-27 12:47:03] ID 33469: Moved 1.2km - Salem High School
+[2025-12-27 12:47:03] ID 33472: Moved 3.8km - South Salem High School
+[2025-12-27 12:47:05] ID 33485: Moved 1.4km - Stoughton High School
+[2025-12-27 12:47:05] ID 33487: Moved 1.7km - Sturgis Charter School West Campus
+[2025-12-27 12:47:05] ID 33488: Moved 2.4km - Sutton Memorial High School
+[2025-12-27 12:47:05] ID 33491: Moved 2km - Tewksbury Memorial High School
+[2025-12-27 12:47:06] ID 33492: Moved 1.5km - Tri-County Regional Vocational Technical School
+[2025-12-27 12:47:06] ID 33494: Moved 3km - Wachusett Regional High School
+[2025-12-27 12:47:07] ID 33499: Moved 4.1km - Westfield Technical Academy
+[2025-12-27 12:47:07] ID 33501: Moved 2.3km - Weston High School
+[2025-12-27 12:47:08] ID 33504: Moved 1.4km - Winchester High School
+[2025-12-27 12:47:08] ID 33506: Moved 1.2km - Worcester Technical High School
+[2025-12-27 12:47:08] ID 33507: Moved 3.7km - Chicopee High School
+[2025-12-27 12:47:08] ID 33508: Moved 1.1km - Cohasset High School
+[2025-12-27 12:47:09] ID 33509: Moved 2.5km - Concord-Carlisle High School
+[2025-12-27 12:47:09] ID 33514: Moved 1.1km - Diman Regional Vocational Technical High School
+[2025-12-27 12:47:10] ID 33519: Moved 3.1km - Drury High School
+[2025-12-27 12:47:10] ID 33526: Moved 1.2km - Foxborough High School
+[2025-12-27 12:47:11] ID 33529: Moved 2.7km - Franklin County Technical School
+[2025-12-27 12:47:11] ID 33532: Moved 5km - Greater Lowell Technical High School
+[2025-12-27 12:47:11] ID 33533: Moved 1.8km - Greater New Bedford Regional High School
+[2025-12-27 12:47:12] ID 33537: Moved 1.4km - Hingham High School
+[2025-12-27 12:47:13] ID 33546: Moved 14.8km - OutCT Youth Program
+[2025-12-27 12:47:14] ID 33567: Moved 3.9km - Trans Adult Support Group
+[2025-12-27 12:47:15] ID 33572: Moved 5718.8km - Mindline Trans+
+[2025-12-27 12:47:16] ID 33589: Moved 2.1km - Crosby High School
+[2025-12-27 12:47:18] ID 33604: Moved 5662.4km - Centre de Prevention du Suicide
+[2025-12-27 12:47:19] ID 33611: Moved 10997.8km - SOS Help
+[2025-12-27 12:47:19] ID 33616: Moved 406.9km - Lifeline
+[2025-12-27 12:47:19] ID 33620: Moved 1.4km - Telefone da Amizade
+[2025-12-27 12:47:19] ID 33621: Moved 20041.2km - Sumithrayo
+[2025-12-27 12:47:20] ID 33624: Moved 11151.6km - 113 Zelfmoordpreventie
+[2025-12-27 12:47:21] ID 33641: Moved 4.9km - Farmington High School
+[2025-12-27 12:47:22] ID 33652: Moved 1km - Middletown High School
+[2025-12-27 12:47:22] ID 33653: Moved 3.6km - New Canaan High School
+[2025-12-27 12:47:22] ID 33655: Moved 6km - Northwestern Regional High School
+[2025-12-27 12:47:24] ID 33675: Moved 1.5km - Windham High School
+[2025-12-27 12:47:25] ID 33691: Moved 1.3km - Amherst High School
+[2025-12-27 12:47:26] ID 33694: Moved 616.1km - East Aurora High School
+[2025-12-27 12:47:26] ID 33699: Moved 1.1km - Hutchinson Central Technical High School
+[2025-12-27 12:47:27] ID 33700: Moved 2km - Kenmore West High School
+[2025-12-27 12:47:31] ID 33749: Moved 10313.4km - Vitambi Springs Resort and Camp
+[2025-12-27 12:47:32] ID 33760: Moved 1.3km - Free City Super Shop
+[2025-12-27 12:47:32] ID 33762: Moved 8km - Hinterland
+[2025-12-27 12:47:33] ID 33771: Moved 2.4km - Otherwild
+[2025-12-27 12:47:35] ID 33796: Moved 18.6km - Brookings-Harbor High School
+[2025-12-27 12:47:36] ID 33800: Moved 1.1km - The Legacy Project (Corporate Office)
+[2025-12-27 12:47:42] ID 33857: Moved 2.3km - The Clowder Group
+[2025-12-27 12:47:44] ID 33869: Moved 13534.2km - Rainbow Rights Project, Inc.
+[2025-12-27 12:47:48] ID 33899: Moved 1096km - Thunder Pride
+[2025-12-27 12:47:49] ID 33903: Moved 1.3km - Philadelphia Trans Wellness Conference
+[2025-12-27 12:47:51] ID 33921: Moved 150km - University of Tennessee
+[2025-12-27 12:47:52] ID 33926: Moved 1.4km - Heels and Hardhats
+[2025-12-27 12:47:54] ID 33942: Moved 3.1km - LezBHonest Dragon Boat Racing Team
+[2025-12-27 12:47:56] ID 33964: Moved 3.8km - McPherson, Courtland
+[2025-12-27 12:47:58] ID 33978: Moved 2.7km - Joines, Morgan
+[2025-12-27 12:48:03] ID 34026: Moved 2.4km - Shawnee Mission South High School
+[2025-12-27 12:48:04] ID 34034: Moved 1.1km - Eye Zen Presents
+[2025-12-27 12:48:05] ID 34044: Moved 38.1km - Dixon, Harry
+[2025-12-27 12:48:05] ID 34054: Moved 1.2km - Wall, Laura
+[2025-12-27 12:48:10] ID 34082: Moved 1.3km - Camille, Natasha
+[2025-12-27 12:48:10] ID 34085: Moved 4.4km - Skinner-Spain, Aaron
+[2025-12-27 12:48:12] ID 34103: Moved 1.7km - Ohio State University Moritz College of Law
+[2025-12-27 12:48:14] ID 34117: Moved 13036.4km - Russian LGBT Network
+[2025-12-27 12:48:20] ID 34174: Moved 2.1km - Trust Women: Oklahoma City
+[2025-12-27 12:48:22] ID 34195: Moved 1.1km - Aces NYC - Asexual and Aromantic people
+[2025-12-27 12:48:23] ID 34201: Moved 6.1km - San Diego Aces
+[2025-12-27 12:48:27] ID 34232: Moved 4089.2km - Gay and Lesbian Coalition of Kenya (GALCK)
+[2025-12-27 12:48:27] ID 34235: Moved 4425.8km - Galck+
+[2025-12-27 12:48:28] ID 34238: Moved 2.1km - San Diego's Finest Lesbian Group
+[2025-12-27 12:48:40] ID 34359: Moved 2.6km - En Femme (Femme-Identified Crossdresser
+[2025-12-27 12:48:45] ID 34398: Moved 9.3km - Michael Sean Salon
+[2025-12-27 12:48:46] ID 34409: Moved 1.7km - Mossier, LLC
+[2025-12-27 12:48:48] ID 34433: Moved 2km - Stonewall Law Association of Greater Houston
+[2025-12-27 12:48:49] ID 34451: Moved 1.2km - Curry Senior Center
+[2025-12-27 12:48:51] ID 34470: Moved 4.3km - PFLAG - South Shore Support
+[2025-12-27 12:48:53] ID 34484: Moved 1.3km - West Hollywood Homeless Initiative
+[2025-12-27 12:48:53] ID 34485: Moved 2.4km - W3ll People
+[2025-12-27 12:49:03] ID 34572: Moved 6.6km - Metropolitan Interdenominational Church
+[2025-12-27 12:49:04] ID 34573: Moved 9.5km - Trans Femme Chill Club
+[2025-12-27 12:49:04] ID 34575: Moved 13036.4km - Coming Out LGBT Group
+[2025-12-27 12:49:04] ID 34582: Moved 3.3km - Point of Pride
+[2025-12-27 12:49:06] ID 34589: Moved 4.2km - CENLA PRIDE
+[2025-12-27 12:49:06] ID 34594: Moved 1.1km - Red Wig Walk
+[2025-12-27 12:49:08] ID 34614: Moved 49.7km - Western Suburban Senior Services
+[2025-12-27 12:49:09] ID 34616: Moved 5.9km - Coastal Bend Wellness Foundation
+[2025-12-27 12:49:11] ID 34634: Moved 2.3km - Baker, Renee
+[2025-12-27 12:49:17] ID 34681: Moved 5.2km - West Virginia University Parkersburg
+[2025-12-27 12:49:17] ID 34683: Moved 1.3km - West Virginia College of Law
+[2025-12-27 12:49:18] ID 34686: Moved 7.2km - Eastern Panhandle LGBTQ Alliance
+[2025-12-27 12:49:23] ID 34736: Moved 1.1km - Tarab NYC
+[2025-12-27 12:49:29] ID 34783: Moved 11284.6km - Centre LGBT Orleans
+[2025-12-27 12:49:32] ID 34801: Moved 1.4km - PFLAG - Essex/Cape Ann
+[2025-12-27 12:49:34] ID 34820: Moved 1.6km - Fayetteville Pride
+[2025-12-27 12:49:43] ID 34896: Moved 1092.1km - Alaska Rainbow Elders (A.R.E.)
+[2025-12-27 12:49:46] ID 34917: Moved 26km - Larsen, Camille
+[2025-12-27 12:49:51] ID 34954: Moved 41.3km - Colorado State University
+[2025-12-27 12:49:51] ID 34955: Moved 40.8km - Colorado Name Change Project
+[2025-12-27 12:49:54] ID 34976: Moved 1.2km - Veterans Memorial Middle School
+[2025-12-27 12:49:59] ID 35040: Moved 3.6km - Alexander Central High School
+[2025-12-27 12:50:06] ID 35078: Moved 1.1km - Act Up Oral History Project
+[2025-12-27 12:50:07] ID 35093: Moved 1.3km - Herriford, Whayne
+[2025-12-27 12:50:07] ID 35103: Moved 10453.9km - Transgender Network Switzerland
+[2025-12-27 12:50:07] ID 35111: Moved 4022.6km - Colombia Diversa
+[2025-12-27 12:50:10] ID 35132: Moved 5.8km - University of Kentucky Libraries
+[2025-12-27 12:50:12] ID 35153: Moved 1.2km - Garfield Park Behavioral Hospital
+[2025-12-27 12:50:15] ID 35186: Moved 4.2km - Horton, Deb
+[2025-12-27 12:50:19] ID 35213: Moved 3.5km - OUTwatch Film Festival
+[2025-12-27 12:50:22] ID 35231: Moved 1.1km - Pena, Stephanie
+[2025-12-27 12:50:23] ID 35245: Moved 1.5km - Castro-McDaniel, Shauna
+[2025-12-27 12:50:26] ID 35270: Moved 4.2km - Third Wave Fund
+[2025-12-27 12:50:27] ID 35277: Moved 1.2km - TransFamilies of Silicon Valley
+[2025-12-27 12:50:29] ID 35287: Moved 1.1km - Feminist Women's for reproductive liberation
+[2025-12-27 12:50:31] ID 35309: Moved 1.4km - New Women Space
+[2025-12-27 12:50:32] ID 35319: Moved 3.3km - Kaleidoscope Youth Center
+[2025-12-27 12:50:34] ID 35330: Moved 1.1km - Ylva Publishing
+[2025-12-27 12:50:37] ID 35376: Moved 7.9km - Muslims for Progressive Values - Columbus
+[2025-12-27 12:50:38] ID 35377: Moved 9182.5km - Muslims for Progressive Values - Boston
+[2025-12-27 12:50:40] ID 35395: Moved 4.4km - Louisiana Tech
+[2025-12-27 12:50:40] ID 35397: Moved 7.3km - Lambda Living Program for LGBT Seniors
+[2025-12-27 12:50:41] ID 35404: Moved 1.2km - Stanford University
+[2025-12-27 12:50:46] ID 35440: Moved 7.5km - The Order of Osiris
+[2025-12-27 12:50:48] ID 35462: Moved 5716.9km - Mosaic LGBT+ Young Persons' Trust
+[2025-12-27 12:50:51] ID 35488: Moved 1.1km - NYC LGBT Historic Sites Project
+[2025-12-27 12:50:51] ID 35489: Moved 2.4km - Staunton Pride
+[2025-12-27 12:50:53] ID 35496: Moved 4km - Lake Park High School
+[2025-12-27 12:50:53] ID 35500: Moved 3.4km - Roaming Naturopath
+[2025-12-27 12:50:54] ID 35505: Moved 1.9km - Metamorphosis Clinic
+[2025-12-27 12:50:56] ID 35522: Moved 1.7km - Senior Outreach and Advocacy Program (SOAP)
+[2025-12-27 12:50:56] ID 35525: Moved 3.5km - MJ's Tavern
+[2025-12-27 12:50:59] ID 35544: Moved 1.4km - The LGBT Center of Greater Reading
+[2025-12-27 12:51:04] ID 35583: Moved 6.6km - University of Guelph
+[2025-12-27 12:51:06] ID 35595: Moved 2.1km - Silicon Valley Rainbow Rotary
+[2025-12-27 12:51:07] ID 35598: Moved 3.4km - Flourish Chiropractic Spa
+[2025-12-27 12:51:12] ID 35631: Moved 1.1km - Greenleaf Miller, Sam
+[2025-12-27 12:51:16] ID 35675: Moved 3.4km - Violeta, Karalyn
+[2025-12-27 12:51:17] ID 35676: Moved 84.8km - LaRocca, Kristy
+[2025-12-27 12:51:17] ID 35677: Moved 1.1km - Horridge, Lynn
+[2025-12-27 12:51:18] ID 35686: Moved 1.2km - Ross, Rebecca
+[2025-12-27 12:51:21] ID 35705: Moved 1.2km - Goldpaugh, Dee Dee
+[2025-12-27 12:51:22] ID 35711: Moved 1.1km - Hochberger-Brown, Lisa
+[2025-12-27 12:51:23] ID 35717: Moved 1.8km - Y2Y Network
+[2025-12-27 12:51:24] ID 35725: Moved 6.9km - PFLAG - Mount Horeb
+[2025-12-27 12:51:25] ID 35728: Moved 7.2km - Rainbow Elder Care of Greater Dayton
+[2025-12-27 12:51:27] ID 35736: Moved 16.1km - Marx Mediation
+[2025-12-27 12:51:27] ID 35737: Moved 1.3km - Wharton Law, PLLC
+[2025-12-27 12:51:27] ID 35738: Moved 1.4km - Couser, Jessica
+[2025-12-27 12:51:35] ID 35792: Moved 1.4km - Harkins, Kira
+[2025-12-27 12:51:38] ID 35807: Moved 16383.1km - Kindt, Jason
+[2025-12-27 12:51:48] ID 35875: Moved 6.1km - Davis Pride
+[2025-12-27 12:51:51] ID 35893: Moved 6.8km - Rainbow Speakers and Friends
+[2025-12-27 12:51:55] ID 35917: Moved 1.2km - The RAVEN Project
+[2025-12-27 12:51:55] ID 35923: Moved 2.1km - Rutgers Center for Transgender Health
+[2025-12-27 12:51:56] ID 35928: Moved 1252.8km - Gender Minorities Aotearoa
+[2025-12-27 12:51:59] ID 35945: Moved 5.9km - Vanderbilt Health LGBTQ Programs
+[2025-12-27 12:52:00] ID 35951: Moved 1.4km - Transparenthood
+[2025-12-27 12:52:05] ID 35993: Moved 1.7km - Victims of Crime Resource Center
+[2025-12-27 12:52:07] ID 35999: Moved 14.5km - Eclectic of Northern Colorado
+[2025-12-27 12:52:11] ID 36036: Moved 1.7km - ChancoSchiffer PC
+[2025-12-27 12:52:15] ID 36065: Moved 1.2km - Rambling Rose Ranch
+[2025-12-27 12:52:17] ID 36074: Moved 1.1km - Prince Powderpouffe
+[2025-12-27 12:52:21] ID 36105: Moved 4km - Edge Pride Center
+[2025-12-27 12:52:23] ID 36121: Moved 3km - Reach OUT Consulting
+[2025-12-27 12:52:24] ID 36127: Moved 1.5km - Middle Georgia LGBT Family
+[2025-12-27 12:52:24] ID 36129: Moved 1.1km - GAY FOR GOOD - New York City
+[2025-12-27 12:52:25] ID 36131: Moved 1.2km - GAY FOR GOOD - Washington DC
+[2025-12-27 12:52:25] ID 36132: Moved 3.9km - Charlie, Yawar
+[2025-12-27 12:52:26] ID 36138: Moved 17034km - TasPride
+[2025-12-27 12:52:26] ID 36139: Moved 114.6km - Working it Out
+[2025-12-27 12:52:28] ID 36150: Moved 1.5km - New York Legal Assistance Group
+[2025-12-27 12:52:32] ID 36174: Moved 1.8km - Judy Jetson
+[2025-12-27 12:52:36] ID 36214: Moved 1.6km - Gauge Tattoo Artist
+[2025-12-27 12:52:42] ID 36275: Moved 10310.8km - Kenyon College
+[2025-12-27 12:52:56] ID 36386: Moved 3.3km - Halquist, Ryan
+[2025-12-27 12:53:01] ID 36436: Moved 2km - Lord, Colette
+[2025-12-27 12:53:02] ID 36438: Moved 6.3km - Martin, Terri
+[2025-12-27 12:53:06] ID 36462: Moved 1.2km - Eno, Asher
+[2025-12-27 12:53:07] ID 36473: Moved 2.5km - Mancilla, Michael
+[2025-12-27 12:53:08] ID 36475: Moved 1.1km - Fleshman, Karla
+[2025-12-27 12:53:13] ID 36520: Moved 1.5km - CommCan
+[2025-12-27 12:53:16] ID 36548: Moved 5.7km - Coopers Optique
+[2025-12-27 12:53:17] ID 36556: Moved 10997.8km - APGL - Association des Parents et Futurs Parents
+[2025-12-27 12:53:18] ID 36566: Moved 2.5km - Burke, Powell
+[2025-12-27 12:53:23] ID 36607: Moved 3.2km - Hopwood, Ruben
+[2025-12-27 12:53:28] ID 36644: Moved 2.9km - Le Bon Garcon, Inc.
+[2025-12-27 12:53:30] ID 36654: Moved 9.1km - Chibani, Doha
+[2025-12-27 12:53:32] ID 36663: Moved 2.5km - Twisted Soul Cookhouse & Pours
+[2025-12-27 12:53:33] ID 36672: Moved 1415.5km - Tegan and Sara Foundation
+[2025-12-27 12:53:36] ID 36691: Moved 4km - OME Gear Co.
+[2025-12-27 12:53:36] ID 36693: Moved 4.3km - Dye, Ellen
+[2025-12-27 12:53:44] ID 36753: Moved 8.8km - Pizazzz Promotions
+[2025-12-27 12:53:52] ID 36812: Moved 1.1km - Golden Psychology
+[2025-12-27 12:53:53] ID 36817: Moved 1.1km - Langer, S.J.
+[2025-12-27 12:53:58] ID 36852: Moved 1.4km - Event Party Productions
+[2025-12-27 12:54:00] ID 36870: Moved 1.7km - GSA International LTD
+[2025-12-27 12:54:04] ID 36899: Moved 1.5km - Abrakadoodle - Central Connecticut
+[2025-12-27 12:54:12] ID 36950: Moved 1.1km - Scruff
+[2025-12-27 12:54:14] ID 36969: Moved 11.5km - Newell,  Brenda
+[2025-12-27 12:54:15] ID 36974: Moved 13km - Kessler, Mae
+[2025-12-27 12:54:19] ID 37011: Moved 6.5km - Blue Door Electrolysis
+[2025-12-27 12:54:20] ID 37013: Moved 2.6km - Martinez, Onel
+[2025-12-27 12:54:20] ID 37016: Moved 1.2km - Stinson, Kathryn
+[2025-12-27 12:54:21] ID 37017: Moved 2.3km - Denver Health LGBTQ Health Services
+[2025-12-27 12:54:26] ID 37051: Moved 9.3km - University Of Missouri
+[2025-12-27 12:54:27] ID 37052: Moved 9.3km - University Of Missouri
+[2025-12-27 12:54:48] ID 37162: Moved 1.1km - Blackline
+[2025-12-27 12:54:49] ID 37163: Moved 9332.4km - Yorkshire MESMAC
+[2025-12-27 12:54:49] ID 37165: Moved 5.2km - Edgar Medina Art Studio
+[2025-12-27 12:54:51] ID 37179: Moved 1.1km - Stonewall Gaming Network
+[2025-12-27 12:54:53] ID 37192: Moved 1.7km - Andirondack North Country Gender Alliance
+[2025-12-27 12:54:54] ID 37203: Moved 1.1km - TransLash
+[2025-12-27 12:54:58] ID 37235: Moved 1.1km - Homosaurus
+[2025-12-27 12:54:59] ID 37237: Moved 1.1km - Rubies
+[2025-12-27 12:55:02] ID 37258: Moved 3.8km - 50 States of Gay
+[2025-12-27 12:55:03] ID 37278: Moved 1km - Trans Families
+[2025-12-27 12:55:07] ID 37309: Moved 1.2km - SF Queer Film Fest
+[2025-12-27 12:55:09] ID 37319: Moved 1.1km - WayOUT
+[2025-12-27 12:55:17] ID 37368: Moved 10216.4km - Riser, Susan
+[2025-12-27 12:55:20] ID 37386: Moved 17km - Planned Parenthood - Miami
+[2025-12-27 12:55:26] ID 37421: Moved 1287.1km - Youth LEAD
+[2025-12-27 12:55:26] ID 37426: Moved 28199.8km - Transgender Victoria
+[2025-12-27 12:55:32] ID 37432: Moved 20007.4km - Pride Whanganui
+[2025-12-27 12:55:33] ID 37437: Moved 11151.6km - A.S.V. Gay
+[2025-12-27 12:55:36] ID 37454: Moved 2351.8km - MindOut
+[2025-12-27 12:55:36] ID 37455: Moved 12438.6km - Prague Pride
+[2025-12-27 12:55:37] ID 37461: Moved 11533.8km - Dialogai
+[2025-12-27 12:55:39] ID 37473: Moved 30301.1km - Q Youth
+[2025-12-27 12:55:39] ID 37477: Moved 9.5km - Wildfang - LA
+[2025-12-27 12:55:40] ID 37482: Moved 1.1km - BOIPKG
+[2025-12-27 12:55:44] ID 37514: Moved 10.5km - Varnado, Cary R.
+[2025-12-27 12:55:46] ID 37522: Moved 2.3km - Mahogany Run Delivery
+[2025-12-27 12:55:52] ID 37574: Moved 7.8km - Six Ponds Farm
+[2025-12-27 12:55:53] ID 37586: Moved 1.1km - Ka'awa Loa Plantation
+[2025-12-27 12:55:53] ID 37590: Moved 9.5km - Kalani
+[2025-12-27 12:55:53] ID 37591: Moved 3.7km - Tiskilwa Inn
+[2025-12-27 12:55:54] ID 37596: Moved 6.5km - Davie School Inn
+[2025-12-27 12:55:54] ID 37598: Moved 2.1km - Bourbon Manor Bed & Breakfast
+[2025-12-27 12:55:55] ID 37602: Moved 3.4km - Towne Motel
+[2025-12-27 12:55:55] ID 37604: Moved 17.3km - The Pleasant Street Inn
+[2025-12-27 12:55:55] ID 37607: Moved 1.5km - Gramercy Mansion
+[2025-12-27 12:55:56] ID 37613: Moved 7.2km - Annapolis Inn
+[2025-12-27 12:55:57] ID 37617: Moved 4.2km - Devonfield Inn
+[2025-12-27 12:55:57] ID 37621: Moved 1.2km - Fort Hill Inn
+[2025-12-27 12:55:57] ID 37624: Moved 1.7km - White Porch Inn Art Hotel
+[2025-12-27 12:55:58] ID 37625: Moved 1.6km - Gabriel's
+[2025-12-27 12:55:58] ID 37627: Moved 1.9km - Palmer House Inn
+[2025-12-27 12:55:58] ID 37629: Moved 1.6km - Captain David Kelley House
+[2025-12-27 12:55:58] ID 37630: Moved 2.2km - Candleberry Inn
+[2025-12-27 12:55:59] ID 37633: Moved 2.8km - Lake Street Commons Lodging
+[2025-12-27 12:55:59] ID 37634: Moved 2.1km - Three Oaks Inn
+[2025-12-27 12:55:59] ID 37639: Moved 10.6km - Rockcliffe Mansion
+[2025-12-27 12:56:00] ID 37641: Moved 30.1km - Evergreen Motel
+[2025-12-27 12:56:00] ID 37642: Moved 10.1km - A Stone's Throw Bed & Breakfast
+[2025-12-27 12:56:00] ID 37644: Moved 4.8km - Inn by the Bandstand
+[2025-12-27 12:56:00] ID 37646: Moved 2.4km - Squam Lake Inn
+[2025-12-27 12:56:01] ID 37648: Moved 2.5km - O'Reilly House
+[2025-12-27 12:56:01] ID 37649: Moved 4.7km - Saddleback Campground
+[2025-12-27 12:56:01] ID 37650: Moved 4.5km - Congress Hall
+[2025-12-27 12:56:01] ID 37651: Moved 3.8km - Eldredge House
+[2025-12-27 12:56:02] ID 37654: Moved 20.8km - La Posada de Maria Magdalena
+[2025-12-27 12:56:03] ID 37657: Moved 26km - Rocket Inn
+[2025-12-27 12:56:03] ID 37659: Moved 3km - Brick House B&B
+[2025-12-27 12:56:04] ID 37662: Moved 3.2km - Benn Conger Inn
+[2025-12-27 12:56:04] ID 37664: Moved 6.5km - The Inn at Stonemill
+[2025-12-27 12:56:04] ID 37666: Moved 4.6km - The Baker House 1650
+[2025-12-27 12:56:05] ID 37670: Moved 6.6km - Elmwood 1820 Bed & Breakfast Inn
+[2025-12-27 12:56:05] ID 37677: Moved 3km - Green Gate Guesthouse
+[2025-12-27 12:56:06] ID 37678: Moved 6km - Trillium Cottage
+[2025-12-27 12:56:06] ID 37680: Moved 2.2km - Wallace Manor Bed & Breakfast
+[2025-12-27 12:56:07] ID 37689: Moved 11.4km - Scappoose Creek Inn
+[2025-12-27 12:56:07] ID 37692: Moved 4.1km - The Aspen Inn
+[2025-12-27 12:56:07] ID 37693: Moved 12.1km - Umpqua's Last Resort
+[2025-12-27 12:56:07] ID 37694: Moved 4.7km - The Lancaster Bed & Breakfast
+[2025-12-27 12:56:08] ID 37695: Moved 6.5km - Cork Factory Hotel
+[2025-12-27 12:56:09] ID 37704: Moved 2.3km - Country Hearth Bed & Breakfast
+[2025-12-27 12:56:09] ID 37708: Moved 12.6km - Black Forest Inn Bed & Breakfast
+[2025-12-27 12:56:09] ID 37712: Moved 2.1km - The Peaceful Pelican
+[2025-12-27 12:56:10] ID 37714: Moved 1.3km - Detours with Matt
+[2025-12-27 12:56:11] ID 37721: Moved 5.3km - Maplecroft Bed & Breakfast
+[2025-12-27 12:56:11] ID 37727: Moved 3.6km - Rock River Studio
+[2025-12-27 12:56:12] ID 37729: Moved 5.2km - White Horse Inn
+[2025-12-27 12:56:12] ID 37730: Moved 3.9km - Jackson House Inn
+[2025-12-27 12:56:12] ID 37733: Moved 6.5km - Ward Manor
+[2025-12-27 12:56:13] ID 37736: Moved 11.6km - Essex Inn
+[2025-12-27 12:56:13] ID 37739: Moved 6.2km - Oldeststone Farm
+[2025-12-27 12:56:13] ID 37741: Moved 4.8km - Zen Mountain Retreat
+[2025-12-27 12:56:13] ID 37742: Moved 1km - Man Place Bed & Breakfast
+[2025-12-27 12:56:14] ID 37743: Moved 1.2km - Eagle Centre Bed and Breakfast
+[2025-12-27 12:56:14] ID 37744: Moved 5.1km - Ashbrooke
+[2025-12-27 12:56:14] ID 37746: Moved 2.5km - Chestnut Cottage
+[2025-12-27 12:56:16] ID 37757: Moved 1.6km - Planned Parenthood - Nashville
+[2025-12-27 12:56:16] ID 37759: Moved 2km - Love, Natalie
+[2025-12-27 12:56:16] ID 37761: Moved 11.8km - UVA Health Teen & Young Adult Health Center
+[2025-12-27 12:56:18] ID 37777: Moved 1.5km - University of Kansas
+[2025-12-27 12:56:19] ID 37784: Moved 10km - Midwest Pages to Prisoners Project
+[2025-12-27 12:56:19] ID 37785: Moved 1.2km - Choral Spectrum
+[2025-12-27 12:56:20] ID 37788: Moved 1.2km - United Methodist Queer Clergy Caucus
+[2025-12-27 12:56:20] ID 37789: Moved 8km - QChat
+[2025-12-27 12:56:23] ID 37807: Moved 3km - Le Date Karaoke
+[2025-12-27 12:56:28] ID 37841: Moved 3.2km - Schmalz, Mike
+[2025-12-27 12:56:30] ID 37851: Moved 31160.5km - Eves of Destruction Roller Derby
+[2025-12-27 12:56:30] ID 37855: Moved 4.6km - Kids Help Phone
+[2025-12-27 12:56:32] ID 37867: Moved 25833.3km - Nanaimo Pride Society
+[2025-12-27 12:56:36] ID 37893: Moved 6.1km - PFLAG - Calgary
+[2025-12-27 12:56:40] ID 37922: Moved 1.7km - Gay Ocho
+[2025-12-27 12:56:40] ID 37924: Moved 3.9km - Alton Pride
+[2025-12-27 12:56:41] ID 37925: Moved 3.3km - Appalachian OUTreach
+[2025-12-27 12:56:41] ID 37926: Moved 10.1km - Blount Pride
+[2025-12-27 12:56:46] ID 37954: Moved 21km - Flagstaff Pride
+[2025-12-27 12:56:50] ID 37984: Moved 3.6km - Lowcountry Pride
+[2025-12-27 12:56:59] ID 38041: Moved 1.5km - VOMP - Voice of My People Foundation
+[2025-12-27 12:57:04] ID 38080: Moved 11354.6km - EisenHerz
+[2025-12-27 12:57:05] ID 38087: Moved 4599.8km - Antinovs
+[2025-12-27 12:57:06] ID 38089: Moved 6487.9km - Hares & Hyenas
+[2025-12-27 12:57:06] ID 38091: Moved 5430.2km - Les Mots A La Bouche
+[2025-12-27 12:57:06] ID 38093: Moved 5149.7km - Antigone
+[2025-12-27 12:57:06] ID 38095: Moved 12075.5km - Buchhandlung L?wenherz (Bookstore Loewenherz)
+[2025-12-27 12:57:07] ID 38099: Moved 1.1km - NQAPIA
+[2025-12-27 12:57:07] ID 38100: Moved 13.9km - Westcare California - Behavioral Education
+[2025-12-27 12:57:08] ID 38102: Moved 1.1km - Wiser Therapy LCSW
+[2025-12-27 12:57:09] ID 38109: Moved 5.1km - El Cojo
+[2025-12-27 12:57:10] ID 38114: Moved 6.8km - SX the Club
+[2025-12-27 12:57:10] ID 38117: Moved 1km - Hyman, Paul
+[2025-12-27 12:57:10] ID 38122: Moved 7km - Haddox, Marie
+[2025-12-27 12:57:11] ID 38123: Moved 1.4km - Galler, Terry
+[2025-12-27 12:57:12] ID 38128: Moved 1.7km - Peck, Mischa Cohen
+[2025-12-27 12:57:15] ID 38153: Moved 8.5km - Creative Diversity Friends Club
+[2025-12-27 12:57:19] ID 38180: Moved 1.4km - Yeah Dawg
+[2025-12-27 12:57:28] ID 38233: Moved 7.1km - Dublin Roasters Coffee
+[2025-12-27 12:57:29] ID 38242: Moved 1.6km - Pomona Valley Pride
+[2025-12-27 12:57:30] ID 38243: Moved 2.3km - Feldman, Harvey
+[2025-12-27 12:57:36] ID 38282: Moved 1.7km - Freedom High School
+[2025-12-27 12:57:38] ID 38297: Moved 2.7km - Conner High School
+[2025-12-27 12:57:41] ID 38317: Moved 5km - Hoover Middle School
+[2025-12-27 12:57:41] ID 38318: Moved 8.5km - Tanager Place
+[2025-12-27 12:57:42] ID 38326: Moved 1.1km - Telfar
+[2025-12-27 12:57:43] ID 38332: Moved 1.1km - G.L.I.T.S.
+[2025-12-27 12:57:44] ID 38335: Moved 1.1km - Milk Makeup
+[2025-12-27 12:57:48] ID 38363: Moved 1.5km - Quinn Art Therapy
+[2025-12-27 12:57:52] ID 38381: Moved 2.5km - Queer Women's Group
+[2025-12-27 12:57:53] ID 38386: Moved 9.9km - Herland Sisters
+[2025-12-27 12:57:57] ID 38412: Moved 3.2km - Unified Sibs and Allies of the LGBTQIA+
+[2025-12-27 12:57:58] ID 38413: Moved 3.2km - TGI* Peer Support Group
+[2025-12-27 12:57:58] ID 38419: Moved 1.1km - Cowork & Kiki
+[2025-12-27 12:58:00] ID 38428: Moved 17261.4km - Uganda Minority Shelters
+[2025-12-27 12:58:05] ID 38463: Moved 9.6km - Amenero, Joanna
+[2025-12-27 12:58:06] ID 38471: Moved 8.6km - Alwah, Nora
+[2025-12-27 12:58:07] ID 38472: Moved 1.4km - Tierramar, Siqua Asgaya
+[2025-12-27 12:58:15] ID 38527: Moved 6.4km - Queer Connect
+[2025-12-27 12:58:16] ID 38535: Moved 1.1km - Reclaim Pride Coalition
+[2025-12-27 12:58:16] ID 38537: Moved 1.1km - Nicole Zizi Studio
+[2025-12-27 12:58:18] ID 38549: Moved 46.8km - Burke, Astrid
+[2025-12-27 12:58:18] ID 38552: Moved 1.1km - Zhu, Samantha
+[2025-12-27 12:58:18] ID 38554: Moved 1.1km - Cury, Iara
+[2025-12-27 12:58:19] ID 38560: Moved 2.9km - Rodriguez, Tatiana
+[2025-12-27 12:58:21] ID 38567: Moved 3.1km - Spector Garza, Alejandra
+[2025-12-27 12:58:25] ID 38590: Moved 3.1km - Taylor, Ashley
+[2025-12-27 12:58:28] ID 38604: Moved 1.2km - In the Know: Queer People of Color (QPOC)
+[2025-12-27 12:58:31] ID 38630: Moved 2.7km - Robinette, Chad
+[2025-12-27 12:58:34] ID 38648: Moved 2.4km - Prince of Peace UMC
+[2025-12-27 12:58:36] ID 38663: Moved 14.3km - California State University Fullerton
+[2025-12-27 12:58:37] ID 38664: Moved 14.3km - California State University Fullerton
+[2025-12-27 12:58:39] ID 38683: Moved 3.6km - Southwick Regional School
+[2025-12-27 12:58:40] ID 38690: Moved 8.7km - The Back Door
+[2025-12-27 12:58:44] ID 38712: Moved 1.1km - Ballez
+[2025-12-27 12:58:45] ID 38722: Moved 1.2km - Wu, Laura
+[2025-12-27 12:58:46] ID 38728: Moved 1.1km - Clapp, Lauren
+[2025-12-27 12:58:47] ID 38738: Moved 1.3km - DeCicco, Gabriel
+[2025-12-27 12:58:49] ID 38745: Moved 1.4km - Wischmeyer, Jennifer
+[2025-12-27 12:58:50] ID 38749: Moved 1.1km - Yoo, Yejin
+[2025-12-27 12:58:51] ID 38758: Moved 1.1km - Vradi, Eleni
+[2025-12-27 12:58:54] ID 38777: Moved 1.1km - Weasenforth, Brandon
+[2025-12-27 12:58:54] ID 38779: Moved 1km - Douglass, Katie
+[2025-12-27 12:58:55] ID 38785: Moved 4.6km - Rexburg Pride
+[2025-12-27 12:58:57] ID 38795: Moved 4022.6km - VOADES
+[2025-12-27 12:58:57] ID 38800: Moved 1km - Parent Support Group
+[2025-12-27 12:58:58] ID 38801: Moved 5.1km - Waco Youth Pride Alliance
+[2025-12-27 12:59:01] ID 38825: Moved 1.1km - Central Maine Pride
+[2025-12-27 12:59:04] ID 38847: Moved 2.6km - Rainbow Bingo
+[2025-12-27 12:59:05] ID 38851: Moved 1.1km - The H Line (New York State HIV/STI/HCV Hotline)
+[2025-12-27 12:59:05] ID 38853: Moved 2km - Trinity Haven
+[2025-12-27 12:59:06] ID 38858: Moved 1.4km - Benders Collective
+[2025-12-27 12:59:07] ID 38861: Moved 1.6km - Richmond LGBTQ Chamber
+[2025-12-27 12:59:08] ID 38873: Moved 2.3km - Horizon Yacht Club
+[2025-12-27 12:59:08] ID 38876: Moved 3.3km - Pleasant Valley High School
+[2025-12-27 12:59:16] ID 38919: Moved 1.5km - Charlotte Transgender Healthcare Group
+[2025-12-27 12:59:16] ID 38923: Moved 8.1km - Greene, Trey
+[2025-12-27 12:59:19] ID 38934: Moved 7.3km - PFLAG - Cape Girardeau
+[2025-12-27 12:59:20] ID 38940: Moved 2.6km - LGBTQ+ Center at Kenneth Young
+[2025-12-27 12:59:20] ID 38941: Moved 41.1km - Transcend
+[2025-12-27 12:59:22] ID 38951: Moved 14876.5km - University Of Oregon
+[2025-12-27 12:59:24] ID 38961: Moved 3.1km - SD Gay Men's Bookclub
+[2025-12-27 12:59:27] ID 38991: Moved 129.5km - Ried, Linda
+[2025-12-27 12:59:28] ID 38994: Moved 2.2km - Always in Tantric Touch
+[2025-12-27 12:59:33] ID 39017: Moved 8.1km - Commcan
+[2025-12-27 12:59:38] ID 39046: Moved 2.3km - Project Out
+[2025-12-27 12:59:39] ID 39051: Moved 4.8km - Belong Fox Valley
+[2025-12-27 12:59:45] ID 39084: Moved 3.3km - Gender Clinic
+[2025-12-27 12:59:48] ID 39123: Moved 6.8km - Tannenbaum, Adam
+[2025-12-27 12:59:49] ID 39127: Moved 1.1km - Hovis, Eric M.
+[2025-12-27 12:59:55] ID 39178: Moved 1.1km - Trans Reads
+[2025-12-27 13:00:02] ID 39223: Moved 3.3km - Joliet Pride Network
+[2025-12-27 13:00:06] ID 39239: Moved 3km - St. Amand, Colt
+[2025-12-27 13:00:07] ID 39250: Moved 2.6km - Bastrop Pride
+[2025-12-27 13:00:15] ID 39325: Moved 1.5km - Lauren Barros Law
+[2025-12-27 13:00:18] ID 39340: Moved 3.2km - Reczek, Juliana
+[2025-12-27 13:00:19] ID 39347: Moved 4.9km - DeLisle, Kathleen
+[2025-12-27 13:00:22] ID 39358: Moved 8.8km - Kohut, Paula
+[2025-12-27 13:00:28] ID 39394: Moved 10155.2km - Rainbow Ridge Resort
+[2025-12-27 13:00:41] ID 39466: Moved 6.2km - Graham, Chris
+[2025-12-27 13:00:43] ID 39480: Moved 11151.6km - Veilige Haven
+[2025-12-27 13:00:44] ID 39491: Moved 3km - Lezread Ann Arbor
+[2025-12-27 13:00:48] ID 39524: Moved 3.8km - Yantz, Shirlee
+[2025-12-27 13:00:48] ID 39526: Moved 1.3km - Mindful 88 Hypnotherapy, LLC
+[2025-12-27 13:00:55] ID 39574: Moved 1.2km - Under the Umbrella, a queer little bookstore
+[2025-12-27 13:00:57] ID 39586: Moved 1.6km - Celeste, Desiree
+[2025-12-27 13:01:07] ID 39661: Moved 2.2km - Brown Computer Solutions
+[2025-12-27 13:01:08] ID 39663: Moved 10.6km - Brown Computer Solutions
+[2025-12-27 13:01:10] ID 39673: Moved 1.1km - Mischief Mates
+[2025-12-27 13:01:10] ID 39678: Moved 1.4km - Queer Candle Co.
+[2025-12-27 13:01:17] ID 39716: Moved 7.6km - Milkweed Farm
+[2025-12-27 13:01:19] ID 39726: Moved 2.5km - National Latinx Conference on HIV, HCV & SUD
+[2025-12-27 13:01:36] ID 39818: Moved 2.4km - Trans Can Work
+[2025-12-27 13:01:39] ID 39839: Moved 1.1km - Queer & Trans Knitters, Crocheters, & Fiber
+[2025-12-27 13:01:41] ID 39847: Moved 8721.3km - Free 2B
+[2025-12-27 13:01:41] ID 39853: Moved 10766.9km - Derbyshire LGBT+
+[2025-12-27 13:01:42] ID 39860: Moved 2414.9km - Norfolk LGBT+ Project
+[2025-12-27 13:01:42] ID 39861: Moved 11132.8km - Evolve
+[2025-12-27 13:01:42] ID 39862: Moved 8430.3km - University of Hertfordshire
+[2025-12-27 13:01:42] ID 39863: Moved 2414.9km - Oasis Norfolk
+[2025-12-27 13:01:43] ID 39864: Moved 2099.1km - The Outhouse
+[2025-12-27 13:01:43] ID 39865: Moved 11143.3km - Outreach Youth
+[2025-12-27 13:01:45] ID 39881: Moved 1.2km - Holland Pride
+[2025-12-27 13:01:48] ID 39894: Moved 28697.3km - Be
+[2025-12-27 13:01:49] ID 39899: Moved 11681.4km - Older and Out
+[2025-12-27 13:01:49] ID 39900: Moved 1814.5km - Pride in North Cumbria
+[2025-12-27 13:01:51] ID 39912: Moved 10777.5km - Four Pillars
+[2025-12-27 13:01:52] ID 39915: Moved 1814.5km - OutReach Cumbria
+[2025-12-27 13:01:53] ID 39922: Moved 11681.4km - Clinic T
+[2025-12-27 13:01:53] ID 39924: Moved 11681.4km - Gender, Sexuality and Relationship Diversity Group
+[2025-12-27 13:01:53] ID 39927: Moved 10641km - Reading Pride
+[2025-12-27 13:01:54] ID 39928: Moved 10365.2km - Not Alone
+[2025-12-27 13:01:54] ID 39932: Moved 11681.4km - The Clare Project
+[2025-12-27 13:02:02] ID 39973: Moved 10822.1km - Space Youth Project
+[2025-12-27 13:02:02] ID 39975: Moved 10863.4km - Sussex University
+[2025-12-27 13:02:03] ID 39983: Moved 9660km - Swansea Drop-in Centre
+[2025-12-27 13:02:05] ID 39994: Moved 8169.7km - Warwickshire Pride
+[2025-12-27 13:02:10] ID 40026: Moved 13.6km - PFLAG - Chicago Metro
+[2025-12-27 13:02:11] ID 40032: Moved 9231.5km - LGBT Hate Crime Greenwich
+[2025-12-27 13:02:11] ID 40036: Moved 1.8km - Martinez, Alejandro
+[2025-12-27 13:02:12] ID 40039: Moved 28697.3km - Be: Trans Support and Community
+[2025-12-27 13:02:14] ID 40048: Moved 20.6km - Kimball Union Academy
+[2025-12-27 13:02:17] ID 40069: Moved 13.5km - Hillsborough LGBTQ Liaison
+[2025-12-27 13:02:18] ID 40070: Moved 12.2km - Channel Q
+[2025-12-27 13:02:18] ID 40074: Moved 1.2km - Los Angeles Blade
+[2025-12-27 13:02:20] ID 40084: Moved 50.5km - Central Outreach Wellness Center
+[2025-12-27 13:02:21] ID 40087: Moved 1.7km - Positive Health Clinic
+[2025-12-27 13:02:26] ID 40120: Moved 1.6km - NorWest Community Health Centres
+[2025-12-27 13:02:27] ID 40124: Moved 9799.8km - Qu'Art - Queer Art Collective
+[2025-12-27 13:02:27] ID 40126: Moved 2.6km - Rainbow Hoops
+[2025-12-27 13:02:28] ID 40130: Moved 779.2km - Brisbane Pride Choir
+[2025-12-27 13:02:28] ID 40132: Moved 1.5km - Backyard Coffeehouse and Eatery
+[2025-12-27 13:02:29] ID 40141: Moved 47.3km - Fogo Island Pride
+[2025-12-27 13:02:34] ID 40165: Moved 14004.6km - Ralph Connor Memorial United Church
+[2025-12-27 13:02:37] ID 40175: Moved 13873.6km - Red Deer Lake United Church
+[2025-12-27 13:02:37] ID 40179: Moved 1.3km - Fifth Avenue Memorial United Church
+[2025-12-27 13:02:39] ID 40186: Moved 10023.7km - Youth Pride Durham
+[2025-12-27 13:02:45] ID 40218: Moved 14789.3km - St. John's United Church
+[2025-12-27 13:02:46] ID 40224: Moved 3.1km - Shaughnessy Heights United Church
+[2025-12-27 13:02:47] ID 40227: Moved 13753.1km - Badlands Pride Associaiton
+[2025-12-27 13:02:47] ID 40229: Moved 3.2km - Trinity Grace United Church
+[2025-12-27 13:02:51] ID 40250: Moved 18.2km - Transcona Memorial United Church
+[2025-12-27 13:02:53] ID 40257: Moved 1.1km - Carol United Church
+[2025-12-27 13:02:53] ID 40260: Moved 14.6km - Greenwood United Church
+[2025-12-27 13:02:55] ID 40270: Moved 3.8km - Yellowknife United Church
+[2025-12-27 13:02:56] ID 40275: Moved 893.5km - Wabash United Church
+[2025-12-27 13:02:58] ID 40285: Moved 10083km - Grace United Church
+[2025-12-27 13:02:59] ID 40287: Moved 3.9km - Trinity United Church
+[2025-12-27 13:02:59] ID 40288: Moved 8.3km - St. Andrew's United Church
+[2025-12-27 13:03:00] ID 40293: Moved 1.6km - Dunsford United Church
+[2025-12-27 13:03:01] ID 40297: Moved 1.8km - Trinity United Church, Gravenhurst
+[2025-12-27 13:03:02] ID 40304: Moved 1.2km - Ruthven Pastoral Charge
+[2025-12-27 13:03:07] ID 40323: Moved 1.7km - Emmanuel United Church
+[2025-12-27 13:03:11] ID 40343: Moved 99.3km - Richmond Hill United Church
+[2025-12-27 13:03:11] ID 40344: Moved 3.8km - St. Luke's United Church
+[2025-12-27 13:03:12] ID 40347: Moved 27.5km - St. Andrew's United Church - Sioux
+[2025-12-27 13:03:16] ID 40366: Moved 4.2km - East End United Church
+[2025-12-27 13:03:19] ID 40383: Moved 16.9km - Cathedral Church of St. James
+[2025-12-27 13:03:28] ID 40430: Moved 1km - Dorothy Downstairs
+[2025-12-27 13:03:29] ID 40433: Moved 2.1km - Anderson Distillery & Grill
+[2025-12-27 13:03:31] ID 40446: Moved 2.8km - Polo Inn
+[2025-12-27 13:03:32] ID 40449: Moved 1.1km - Wilde Bar & Restaurant
+[2025-12-27 13:03:32] ID 40452: Moved 2.5km - Barks N' Rec
+[2025-12-27 13:03:33] ID 40453: Moved 1.2km - Barks N' Rec
+[2025-12-27 13:03:33] ID 40456: Moved 1km - The Brown Elephant
+[2025-12-27 13:03:34] ID 40461: Moved 1.2km - 64Ten Chicago
+[2025-12-27 13:03:34] ID 40462: Moved 1.4km - The Chopping Block
+[2025-12-27 13:03:35] ID 40469: Moved 1.6km - Christy Webber Landscapes
+[2025-12-27 13:03:36] ID 40473: Moved 1.1km - Kit Kat Lounge & Supper Club
+[2025-12-27 13:03:36] ID 40474: Moved 5716.9km - Queer Britain
+[2025-12-27 13:03:36] ID 40475: Moved 2.7km - Dancer Adams, Marlene
+[2025-12-27 13:03:37] ID 40476: Moved 1.2km - Akpabio, Emem O.
+[2025-12-27 13:03:37] ID 40477: Moved 2.2km - Alexander, Meghan
+[2025-12-27 13:03:38] ID 40484: Moved 1.4km - Finca to Filter
+[2025-12-27 13:03:38] ID 40486: Moved 3.6km - Uncommon Coffee Roasters
+[2025-12-27 13:03:39] ID 40489: Moved 4.6km - Minnesota State University - Moorhead
+[2025-12-27 13:03:39] ID 40491: Moved 1.6km - California Spring Classic Bowling Tournament
+[2025-12-27 13:03:40] ID 40493: Moved 1.7km - Lotus
+[2025-12-27 13:03:40] ID 40495: Moved 1.3km - Kaleidoscope LGBTQ+ Film Festival
+[2025-12-27 13:03:40] ID 40496: Moved 1.1km - El Sur Street Food Co.
+[2025-12-27 13:03:41] ID 40497: Moved 1.6km - Lucky Lou's
+[2025-12-27 13:03:41] ID 40499: Moved 3.6km - Triniti Night Club
+[2025-12-27 13:03:42] ID 40502: Moved 1.8km - APQC Rainbow Spirit Support
+[2025-12-27 13:03:42] ID 40503: Moved 1.1km - For Them
+[2025-12-27 13:03:47] ID 40531: Moved 1.6km - Queer Food Foundation
+[2025-12-27 13:03:50] ID 40543: Moved 3km - La Sombrilla Rosa
+[2025-12-27 13:03:50] ID 40546: Moved 4.9km - Tia Maria
+[2025-12-27 13:03:52] ID 40559: Moved 10310.8km - Kenyon College
+[2025-12-27 13:03:53] ID 40563: Moved 1.2km - Lesbian Pop Up Bar / Madison Edition
+[2025-12-27 13:03:53] ID 40564: Moved 1.1km - Automic Gold
+[2025-12-27 13:03:53] ID 40565: Moved 1.1km - Bokksu Snack Box
+[2025-12-27 13:03:54] ID 40567: Moved 1.3km - Ghost Democracy
+[2025-12-27 13:03:54] ID 40571: Moved 1.1km - Alder New York
+[2025-12-27 13:03:56] ID 40581: Moved 6.8km - Lockwood - Williamsburg
+[2025-12-27 13:04:01] ID 40617: Moved 2.1km - University Of Arkansas
+[2025-12-27 13:04:05] ID 40643: Moved 2.5km - The Reckoning
+[2025-12-27 13:04:06] ID 40649: Moved 2.8km - The Hue Goddess
+[2025-12-27 13:04:09] ID 40670: Moved 1.4km - Either/Or
+[2025-12-27 13:04:09] ID 40672: Moved 1.3km - Triumph Market
+[2025-12-27 13:04:13] ID 40693: Moved 3.2km - Pacific Northwest Black Pride
+[2025-12-27 13:04:25] ID 40767: Moved 3.2km - Sandusky Pride
+[2025-12-27 13:04:26] ID 40771: Moved 2.8km - Whatcom Youth Pride
+[2025-12-27 13:04:29] ID 40787: Moved 25806.9km - Darwin Pride
+[2025-12-27 13:04:29] ID 40792: Moved 16003.8km - Tokyo Rainbow Pride
+[2025-12-27 13:04:30] ID 40794: Moved 12075.5km - Vienna Pride
+[2025-12-27 13:04:30] ID 40798: Moved 10994.2km - Oxford Pride
+[2025-12-27 13:04:31] ID 40800: Moved 1814.5km - Cumbria Pride
+[2025-12-27 13:04:31] ID 40805: Moved 11132.8km - Norwich Pride
+[2025-12-27 13:04:32] ID 40808: Moved 10723.3km - Wakefield Pride
+[2025-12-27 13:04:35] ID 40827: Moved 8623.8km - Wahlin-Stern, Seth
+[2025-12-27 13:04:38] ID 40844: Moved 3.6km - Honey's
+[2025-12-27 13:04:41] ID 40856: Moved 3.8km - Gonzalez, Liberty
+[2025-12-27 13:04:42] ID 40866: Moved 1.3km - Transcends Family Therapy
+[2025-12-27 13:04:43] ID 40870: Moved 24.4km - Cole, Wendy
+[2025-12-27 13:04:44] ID 40874: Moved 10.2km - Schidt, Dani
+[2025-12-27 13:04:44] ID 40875: Moved 8.9km - Fortuna Major Creative Co.
+[2025-12-27 13:04:50] ID 40914: Moved 3.6km - Folklore Salon & Barber
+[2025-12-27 13:04:52] ID 40926: Moved 1.1km - NYC Youth for Trans Rights
+[2025-12-27 13:04:53] ID 40932: Moved 161km - Fargo-Moorhead LGBT Film Festival
+[2025-12-27 13:04:55] ID 40941: Moved 5.4km - PDX Late Bloomers Club
+[2025-12-27 13:04:56] ID 40945: Moved 4km - Grupo De Afinidad LGBTQIA2S+ en Espanol
+[2025-12-27 13:04:56] ID 40946: Moved 5.4km - Trans-Fem*
+[2025-12-27 13:04:57] ID 40950: Moved 2.5km - House of Ruth Maryland
+[2025-12-27 13:05:01] ID 40972: Moved 1.4km - Middlebury Pride
+[2025-12-27 13:05:03] ID 40983: Moved 15.2km - Hedge Rose Farm
+[2025-12-27 13:05:05] ID 40988: Moved 5.8km - Rainbow Possum Farm
+[2025-12-27 13:05:08] ID 41006: Moved 1.2km - Beets & Blooms Farm
+[2025-12-27 13:05:08] ID 41009: Moved 9km - East Brook Community Farm
+[2025-12-27 13:05:10] ID 41020: Moved 13077.7km - Color Ridge Farm & Creamery
+[2025-12-27 13:05:11] ID 41025: Moved 11.5km - YoVille Community Garden & Farm
+[2025-12-27 13:05:11] ID 41026: Moved 3.7km - River Queen Greens
+[2025-12-27 13:05:12] ID 41031: Moved 10.1km - Respite in the Round and R.O.S.A. Land
+[2025-12-27 13:05:14] ID 41041: Moved 2.4km - Lavender Lab
+[2025-12-27 13:05:14] ID 41042: Moved 1.6km - Madison Reading Project
+[2025-12-27 13:05:15] ID 41045: Moved 2km - Northeast Kingdom Rainbow Coalition
+[2025-12-27 13:05:18] ID 41065: Moved 3.4km - Spectrum Youth and Family Services
+[2025-12-27 13:05:27] ID 41111: Moved 3.8km - Bellows Falls Union High School
+[2025-12-27 13:05:28] ID 41118: Moved 5.2km - Gay/Straight Alliance - Vista Library
+[2025-12-27 13:05:29] ID 41121: Moved 4km - Our Space - Poway
+[2025-12-27 13:05:33] ID 41147: Moved 3.2km - Stonewall Alliance of Chico
+[2025-12-27 13:05:33] ID 41148: Moved 3.2km - Stonewall Alliance of Chico
+[2025-12-27 13:05:33] ID 41153: Moved 2km - Queer Dharma
+[2025-12-27 13:05:34] ID 41154: Moved 1.2km - SPARTA
+[2025-12-27 13:05:36] ID 41163: Moved 3.7km - Padgett, Iris L.
+[2025-12-27 13:05:38] ID 41174: Moved 1.1km - Deep River Healing Arts
+[2025-12-27 13:05:39] ID 41181: Moved 8.5km - Hoke County Domestic Violence & Sexual
+[2025-12-27 13:05:42] ID 41197: Moved 1.6km - Localeyes Video Production
+[2025-12-27 13:05:45] ID 41215: Moved 1.1km - PMP NYC
+[2025-12-27 13:05:53] ID 41257: Moved 1.1km - Trudy's Tattoo Parlour
+[2025-12-27 13:05:55] ID 41273: Moved 1.8km - Indiana Legal Services, Inc.
+[2025-12-27 13:05:58] ID 41289: Moved 1805.9km - Gym Sportsbar
+[2025-12-27 13:06:05] ID 41325: Moved 1.1km - Queer Capita
+[2025-12-27 13:06:08] ID 41337: Moved 5km - Midway Specialty Care Center - Atlantis
+[2025-12-27 13:06:11] ID 41356: Moved 10997.8km - Association Contact France (PFLAG)
+[2025-12-27 13:06:13] ID 41366: Moved 20783.1km - Brighton Beach Pride
+[2025-12-27 13:06:14] ID 41369: Moved 4.6km - McLaughlin, Mercedes
+[2025-12-27 13:06:19] ID 41396: Moved 6593.1km - QTalk
+[2025-12-27 13:06:19] ID 41397: Moved 6593.1km - Queerly Reading Book Club
+[2025-12-27 13:06:22] ID 41412: Moved 15948.5km - Broken Rainbow
+[2025-12-27 13:06:29] ID 41454: Moved 4.2km - North Carolina State University
+[2025-12-27 13:06:31] ID 41464: Moved 1.2km - Asexuals and Aromantics of the Mid-Atlantic:
+[2025-12-27 13:06:34] ID 41483: Moved 5.2km - Houston Gaymers
+[2025-12-27 13:06:37] ID 41498: Moved 1.1km - Benny's Club
+[2025-12-27 13:06:43] ID 41529: Moved 5.5km - Gaslight
+[2025-12-27 13:06:44] ID 41538: Moved 2890.1km - I Can Network
+[2025-12-27 13:06:47] ID 41555: Moved 1.8km - Trinity Episcopal/Lutheran Church
+[2025-12-27 13:06:47] ID 41556: Moved 2.4km - Lebanon High School
+[2025-12-27 13:06:48] ID 41565: Moved 2.7km - Planned Parenthood -  West County Health
+[2025-12-27 13:06:53] ID 41586: Moved 22.1km - Reveille Mens Chorus
+[2025-12-27 13:06:56] ID 41602: Moved 1.4km - Together for Youth
+[2025-12-27 13:07:04] ID 41652: Moved 11.6km - Queer Bozeman
+[2025-12-27 13:07:09] ID 41674: Moved 1.5km - Gender-Affirming Night (GAN)
+[2025-12-27 13:07:10] ID 41681: Moved 1.1km - Rich Media Play
+[2025-12-27 13:07:11] ID 41685: Moved 1.5km - Hope and Help Center of Central Florida
+[2025-12-27 13:07:13] ID 41697: Moved 1.7km - Adirondack North Country Gender Alliance
+[2025-12-27 13:07:14] ID 41699: Moved 5km - Saratoga Pride
+[2025-12-27 13:07:16] ID 41706: Moved 1.4km - Pride in the Hills
+[2025-12-27 13:07:19] ID 41720: Moved 1595.8km - News Is Out
+[2025-12-27 13:07:21] ID 41728: Moved 54km - Planned Parenthood - Concord
+[2025-12-27 13:07:25] ID 41748: Moved 4.8km - Planned Parenthood -  Mountain View Health Center
+[2025-12-27 13:07:37] ID 41808: Moved 2.6km - Planned Parenthood -  Stamford
+[2025-12-27 13:07:46] ID 41851: Moved 8.7km - Planned Parenthood - Winston-Salem
+[2025-12-27 13:07:46] ID 41854: Moved 2km - Planned Parenthood - Keene Health
+[2025-12-27 13:07:51] ID 41879: Moved 2.3km - Planned Parenthood - Johnstown
+[2025-12-27 13:08:31] ID 42077: Moved 1.5km - Planned Parenthood - Northeast of San Antonio
+[2025-12-27 13:08:32] ID 42084: Moved 14464.4km - Bedayaa
+[2025-12-27 13:08:33] ID 42090: Moved 1.5km - Gender Inclusive Schools
+[2025-12-27 13:08:34] ID 42093: Moved 1.1km - Mombian
+[2025-12-27 13:08:36] ID 42102: Moved 5.1km - Portland Pride Run
+[2025-12-27 13:08:38] ID 42117: Moved 1.1km - EveryQueer
+[2025-12-27 13:08:39] ID 42122: Moved 1.1km - Queer Soccer League
+[2025-12-27 13:08:39] ID 42123: Moved 2.5km - Queer Rope Social NYC
+[2025-12-27 13:08:41] ID 42132: Moved 1.1km - Queer Archery League
+[2025-12-27 13:08:48] ID 42173: Moved 2.5km - Queer Social Club
+[2025-12-27 13:08:48] ID 42176: Moved 6.8km - First Unitarian Universalist Church of Nashville
+[2025-12-27 13:08:49] ID 42178: Moved 6.3km - Unitarian Universalist Church in Livermore
+[2025-12-27 13:09:00] ID 42237: Moved 2.8km - Dom + Bomb
+[2025-12-27 13:09:21] ID 42352: Moved 3.4km - LGBTQ+ Lorain County
+[2025-12-27 13:09:24] ID 42366: Moved 1.4km - Bickford, Kelsey
+[2025-12-27 13:09:27] ID 42383: Moved 9783.8km - Baldwin, Gray
+[2025-12-27 13:09:32] ID 42405: Moved 1.2km - Love on a Mission
+[2025-12-27 13:09:38] ID 42435: Moved 1.1km - OutCycling
+[2025-12-27 13:09:49] ID 42499: Moved 4.1km - Spectrum Center Spokane
+[2025-12-27 13:09:54] ID 42523: Moved 1.1km - Strands for Trans
+[2025-12-27 13:09:56] ID 42533: Moved 4.4km - Planton, Jake
+[2025-12-27 13:09:56] ID 42537: Moved 1.5km - Tampa Bay Gays Who Brunch
+[2025-12-27 13:09:57] ID 42540: Moved 9372.7km - Matthews-Naumann, Lindsay
+[2025-12-27 13:10:00] ID 42552: Moved 2.2km - Palmer, Rae
+[2025-12-27 13:10:04] ID 42578: Moved 7.7km - PFLAG - Alexandria
+[2025-12-27 13:10:06] ID 42587: Moved 1.5km - Kaleidoscope
+[2025-12-27 13:10:12] ID 42622: Moved 1.1km - KAFTKO
+[2025-12-27 13:10:19] ID 42655: Moved 7.4km - Johns, Everett
+[2025-12-27 13:10:27] ID 42693: Moved 7.6km - Baumgardner, Rachel
+[2025-12-27 13:10:30] ID 42708: Moved 23km - Rainbow Connections
+[2025-12-27 13:10:33] ID 42721: Moved 4.1km - Trail Ahead Therapy - Albuquerque
+[2025-12-27 13:10:44] ID 42775: Moved 2.1km - Pride New Albany
+[2025-12-27 13:10:45] ID 42777: Moved 11.1km - PFLAG - Paramus
+[2025-12-27 13:10:45] ID 42779: Moved 1.1km - OlderGay.Men
+[2025-12-27 13:10:50] ID 42801: Moved 4.5km - Qmmunity - Austin
+[2025-12-27 13:10:50] ID 42802: Moved 11365.8km - Pride Frisco
+[2025-12-27 13:10:53] ID 42816: Moved 17.7km - Tulane University
+[2025-12-27 13:10:55] ID 42830: Moved 1.1km - Rubies
+[2025-12-27 13:11:00] ID 42853: Moved 1.1km - Queer Walks and Hikes
+[2025-12-27 13:11:00] ID 42855: Moved 1.1km - Butch 4 Hire
+[2025-12-27 13:11:01] ID 42857: Moved 1.1km - What's Queer Here
+[2025-12-27 13:11:05] ID 42878: Moved 3.8km - Stonewall Sports Baltimore
+[2025-12-27 13:11:07] ID 42888: Moved 34.3km - Bear Witness
+[2025-12-27 13:11:10] ID 42910: Moved 3.1km - California Institute of the Arts
+[2025-12-27 13:11:16] ID 42941: Moved 690km - Brazos County Health Disctrict
+[2025-12-27 13:11:18] ID 42951: Moved 3.6km - Eielson PRISM
+[2025-12-27 13:11:19] ID 42952: Moved 2.7km - University of California Santa Barbara
+[2025-12-27 13:11:21] ID 42960: Moved 4.5km - California State University Fullerton
+[2025-12-27 13:11:30] ID 43006: Moved 3km - Ann Arbor Pride
+[2025-12-27 13:11:39] ID 43055: Moved 2.1km - America's Finest City Soft Ball
+[2025-12-27 13:11:39] ID 43056: Moved 2.1km - San Diego Black LGBTQ Coalition
+[2025-12-27 13:11:41] ID 43065: Moved 3.7km - Trans Mentor Project
+[2025-12-27 13:11:58] ID 43157: Moved 1.3km - San Leandro Police Department LGBTQ Liaison
+[2025-12-27 13:11:59] ID 43158: Moved 1.7km - Riverside Police Department LGBTQ Liaison
+[2025-12-27 13:12:10] ID 43221: Moved 1.1km - Hot Rabbit NYC
+[2025-12-27 13:12:12] ID 43229: Moved 3.9km - Gandara Pride House
+[2025-12-27 13:12:13] ID 43235: Moved 1.8km - Marquette University
+[2025-12-27 13:12:20] ID 43269: Moved 1.1km - Christopher Street Tours
+[2025-12-27 13:12:29] ID 43314: Moved 4.7km - Tonewall
+[2025-12-27 13:12:30] ID 43317: Moved 1.5km - Blake, Nicole
+[2025-12-27 13:12:30] ID 43318: Moved 1.5km - Churchill, Jennifer
+[2025-12-27 13:12:31] ID 43323: Moved 1.5km - Jarrell, Lucia
+[2025-12-27 13:12:31] ID 43324: Moved 1.5km - Katz, Judy
+[2025-12-27 13:12:32] ID 43325: Moved 1.5km - Martin, Katie
+[2025-12-27 13:12:32] ID 43326: Moved 1.5km - Moffitt, Dottie
+[2025-12-27 13:12:33] ID 43332: Moved 1.5km - Wilson, Steven Paul
+[2025-12-27 13:12:35] ID 43339: Moved 8km - Idaho Pride Business League
+[2025-12-27 13:12:35] ID 43340: Moved 13912.7km - Jae, Kelsey
+[2025-12-27 13:12:37] ID 43347: Moved 2.8km - Spoke & Word
+[2025-12-27 13:12:42] ID 43365: Moved 20.1km - Stitham, Jake
+[2025-12-27 13:12:45] ID 43379: Moved 3.5km - Beyond Healing
+[2025-12-27 13:12:57] ID 43445: Moved 1.2km - Gender Identity Development Group 18+
+[2025-12-27 13:12:57] ID 43446: Moved 1.2km - Family Pride Support Group
+[2025-12-27 13:12:57] ID 43447: Moved 1.2km - ShoutOUT
+[2025-12-27 13:13:00] ID 43462: Moved 5.1km - St. Paul's School
+[2025-12-27 13:13:00] ID 43466: Moved 1.5km - Sac Queer Soccer
+[2025-12-27 13:13:02] ID 43475: Moved 3.1km - Cactus Counseling Center
+[2025-12-27 13:13:05] ID 43489: Moved 1100.2km - North Park Senior Apartments
+[2025-12-27 13:13:05] ID 43490: Moved 1100.2km - Karibu
+[2025-12-27 13:13:10] ID 43511: Moved 26.7km - Diep, Jane
+[2025-12-27 13:13:18] ID 43554: Moved 4.6km - Madame Sherri's
+[2025-12-27 13:13:20] ID 43561: Moved 3.4km - Omaha For Us LGBTQ+ Center
+[2025-12-27 13:13:24] ID 43580: Moved 1.1km - Flying Doula
+[2025-12-27 13:13:24] ID 43582: Moved 19.7km - Eastside Pride PNW
+[2025-12-27 13:13:34] ID 43633: Moved 8.6km - Pinhole Coffee Van
+[2025-12-27 13:13:36] ID 43647: Moved 7.3km - Dallas Hope Center
+[2025-12-27 13:13:37] ID 43650: Moved 3.3km - Nova Prism Center
+[2025-12-27 13:13:37] ID 43653: Moved 1.2km - Zen Casa
+[2025-12-27 13:13:37] ID 43654: Moved 11.3km - 340 Night Club
+[2025-12-27 13:13:38] ID 43657: Moved 1.4km - Bar Palari
+[2025-12-27 13:13:38] ID 43658: Moved 1.7km - Kilt+
+[2025-12-27 13:13:38] ID 43660: Moved 1km - Denver Pride
+[2025-12-27 13:13:39] ID 43661: Moved 5.5km - San Marcos Texas Pride Festival
+[2025-12-27 13:13:39] ID 43662: Moved 1.5km - Trinity Pride Fest
+[2025-12-27 13:13:39] ID 43663: Moved 1.1km - Real You Electrolysis
+[2025-12-27 13:13:39] ID 43665: Moved 29km - Clifton & Leopold
+[2025-12-27 13:13:40] ID 43666: Moved 7.1km - Dapper Owl Coffee Pub and Bakery
+[2025-12-27 13:13:40] ID 43668: Moved 1.2km - Novelette
+[2025-12-27 13:13:41] ID 43671: Moved 3.9km - List It Lloyd
+[2025-12-27 13:13:41] ID 43672: Moved 1.8km - VOCE Speech Therapy
+[2025-12-27 13:13:41] ID 43673: Moved 2km - Frankie J's
+[2025-12-27 13:13:41] ID 43675: Moved 1.5km - Old Glory
+[2025-12-27 13:13:42] ID 43676: Moved 3km - Long Beach LGBTQ+ Chamber of Commerce
+[2025-12-27 13:13:42] ID 43677: Moved 2km - Greater Miami LGBTQ Chamber of Commerce
+[2025-12-27 13:13:42] ID 43679: Moved 1.5km - Iowa LGBTQ Chamber of Commerce
+[2025-12-27 13:13:43] ID 43680: Moved 1.3km - Civitas - The Ohio River Valley LGBTQ
+[2025-12-27 13:13:43] ID 43681: Moved 3.6km - Gay and Lesbian Chamber of Commerce
+[2025-12-27 13:13:43] ID 43682: Moved 5.9km - Gay and Lesbian Chamber of Commerce
+[2025-12-27 13:13:43] ID 43683: Moved 6.9km - New Jersey Pride Chamber of Commerce
+[2025-12-27 13:13:44] ID 43686: Moved 1.4km - Greater Houston LGBTQ+ Chamber of Commerce
+[2025-12-27 13:13:44] ID 43687: Moved 2.5km - Durham Queer Sports
+[2025-12-27 13:13:45] ID 43689: Moved 1.8km - Rehab
+[2025-12-27 13:13:45] ID 43690: Moved 1.7km - Handlebar
+[2025-12-27 13:13:46] ID 43694: Moved 2.8km - Arce, Patricia
+[2025-12-27 13:13:47] ID 43698: Moved 9.6km - Village Voltage
+[2025-12-27 13:13:47] ID 43699: Moved 1.6km - Upper Valley Coffee Roasters
+[2025-12-27 13:13:47] ID 43700: Moved 5.1km - Riverbend Roasters
+[2025-12-27 13:13:47] ID 43701: Moved 5.4km - Lost River Trading Post
+[2025-12-27 13:13:48] ID 43702: Moved 1.6km - Black Cat Cafe and Gallery
+[2025-12-27 13:13:48] ID 43703: Moved 1.3km - Azalea Coffee Bar
+[2025-12-27 13:13:48] ID 43704: Moved 7km - Club David
+[2025-12-27 13:13:48] ID 43705: Moved 8.4km - Rofhiwa Book Cafe
+[2025-12-27 13:13:49] ID 43709: Moved 2.5km - Coffee Beer
+[2025-12-27 13:13:49] ID 43710: Moved 1.5km - Small Format
+[2025-12-27 13:13:50] ID 43714: Moved 22.3km - The Bean of Mesilla
+[2025-12-27 13:13:50] ID 43716: Moved 1.5km - Thread Coffee Roasters
+[2025-12-27 13:13:51] ID 43718: Moved 1.3km - Cream and Amber
+[2025-12-27 13:13:51] ID 43719: Moved 2.4km - Constellation Cat Cafe
+[2025-12-27 13:13:51] ID 43720: Moved 3.5km - MoKaBe's Coffeehouse
+[2025-12-27 13:13:52] ID 43721: Moved 3.2km - Bolt & Bruizer's Baker and Barkery
+[2025-12-27 13:13:52] ID 43724: Moved 1.5km - VentureOutNJ
+[2025-12-27 13:13:53] ID 43725: Moved 1.8km - Valley Pride
+[2025-12-27 13:13:53] ID 43727: Moved 8.7km - Prince George Pride Society
+[2025-12-27 13:13:53] ID 43728: Moved 1.9km - Hot Springs LGBTQ+ Community Network
+[2025-12-27 13:13:53] ID 43729: Moved 4.6km - SAFTY - Supportive Allies For Trans Youth
+[2025-12-27 13:13:54] ID 43730: Moved 1.8km - Qweerty Gamers
+[2025-12-27 13:13:54] ID 43733: Moved 1.4km - PFLAG - Tuscaloosa
+[2025-12-27 13:13:54] ID 43734: Moved 8.3km - PFLAG - Clayton-Concord
+[2025-12-27 13:13:55] ID 43735: Moved 4.4km - PFLAG - Moraga/Lamorinda
+[2025-12-27 13:13:55] ID 43737: Moved 9.4km - PFLAG - Tri-Valley
+[2025-12-27 13:13:55] ID 43738: Moved 1.7km - PFLAG - Stamford
+[2025-12-27 13:13:55] ID 43739: Moved 1.1km - PFLAG - Waterbury
+[2025-12-27 13:13:56] ID 43741: Moved 8.2km - PFLAG - DeLand/Volusia
+[2025-12-27 13:13:56] ID 43742: Moved 8.3km - Rising Against All Odds, Inc.
+[2025-12-27 13:13:56] ID 43744: Moved 4.5km - PFLAG - Niceville
+[2025-12-27 13:13:57] ID 43749: Moved 4km - El Suenito
+[2025-12-27 13:13:57] ID 43750: Moved 2.7km - El Suenito
+[2025-12-27 13:13:58] ID 43755: Moved 2.8km - Farnsworth Dispensary
+[2025-12-27 13:13:59] ID 43757: Moved 3km - CommCan
+[2025-12-27 13:13:59] ID 43759: Moved 1.6km - Peak Extracts
+[2025-12-27 13:14:01] ID 43770: Moved 3.8km - Ziggy's Naturals
+[2025-12-27 13:14:01] ID 43771: Moved 19.1km - Stone Road
+[2025-12-27 13:14:02] ID 43772: Moved 5km - Living Out Palm Springs
+[2025-12-27 13:14:02] ID 43773: Moved 6.3km - PFLAG - Carrollton
+[2025-12-27 13:14:02] ID 43774: Moved 2.5km - PFLGA - Gainesville GA
+[2025-12-27 13:14:03] ID 43778: Moved 3.7km - Athens Queer Night
+[2025-12-27 13:14:03] ID 43781: Moved 1.8km - Malden Pride Coalition
+[2025-12-27 13:14:04] ID 43784: Moved 4.5km - PFALG - Woodstock
+[2025-12-27 13:14:04] ID 43785: Moved 3.5km - PFLAG - Geneva/Tri-cities
+[2025-12-27 13:14:04] ID 43787: Moved 4.7km - PFLAG - Coeur D'alene / Kootenai
+[2025-12-27 13:14:05] ID 43788: Moved 3.5km - PFLAG - Edwardsville
+[2025-12-27 13:14:05] ID 43792: Moved 1.7km - PFLAG - Morris/Grundy Area
+[2025-12-27 13:14:06] ID 43793: Moved 3.4km - PFLAG - Ottawa IL
+[2025-12-27 13:14:06] ID 43794: Moved 1.1km - PFLAG - Peoria
+[2025-12-27 13:14:06] ID 43795: Moved 2.9km - PFLAG - Corydon/Leavenworth
+[2025-12-27 13:14:06] ID 43797: Moved 13.6km - Wyoming Lifeline
+[2025-12-27 13:14:07] ID 43798: Moved 1.1km - PFLAG - Fishers
+[2025-12-27 13:14:07] ID 43799: Moved 9.7km - PFLAG - Clinton/Rivercities
+[2025-12-27 13:14:07] ID 43800: Moved 4.4km - PFLAG - Storm Lake
+[2025-12-27 13:14:07] ID 43802: Moved 7.8km - PFLAG - Lawrence
+[2025-12-27 13:14:08] ID 43803: Moved 1.8km - PFLAG - Marysville
+[2025-12-27 13:14:08] ID 43805: Moved 5.7km - Staller, Aiya
+[2025-12-27 13:14:08] ID 43806: Moved 2.7km - Town Hall Collaborative
+[2025-12-27 13:14:08] ID 43807: Moved 2.4km - Honey Elixir Bar
+[2025-12-27 13:14:09] ID 43809: Moved 7.8km - Lawrence Pride
+[2025-12-27 13:14:09] ID 43811: Moved 12.4km - Juniper Mountain House
+[2025-12-27 13:14:09] ID 43812: Moved 17.3km - Johnson,  Briana
+[2025-12-27 13:14:10] ID 43814: Moved 6.7km - Integrated Counseling and Wellness
+[2025-12-27 13:14:10] ID 43816: Moved 5.1km - PFLAG - Jennings
+[2025-12-27 13:14:10] ID 43817: Moved 2.1km - PFLAG - Bowie
+[2025-12-27 13:14:11] ID 43818: Moved 9.2km - PFLAG - Frederick
+[2025-12-27 13:14:11] ID 43819: Moved 8.9km - PFLAG - Salisbury
+[2025-12-27 13:14:11] ID 43820: Moved 3.2km - PFLAG - Dearborn
+[2025-12-27 13:14:11] ID 43821: Moved 1.3km - PFLAG - Grosse Pointe
+[2025-12-27 13:14:12] ID 43824: Moved 2.6km - Grosse Pointe Pride
+[2025-12-27 13:14:12] ID 43826: Moved 7.2km - PFLAG - Plymouth/Canton
+[2025-12-27 13:14:12] ID 43828: Moved 1.2km - PFLAG - New Prague Area
+[2025-12-27 13:14:13] ID 43830: Moved 6.7km - PFLAG - Poplar Bluff
+[2025-12-27 13:14:13] ID 43835: Moved 7.6km - Safe Space - Escondido
+[2025-12-27 13:14:14] ID 43842: Moved 11.3km - PFLAG - Lexington
+[2025-12-27 13:14:15] ID 43844: Moved 1.3km - PFLAG - Southern Pines
+[2025-12-27 13:14:15] ID 43854: Moved 2.8km - Western Oklahoma Pride Festival
+[2025-12-27 13:14:16] ID 43856: Moved 6.9km - Familiars Coffee and Tea
+[2025-12-27 13:14:16] ID 43857: Moved 39.6km - PFLAG - Prineville
+[2025-12-27 13:14:16] ID 43858: Moved 5.4km - PFLAG - Silverton
+[2025-12-27 13:14:16] ID 43860: Moved 2.3km - PFLAG - Bucks County
+[2025-12-27 13:14:17] ID 43861: Moved 2.2km - PFLAG - Nazareth / Lehigh Valley
+[2025-12-27 13:14:17] ID 43862: Moved 2.7km - Royersford Baptist Church
+[2025-12-27 13:14:17] ID 43863: Moved 8.1km - PFLAG - Pawleys Island
+[2025-12-27 13:14:18] ID 43866: Moved 4.9km - PFLAG - Athens
+[2025-12-27 13:14:18] ID 43868: Moved 2.1km - PFLAG - Tullahoma
+[2025-12-27 13:14:18] ID 43870: Moved 4.6km - PFLAG - Brenham
+[2025-12-27 13:14:19] ID 43872: Moved 9.4km - PFLAG - Georgetown
+[2025-12-27 13:14:19] ID 43874: Moved 1.8km - Abilene Pride Alliance
+[2025-12-27 13:14:19] ID 43875: Moved 3.6km - PFLAG - San Marcos
+[2025-12-27 13:14:20] ID 43876: Moved 3.6km - PFLAG - San Marcos
+[2025-12-27 13:14:20] ID 43878: Moved 3.4km - PFLAG - Wlliamsburg
+[2025-12-27 13:14:20] ID 43879: Moved 3.2km - PFLAG - Woodstock
+[2025-12-27 13:14:20] ID 43880: Moved 1km - LGBT+ Counseling Collaborative, Inc.
+[2025-12-27 13:14:21] ID 43881: Moved 2.8km - PFLAG - Stanwood-Camano
+[2025-12-27 13:14:21] ID 43882: Moved 4km - PFLAG - Fairmont
+[2025-12-27 13:14:21] ID 43883: Moved 2.7km - PFLAG - Cambridge
+[2025-12-27 13:14:21] ID 43884: Moved 3.8km - PFLAG - Marshfield
+[2025-12-27 13:14:21] ID 43885: Moved 27.1km - PFLAG - Green River
+[2025-12-27 13:14:22] ID 43886: Moved 22.2km - PFLAG - Lander
+[2025-12-27 13:14:22] ID 43887: Moved 30.8km - PFLAG - Laramie
+[2025-12-27 13:14:23] ID 43890: Moved 3km - Lucky's Barbershop
+[2025-12-27 13:14:23] ID 43891: Moved 2.6km - Bodhi Counseling Services
+[2025-12-27 13:14:23] ID 43892: Moved 1.1km - Bodhi Counseling Services
+[2025-12-27 13:14:23] ID 43893: Moved 1.8km - Bodhi Counseling Services
+[2025-12-27 13:14:23] ID 43894: Moved 2.2km - Queerlective
+[2025-12-27 13:14:24] ID 43896: Moved 3km - Roar
+[2025-12-27 13:14:24] ID 43898: Moved 2.2km - Main Street Music Therapy
+[2025-12-27 13:14:24] ID 43899: Moved 3.3km - Black Kitten Karaoke
+[2025-12-27 13:14:25] ID 43900: Moved 1.2km - Haus of Glitter
+[2025-12-27 13:14:25] ID 43901: Moved 2.9km - Blue Heron Art Studio
+[2025-12-27 13:14:25] ID 43902: Moved 2km - panethic pourovers
+[2025-12-27 13:14:26] ID 43906: Moved 4.4km - Action! by design
+[2025-12-27 13:14:26] ID 43908: Moved 1.7km - Pinetree Partners
+[2025-12-27 13:14:26] ID 43909: Moved 8.6km - HasOptimization
+[2025-12-27 13:14:27] ID 43911: Moved 2.2km - You're a Big Deal
+[2025-12-27 13:14:28] ID 43916: Moved 2.3km - The Punk Pixie
+[2025-12-27 13:14:28] ID 43917: Moved 1.2km - Liz Washer Makeup Artst
+[2025-12-27 13:14:28] ID 43918: Moved 1.1km - Intuition Tattoo Collective
+[2025-12-27 13:14:28] ID 43920: Moved 3.4km - Tend Hair Studio
+[2025-12-27 13:14:29] ID 43922: Moved 6.7km - Lisa Church Electrolysis
+[2025-12-27 13:14:29] ID 43923: Moved 4km - Crone Collective
+[2025-12-27 13:14:30] ID 43926: Moved 1.6km - Fowler, Rachael
+[2025-12-27 13:14:31] ID 43929: Moved 1.7km - Fire Cat Farm
+[2025-12-27 13:14:31] ID 43930: Moved 6.9km - Moonrose Farm
+[2025-12-27 13:14:31] ID 43932: Moved 44.3km - Contagious Events
+[2025-12-27 13:14:32] ID 43937: Moved 1.6km - MVSwell
+[2025-12-27 13:14:32] ID 43939: Moved 3km - Purgatory
+[2025-12-27 13:14:32] ID 43940: Moved 2.2km - Columbia TN Pride
+[2025-12-27 13:14:33] ID 43944: Moved 3.9km - BEyond
+[2025-12-27 13:14:34] ID 43949: Moved 5.2km - Levi, Andrew J.
+[2025-12-27 13:14:34] ID 43950: Moved 2.9km - Gay Parents to Be
+[2025-12-27 13:14:35] ID 43951: Moved 1.7km - Soft Corner Midwifery
+[2025-12-27 13:14:35] ID 43952: Moved 6.8km - Full Story Birth
+[2025-12-27 13:14:36] ID 43958: Moved 1.5km - Blend
+[2025-12-27 13:14:37] ID 43961: Moved 1.6km - Goldie's Rotisserie
+[2025-12-27 13:14:37] ID 43962: Moved 2.6km - Egg & Compnay
+[2025-12-27 13:14:37] ID 43963: Moved 1.6km - Basil Tree
+[2025-12-27 13:14:38] ID 43967: Moved 2.1km - The Abbey
+[2025-12-27 13:14:38] ID 43968: Moved 1.5km - Auspicious Brew
+[2025-12-27 13:14:38] ID 43969: Moved 1.2km - Empress Farm
+[2025-12-27 13:14:39] ID 43973: Moved 7km - Apothica Cafe
+[2025-12-27 13:14:39] ID 43974: Moved 1.6km - JJ Electric
+[2025-12-27 13:14:39] ID 43975: Moved 1.4km - Studio Riggleman
+[2025-12-27 13:14:40] ID 43977: Moved 16.2km - Comfort Air Systems
+[2025-12-27 13:14:40] ID 43978: Moved 3.5km - Full Well Farm
+[2025-12-27 13:14:40] ID 43979: Moved 1.1km - Stargazer Hollow
+[2025-12-27 13:14:41] ID 43981: Moved 6.7km - Pride Toolbox
+[2025-12-27 13:14:41] ID 43984: Moved 2.6km - Transgender Health Program
+[2025-12-27 13:14:41] ID 43985: Moved 3.6km - Morrison, Meghan
+[2025-12-27 13:14:42] ID 43987: Moved 4.5km - Artisan Eyewear
+[2025-12-27 13:14:42] ID 43988: Moved 5.9km - Mountain Lake Plastic Surgery
+[2025-12-27 13:14:42] ID 43989: Moved 4.5km - Max Green Massage Therapy
+[2025-12-27 13:14:42] ID 43990: Moved 2.5km - Julia's Pet Pals
+[2025-12-27 13:14:43] ID 43991: Moved 2.1km - JP Cat Cabana
+[2025-12-27 13:14:43] ID 43993: Moved 2.2km - Route 6 Designs
+[2025-12-27 13:14:43] ID 43994: Moved 7.9km - Wild Soul River
+[2025-12-27 13:14:44] ID 43998: Moved 1.3km - Out In Hollywood
+[2025-12-27 13:14:44] ID 43999: Moved 10.6km - Obsessed
+[2025-12-27 13:14:45] ID 44002: Moved 2.2km - Meak Productions, Inc.
+[2025-12-27 13:14:45] ID 44003: Moved 1.3km - Gaybors Agency
+[2025-12-27 13:14:46] ID 44006: Moved 1.1km - Paonessa Talent Agency
+[2025-12-27 13:14:47] ID 44012: Moved 12.5km - First Christian Church of Anniston
+[2025-12-27 13:14:48] ID 44017: Moved 1.1km - Stacy's at Melrose
+[2025-12-27 13:14:48] ID 44019: Moved 5.7km - Vermont CARES
+[2025-12-27 13:14:48] ID 44020: Moved 5.6km - Vermont CARES
+[2025-12-27 13:14:49] ID 44021: Moved 5.5km - Vermont CARES
+[2025-12-27 13:14:51] ID 44031: Moved 18.5km - Jackson Hole Pride
+[2025-12-27 13:14:51] ID 44032: Moved 2km - Sunu Valley Pride
+[2025-12-27 13:14:51] ID 44034: Moved 1.5km - The Corner Yoga Studio
+[2025-12-27 13:14:52] ID 44035: Moved 1.1km - Yoga with Avery
+[2025-12-27 13:14:52] ID 44036: Moved 31.3km - Rock Springs Pride
+[2025-12-27 13:14:52] ID 44037: Moved 10.6km - Livingston Pride
+[2025-12-27 13:14:52] ID 44038: Moved 23.2km - Trans Visible Montana
+[2025-12-27 13:14:52] ID 44039: Moved 9.1km - Big Sky Out
+[2025-12-27 13:14:53] ID 44040: Moved 3.6km - Breck Pride
+[2025-12-27 13:14:53] ID 44041: Moved 8.7km - Missoula Pride
+[2025-12-27 13:14:53] ID 44042: Moved 34.1km - Vidal, Monique
+[2025-12-27 13:14:53] ID 44043: Moved 34.1km - Curtis-Baker, L.P.
+[2025-12-27 13:14:53] ID 44044: Moved 34.1km - Marces, Maia
+[2025-12-27 13:14:54] ID 44045: Moved 34.1km - Moe, Miranda
+[2025-12-27 13:14:54] ID 44046: Moved 12.6km - University Of Wyoming
+[2025-12-27 13:14:54] ID 44047: Moved 8.7km - South High School
+[2025-12-27 13:14:54] ID 44048: Moved 5.7km - Drag for a Cause
+[2025-12-27 13:14:54] ID 44049: Moved 31.3km - The Starling Company
+[2025-12-27 13:14:55] ID 44055: Moved 28.3km - Rainbow Coffee House
+[2025-12-27 13:14:56] ID 44056: Moved 7.3km - American Lutheran
+[2025-12-27 13:14:56] ID 44058: Moved 24.2km - Billings Clinic
+[2025-12-27 13:14:56] ID 44059: Moved 24.3km - Wellspring Health Access
+[2025-12-27 13:14:56] ID 44060: Moved 14.7km - Cheyenne Regional
+[2025-12-27 13:14:56] ID 44061: Moved 30.1km - Laramie Reproductive Health Clinic
+[2025-12-27 13:14:57] ID 44062: Moved 1.2km - Queer Scouts - Worchester
+[2025-12-27 13:15:01] ID 44080: Moved 4.4km - Autumn Counseling Services
+[2025-12-27 13:15:01] ID 44081: Moved 4.4km - Haight, Natalya
+[2025-12-27 13:15:01] ID 44082: Moved 4.4km - Dafcik, Adrienne
+[2025-12-27 13:15:01] ID 44083: Moved 4.4km - Nakashian, Jessica
+[2025-12-27 13:15:02] ID 44084: Moved 1.9km - National Gay Basketball Associaiton
+[2025-12-27 13:15:07] ID 44111: Moved 1.4km - Sunshine Vinyl
+[2025-12-27 13:15:07] ID 44113: Moved 1.8km - Dame
+[2025-12-27 13:15:08] ID 44114: Moved 1.1km - Das Haus
+[2025-12-27 13:15:08] ID 44115: Moved 6km - Prism Thrift
+[2025-12-27 13:15:11] ID 44130: Moved 2.2km - Men's Relationship Violence Treatment and
+[2025-12-27 13:15:14] ID 44147: Moved 1.1km - Queer Metalsmiths
+[2025-12-27 13:15:15] ID 44148: Moved 2.8km - 39th Street District
+[2025-12-27 13:15:15] ID 44149: Moved 2.2km - Black Queer Tulsa
+[2025-12-27 13:15:15] ID 44150: Moved 2.6km - Q-Space
+[2025-12-27 13:15:15] ID 44151: Moved 2.2km - Okotoks United Church
+[2025-12-27 13:15:15] ID 44153: Moved 1.2km - Dolan, Emma
+[2025-12-27 13:15:16] ID 44154: Moved 1.2km - Johnson, Ada
+[2025-12-27 13:15:21] ID 44179: Moved 1.1km - Trans Safety Emergency Fund
+[2025-12-27 13:15:21] ID 44182: Moved 210.5km - VI Binders
+[2025-12-27 13:15:46] ID 44303: Moved 1.6km - Amarillo Unitarian Universalist Fellowship
+[2025-12-27 13:15:51] ID 44329: Moved 1.3km - Colorful Resilience
+[2025-12-27 13:15:51] ID 44330: Moved 6.2km - Farm & Wilderness
+[2025-12-27 13:15:51] ID 44331: Moved 5.8km - Camp Hawkeye
+[2025-12-27 13:15:52] ID 44332: Moved 9.5km - Camp Quinebarge
+[2025-12-27 13:15:53] ID 44341: Moved 5.7km - Odyssey Teen Camp
+[2025-12-27 13:15:56] ID 44358: Moved 15.5km - Aaron, Christopher
+[2025-12-27 13:16:06] ID 44406: Moved 1.1km - Feminist Bird Club
+[2025-12-27 13:16:06] ID 44407: Moved 1.1km - NYC Queer Birders
+[2025-12-27 13:16:11] ID 44433: Moved 3km - TRANSCEND Fund
+[2025-12-27 13:16:15] ID 44449: Moved 1km - Black LGBTQIA+ Migrant Project (BLMP)
+[2025-12-27 13:16:19] ID 44470: Moved 1.9km - Tucson Pink Pistols
+[2025-12-27 13:16:20] ID 44471: Moved 1.6km - Denver Pink Pistols
+[2025-12-27 13:16:25] ID 44494: Moved 193.4km - Queer Neighbours Society of Red Deer
+[2025-12-27 13:16:26] ID 44499: Moved 17848.4km - Youth Futures Utah - Saint George
+[2025-12-27 13:16:33] ID 44536: Moved 1.6km - APNH
+[2025-12-27 13:16:35] ID 44547: Moved 13504.5km - The Trans Youth Emergency Project
+[2025-12-27 13:16:36] ID 44552: Moved 4.9km - Loomis Chaffee School
+[2025-12-27 13:16:37] ID 44554: Moved 3.7km - Jack Myers House
+[2025-12-27 13:16:37] ID 44556: Moved 1.6km - Kate Lincoln Art
+[2025-12-27 13:16:38] ID 44561: Moved 8.5km - Prism TableTop club
+[2025-12-27 13:16:44] ID 44588: Moved 1.6km - Bienestar Human Services
+[2025-12-27 13:16:44] ID 44589: Moved 1.1km - Transcendence Salem
+[2025-12-27 13:16:47] ID 44599: Moved 2.1km - LLACE Game day
+[2025-12-27 13:16:48] ID 44607: Moved 5.3km - Queertopia
+[2025-12-27 13:16:52] ID 44623: Moved 1.3km - Northwest Missouri State University
+[2025-12-27 13:16:53] ID 44629: Moved 4.4km - Koolfi Creamery and Cafe
+[2025-12-27 13:17:02] ID 44672: Moved 3.1km - The Collective Coalition
+[2025-12-27 13:17:06] ID 44694: Moved 2.6km - McHaelen Consulting Services, LLC
+[2025-12-27 13:17:11] ID 44716: Moved 1.7km - The Queer Outdoors
+[2025-12-27 13:17:21] ID 44761: Moved 7842.3km - Petite Queer Pride
+[2025-12-27 13:17:21] ID 44763: Moved 41.1km - Pride Cape Breton
+[2025-12-27 13:17:23] ID 44769: Moved 58.2km - Small Point Pride
+[2025-12-27 13:17:23] ID 44771: Moved 1.1km - Pawtucket Pride
+[2025-12-27 13:17:26] ID 44784: Moved 1km - Queer kink mixer
+[2025-12-27 13:17:39] ID 44849: Moved 1.4km - Fiber Witch Festival
+[2025-12-27 13:17:40] ID 44858: Moved 4.8km - We Are One Recovery Center
+[2025-12-27 13:17:42] ID 44868: Moved 3.6km - Gottlieb, Dianne - FL
+[2025-12-27 13:18:00] ID 44955: Moved 1.1km - TransWorldExpress
+[2025-12-27 13:18:09] ID 44997: Moved 19.8km - Projet Plur-iels
+[2025-12-27 13:18:13] ID 45020: Moved 21.7km - Southeast, Inc.
+[2025-12-27 13:18:22] ID 45066: Moved 2.3km - Rainbow Families Long Beach
+[2025-12-27 13:18:23] ID 45072: Moved 1.4km - Fempower Beauty
+[2025-12-27 13:18:33] ID 45123: Moved 2.9km - Adornia
+[2025-12-27 13:18:34] ID 45132: Moved 3.1km - Ality Fashion
+[2025-12-27 13:18:36] ID 45140: Moved 1.6km - And Our
+[2025-12-27 13:18:37] ID 45150: Moved 1.3km - Under the Umbrella Bookstore & Cafe
+[2025-12-27 13:18:43] ID 45182: Moved 4.2km - The Commonwealth
+[2025-12-27 13:18:43] ID 45185: Moved 1.4km - 716 Pride
+[2025-12-27 13:18:43] ID 45186: Moved 1.5km - LoveTank Realty
+[2025-12-27 13:18:45] ID 45195: Moved 1.1km - Events by GS
+[2025-12-27 13:18:49] ID 45214: Moved 1.1km - Clean and Queer, LLC
+[2025-12-27 13:18:49] ID 45216: Moved 1.1km - Butch4Hire
+[2025-12-27 13:18:52] ID 45228: Moved 1.1km - Brandon Blackwood
+[2025-12-27 13:18:54] ID 45241: Moved 1.8km - Queer Soup Night - Asbury Park
+[2025-12-27 13:18:55] ID 45243: Moved 3.7km - Queer Soup Night - Brattleboro
+[2025-12-27 13:18:59] ID 45262: Moved 3.3km - Smyrna Pride
+[2025-12-27 13:19:00] ID 45267: Moved 3.3km - cantiqLA
+[2025-12-27 13:19:02] ID 45278: Moved 1.1km - Marketing by Rocio
+[2025-12-27 13:19:04] ID 45289: Moved 2.9km - Vickery and Co.
+[2025-12-27 13:19:09] ID 45310: Moved 1.1km - Rainbow Refuge
+[2025-12-27 13:19:14] ID 45339: Moved 9.5km - Drawing Skill Swap Group
+[2025-12-27 13:19:16] ID 45341: Moved 2.4km - Rose & Loon
+[2025-12-27 13:19:17] ID 45344: Moved 1.1km - Sapphic Lit Pop-UP Book Store
+[2025-12-27 13:19:21] ID 45362: Moved 1.7km - LGBT+ Center Orlando - Hillcrest
+[2025-12-27 13:19:24] ID 45375: Moved 1.1km - Moodeaux
+[2025-12-27 13:19:29] ID 45402: Moved 1.4km - Explorer Coldbrew
+[2025-12-27 13:19:30] ID 45409: Moved 12075.5km - Full of Desire FOD
+[2025-12-27 13:19:30] ID 45410: Moved 12075.5km - Beyond Desire
+[2025-12-27 13:19:31] ID 45413: Moved 1.1km - Gaddies
+[2025-12-27 13:19:32] ID 45417: Moved 1.1km - Gay Pride Apparel
+[2025-12-27 13:19:36] ID 45442: Moved 5.8km - Challenges Inc SC
+[2025-12-27 13:19:38] ID 45451: Moved 1.7km - Bi+ Pride Milwaukee
+[2025-12-27 13:19:43] ID 45478: Moved 6.6km - Our Space MN
+[2025-12-27 13:19:51] ID 45512: Moved 1.6km - Pride Hamilton
+[2025-12-27 13:19:55] ID 45530: Moved 1.1km - Bedazzled Ink
+[2025-12-27 13:19:55] ID 45531: Moved 2.3km - BLP Press
+[2025-12-27 13:19:59] ID 45551: Moved 26.6km - Java Love - Montclair State
+[2025-12-27 13:20:06] ID 45593: Moved 206.3km - Art Coop
+[2025-12-27 13:20:10] ID 45607: Moved 1.7km - Ensenada Street Food
+[2025-12-27 13:20:14] ID 45631: Moved 1.1km - K.NGSLY
+[2025-12-27 13:20:17] ID 45646: Moved 1.1km - Ntrl by Sabs
+[2025-12-27 13:20:19] ID 45652: Moved 4.5km - Philly Pride 365
+[2025-12-27 13:20:23] ID 45674: Moved 1.1km - Maev
+[2025-12-27 13:20:24] ID 45675: Moved 1.1km - Omsom
+[2025-12-27 13:20:24] ID 45676: Moved 1.1km - Skull and Bones
+[2025-12-27 13:20:24] ID 45677: Moved 3.1km - Ality Fashion
+[2025-12-27 13:20:35] ID 45729: Moved 5.7km - Sonoran Sapphics Book Club
+[2025-12-27 13:20:35] ID 45730: Moved 1.1km - NYC Queer Romance Reads
+[2025-12-27 13:20:35] ID 45731: Moved 1.1km - Dyke Mafia Book Club
+[2025-12-27 13:20:39] ID 45748: Moved 3.1km - Out and Abt SD
+[2025-12-27 13:20:46] ID 45784: Moved 1.1km - Leeway Home
+[2025-12-27 13:20:51] ID 45809: Moved 3.3km - moonstone craft
+[2025-12-27 13:20:54] ID 45826: Moved 23km - Barrio Drive
+[2025-12-27 13:21:02] ID 45868: Moved 8km - Blue City Comedy
+[2025-12-27 13:21:03] ID 45873: Moved 8km - Trans Joy Boise
+[2025-12-27 13:21:03] ID 45875: Moved 8km - A Queer Chaplain
+[2025-12-27 13:21:03] ID 45876: Moved 8km - Served Drag Boise
+[2025-12-27 13:21:03] ID 45877: Moved 8km - Coco Freeo
+[2025-12-27 13:21:12] ID 45921: Moved 1.1km - Roverlund
+[2025-12-27 13:21:16] ID 45940: Moved 27km - Skin & Tones
+[2025-12-27 13:21:24] ID 45981: Moved 2.1km - Space for Kapwa
+[2025-12-27 13:21:25] ID 45982: Moved 2.1km - Kate Viernes
+[2025-12-27 13:21:25] ID 45983: Moved 2.1km - Emma Rouda
+[2025-12-27 13:21:27] ID 45995: Moved 1.1km - Fascination Boston
+[2025-12-27 13:21:30] ID 46008: Moved 3.1km - The Honeybee
+[2025-12-27 13:21:31] ID 46012: Moved 1.1km - The New Savant
+[2025-12-27 13:21:31] ID 46013: Moved 2.2km - Rat Queen Labs
+[2025-12-27 13:21:32] ID 46018: Moved 1.1km - Bones
+[2025-12-27 13:21:44] ID 46079: Moved 8513.2km - Pride In Chippenham
+[2025-12-27 13:21:49] ID 46112: Moved 3.1km - Kiara Knorwood
+[2025-12-27 13:21:52] ID 46122: Moved 3.1km - Rainbow College Fund
+[2025-12-27 13:21:56] ID 46177: Moved 1.1km - HAIRXTOPHER
+[2025-12-27 13:22:01] ID 46201: Moved 1.3km - Teague, Alisha
+[2025-12-27 13:22:03] ID 46209: Moved 1.1km - Roper, Wyatt
+[2025-12-27 13:22:06] ID 46222: Moved 14km - Church of Peace UCC
+[2025-12-27 13:22:08] ID 46237: Moved 4km - Shulman, Barton
+[2025-12-27 13:22:09] ID 46239: Moved 2.4km - Shulman, Barton
+[2025-12-27 13:22:19] ID 46292: Moved 1.1km - Explore with Chase
+[2025-12-27 13:22:20] ID 46296: Moved 1.1km - Uncloseted Media
+[2025-12-27 13:22:20] ID 46297: Moved 1.1km - Black Trans Liberation
+[2025-12-27 13:22:27] ID 46346: Moved 1.1km - Gay Men Support
+[2025-12-27 13:22:30] ID 46360: Moved 191.6km - Queer Hockey Hamilton
+[2025-12-27 13:22:31] ID 46363: Moved 2.3km - The Well
+[2025-12-27 13:22:31] ID 46365: Moved 26.5km - Rooted & Resilient: LGBTQ+ Seniors Building Streng
+[2025-12-27 13:22:35] ID 46384: Moved 4km - Justice, Megan
+[2025-12-27 13:22:36] ID 46387: Moved 4km - Le Colibri Studio
+[2025-12-27 13:22:39] ID 46401: Moved 2.8km - Flashback PDX
+[2025-12-27 13:22:39] ID 46405: Moved 8km - Boise Pride Pages
+[2025-12-27 13:22:44] ID 46429: Moved 1.1km - Dame
+[2025-12-27 13:22:57] ID 46495: Moved 3.2km - Bada Bean Bada Booze - Harrison West
+[2025-12-27 13:22:59] ID 46505: Moved 2.8km - Nola & Jacks
+[2025-12-27 13:23:04] ID 46525: Moved 1.1km - City Saucery
+[2025-12-27 13:23:08] ID 46547: Moved 1.1km - STUD country
+[2025-12-27 13:23:09] ID 46550: Moved 6.4km - MO4LGBT
+[2025-12-27 13:23:10] ID 46554: Moved 1.1km - Dandi Cleaning and Organizing
+[2025-12-27 13:23:10] ID 46556: Moved 1.1km - Silly Nice
+[2025-12-27 13:23:12] ID 46565: Moved 1.1km - Outreach - LGBT Catholic Ministry
+[2025-12-27 13:23:13] ID 46570: Moved 3.1km - Trans Allies of Ohio
+[2025-12-27 13:23:14] ID 46577: Moved 2.7km - Marsha's
+[2025-12-27 13:23:24] ID 46624: Moved 1.1km - LGBTQIA+ Queer Sangha - Recovery Dharma Online
+[2025-12-27 13:23:24] ID 46625: Moved 1.1km - Queer & Trans Postpartum Support Group
+[2025-12-27 13:23:25] ID 46627: Moved 5.1km - Rocky Mountain Equality
+[2025-12-27 13:23:32] ID 46662: Moved 1.1km - Tiaret (Tiaret Renee)
+[2025-12-27 13:23:35] ID 46675: Moved 707.1km - Witch in the Woods Tattoos
+[2025-12-27 13:23:36] ID 46682: Moved 1.1km - Haven Tattoo Studio
+[2025-12-27 13:23:38] ID 46688: Moved 1.1km - Adriana Hallow Tattoo
+[2025-12-27 13:23:51] ID 46756: Moved 69.3km - Lakewood Middle School
+[2025-12-27 13:23:52] ID 46758: Moved 3.1km - Columbia River High School
+[2025-12-27 13:23:52] ID 46760: Moved 4.9km - Pioneer High School
+[2025-12-27 13:24:04] ID 46815: Moved 4.8km - Read with Pride
+[2025-12-27 13:24:04] ID 46817: Moved 1.3km - Queer Book Club - Lebanon Public Libraries
+[2025-12-27 13:24:06] ID 46822: Moved 1.6km - Gardner Law Office
+[2025-12-27 13:24:07] ID 46828: Moved 1.3km - Lou Bigelow
+[2025-12-27 13:24:07] ID 46829: Moved 3.2km - Juniper Center
+[2025-12-27 13:24:08] ID 46834: Moved 4.3km - B.O.I.N.K.
+[2025-12-27 13:24:08] ID 46835: Moved 1.5km - PVD Psychological Associates
+[2025-12-27 13:24:08] ID 46836: Moved 9.2km - The Shop
+[2025-12-27 13:24:09] ID 46839: Moved 3.9km - Woodstock Union Queer Straight Alliance
+[2025-12-27 13:24:09] ID 46840: Moved 2.2km - Chroma Wellness Center
+[2025-12-27 13:24:09] ID 46841: Moved 1.7km - The Institute for Family Health LGBTQ Health
+[2025-12-27 13:24:10] ID 46845: Moved 22.7km - Dr. Dht
+[2025-12-27 13:24:10] ID 46863: Moved 3.8km - Lewiston High School
+[2025-12-27 13:24:11] ID 46864: Moved 19.2km - Lewiston High School
+[2025-12-27 13:24:11] ID 46865: Moved 3.1km - Falmouth High School
+[2025-12-27 13:24:11] ID 46866: Moved 2.2km - Freeport High School
+[2025-12-27 13:24:11] ID 46867: Moved 2.6km - South Portland High School
+[2025-12-27 13:24:12] ID 46869: Moved 2.6km - Deering High School
+[2025-12-27 13:24:12] ID 46871: Moved 2.2km - Cheverus High School
+[2025-12-27 13:24:12] ID 46872: Moved 2.6km - Yarmouth High School
+[2025-12-27 13:24:12] ID 46873: Moved 2km - Central Kitsap High School
+[2025-12-27 13:24:13] ID 46874: Moved 1.7km - Mercer Island High School
+[2025-12-27 13:24:13] ID 46875: Moved 6.3km - Olympia High School
+[2025-12-27 13:24:13] ID 46876: Moved 4.8km - Olympia High School
+[2025-12-27 13:24:13] ID 46877: Moved 3.8km - Hanford High School
+[2025-12-27 13:24:13] ID 46878: Moved 4.8km - The Rivers School
+[2025-12-27 13:24:14] ID 46879: Moved 16.4km - Port Angeles High School
+[2025-12-27 13:24:14] ID 46880: Moved 8.6km - Sequim High School
+[2025-12-27 13:24:14] ID 46881: Moved 3.9km - Camas High School
+[2025-12-27 13:24:14] ID 46882: Moved 9.2km - Washougal High School
+[2025-12-27 13:24:14] ID 46883: Moved 4.9km - Hockinson High School
+[2025-12-27 13:24:15] ID 46884: Moved 5km - La Center High School
+[2025-12-27 13:24:15] ID 46885: Moved 1.1km - Skyview High School
+[2025-12-27 13:24:15] ID 46886: Moved 12.2km - Woodland High School
+[2025-12-27 13:24:15] ID 46887: Moved 15.1km - Eastmont High School
+[2025-12-27 13:24:15] ID 46888: Moved 5.8km - Mansfield High School
+[2025-12-27 13:24:16] ID 46889: Moved 32.5km - Chiawana High School
+[2025-12-27 13:24:16] ID 46891: Moved 2.5km - Quincy High School
+[2025-12-27 13:24:16] ID 46892: Moved 1.4km - Marshwood Middle School
+[2025-12-27 13:24:16] ID 46893: Moved 14km - Machias High School
+[2025-12-27 13:24:16] ID 46894: Moved 5.2km - Mount View High School
+[2025-12-27 13:24:17] ID 46895: Moved 5.9km - Maine Central Institute
+[2025-12-27 13:24:17] ID 46896: Moved 2.4km - Mt. Ararat High School
+[2025-12-27 13:24:17] ID 46897: Moved 7.4km - Bangor High School
+[2025-12-27 13:24:17] ID 46898: Moved 2.4km - Brewer High School
+[2025-12-27 13:24:17] ID 46899: Moved 8.5km - Fryeburg Academy
+[2025-12-27 13:24:18] ID 46900: Moved 2.5km - Camden Hills Regional High School
+[2025-12-27 13:24:18] ID 46901: Moved 8km - Waterville Senior High School
+[2025-12-27 13:24:18] ID 46902: Moved 10.9km - Messalonskee High
+[2025-12-27 13:24:18] ID 46904: Moved 8.5km - Kents Hill School
+[2025-12-27 13:24:18] ID 46905: Moved 6.9km - Erskine Academy
+[2025-12-27 13:24:19] ID 46906: Moved 8.2km - Francis C. Richmond Middle School
+[2025-12-27 13:24:19] ID 46907: Moved 10.1km - Hanover High School
+[2025-12-27 13:24:19] ID 46910: Moved 1.2km - Bedford High School
+[2025-12-27 13:24:19] ID 46911: Moved 3.2km - Bow High School
+[2025-12-27 13:24:19] ID 46912: Moved 4.4km - Brewster Academy
+[2025-12-27 13:24:20] ID 46913: Moved 4.6km - ConVal High School
+[2025-12-27 13:24:20] ID 46914: Moved 2.8km - Gilford High School
+[2025-12-27 13:24:20] ID 46915: Moved 3.5km - Gorham High School
+[2025-12-27 13:24:20] ID 46916: Moved 1.4km - Hinsdale Central High School
+[2025-12-27 13:24:20] ID 46917: Moved 2.2km - Hollis Brookline High School
+[2025-12-27 13:24:21] ID 46918: Moved 2.2km - Hopkinton High School
+[2025-12-27 13:24:21] ID 46919: Moved 2.3km - Kearsarge High School
+[2025-12-27 13:24:21] ID 46920: Moved 3.5km - Keene High School
+[2025-12-27 13:24:21] ID 46927: Moved 9.2km - Madera Coalition for Community Justice
+[2025-12-27 13:24:21] ID 46928: Moved 11.2km - Mid Willamette Trans Support Network
+[2025-12-27 13:24:22] ID 46929: Moved 8.5km - Jackson Street Youth Services
+[2025-12-27 13:24:22] ID 46930: Moved 7.4km - Baker County Safe Communities Coalition
+[2025-12-27 13:24:22] ID 46931: Moved 13.4km - Eastern Sierra Pride
+[2025-12-27 13:24:22] ID 46932: Moved 15km - Luxe Salon
+[2025-12-27 13:24:23] ID 46935: Moved 7.3km - Linn-Benton Community College
+[2025-12-27 13:24:23] ID 46936: Moved 3km - North Seattle College
+[2025-12-27 13:24:23] ID 46937: Moved 2.3km - Tacoma Community College
+[2025-12-27 13:24:24] ID 46939: Moved 7km - Transcending Adolescence
+[2025-12-27 13:24:24] ID 46940: Moved 3.4km - Littleton High School
+[2025-12-27 13:24:24] ID 46942: Moved 1.5km - Londonderry High School
+[2025-12-27 13:24:24] ID 46943: Moved 1.5km - Manchester Memorial High School
+[2025-12-27 13:24:24] ID 46944: Moved 2.4km - Merrimack High School
+[2025-12-27 13:24:25] ID 46945: Moved 2km - Milford High School
+[2025-12-27 13:24:25] ID 46946: Moved 2km - Milford High School
+[2025-12-27 13:24:25] ID 46947: Moved 2.8km - New Hampton School
+[2025-12-27 13:24:26] ID 46949: Moved 4km - Pinkerton Academy
+[2025-12-27 13:24:26] ID 46950: Moved 7.9km - Rivendell Academy
+[2025-12-27 13:24:26] ID 46951: Moved 1.6km - Spaulding High School
+[2025-12-27 13:24:26] ID 46953: Moved 2.4km - Tilton School
+[2025-12-27 13:24:27] ID 46954: Moved 2.9km - Windham High School
+[2025-12-27 13:24:27] ID 46956: Moved 1.5km - Middle Union High School
+[2025-12-27 13:24:27] ID 46957: Moved 6.7km - Mount Abraham Union Middle/High School
+[2025-12-27 13:24:27] ID 46958: Moved 3.2km - Lyndon Institute
+[2025-12-27 13:24:28] ID 46959: Moved 1.6km - Colchester High School
+[2025-12-27 13:24:28] ID 46960: Moved 4.7km - Mount Mansfield Union High School
+[2025-12-27 13:24:28] ID 46961: Moved 2.6km - Phoenix Rising Mental Health
+[2025-12-27 13:24:28] ID 46963: Moved 4.6km - Missisquoi Valley Middle/High School
+[2025-12-27 13:24:29] ID 46964: Moved 7.8km - Lamoille Union High School GLOW
+[2025-12-27 13:24:29] ID 46965: Moved 1.6km - The Mountain School
+[2025-12-27 13:24:29] ID 46966: Moved 6.6km - Thetford Academy Queer-Straight Alliance
+[2025-12-27 13:24:29] ID 46967: Moved 2.9km - Vermont Academy GSA
+[2025-12-27 13:24:29] ID 46968: Moved 1.1km - Mill River Union High School
+[2025-12-27 13:24:30] ID 46969: Moved 2.3km - Northfield High School GSA
+[2025-12-27 13:24:30] ID 46971: Moved 1.5km - Bourne High School
+[2025-12-27 13:24:30] ID 46972: Moved 1.3km - Falmouth Academy
+[2025-12-27 13:24:30] ID 46973: Moved 1.3km - Sturgis Charter School East Campus
+[2025-12-27 13:24:31] ID 46977: Moved 2.1km - Sandwich Middle High School
+[2025-12-27 13:24:31] ID 46978: Moved 1.6km - Monomoy Regional High School
+[2025-12-27 13:24:31] ID 46979: Moved 2.7km - Lenox Memorial Middle & High School
+[2025-12-27 13:24:32] ID 46980: Moved 3.7km - Dartmouth High School
+[2025-12-27 13:24:32] ID 46981: Moved 1.4km - Norton High School
+[2025-12-27 13:24:32] ID 46982: Moved 1.7km - Seekonk High School
+[2025-12-27 13:24:32] ID 46983: Moved 3.2km - Westport Community High School
+[2025-12-27 13:24:32] ID 46984: Moved 2.7km - Southeastern Regional Vocational Technical
+[2025-12-27 13:24:33] ID 46986: Moved 5.5km - Taunton High School
+[2025-12-27 13:24:33] ID 46987: Moved 1.4km - Ipswitch High School GSA
+[2025-12-27 13:24:33] ID 46988: Moved 1.1km - Marblehead High School GSA
+[2025-12-27 13:24:33] ID 46989: Moved 5.2km - Pentucket Regional High School GSA
+[2025-12-27 13:24:34] ID 46990: Moved 1.4km - Swampscott High School
+[2025-12-27 13:24:34] ID 46991: Moved 1km - St. Johns Preparatory School
+[2025-12-27 13:24:34] ID 46992: Moved 1.1km - Hamilton-Whenham Regional High School
+[2025-12-27 13:24:34] ID 46993: Moved 1.9km - Methuen High School
+[2025-12-27 13:24:34] ID 46994: Moved 1.5km - Longmeadow High School GSA
+[2025-12-27 13:24:35] ID 46995: Moved 1.4km - Springfield Central High School GSA
+[2025-12-27 13:24:35] ID 47001: Moved 4.4km - Gateway Regional School GSA
+[2025-12-27 13:24:36] ID 47002: Moved 3.3km - Hampshire Regional High School
+[2025-12-27 13:24:36] ID 47003: Moved 3.4km - Macduffie High School GSA
+[2025-12-27 13:24:36] ID 47004: Moved 4.9km - South Hadley High School GSA
+[2025-12-27 13:24:36] ID 47005: Moved 1.3km - Melrose High School GSA
+[2025-12-27 13:24:37] ID 47008: Moved 1.3km - Woburn High School Spectrum
+[2025-12-27 13:24:37] ID 47009: Moved 6.4km - Help me Leave
+[2025-12-27 13:24:37] ID 47010: Moved 1.3km - Bunnell High School
+[2025-12-27 13:24:37] ID 47011: Moved 3.8km - Canton Middle School
+[2025-12-27 13:24:38] ID 47012: Moved 2.8km - East Hampton High School
+[2025-12-27 13:24:38] ID 47014: Moved 1.2km - Lawrence Academy
+[2025-12-27 13:24:38] ID 47015: Moved 2.9km - Lincoln-Sudbury Regional High School
+[2025-12-27 13:24:38] ID 47016: Moved 2.4km - Wayland High School
+[2025-12-27 13:24:39] ID 47017: Moved 1.2km - Concord Academy
+[2025-12-27 13:24:39] ID 47019: Moved 6.4km - Lily X
+[2025-12-27 13:24:40] ID 47026: Moved 4.7km - Stand In Pride
+[2025-12-27 13:24:41] ID 47027: Moved 2.1km - King Philip Regional High School
+[2025-12-27 13:24:41] ID 47028: Moved 2.6km - Blue Hills Regional Technical School
+[2025-12-27 13:24:41] ID 47029: Moved 2.3km - Norwell High School GSA
+[2025-12-27 13:24:41] ID 47030: Moved 1.4km - Pembroke High School SAGA
+[2025-12-27 13:24:42] ID 47032: Moved 2.3km - East Boston High School GSA
+[2025-12-27 13:24:42] ID 47033: Moved 2.5km - Quabbin High School GSA
+[2025-12-27 13:24:42] ID 47034: Moved 2km - Blackstone Valley Regional Vocational Tech High
+[2025-12-27 13:24:42] ID 47035: Moved 2.2km - Grafton High School
+[2025-12-27 13:24:42] ID 47036: Moved 3.9km - Shrewsbury High School GSA
+[2025-12-27 13:24:43] ID 47037: Moved 1.9km - Burncoat High School GSA
+[2025-12-27 13:24:43] ID 47038: Moved 2.2km - South High Community School GSA
+[2025-12-27 13:24:43] ID 47039: Moved 1.5km - Fairfield Warde High School SAGA
+[2025-12-27 13:24:43] ID 47040: Moved 4.3km - Joseph A. Foran High School GSA
+[2025-12-27 13:24:43] ID 47041: Moved 3.6km - Masuk High School
+[2025-12-27 13:24:44] ID 47042: Moved 2.3km - Naugatuck High School
+[2025-12-27 13:24:44] ID 47043: Moved 2.5km - P-Tech Norwalk
+[2025-12-27 13:24:44] ID 47045: Moved 1km - Orville H. Platt High School
+[2025-12-27 13:24:44] ID 47046: Moved 8.6km - Pomperaug Regional High School
+[2025-12-27 13:24:45] ID 47047: Moved 1.9km - Sound School SAGA
+[2025-12-27 13:24:45] ID 47049: Moved 4.5km - Find Your Pride Travel
+[2025-12-27 13:24:46] ID 47052: Moved 1.5km - The Bronx High School of Science
+[2025-12-27 13:24:46] ID 47055: Moved 1.6km - Claremont International High School
+[2025-12-27 13:24:47] ID 47057: Moved 1.2km - Horace Mann School
+[2025-12-27 13:24:47] ID 47058: Moved 3.6km - Longwood High School
+[2025-12-27 13:24:48] ID 47061: Moved 1.2km - Origins High School GSA
+[2025-12-27 13:24:49] ID 47069: Moved 4.8km - Vanguard High School GSA
+[2025-12-27 13:24:50] ID 47072: Moved 1.3km - Summit Hill Counseling
+[2025-12-27 13:24:50] ID 47073: Moved 1.3km - Strand, Brandy
+[2025-12-27 13:24:50] ID 47074: Moved 1.3km - Ramirez, Lindsay
+[2025-12-27 13:24:52] ID 47082: Moved 2km - Almen, Byron
+[2025-12-27 13:24:53] ID 47083: Moved 3.7km - Austin, Winnie
+[2025-12-27 13:24:53] ID 47084: Moved 2.4km - Trans Can Work Job board
+[2025-12-27 13:24:53] ID 47085: Moved 2.1km - Fillory Yarn
+[2025-12-27 13:24:53] ID 47086: Moved 1.6km - Bayside High School S.O.U.L.
+[2025-12-27 13:24:54] ID 47087: Moved 2km - Society Barbershop
+[2025-12-27 13:24:54] ID 47089: Moved 2.2km - Birch & Iron
+[2025-12-27 13:24:54] ID 47091: Moved 2.2km - Children's Musical Theatre San Jose
+[2025-12-27 13:24:55] ID 47093: Moved 1.2km - Hillcrest High School GSA
+[2025-12-27 13:24:56] ID 47102: Moved 1.8km - Stitches By Tiff
+[2025-12-27 13:24:56] ID 47103: Moved 2km - Spirit of Grace Methodist Church
+[2025-12-27 13:24:57] ID 47104: Moved 3.3km - BloomSpace Counseling Group
+[2025-12-27 13:24:57] ID 47105: Moved 2.6km - Samantha Maye
+[2025-12-27 13:24:57] ID 47106: Moved 2.1km - Carter, Juliana
+[2025-12-27 13:24:58] ID 47109: Moved 6.4km - Holy Homo Healing Hour
+[2025-12-27 13:24:58] ID 47110: Moved 3.6km - Grit City Books
+[2025-12-27 13:24:58] ID 47112: Moved 3.8km - Bundok Books
+[2025-12-27 13:24:58] ID 47113: Moved 2km - Clayton A. Bouton High School
+[2025-12-27 13:24:59] ID 47114: Moved 6.8km - Maine-Endwell High School GSA
+[2025-12-27 13:24:59] ID 47115: Moved 3.8km - Gowanda High School GSA
+[2025-12-27 13:24:59] ID 47117: Moved 2.8km - Queer Book Club
+[2025-12-27 13:24:59] ID 47118: Moved 1.4km - Riverside Frontrunners and Walkers
+[2025-12-27 13:25:00] ID 47119: Moved 1.8km - Inland Empire Prism Collective
+[2025-12-27 13:25:00] ID 47120: Moved 1.2km - Oddly Manor
+[2025-12-27 13:25:00] ID 47121: Moved 1.8km - Plenty of Teeth
+[2025-12-27 13:25:00] ID 47122: Moved 1.4km - Undeadd Snaxs Art Collective
+[2025-12-27 13:25:00] ID 47123: Moved 11.7km - Horseheads High School GSA
+[2025-12-27 13:25:01] ID 47130: Moved 2.6km - Trans Military Voices
+[2025-12-27 13:25:01] ID 47131: Moved 2.5km - Metropolitan Community Church of Baton Rouge
+[2025-12-27 13:25:02] ID 47132: Moved 6.7km - Metropolitan Community Church of the Quad Cities
+[2025-12-27 13:25:02] ID 47133: Moved 2.1km - Kuehne & Foote, APLC
+[2025-12-27 13:25:02] ID 47134: Moved 2.1km - Latinx Therapy
+[2025-12-27 13:25:04] ID 47141: Moved 34.1km - Hacking, Danika
+[2025-12-27 13:25:04] ID 47142: Moved 34.1km - Wilhems, Amberly
+[2025-12-27 13:25:04] ID 47143: Moved 34.1km - Kenney-Tolentino, Sophia
+[2025-12-27 13:25:04] ID 47144: Moved 34.1km - Bursac, Sara
+[2025-12-27 13:25:05] ID 47145: Moved 34.1km - Schneider, Bailey
+[2025-12-27 13:25:05] ID 47146: Moved 18.5km - Gender Diversity Wyoming
+[2025-12-27 13:25:05] ID 47147: Moved 18.5km - Adult Support Group
+[2025-12-27 13:25:05] ID 47148: Moved 18.5km - Parent Support Group
+[2025-12-27 13:25:05] ID 47149: Moved 4.7km - Hot Cookie
+[2025-12-27 13:25:06] ID 47150: Moved 7.7km - Gloversfield High School Alliance Club
+[2025-12-27 13:25:06] ID 47151: Moved 3.5km - Coxsackie-Athens High School
+[2025-12-27 13:25:06] ID 47152: Moved 5.1km - Frankfort-Schuyler High School Alliance
+[2025-12-27 13:25:06] ID 47153: Moved 1.3km - James A. Green High School GSA
+[2025-12-27 13:25:06] ID 47154: Moved 1.1km - East Meadow High School GSA
+[2025-12-27 13:25:07] ID 47155: Moved 1.6km - Garden City High School GSA
+[2025-12-27 13:25:07] ID 47156: Moved 1.1km - Glen Cove High School GSA
+[2025-12-27 13:25:07] ID 47158: Moved 3.1km - Bellmore-Merick High School GSA
+[2025-12-27 13:25:07] ID 47159: Moved 1.7km - Lockport High School
+[2025-12-27 13:25:08] ID 47160: Moved 1.8km - New Hartford Senior High Prism
+[2025-12-27 13:25:08] ID 47161: Moved 5.1km - Fayetteville-Manlius High School GSA
+[2025-12-27 13:25:08] ID 47162: Moved 3.8km - James-Dewitt High School GSA
+[2025-12-27 13:25:08] ID 47163: Moved 5.1km - Midlakes Middle and High School GSA
+[2025-12-27 13:25:08] ID 47164: Moved 4.5km - Goshen High School LGBTQ & Allies Club
+[2025-12-27 13:25:09] ID 47165: Moved 3.3km - Abion High School Pride Alliance
+[2025-12-27 13:25:09] ID 47166: Moved 1km - Brewster High School GSA
+[2025-12-27 13:25:09] ID 47167: Moved 4.5km - Carmel High School GSA
+[2025-12-27 13:25:09] ID 47168: Moved 5.4km - Averill Park High School SAGA
+[2025-12-27 13:25:10] ID 47169: Moved 1.6km - Maple Hill High School GSA
+[2025-12-27 13:25:10] ID 47170: Moved 8.9km - Rensselaer High School Pride Alliance
+[2025-12-27 13:25:10] ID 47171: Moved 2.1km - Nyack High School GSA
+[2025-12-27 13:25:10] ID 47172: Moved 7.8km - Potsdam High School GSA
+[2025-12-27 13:25:10] ID 47173: Moved 3.5km - Niskayuna High School Visibility (GSA)
+[2025-12-27 13:25:10] ID 47174: Moved 3.2km - Schalmont High School
+[2025-12-27 13:25:11] ID 47175: Moved 6.4km - Middleburgh Middle/High School GSA
+[2025-12-27 13:25:11] ID 47176: Moved 6.5km - Rogue Action Center
+[2025-12-27 13:25:11] ID 47178: Moved 7.6km - Windsor Resource Center
+[2025-12-27 13:25:11] ID 47179: Moved 4.4km - Keene Mutual Aid
+[2025-12-27 13:25:12] ID 47180: Moved 19.2km - Queer Cupboard
+[2025-12-27 13:25:12] ID 47182: Moved 10.1km - Soul Food Sunday
+[2025-12-27 13:25:12] ID 47183: Moved 1.9km - Claremont Pride
+[2025-12-27 13:25:13] ID 47185: Moved 6.5km - Kingston High School GSA
+[2025-12-27 13:25:13] ID 47186: Moved 1.4km - Onteora High School GSA
+[2025-12-27 13:25:13] ID 47187: Moved 5.8km - Saugerties High School GSA
+[2025-12-27 13:25:13] ID 47188: Moved 1.4km - Queensbury High School GSA
+[2025-12-27 13:25:13] ID 47189: Moved 4.3km - Hudson Falls High School
+[2025-12-27 13:25:14] ID 47191: Moved 1.4km - Ardsley High School GSA
+[2025-12-27 13:25:14] ID 47192: Moved 2.5km - Briarcliff High School GSA
+[2025-12-27 13:25:14] ID 47193: Moved 1.4km - Croton-Harmon High School
+[2025-12-27 13:25:15] ID 47197: Moved 1.4km - John Jay High School SAGA
+[2025-12-27 13:25:15] ID 47198: Moved 1.4km - Lakeland High School GSA
+[2025-12-27 13:25:16] ID 47199: Moved 2.1km - Somers High School GSA
+[2025-12-27 13:25:16] ID 47200: Moved 1.2km - Tuckahoe High School GSA
+[2025-12-27 13:25:16] ID 47203: Moved 1.4km - White Plains High School GSA
+[2025-12-27 13:25:17] ID 47204: Moved 4.3km - Golding Middle School GSA
+[2025-12-27 13:25:17] ID 47205: Moved 1.6km - Farnsworth Middle School
+[2025-12-27 13:25:17] ID 47206: Moved 3.5km - Fletcher's Ice Cream
+[2025-12-27 13:25:17] ID 47208: Moved 3.4km - Galway Central School District GSA
+[2025-12-27 13:25:18] ID 47209: Moved 1.8km - Q Plus
+[2025-12-27 13:25:18] ID 47210: Moved 1.1km - Gladys Book & Wine
+[2025-12-27 13:25:18] ID 47211: Moved 2.1km - Prideful Futures
+[2025-12-27 13:25:19] ID 47215: Moved 1.3km - Elmwood Park Memorial High School GSA
+[2025-12-27 13:25:19] ID 47216: Moved 2.3km - Fair Lawn High School G.L.O.W.
+[2025-12-27 13:25:19] ID 47217: Moved 1.4km - Indian Hills High School GSA
+[2025-12-27 13:25:19] ID 47218: Moved 1km - COVunity Fridge
+[2025-12-27 13:25:20] ID 47220: Moved 1.2km - Lodi High School GSA
+[2025-12-27 13:25:20] ID 47221: Moved 2.4km - Lyndhurst High School GSA
+[2025-12-27 13:25:20] ID 47222: Moved 3.2km - Mahwah High School GSA
+[2025-12-27 13:25:20] ID 47223: Moved 1.3km - The Enchanted Violet
+[2025-12-27 13:25:21] ID 47224: Moved 2.3km - Paramus High School GSA
+[2025-12-27 13:25:22] ID 47230: Moved 1.6km - Skeletons in the Closet Book Club
+[2025-12-27 13:25:22] ID 47231: Moved 2km - Tenafly High School GSA
+[2025-12-27 13:25:22] ID 47232: Moved 1.6km - The Well Red Damsel
+[2025-12-27 13:25:22] ID 47234: Moved 2.1km - Grand Gesture Books
+[2025-12-27 13:25:23] ID 47236: Moved 1.9km - Delran High School GSA
+[2025-12-27 13:25:23] ID 47239: Moved 1.2km - Cherry Hill East High School GSA
+[2025-12-27 13:25:24] ID 47242: Moved 4km - Ocean City High School Prism
+[2025-12-27 13:25:24] ID 47243: Moved 3.3km - Millville High School GSA
+[2025-12-27 13:25:25] ID 47245: Moved 1.1km - Science Park High School
+[2025-12-27 13:25:25] ID 47246: Moved 1.1km - Verona High School GSA
+[2025-12-27 13:25:25] ID 47247: Moved 2.7km - West Essex High School GSA
+[2025-12-27 13:25:25] ID 47248: Moved 2.5km - Glassboro High School GSA
+[2025-12-27 13:25:25] ID 47249: Moved 3km - Woodbury Junior Senior High GSA
+[2025-12-27 13:25:26] ID 47251: Moved 3.2km - Vorhees High School P.R.I.D.E
+[2025-12-27 13:25:27] ID 47254: Moved 3.8km - Robinsville High School
+[2025-12-27 13:25:27] ID 47256: Moved 4.8km - Colts Neck High School
+[2025-12-27 13:25:27] ID 47257: Moved 5km - Freehold High School S.A.F.E.
+[2025-12-27 13:25:27] ID 47258: Moved 2.8km - Howell High School Prism
+[2025-12-27 13:25:28] ID 47259: Moved 1.6km - Keyport High School
+[2025-12-27 13:25:28] ID 47260: Moved 1km - Manalapan High School GSA
+[2025-12-27 13:25:28] ID 47261: Moved 2.6km - Raritan High School GSA
+[2025-12-27 13:25:28] ID 47262: Moved 1.5km - Mountain Lakes High School GSA
+[2025-12-27 13:25:28] ID 47263: Moved 1.9km - Parsippany High School GSA
+[2025-12-27 13:25:29] ID 47264: Moved 8.2km - Barnegat High School GSA
+[2025-12-27 13:25:29] ID 47265: Moved 6km - Brick Township High School GSA
+[2025-12-27 13:25:29] ID 47266: Moved 7.2km - Manchester Township High School GSA
+[2025-12-27 13:25:29] ID 47267: Moved 1.6km - Southern Regional High School GSA
+[2025-12-27 13:25:29] ID 47268: Moved 1km - Cliffton High School GSA
+[2025-12-27 13:25:30] ID 47269: Moved 1.7km - Woodstown High School GSA
+[2025-12-27 13:25:30] ID 47270: Moved 2.1km - Hopatcong High School GSA
+[2025-12-27 13:25:30] ID 47271: Moved 1.5km - Lenape Valley Regional High GSA
+[2025-12-27 13:25:30] ID 47272: Moved 5.8km - Newton High School Spectrum
+[2025-12-27 13:25:30] ID 47273: Moved 1.2km - Cranford High School GSA
+[2025-12-27 13:25:31] ID 47274: Moved 1.5km - Rahway High School GSA
+[2025-12-27 13:25:31] ID 47275: Moved 2.5km - Scotch Plains-Fanwood High School
+[2025-12-27 13:25:31] ID 47276: Moved 1.3km - Summit High School GSA
+[2025-12-27 13:25:31] ID 47277: Moved 2.5km - Union County Magnet High School GSA
+[2025-12-27 13:25:31] ID 47278: Moved 3.7km - Phillipsburg High School GSA
+[2025-12-27 13:25:32] ID 47279: Moved 4km - Erica C. Masson MSW, LICSW
+[2025-12-27 13:25:32] ID 47280: Moved 2.1km - Fox Chapel High School GSA
+[2025-12-27 13:25:32] ID 47282: Moved 4.1km - Fort Plain Junior-Senior High School GSA
+[2025-12-27 13:25:32] ID 47283: Moved 5.2km - Seneca Valley High School GSA
+[2025-12-27 13:25:33] ID 47285: Moved 1.8km - Conestoga High School GSA
+[2025-12-27 13:25:33] ID 47286: Moved 2.5km - Downington East High School GSA
+[2025-12-27 13:25:33] ID 47287: Moved 2km - Unionville High School GSA
+[2025-12-27 13:25:33] ID 47288: Moved 1.2km - Phoenixville Area High School GSA
+[2025-12-27 13:25:34] ID 47289: Moved 2.7km - Central Dauphin East High School GSA
+[2025-12-27 13:25:34] ID 47290: Moved 1.8km - Hershey High School GSA
+[2025-12-27 13:25:34] ID 47292: Moved 5.1km - Radnor High School SAGA
+[2025-12-27 13:25:34] ID 47293: Moved 2.6km - Penncrest High School Prism
+[2025-12-27 13:25:35] ID 47295: Moved 1.9km - Hinesburg Community School GLOW
+[2025-12-27 13:25:35] ID 47296: Moved 2.9km - Indiana Area Senior High School
+[2025-12-27 13:25:35] ID 47297: Moved 4.6km - Abington Heights High School GSA
+[2025-12-27 13:25:35] ID 47298: Moved 4.5km - Blanchard Middle School GSA
+[2025-12-27 13:25:36] ID 47300: Moved 4.5km - Charlotte Trans Health
+[2025-12-27 13:25:36] ID 47301: Moved 2km - Lebanon High School GSA
+[2025-12-27 13:25:36] ID 47302: Moved 1.8km - Emmaus High School GSA
+[2025-12-27 13:25:36] ID 47304: Moved 23.5km - Williamsport Area High School
+[2025-12-27 13:25:37] ID 47305: Moved 5.4km - Grove City High School SAGA
+[2025-12-27 13:25:37] ID 47306: Moved 2.1km - Mifflin County High School GSA
+[2025-12-27 13:25:37] ID 47307: Moved 2.9km - East Stroudsburg High School GSA
+[2025-12-27 13:25:37] ID 47308: Moved 5.7km - Danville Area High School GSA
+[2025-12-27 13:25:37] ID 47309: Moved 3.5km - Northhampton Area High School
+[2025-12-27 13:25:38] ID 47310: Moved 2.1km - Samuel Fels High School GSA
+[2025-12-27 13:25:38] ID 47311: Moved 2.6km - Abraham Lincoln High School GSA
+[2025-12-27 13:25:38] ID 47312: Moved 1km - Strawberry Mansion High School GSA
+[2025-12-27 13:25:38] ID 47313: Moved 2.3km - Susquehanna Community High School
+[2025-12-27 13:25:38] ID 47314: Moved 3.8km - Fort Cherry Middle/High School
+[2025-12-27 13:25:39] ID 47315: Moved 1.7km - Greater Latrobe Senior High School
+[2025-12-27 13:25:39] ID 47316: Moved 1.1km - Dallastown Area High School GSA
+[2025-12-27 13:25:39] ID 47317: Moved 2.1km - Northeastern High School
+[2025-12-27 13:25:39] ID 47318: Moved 2.8km - Spring Grove Area High School GSA
+[2025-12-27 13:25:39] ID 47319: Moved 2.6km - Alexis I. duPont High School GSA
+[2025-12-27 13:25:40] ID 47320: Moved 2.6km - Brandywine High School
+[2025-12-27 13:25:40] ID 47321: Moved 5.6km - Cab Calloway School of the Arts
+[2025-12-27 13:25:40] ID 47322: Moved 3.5km - William Penn High School
+[2025-12-27 13:25:40] ID 47323: Moved 5.5km - Milford High School GSA
+[2025-12-27 13:25:41] ID 47324: Moved 3.9km - Cape Henlopen High School GSA
+[2025-12-27 13:25:41] ID 47325: Moved 9.4km - Sussex Central High School GSA
+[2025-12-27 13:25:41] ID 47327: Moved 1.5km - Sanford School GSA
+[2025-12-27 13:25:41] ID 47328: Moved 3.5km - Wilmington Friends School GSA
+[2025-12-27 13:25:42] ID 47329: Moved 2km - Voorheesville Middle School
+[2025-12-27 13:25:42] ID 47330: Moved 5.2km - Arundel High School GSA
+[2025-12-27 13:25:42] ID 47331: Moved 3.7km - Old Mill High School
+[2025-12-27 13:25:42] ID 47332: Moved 2.3km - Broadneck High School LGBT+
+[2025-12-27 13:25:42] ID 47333: Moved 3.9km - Glen Burnie High School LGBT+ Club
+[2025-12-27 13:25:42] ID 47334: Moved 1.2km - Baltimore Design School GSA
+[2025-12-27 13:25:43] ID 47335: Moved 2.4km - Perry Hall High School
+[2025-12-27 13:25:43] ID 47336: Moved 2.5km - Northern High School GSA
+[2025-12-27 13:25:43] ID 47337: Moved 2.6km - Liberty High School LGBTQ/Allies Club
+[2025-12-27 13:25:43] ID 47338: Moved 5.2km - Manchester Valley High School GSA
+[2025-12-27 13:25:43] ID 47339: Moved 9km - South Carroll High School GSA
+[2025-12-27 13:25:44] ID 47340: Moved 1.5km - Westminster High School GSA
+[2025-12-27 13:25:44] ID 47341: Moved 2.6km - Winters Mill High School GSA
+[2025-12-27 13:25:44] ID 47342: Moved 2.7km - North East High School
+[2025-12-27 13:25:44] ID 47343: Moved 6.2km - La Plata High School GSA
+[2025-12-27 13:25:44] ID 47344: Moved 2.8km - Fallston High School
+[2025-12-27 13:25:45] ID 47345: Moved 2.5km - Atholton High School QSU
+[2025-12-27 13:25:45] ID 47346: Moved 3.3km - Centennial High School SAGA
+[2025-12-27 13:25:45] ID 47347: Moved 3km - Glenelg High School SAGA
+[2025-12-27 13:25:45] ID 47348: Moved 2.3km - Guilford Park High School SAGA
+[2025-12-27 13:25:45] ID 47349: Moved 2.2km - Hammond High School SAGA
+[2025-12-27 13:25:46] ID 47350: Moved 3.8km - Howard High School SAGA
+[2025-12-27 13:25:46] ID 47351: Moved 1.8km - Long Reach High School GSA
+[2025-12-27 13:25:46] ID 47352: Moved 6.5km - Mount Hebron High School SAGA
+[2025-12-27 13:25:46] ID 47353: Moved 1.3km - Oakland Mills High School GSA
+[2025-12-27 13:25:46] ID 47354: Moved 1.8km - Reservoir High School GSA
+[2025-12-27 13:25:47] ID 47355: Moved 2.8km - River Hill High School GSA
+[2025-12-27 13:25:47] ID 47356: Moved 1.4km - Wilde Lake High School
+[2025-12-27 13:25:47] ID 47357: Moved 1.6km - West Plano Presbyterian Church
+[2025-12-27 13:25:47] ID 47358: Moved 5.4km - Winston Churchill High School GSA
+[2025-12-27 13:25:48] ID 47359: Moved 3.2km - Northwest High School GSA
+[2025-12-27 13:25:48] ID 47360: Moved 3km - Paint Branch High School GSA
+[2025-12-27 13:25:48] ID 47361: Moved 6.2km - Seneca Valley High School GSA
+[2025-12-27 13:25:48] ID 47362: Moved 1.4km - Sherwood High School GSA
+[2025-12-27 13:25:48] ID 47363: Moved 3.1km - Springbrook High School GSA
+[2025-12-27 13:25:49] ID 47365: Moved 6.2km - Kent Island High School SAGA
+[2025-12-27 13:25:49] ID 47366: Moved 2.2km - Queen Anne's County High School
+[2025-12-27 13:25:49] ID 47367: Moved 2.4km - Leonardtown High School GSA
+[2025-12-27 13:25:49] ID 47368: Moved 5.7km - Worcester Technical High School GSA
+[2025-12-27 13:25:50] ID 47370: Moved 1.1km - Poplight
+[2025-12-27 13:25:50] ID 47378: Moved 5.8km - Arrive Therapy
+[2025-12-27 13:25:50] ID 47379: Moved 9.7km - Arrive Therapy
+[2025-12-27 13:25:51] ID 47381: Moved 1.9km - Kris Averi
+[2025-12-27 13:25:51] ID 47382: Moved 3.7km - Page's Peaches
+[2025-12-27 13:25:51] ID 47383: Moved 3.1km - The Collective
+[2025-12-27 13:25:52] ID 47384: Moved 14.9km - Coho: Conway Hostel
+[2025-12-27 13:25:52] ID 47385: Moved 1.4km - Riley Oats
+[2025-12-27 13:25:52] ID 47386: Moved 2km - Jackson-Reed High School GSA
+[2025-12-27 13:25:53] ID 47390: Moved 6.3km - Albemarle High School GSA
+[2025-12-27 13:25:53] ID 47392: Moved 2km - Clownboy Coffee
+[2025-12-27 13:25:54] ID 47394: Moved 3.2km - Deep Creek High School GSA
+[2025-12-27 13:25:54] ID 47395: Moved 2.9km - Clover Hill High School Allies
+[2025-12-27 13:25:54] ID 47396: Moved 5.5km - Cosby High School GSA
+[2025-12-27 13:25:54] ID 47397: Moved 7.3km - Dinwiddie County High School GSA
+[2025-12-27 13:25:55] ID 47399: Moved 3.4km - Annondale High School GSA
+[2025-12-27 13:25:55] ID 47400: Moved 2.5km - Lake Braddock High School GSA
+[2025-12-27 13:25:55] ID 47401: Moved 5.8km - South County Secondary School GSA
+[2025-12-27 13:25:56] ID 47403: Moved 1.8km - Mount Vernon High School GSA
+[2025-12-27 13:25:56] ID 47405: Moved 4.6km - Chantilly High School GSA
+[2025-12-27 13:25:56] ID 47406: Moved 3.7km - Liberty High School GSA
+[2025-12-27 13:25:57] ID 47407: Moved 2.5km - Bethel High School GSA
+[2025-12-27 13:25:57] ID 47408: Moved 2.4km - Kecoughtan High School GSA
+[2025-12-27 13:25:57] ID 47409: Moved 8.4km - Atlee High School GSA
+[2025-12-27 13:25:58] ID 47411: Moved 3.6km - Metropolitan Community Church of Knoxville
+[2025-12-27 13:25:58] ID 47413: Moved 8.5km - Smithfield High School Pride Club
+[2025-12-27 13:25:58] ID 47415: Moved 2.5km - Broad Run High School
+[2025-12-27 13:25:59] ID 47416: Moved 13.9km - Rock Ridge High School GSA
+[2025-12-27 13:25:59] ID 47417: Moved 3.4km - Stone Bridge High School GSA
+[2025-12-27 13:25:59] ID 47418: Moved 5.9km - Loudoun County High School GSA
+[2025-12-27 13:25:59] ID 47419: Moved 4.5km - Gar-Field Senior High GSA
+[2025-12-27 13:25:59] ID 47420: Moved 4.1km - Brentville District High School LGBTQ
+[2025-12-27 13:26:00] ID 47421: Moved 4.1km - Freedom High School GSA
+[2025-12-27 13:26:00] ID 47422: Moved 4.1km - Hylton High School GSA
+[2025-12-27 13:26:00] ID 47423: Moved 4.3km - Salem High School GSA
+[2025-12-27 13:26:00] ID 47424: Moved 8.7km - Stafford Senior High Pride Club
+[2025-12-27 13:26:00] ID 47425: Moved 2.3km - Bayside High School GSA
+[2025-12-27 13:26:01] ID 47426: Moved 6.7km - Frank W. Cox High School
+[2025-12-27 13:26:01] ID 47427: Moved 8.8km - Landstown High School GSA
+[2025-12-27 13:26:01] ID 47428: Moved 1.5km - Tallwood High School GSA
+[2025-12-27 13:26:01] ID 47429: Moved 1.5km - Tabb High School GSA
+[2025-12-27 13:26:02] ID 47431: Moved 4.1km - George Washington High School GSA
+[2025-12-27 13:26:02] ID 47432: Moved 9.3km - Morgantown High School
+[2025-12-27 13:26:02] ID 47433: Moved 10.4km - University High School Pride Club
+[2025-12-27 13:26:02] ID 47434: Moved 6.5km - Roane County High School GSA
+[2025-12-27 13:26:02] ID 47435: Moved 4.9km - Eastern Almance High School GSA
+[2025-12-27 13:26:03] ID 47436: Moved 7.4km - Walter M. Williams High School GSA
+[2025-12-27 13:26:03] ID 47437: Moved 13.2km - Graham High School GSA
+[2025-12-27 13:26:03] ID 47438: Moved 4.7km - Northside High School GSA
+[2025-12-27 13:26:03] === Batch Re-Geocoding Complete ===
+[2025-12-27 13:26:03] Time elapsed: 1h 12m
+[2025-12-27 13:26:03] Processed: 20482
+[2025-12-27 13:26:03] Updated: 20053
+[2025-12-27 13:26:03] Unchanged: 395
+[2025-12-27 13:26:03] Failed: 34
+[2025-12-27 13:26:03] Rate: 283.6 resources/minute
+[2025-12-27 13:26:03] Log file: /home/1203785.cloudwaysapps.com/hrbnxbfdau/public_html/Admin/Search/geocode_log_20251227_121350.txt
+[2025-12-27 13:26:03] 
+To restore from backup:
+[2025-12-27 13:26:03] mysql -u hrbnxbfdau -p hrbnxbfdau < /home/1203785.cloudwaysapps.com/hrbnxbfdau/private_html/database_backups/resource_backup_20251227_193944.sql

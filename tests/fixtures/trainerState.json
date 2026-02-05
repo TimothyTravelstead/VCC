@@ -1,0 +1,50 @@
+{
+  "standard": {
+    "volunteerID": "TestTrainer",
+    "trainerID": "TestTrainer",
+    "role": "trainer",
+    "fullName": "Test Trainer",
+    "trainees": ["TestTrainee1", "TestTrainee2"],
+    "isController": true,
+    "currentlyOnCall": false,
+    "muted": false,
+    "incomingCallsTo": "TestTrainer"
+  },
+  "withTraineeControl": {
+    "volunteerID": "TestTrainer",
+    "trainerID": "TestTrainer",
+    "role": "trainer",
+    "fullName": "Test Trainer",
+    "trainees": ["TestTrainee1", "TestTrainee2"],
+    "isController": false,
+    "activeController": "TestTrainee1",
+    "currentlyOnCall": false,
+    "muted": false,
+    "incomingCallsTo": "TestTrainee1"
+  },
+  "onCall": {
+    "volunteerID": "TestTrainer",
+    "trainerID": "TestTrainer",
+    "role": "trainer",
+    "fullName": "Test Trainer",
+    "trainees": ["TestTrainee1", "TestTrainee2"],
+    "isController": true,
+    "currentlyOnCall": true,
+    "muted": false,
+    "incomingCallsTo": "TestTrainer",
+    "callSid": "CA_test_call_123"
+  },
+  "onCallTraineeControl": {
+    "volunteerID": "TestTrainer",
+    "trainerID": "TestTrainer",
+    "role": "trainer",
+    "fullName": "Test Trainer",
+    "trainees": ["TestTrainee1", "TestTrainee2"],
+    "isController": false,
+    "activeController": "TestTrainee1",
+    "currentlyOnCall": true,
+    "muted": true,
+    "incomingCallsTo": "TestTrainee1",
+    "callSid": "CA_test_call_123"
+  }
+}

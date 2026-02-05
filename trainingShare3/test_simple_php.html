@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple PHP Signaling Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .log {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📡 Simple PHP Signaling Test</h1>
+    
+    <div>
+        <label>User ID:</label>
+        <input type="text" id="userId" value="TestUser1" />
+        
+        <label>Room ID:</label>
+        <input type="text" id="roomId" value="TestRoom" />
+        
+        <button onclick="setupSession()">Setup Session</button>
+        <button onclick="sendTestMessage()">Send Test Message</button>
+        <button onclick="clearLog()">Clear Log</button>
+    </div>
+    
+    <div class="log" id="log"></div>
+    
+    <script>
+        function log(message) {
+            const logEl = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log(message);
+        }
+        
+        function setupSession() {
+            const userId = document.getElementById('userId').value;
+            
+            if (!userId) {
+                alert('Please enter User ID');
+                return;
+            }
+            
+            log(`Setting up test session for ${userId}`);
+            
+            fetch(`setup_test_session.php?userId=${userId}`)
+            .then(response => response.json())
+            .then(result => {
+                log(`✅ Session setup: ${result.message}`);
+                log(`Session details: ${JSON.stringify(result.session)}`);
+            })
+            .catch(error => {
+                log(`❌ Session setup error: ${error.message}`);
+                console.error('Session error:', error);
+            });
+        }
+        
+        function sendTestMessage() {
+            const userId = document.getElementById('userId').value;
+            const roomId = document.getElementById('roomId').value;
+            
+            if (!userId || !roomId) {
+                alert('Please enter User ID and Room ID');
+                return;
+            }
+            
+            const testMessage = {
+                type: 'test-message',
+                message: 'Hello from ' + userId,
+                timestamp: Date.now()
+            };
+            
+            log(`Sending test message from ${userId} to room ${roomId}`);
+            
+            // Send POST request to signaling server
+            fetch(`signalingServerMulti.php?trainingShareRoom=${roomId}&role=trainer`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(testMessage)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(result => {
+                log(`✅ Message sent successfully: ${result}`);
+            })
+            .catch(error => {
+                log(`❌ Error sending message: ${error.message}`);
+                console.error('Send error:', error);
+            });
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        log('Simple PHP signaling test loaded. Enter user/room info and click Send Test Message.');
+    </script>
+</body>
+</html>

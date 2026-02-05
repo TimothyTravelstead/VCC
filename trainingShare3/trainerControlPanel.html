@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Control Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .control-panel {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-top: 0;
+            font-size: 24px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        
+        .status-bar {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        .status-label {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .status-value {
+            color: #007bff;
+        }
+        
+        .participants-section {
+            margin-top: 20px;
+        }
+        
+        .participants-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .participant-count {
+            background: #007bff;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .participants-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .participant-card {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .participant-card:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+            transform: translateX(5px);
+        }
+        
+        .participant-card.has-control {
+            background: #d4edda;
+            border-color: #28a745;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.2);
+        }
+        
+        .participant-card.has-control::before {
+            content: "IN CONTROL";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .participant-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .participant-info {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .participant-role {
+            padding: 2px 6px;
+            border-radius: 3px;
+            background: #e9ecef;
+            color: #495057;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        .participant-role.trainer {
+            background: #ffc107;
+            color: #000;
+        }
+        
+        .participant-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #dc3545;
+        }
+        
+        .status-indicator.online {
+            background: #28a745;
+        }
+        
+        .control-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 20px;
+            color: #0c5460;
+        }
+        
+        .control-info-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .control-info-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #6c757d;
+            padding: 20px;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        .updating {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="control-panel">
+        <h1>🎯 Training Session Control Panel</h1>
+        
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">Your Role:</span>
+                <span class="status-value" id="userRole">Loading...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Session ID:</span>
+                <span class="status-value" id="sessionId">Loading...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Current Controller:</span>
+                <span class="status-value" id="currentController">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="participants-section">
+            <div class="participants-header">
+                <span>Participants</span>
+                <span class="participant-count" id="participantCount">0</span>
+            </div>
+            
+            <div class="participants-list" id="participantsList">
+                <div class="loading">Loading participants...</div>
+            </div>
+        </div>
+        
+        <div class="control-info">
+            <div class="control-info-title">ℹ️ How Control Works</div>
+            <div class="control-info-text">
+                The person with control:
+                <ul style="margin: 5px 0; padding-left: 20px;">
+                    <li>Shares their screen with all participants</li>
+                    <li>Receives all incoming external calls</li>
+                    <li>Can speak during external calls (others are muted)</li>
+                </ul>
+                <strong id="controlPermission">Loading permissions...</strong>
+            </div>
+        </div>
+        
+        <div class="success-message" id="successMessage">
+            Control successfully transferred!
+        </div>
+        
+        <div class="error" id="errorMessage" style="display: none;">
+            Error message will appear here
+        </div>
+    </div>
+    
+    <script>
+        // Configuration
+        let trainerId = null;
+        let currentUser = null;
+        let isTrainer = false;
+        let activeController = null;
+        let pollInterval = null;
+        
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        trainerId = urlParams.get('trainerId');
+        currentUser = urlParams.get('user');
+        const role = urlParams.get('role');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!trainerId || !currentUser) {
+                showError('Missing required parameters. Please provide trainerId and user in URL.');
+                return;
+            }
+            
+            isTrainer = (role === 'trainer' || currentUser === trainerId);
+            
+            // Update UI with initial info
+            document.getElementById('userRole').textContent = isTrainer ? 'Trainer' : 'Trainee';
+            document.getElementById('sessionId').textContent = trainerId;
+            
+            // Update control permission text
+            const permissionText = isTrainer 
+                ? 'As the trainer, click on any participant to transfer control to them.'
+                : 'Only the trainer can change who has control.';
+            document.getElementById('controlPermission').textContent = permissionText;
+            
+            // Start polling for participants and control status
+            loadParticipants();
+            pollInterval = setInterval(loadParticipants, 5000);
+        });
+        
+        async function loadParticipants() {
+            try {
+                // Fetch participants
+                const response = await fetch(`/trainingShare3/getParticipants.php?trainerId=${encodeURIComponent(trainerId)}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (data.success) {
+                    updateParticipantsList(data.participants);
+                    
+                    // Update current controller display
+                    const controller = data.participants.find(p => p.hasControl);
+                    if (controller) {
+                        activeController = controller.id;
+                        document.getElementById('currentController').textContent = 
+                            `${controller.name} (${controller.role})`;
+                    }
+                } else {
+                    showError(data.error || 'Failed to load participants');
+                }
+            } catch (error) {
+                console.error('Error loading participants:', error);
+                showError('Failed to connect to server');
+            }
+        }
+        
+        function updateParticipantsList(participants) {
+            const listContainer = document.getElementById('participantsList');
+            const countElement = document.getElementById('participantCount');
+            
+            // Update count
+            countElement.textContent = participants.length;
+            
+            // Clear existing list
+            listContainer.innerHTML = '';
+            
+            // Add each participant
+            participants.forEach(participant => {
+                const card = createParticipantCard(participant);
+                listContainer.appendChild(card);
+            });
+        }
+        
+        function createParticipantCard(participant) {
+            const card = document.createElement('div');
+            card.className = 'participant-card';
+            if (participant.hasControl) {
+                card.classList.add('has-control');
+            }
+            
+            // Only trainers can click to transfer control
+            if (isTrainer && participant.id !== activeController) {
+                card.style.cursor = 'pointer';
+                card.onclick = () => transferControl(participant.id, participant.name);
+            } else if (!isTrainer) {
+                card.style.cursor = 'default';
+            }
+            
+            card.innerHTML = `
+                <div class="participant-name">${participant.name || participant.id}</div>
+                <div class="participant-info">
+                    <span class="participant-role ${participant.role}">${participant.role}</span>
+                    <div class="participant-status">
+                        <span class="status-indicator ${participant.isSignedOn ? 'online' : ''}"></span>
+                        <span>${participant.isSignedOn ? 'Online' : 'Offline'}</span>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        async function transferControl(newControllerId, newControllerName) {
+            if (!isTrainer) {
+                showError('Only trainers can transfer control');
+                return;
+            }
+            
+            if (newControllerId === activeController) {
+                return; // Already has control
+            }
+            
+            if (!confirm(`Transfer control to ${newControllerName}?\n\nThey will:\n• Share their screen\n• Receive external calls\n• Have speaking privileges during calls`)) {
+                return;
+            }
+            
+            // Show updating state
+            document.getElementById('participantsList').classList.add('updating');
+            
+            try {
+                const response = await fetch('/trainingShare3/setTrainingControl.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        trainerId: trainerId,
+                        activeController: newControllerId,
+                        controllerRole: (newControllerId === trainerId) ? 'trainer' : 'trainee'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (data.success) {
+                    showSuccess(`Control transferred to ${newControllerName}`);
+                    // Immediately refresh the participant list
+                    loadParticipants();
+                } else {
+                    showError(data.error || 'Failed to transfer control');
+                }
+            } catch (error) {
+                console.error('Error transferring control:', error);
+                showError('Failed to transfer control. Please try again.');
+            } finally {
+                document.getElementById('participantsList').classList.remove('updating');
+            }
+        }
+        
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        function showSuccess(message) {
+            const successElement = document.getElementById('successMessage');
+            successElement.textContent = message;
+            successElement.style.display = 'block';
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            if (pollInterval) {
+                clearInterval(pollInterval);
+            }
+        });
+    </script>
+</body>
+</html>

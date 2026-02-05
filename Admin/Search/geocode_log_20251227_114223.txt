@@ -1,0 +1,83 @@
+[2025-12-27 11:42:23] === Batch Re-Geocoding Started ===
+[2025-12-27 11:42:23] Dry run: NO
+[2025-12-27 11:42:23] Start offset: 0
+[2025-12-27 11:42:23] Limit: 500
+[2025-12-27 11:42:23] Total open resources: 20982
+[2025-12-27 11:42:23] Resources to process in this run: 500
+[2025-12-27 11:42:29] ID 89: Moved 2km - SUNY Stony Brook
+[2025-12-27 11:42:31] ID 103: Moved 1.1km - Prime Timers - New York
+[2025-12-27 11:42:31] ID 106: Moved 4km - Bluff Creek Falls
+[2025-12-27 11:42:35] ID 161: Moved 1.7km - Olivia
+[2025-12-27 11:42:37] ID 208: Moved 10.2km - Lavender Green Caucus
+[2025-12-27 11:42:38] ID 219: Moved 1.7km - Boston Strikers
+[2025-12-27 11:42:38] ID 225: Moved 3.1km - Outwoods
+[2025-12-27 11:42:40] ID 253: Moved 5.4km - Broadway Cares - Equity Fights AIDS
+[2025-12-27 11:42:42] ID 266: Moved 1.1km - Harlem United
+[2025-12-27 11:42:43] ID 295: Moved 1.3km - Treatment Action Group (TAG)
+[2025-12-27 11:42:43] ID 301: Moved 1.2km - American Civil Liberties Union ( ACLU )
+[2025-12-27 11:42:44] ID 306: Moved 1.2km - New York State Division Of
+[2025-12-27 11:42:45] ID 313: Moved 5.3km - Atlanta Rainbow Trout
+[2025-12-27 11:42:47] ID 347: Moved 2.1km - Crystal Meth Anonymous
+[2025-12-27 11:42:50] ID 375: Moved 2.6km - Ball State University
+[2025-12-27 11:42:51] ID 381: Moved 3.1km - American Civil Liberties Union Of Indiana
+[2025-12-27 11:42:52] ID 401: Moved 2.1km - Indianapolis Women's Chorus
+[2025-12-27 11:42:53] ID 429: Moved 7km - SGR - The Sex, Gender, and Relationship Hotline
+[2025-12-27 11:42:54] ID 430: Moved 1.5km - AIDS/HIV Nightline
+[2025-12-27 11:42:59] ID 507: Moved 3.2km - East Bay Network
+[2025-12-27 11:43:03] ID 554: Moved 13.9km - Iowa State University
+[2025-12-27 11:43:04] ID 571: Moved 15.7km - Nomenus Wolf Creek Sanctuary
+[2025-12-27 11:43:05] ID 581: Moved 6.4km - Bucknell University
+[2025-12-27 11:43:06] ID 589: Moved 1.6km - Lock Haven University (Commonwealth University)
+[2025-12-27 11:43:06] ID 593: Moved 2.1km - Florida Department Of Health
+[2025-12-27 11:43:08] ID 625: Moved 5.4km - Mid Hudson Lesbian And Gay Professional Alliance
+[2025-12-27 11:43:10] ID 641: Moved 8.9km - National Association Of Social Workers - New York
+[2025-12-27 11:43:11] ID 671: Moved 1km - Dignity New York and Brooklyn
+[2025-12-27 11:43:21] ID 869: Moved 2.7km - Eugene Pride
+[2025-12-27 11:43:23] ID 883: Moved 2.8km - PFLAG - Salem
+[2025-12-27 11:43:24] ID 894: Moved 4.8km - Eastern Oregon University
+[2025-12-27 11:43:26] ID 917: Moved 1.7km - Project Angel Heart
+[2025-12-27 11:43:27] ID 940: Moved 2.2km - Way OUT West Film Fest
+[2025-12-27 11:43:28] ID 945: Moved 20.9km - University Of New Mexico Women's Center
+[2025-12-27 11:43:30] ID 988: Moved 3.3km - Friends Meeting House (Quakers)
+[2025-12-27 11:43:31] ID 997: Moved 2.1km - University Of Michigan Ford School
+[2025-12-27 11:43:32] ID 1039: Moved 6.8km - American Civil Liberties Union of Maine
+[2025-12-27 11:43:34] ID 1062: Moved 10281.4km - University Of Maine
+[2025-12-27 11:43:35] ID 1081: Moved 1.4km - Eastern Connecticut State University
+[2025-12-27 11:43:36] ID 1093: Moved 3.3km - Triangle Community Center
+[2025-12-27 11:43:38] ID 1106: Moved 4.7km - Holy Covenant United Church of Christ
+[2025-12-27 11:43:39] ID 1123: Moved 8.6km - American University
+[2025-12-27 11:43:42] ID 1154: Moved 12.6km - University Of Wyoming
+[2025-12-27 11:43:42] ID 1155: Moved 33.1km - PFLAG - Casper
+[2025-12-27 11:43:43] ID 1184: Moved 833.1km - Fresno Rainbow Pride
+[2025-12-27 11:43:47] ID 1223: Moved 1.2km - Oak Lawn Band
+[2025-12-27 11:43:47] ID 1224: Moved 1.5km - This Week in Texas
+[2025-12-27 11:43:47] ID 1230: Moved 17.9km - University Of Colorado
+[2025-12-27 11:43:49] ID 1248: Moved 244.5km - PFLAG - Fort Wayne
+[2025-12-27 11:43:51] ID 1271: Moved 1.5km - Delaware Department Of Health And Social Services
+[2025-12-27 11:43:52] ID 1282: Moved 4.1km - Illinois State University
+[2025-12-27 11:43:53] ID 1303: Moved 3.1km - University Of Vermont
+[2025-12-27 11:43:56] ID 1359: Moved 1.7km - University Of Nebraska Medical Center
+[2025-12-27 11:43:56] ID 1367: Moved 1.7km - River City Mixed Chorus
+[2025-12-27 11:43:57] ID 1376: Moved 2.8km - University of Nebraska
+[2025-12-27 11:43:58] ID 1383: Moved 2.7km - PFLAG - Hastings
+[2025-12-27 11:43:58] ID 1385: Moved 2.8km - Brown University AIDS Program
+[2025-12-27 11:43:59] ID 1388: Moved 2.2km - Rhode Island College
+[2025-12-27 11:44:00] ID 1407: Moved 1.2km - Youth Pride, Inc.
+[2025-12-27 11:44:01] ID 1417: Moved 1.8km - The LGBTQ Center of Southern Nevada
+[2025-12-27 11:44:02] ID 1442: Moved 2.5km - University Of Hawaii LGBT+ Center -Hilo-
+[2025-12-27 11:44:05] ID 1465: Moved 3.5km - Gregory House Programs
+[2025-12-27 11:44:06] ID 1472: Moved 4.6km - PFLAG - Anderson
+[2025-12-27 11:44:08] ID 1492: Moved 1.1km - PFLAG - Tulsa
+[2025-12-27 11:44:08] ID 1497: Moved 1.6km - Advocate
+[2025-12-27 11:44:08] ID 1498: Moved 1.1km - Out Magazine
+[2025-12-27 11:44:11] === Batch Re-Geocoding Complete ===
+[2025-12-27 11:44:11] Time elapsed: 2m 48s
+[2025-12-27 11:44:11] Processed: 500
+[2025-12-27 11:44:11] Updated: 498
+[2025-12-27 11:44:11] Unchanged: 2
+[2025-12-27 11:44:11] Failed: 0
+[2025-12-27 11:44:11] Rate: 277.8 resources/minute
+[2025-12-27 11:44:11] Log file: /home/1203785.cloudwaysapps.com/hrbnxbfdau/public_html/Admin/Search/geocode_log_20251227_114223.txt
+[2025-12-27 11:44:11] 
+To restore from backup:
+[2025-12-27 11:44:11] mysql -u hrbnxbfdau -p hrbnxbfdau < /home/1203785.cloudwaysapps.com/hrbnxbfdau/private_html/database_backups/resource_backup_20251227_193944.sql

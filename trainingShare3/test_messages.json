@@ -1,0 +1,476 @@
+[
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753650962
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753650992
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753651022
+    },
+    {
+        "type": "join-request",
+        "from": "receiver_lbbua",
+        "to": "caller",
+        "timestamp": 1753651070
+    },
+    {
+        "type": "offer",
+        "offer": {
+            "sdp": "v=0\r\no=- 4470059775438067851 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS\r\n",
+            "type": "offer"
+        },
+        "from": "caller",
+        "to": "receiver_lbbua",
+        "timestamp": 1753651071
+    },
+    {
+        "type": "answer",
+        "answer": {
+            "sdp": "v=0\r\no=- 2150846226474741823 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS\r\n",
+            "type": "answer"
+        },
+        "from": "receiver_lbbua",
+        "to": "caller",
+        "timestamp": 1753651072
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753651089
+    },
+    {
+        "type": "join-request",
+        "from": "receiver_3x25t",
+        "to": "caller",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "offer",
+        "offer": {
+            "sdp": "v=0\r\no=- 1385506967983817262 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS 146dd938-a463-4397-b2ba-51b3832ce154\r\nm=video 9 UDP\/TLS\/RTP\/SAVPF 96 97 103 104 107 108 109 114 115 116 117 118 39 40 45 46 98 99 100 101 119 120 49 50 123 124 125\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:wh8X\r\na=ice-pwd:txlr4h8PgHekqoIWjsU3\/pfu\r\na=ice-options:trickle\r\na=fingerprint:sha-256 76:68:91:BE:D4:0F:1F:60:8C:75:48:D0:85:90:3A:05:AE:44:56:C7:DA:C0:41:73:EC:51:4D:D0:5B:F2:19:55\r\na=setup:actpass\r\na=mid:0\r\na=extmap:1 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:2 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/abs-send-time\r\na=extmap:3 urn:3gpp:video-orientation\r\na=extmap:4 http:\/\/www.ietf.org\/id\/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:5 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/playout-delay\r\na=extmap:6 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/video-content-type\r\na=extmap:7 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/video-timing\r\na=extmap:8 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/color-space\r\na=extmap:9 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=extmap:10 urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id\r\na=extmap:11 urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id\r\na=sendrecv\r\na=msid:146dd938-a463-4397-b2ba-51b3832ce154 f79445ab-7ab6-4e9a-9698-60b980337d6d\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8\/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx\/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:103 H264\/90000\r\na=rtcp-fb:103 goog-remb\r\na=rtcp-fb:103 transport-cc\r\na=rtcp-fb:103 ccm fir\r\na=rtcp-fb:103 nack\r\na=rtcp-fb:103 nack pli\r\na=fmtp:103 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f\r\na=rtpmap:104 rtx\/90000\r\na=fmtp:104 apt=103\r\na=rtpmap:107 H264\/90000\r\na=rtcp-fb:107 goog-remb\r\na=rtcp-fb:107 transport-cc\r\na=rtcp-fb:107 ccm fir\r\na=rtcp-fb:107 nack\r\na=rtcp-fb:107 nack pli\r\na=fmtp:107 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42001f\r\na=rtpmap:108 rtx\/90000\r\na=fmtp:108 apt=107\r\na=rtpmap:109 H264\/90000\r\na=rtcp-fb:109 goog-remb\r\na=rtcp-fb:109 transport-cc\r\na=rtcp-fb:109 ccm fir\r\na=rtcp-fb:109 nack\r\na=rtcp-fb:109 nack pli\r\na=fmtp:109 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\na=rtpmap:114 rtx\/90000\r\na=fmtp:114 apt=109\r\na=rtpmap:115 H264\/90000\r\na=rtcp-fb:115 goog-remb\r\na=rtcp-fb:115 transport-cc\r\na=rtcp-fb:115 ccm fir\r\na=rtcp-fb:115 nack\r\na=rtcp-fb:115 nack pli\r\na=fmtp:115 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42e01f\r\na=rtpmap:116 rtx\/90000\r\na=fmtp:116 apt=115\r\na=rtpmap:117 H264\/90000\r\na=rtcp-fb:117 goog-remb\r\na=rtcp-fb:117 transport-cc\r\na=rtcp-fb:117 ccm fir\r\na=rtcp-fb:117 nack\r\na=rtcp-fb:117 nack pli\r\na=fmtp:117 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f\r\na=rtpmap:118 rtx\/90000\r\na=fmtp:118 apt=117\r\na=rtpmap:39 H264\/90000\r\na=rtcp-fb:39 goog-remb\r\na=rtcp-fb:39 transport-cc\r\na=rtcp-fb:39 ccm fir\r\na=rtcp-fb:39 nack\r\na=rtcp-fb:39 nack pli\r\na=fmtp:39 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=4d001f\r\na=rtpmap:40 rtx\/90000\r\na=fmtp:40 apt=39\r\na=rtpmap:45 AV1\/90000\r\na=rtcp-fb:45 goog-remb\r\na=rtcp-fb:45 transport-cc\r\na=rtcp-fb:45 ccm fir\r\na=rtcp-fb:45 nack\r\na=rtcp-fb:45 nack pli\r\na=fmtp:45 level-idx=5;profile=0;tier=0\r\na=rtpmap:46 rtx\/90000\r\na=fmtp:46 apt=45\r\na=rtpmap:98 VP9\/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=fmtp:98 profile-id=0\r\na=rtpmap:99 rtx\/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 VP9\/90000\r\na=rtcp-fb:100 goog-remb\r\na=rtcp-fb:100 transport-cc\r\na=rtcp-fb:100 ccm fir\r\na=rtcp-fb:100 nack\r\na=rtcp-fb:100 nack pli\r\na=fmtp:100 profile-id=2\r\na=rtpmap:101 rtx\/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:119 H264\/90000\r\na=rtcp-fb:119 goog-remb\r\na=rtcp-fb:119 transport-cc\r\na=rtcp-fb:119 ccm fir\r\na=rtcp-fb:119 nack\r\na=rtcp-fb:119 nack pli\r\na=fmtp:119 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=64001f\r\na=rtpmap:120 rtx\/90000\r\na=fmtp:120 apt=119\r\na=rtpmap:49 H265\/90000\r\na=rtcp-fb:49 goog-remb\r\na=rtcp-fb:49 transport-cc\r\na=rtcp-fb:49 ccm fir\r\na=rtcp-fb:49 nack\r\na=rtcp-fb:49 nack pli\r\na=fmtp:49 level-id=180;profile-id=1;tier-flag=0;tx-mode=SRST\r\na=rtpmap:50 rtx\/90000\r\na=fmtp:50 apt=49\r\na=rtpmap:123 red\/90000\r\na=rtpmap:124 rtx\/90000\r\na=fmtp:124 apt=123\r\na=rtpmap:125 ulpfec\/90000\r\na=ssrc-group:FID 178305330 367169879\r\na=ssrc:178305330 cname:Q6jiQ+jDYasYX1s8\r\na=ssrc:178305330 msid:146dd938-a463-4397-b2ba-51b3832ce154 f79445ab-7ab6-4e9a-9698-60b980337d6d\r\na=ssrc:367169879 cname:Q6jiQ+jDYasYX1s8\r\na=ssrc:367169879 msid:146dd938-a463-4397-b2ba-51b3832ce154 f79445ab-7ab6-4e9a-9698-60b980337d6d\r\n",
+            "type": "offer"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:2057743357 1 udp 2122129151 10.0.0.232 64638 typ host generation 0 ufrag wh8X network-id 1 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:890805297 1 udp 2122197247 2601:644:8301:c420:5d6f:947f:5bb8:26a3 63719 typ host generation 0 ufrag wh8X network-id 2 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:3839595750 1 udp 2121998079 100.88.160.102 60754 typ host generation 0 ufrag wh8X network-id 4 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:3637951754 1 udp 2122265343 fdde:1d52:7f16:1947:18f8:2769:58ec:e6 52059 typ host generation 0 ufrag wh8X network-id 3 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:1115698236 1 udp 2122068735 fd7a:115c:a1e0::bb01:a067 52768 typ host generation 0 ufrag wh8X network-id 5 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:1824252239 1 udp 1685921535 76.103.251.116 64638 typ srflx raddr 10.0.0.232 rport 64638 generation 0 ufrag wh8X network-id 1 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:622183340 1 udp 1685790463 23.114.103.41 60754 typ srflx raddr 100.88.160.102 rport 60754 generation 0 ufrag wh8X network-id 4 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:74008933 1 tcp 1518149375 10.0.0.232 9 typ host tcptype active generation 0 ufrag wh8X network-id 1 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:2585032318 1 tcp 1518018303 100.88.160.102 9 typ host tcptype active generation 0 ufrag wh8X network-id 4 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:1272413865 1 tcp 1518217471 2601:644:8301:c420:5d6f:947f:5bb8:26a3 9 typ host tcptype active generation 0 ufrag wh8X network-id 2 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:1011865252 1 tcp 1518088959 fd7a:115c:a1e0::bb01:a067 9 typ host tcptype active generation 0 ufrag wh8X network-id 5 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:2786680722 1 tcp 1518285567 fdde:1d52:7f16:1947:18f8:2769:58ec:e6 9 typ host tcptype active generation 0 ufrag wh8X network-id 3 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "wh8X"
+        },
+        "from": "caller",
+        "to": "receiver_3x25t",
+        "timestamp": 1753651097
+    },
+    {
+        "type": "answer",
+        "answer": {
+            "sdp": "v=0\r\no=- 2022747687093716693 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS\r\nm=video 9 UDP\/TLS\/RTP\/SAVPF 96 97 109 114 115 116 98 99 100 101 49 50 123 124 125\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:ABah\r\na=ice-pwd:CwlxzKz6R68OtJ8vR+aTXqMl\r\na=ice-options:trickle\r\na=fingerprint:sha-256 F4:BA:91:E7:55:45:FF:0A:9A:EC:CA:45:F7:7A:4A:3B:38:8C:60:CF:F6:78:C5:6B:CD:76:B5:19:E6:51:11:CB\r\na=setup:active\r\na=mid:0\r\na=extmap:1 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:2 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/abs-send-time\r\na=extmap:3 urn:3gpp:video-orientation\r\na=extmap:4 http:\/\/www.ietf.org\/id\/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:5 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/playout-delay\r\na=extmap:6 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/video-content-type\r\na=extmap:7 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/video-timing\r\na=extmap:8 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/color-space\r\na=extmap:9 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=extmap:10 urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id\r\na=extmap:11 urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id\r\na=recvonly\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8\/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx\/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:109 H264\/90000\r\na=rtcp-fb:109 goog-remb\r\na=rtcp-fb:109 transport-cc\r\na=rtcp-fb:109 ccm fir\r\na=rtcp-fb:109 nack\r\na=rtcp-fb:109 nack pli\r\na=fmtp:109 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\na=rtpmap:114 rtx\/90000\r\na=fmtp:114 apt=109\r\na=rtpmap:115 H264\/90000\r\na=rtcp-fb:115 goog-remb\r\na=rtcp-fb:115 transport-cc\r\na=rtcp-fb:115 ccm fir\r\na=rtcp-fb:115 nack\r\na=rtcp-fb:115 nack pli\r\na=fmtp:115 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42e01f\r\na=rtpmap:116 rtx\/90000\r\na=fmtp:116 apt=115\r\na=rtpmap:98 VP9\/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=fmtp:98 profile-id=0\r\na=rtpmap:99 rtx\/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 VP9\/90000\r\na=rtcp-fb:100 goog-remb\r\na=rtcp-fb:100 transport-cc\r\na=rtcp-fb:100 ccm fir\r\na=rtcp-fb:100 nack\r\na=rtcp-fb:100 nack pli\r\na=fmtp:100 profile-id=2\r\na=rtpmap:101 rtx\/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:49 H265\/90000\r\na=rtcp-fb:49 goog-remb\r\na=rtcp-fb:49 transport-cc\r\na=rtcp-fb:49 ccm fir\r\na=rtcp-fb:49 nack\r\na=rtcp-fb:49 nack pli\r\na=fmtp:49 level-id=93\r\na=rtpmap:50 rtx\/90000\r\na=fmtp:50 apt=49\r\na=rtpmap:123 red\/90000\r\na=rtpmap:124 rtx\/90000\r\na=fmtp:124 apt=123\r\na=rtpmap:125 ulpfec\/90000\r\n",
+            "type": "answer"
+        },
+        "from": "receiver_3x25t",
+        "to": "caller",
+        "timestamp": 1753651098
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:3835895408 1 udp 2113942271 fd504f01-7c85-46dd-9a27-c207a6ca5739.local 55962 typ host generation 0 ufrag ABah network-cost 999",
+            "sdpMLineIndex": 0,
+            "sdpMid": "0",
+            "usernameFragment": null
+        },
+        "from": "receiver_3x25t",
+        "to": "caller",
+        "timestamp": 1753651098
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:1123597994 1 udp 2113937151 07bb2a86-84f3-449f-babe-7981a460d72a.local 51164 typ host generation 0 ufrag ABah network-cost 999",
+            "sdpMLineIndex": 0,
+            "sdpMid": "0",
+            "usernameFragment": null
+        },
+        "from": "receiver_3x25t",
+        "to": "caller",
+        "timestamp": 1753651098
+    },
+    {
+        "type": "join-request",
+        "from": "receiver_lfoj1",
+        "to": "caller",
+        "timestamp": 1753651117
+    },
+    {
+        "type": "offer",
+        "offer": {
+            "sdp": "v=0\r\no=- 2887122281321625065 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS 146dd938-a463-4397-b2ba-51b3832ce154\r\nm=video 9 UDP\/TLS\/RTP\/SAVPF 96 97 103 104 107 108 109 114 115 116 117 118 39 40 45 46 98 99 100 101 119 120 49 50 123 124 125\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:LKHh\r\na=ice-pwd:Z7rTvnqWpFtF4A29wICEFalB\r\na=ice-options:trickle\r\na=fingerprint:sha-256 AC:7D:C5:80:6D:F3:BE:79:2B:09:61:3A:7E:A4:F1:A9:5F:0E:0D:EC:C5:68:FC:D5:36:F3:B3:65:F7:E5:65:F0\r\na=setup:actpass\r\na=mid:0\r\na=extmap:1 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:2 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/abs-send-time\r\na=extmap:3 urn:3gpp:video-orientation\r\na=extmap:4 http:\/\/www.ietf.org\/id\/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:5 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/playout-delay\r\na=extmap:6 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/video-content-type\r\na=extmap:7 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/video-timing\r\na=extmap:8 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/color-space\r\na=extmap:9 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=extmap:10 urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id\r\na=extmap:11 urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id\r\na=sendrecv\r\na=msid:146dd938-a463-4397-b2ba-51b3832ce154 f79445ab-7ab6-4e9a-9698-60b980337d6d\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8\/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx\/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:103 H264\/90000\r\na=rtcp-fb:103 goog-remb\r\na=rtcp-fb:103 transport-cc\r\na=rtcp-fb:103 ccm fir\r\na=rtcp-fb:103 nack\r\na=rtcp-fb:103 nack pli\r\na=fmtp:103 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f\r\na=rtpmap:104 rtx\/90000\r\na=fmtp:104 apt=103\r\na=rtpmap:107 H264\/90000\r\na=rtcp-fb:107 goog-remb\r\na=rtcp-fb:107 transport-cc\r\na=rtcp-fb:107 ccm fir\r\na=rtcp-fb:107 nack\r\na=rtcp-fb:107 nack pli\r\na=fmtp:107 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42001f\r\na=rtpmap:108 rtx\/90000\r\na=fmtp:108 apt=107\r\na=rtpmap:109 H264\/90000\r\na=rtcp-fb:109 goog-remb\r\na=rtcp-fb:109 transport-cc\r\na=rtcp-fb:109 ccm fir\r\na=rtcp-fb:109 nack\r\na=rtcp-fb:109 nack pli\r\na=fmtp:109 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\na=rtpmap:114 rtx\/90000\r\na=fmtp:114 apt=109\r\na=rtpmap:115 H264\/90000\r\na=rtcp-fb:115 goog-remb\r\na=rtcp-fb:115 transport-cc\r\na=rtcp-fb:115 ccm fir\r\na=rtcp-fb:115 nack\r\na=rtcp-fb:115 nack pli\r\na=fmtp:115 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42e01f\r\na=rtpmap:116 rtx\/90000\r\na=fmtp:116 apt=115\r\na=rtpmap:117 H264\/90000\r\na=rtcp-fb:117 goog-remb\r\na=rtcp-fb:117 transport-cc\r\na=rtcp-fb:117 ccm fir\r\na=rtcp-fb:117 nack\r\na=rtcp-fb:117 nack pli\r\na=fmtp:117 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f\r\na=rtpmap:118 rtx\/90000\r\na=fmtp:118 apt=117\r\na=rtpmap:39 H264\/90000\r\na=rtcp-fb:39 goog-remb\r\na=rtcp-fb:39 transport-cc\r\na=rtcp-fb:39 ccm fir\r\na=rtcp-fb:39 nack\r\na=rtcp-fb:39 nack pli\r\na=fmtp:39 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=4d001f\r\na=rtpmap:40 rtx\/90000\r\na=fmtp:40 apt=39\r\na=rtpmap:45 AV1\/90000\r\na=rtcp-fb:45 goog-remb\r\na=rtcp-fb:45 transport-cc\r\na=rtcp-fb:45 ccm fir\r\na=rtcp-fb:45 nack\r\na=rtcp-fb:45 nack pli\r\na=fmtp:45 level-idx=5;profile=0;tier=0\r\na=rtpmap:46 rtx\/90000\r\na=fmtp:46 apt=45\r\na=rtpmap:98 VP9\/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=fmtp:98 profile-id=0\r\na=rtpmap:99 rtx\/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 VP9\/90000\r\na=rtcp-fb:100 goog-remb\r\na=rtcp-fb:100 transport-cc\r\na=rtcp-fb:100 ccm fir\r\na=rtcp-fb:100 nack\r\na=rtcp-fb:100 nack pli\r\na=fmtp:100 profile-id=2\r\na=rtpmap:101 rtx\/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:119 H264\/90000\r\na=rtcp-fb:119 goog-remb\r\na=rtcp-fb:119 transport-cc\r\na=rtcp-fb:119 ccm fir\r\na=rtcp-fb:119 nack\r\na=rtcp-fb:119 nack pli\r\na=fmtp:119 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=64001f\r\na=rtpmap:120 rtx\/90000\r\na=fmtp:120 apt=119\r\na=rtpmap:49 H265\/90000\r\na=rtcp-fb:49 goog-remb\r\na=rtcp-fb:49 transport-cc\r\na=rtcp-fb:49 ccm fir\r\na=rtcp-fb:49 nack\r\na=rtcp-fb:49 nack pli\r\na=fmtp:49 level-id=180;profile-id=1;tier-flag=0;tx-mode=SRST\r\na=rtpmap:50 rtx\/90000\r\na=fmtp:50 apt=49\r\na=rtpmap:123 red\/90000\r\na=rtpmap:124 rtx\/90000\r\na=fmtp:124 apt=123\r\na=rtpmap:125 ulpfec\/90000\r\na=ssrc-group:FID 2408810777 2980157888\r\na=ssrc:2408810777 cname:IA98TbvL7lpFpJqI\r\na=ssrc:2408810777 msid:146dd938-a463-4397-b2ba-51b3832ce154 f79445ab-7ab6-4e9a-9698-60b980337d6d\r\na=ssrc:2980157888 cname:IA98TbvL7lpFpJqI\r\na=ssrc:2980157888 msid:146dd938-a463-4397-b2ba-51b3832ce154 f79445ab-7ab6-4e9a-9698-60b980337d6d\r\n",
+            "type": "offer"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:3103070284 1 udp 2122129151 10.0.0.232 50147 typ host generation 0 ufrag LKHh network-id 1 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:2609778661 1 udp 2122265343 fdde:1d52:7f16:1947:18f8:2769:58ec:e6 49758 typ host generation 0 ufrag LKHh network-id 3 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:1420741877 1 udp 2122068735 fd7a:115c:a1e0::bb01:a067 57348 typ host generation 0 ufrag LKHh network-id 5 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:711469280 1 udp 2122197247 2601:644:8301:c420:5d6f:947f:5bb8:26a3 52288 typ host generation 0 ufrag LKHh network-id 2 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:839822495 1 udp 2121998079 100.88.160.102 51185 typ host generation 0 ufrag LKHh network-id 4 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:1180683480 1 tcp 1518149375 10.0.0.232 9 typ host tcptype active generation 0 ufrag LKHh network-id 1 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:2764491334 1 udp 1685790463 23.114.103.41 51185 typ srflx raddr 100.88.160.102 rport 51185 generation 0 ufrag LKHh network-id 4 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:3569548404 1 tcp 1518217471 2601:644:8301:c420:5d6f:947f:5bb8:26a3 9 typ host tcptype active generation 0 ufrag LKHh network-id 2 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:2643253158 1 udp 1685921535 76.103.251.116 50147 typ srflx raddr 10.0.0.232 rport 50147 generation 0 ufrag LKHh network-id 1 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:3433330699 1 tcp 1518018303 100.88.160.102 9 typ host tcptype active generation 0 ufrag LKHh network-id 4 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:1696914289 1 tcp 1518285567 fdde:1d52:7f16:1947:18f8:2769:58ec:e6 9 typ host tcptype active generation 0 ufrag LKHh network-id 3 network-cost 10",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:2852395105 1 tcp 1518088959 fd7a:115c:a1e0::bb01:a067 9 typ host tcptype active generation 0 ufrag LKHh network-id 5 network-cost 50",
+            "sdpMid": "0",
+            "sdpMLineIndex": 0,
+            "usernameFragment": "LKHh"
+        },
+        "from": "caller",
+        "to": "receiver_lfoj1",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:2876774804 1 udp 2113937151 652692cc-0e62-4542-8a8f-b89b131b5462.local 62752 typ host generation 0 ufrag B8+1 network-cost 999",
+            "sdpMLineIndex": 0,
+            "sdpMid": "0",
+            "usernameFragment": null
+        },
+        "from": "receiver_lfoj1",
+        "to": "caller",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "answer",
+        "answer": {
+            "sdp": "v=0\r\no=- 2623958056780613933 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS\r\nm=video 9 UDP\/TLS\/RTP\/SAVPF 96 97 109 114 115 116 98 99 100 101 49 50 123 124 125\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:B8+1\r\na=ice-pwd:OA1IHmC7MbqWEccUVvNFQGr7\r\na=ice-options:trickle\r\na=fingerprint:sha-256 2C:1B:F9:64:BE:2E:EC:17:AA:93:2E:79:8E:0C:FA:E0:44:45:1B:7B:4E:44:83:11:C5:39:5B:5B:66:66:1F:0D\r\na=setup:active\r\na=mid:0\r\na=extmap:1 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:2 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/abs-send-time\r\na=extmap:3 urn:3gpp:video-orientation\r\na=extmap:4 http:\/\/www.ietf.org\/id\/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:5 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/playout-delay\r\na=extmap:6 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/video-content-type\r\na=extmap:7 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/video-timing\r\na=extmap:8 http:\/\/www.webrtc.org\/experiments\/rtp-hdrext\/color-space\r\na=extmap:9 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=extmap:10 urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id\r\na=extmap:11 urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id\r\na=recvonly\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8\/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx\/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:109 H264\/90000\r\na=rtcp-fb:109 goog-remb\r\na=rtcp-fb:109 transport-cc\r\na=rtcp-fb:109 ccm fir\r\na=rtcp-fb:109 nack\r\na=rtcp-fb:109 nack pli\r\na=fmtp:109 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\na=rtpmap:114 rtx\/90000\r\na=fmtp:114 apt=109\r\na=rtpmap:115 H264\/90000\r\na=rtcp-fb:115 goog-remb\r\na=rtcp-fb:115 transport-cc\r\na=rtcp-fb:115 ccm fir\r\na=rtcp-fb:115 nack\r\na=rtcp-fb:115 nack pli\r\na=fmtp:115 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42e01f\r\na=rtpmap:116 rtx\/90000\r\na=fmtp:116 apt=115\r\na=rtpmap:98 VP9\/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=fmtp:98 profile-id=0\r\na=rtpmap:99 rtx\/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 VP9\/90000\r\na=rtcp-fb:100 goog-remb\r\na=rtcp-fb:100 transport-cc\r\na=rtcp-fb:100 ccm fir\r\na=rtcp-fb:100 nack\r\na=rtcp-fb:100 nack pli\r\na=fmtp:100 profile-id=2\r\na=rtpmap:101 rtx\/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:49 H265\/90000\r\na=rtcp-fb:49 goog-remb\r\na=rtcp-fb:49 transport-cc\r\na=rtcp-fb:49 ccm fir\r\na=rtcp-fb:49 nack\r\na=rtcp-fb:49 nack pli\r\na=fmtp:49 level-id=93\r\na=rtpmap:50 rtx\/90000\r\na=fmtp:50 apt=49\r\na=rtpmap:123 red\/90000\r\na=rtpmap:124 rtx\/90000\r\na=fmtp:124 apt=123\r\na=rtpmap:125 ulpfec\/90000\r\n",
+            "type": "answer"
+        },
+        "from": "receiver_lfoj1",
+        "to": "caller",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "ice-candidate",
+        "candidate": {
+            "candidate": "candidate:3453263413 1 udp 1677729535 23.114.103.41 62752 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag B8+1 network-cost 999",
+            "sdpMLineIndex": 0,
+            "sdpMid": "0",
+            "usernameFragment": null
+        },
+        "from": "receiver_lfoj1",
+        "to": "caller",
+        "timestamp": 1753651118
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753651127
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753651157
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753651187
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753651217
+    },
+    {
+        "type": "caller-active",
+        "from": "caller",
+        "to": "broadcast",
+        "timestamp": 1753651247
+    }
+]

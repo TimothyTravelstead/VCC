@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Control Polling</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section {
+            background: #2a2a2a;
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #0ff;
+        }
+        button {
+            background: #333;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+            font-family: monospace;
+        }
+        button:hover {
+            background: #444;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .log {
+            background: #000;
+            border: 1px solid #444;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-size: 12px;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            margin: 2px;
+            border-radius: 3px;
+        }
+        .status.active { background: #0f0; color: #000; }
+        .status.inactive { background: #666; color: #fff; }
+        .status.error { background: #f00; color: #fff; }
+        input, select {
+            background: #333;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 5px;
+            margin: 5px;
+            font-family: monospace;
+        }
+        .control-info {
+            background: #111;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #0ff;
+        }
+        .highlight {
+            color: #ff0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Training Control Polling Test</h1>
+        
+        <div class="section">
+            <h2>Setup</h2>
+            <div>
+                <label>Trainer ID: <input type="text" id="trainerId" value="Travelstead" /></label>
+                <label>Role: 
+                    <select id="testRole">
+                        <option value="trainer">Trainer</option>
+                        <option value="trainee">Trainee</option>
+                    </select>
+                </label>
+                <label>Your ID: <input type="text" id="yourId" value="TestUser" /></label>
+            </div>
+            <div style="margin-top: 10px;">
+                <button onclick="startPolling()">Start Polling</button>
+                <button onclick="stopPolling()">Stop Polling</button>
+                <button onclick="clearLog()">Clear Log</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Current Control State</h2>
+            <div class="control-info">
+                <div>Active Controller: <span id="activeController" class="highlight">-</span></div>
+                <div>Controller Role: <span id="controllerRole" class="highlight">-</span></div>
+                <div>Last Updated: <span id="lastUpdated">-</span></div>
+                <div>Poll Count: <span id="pollCount">0</span></div>
+                <div>Status: <span id="pollStatus" class="status inactive">Not Polling</span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Test Control Changes (Trainer Only)</h2>
+            <div>
+                <button onclick="setControl('trainer')">Set Trainer Control</button>
+                <button onclick="setControl('trainee')">Set Trainee Control</button>
+                <input type="text" id="newControllerId" placeholder="New Controller ID" value="TestTrainee1" />
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Activity Log</h2>
+            <div class="log" id="log"></div>
+        </div>
+    </div>
+
+    <script>
+        let pollingInterval = null;
+        let pollCount = 0;
+
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : '📝';
+            logDiv.innerHTML += `[${timestamp}] ${prefix} ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        async function pollControl() {
+            const trainerId = document.getElementById('trainerId').value;
+            const role = document.getElementById('testRole').value;
+            
+            if (!trainerId) {
+                log('No trainer ID specified', 'error');
+                return;
+            }
+
+            try {
+                const url = `/trainingShare3/getTrainingControl.php?trainerId=${encodeURIComponent(trainerId)}&_cacheBust=${Date.now()}`;
+                log(`Polling: ${url}`);
+                
+                const response = await fetch(url, {
+                    cache: 'no-cache',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+                pollCount++;
+                document.getElementById('pollCount').textContent = pollCount;
+                
+                if (data.success) {
+                    // Update display
+                    document.getElementById('activeController').textContent = data.activeController || '-';
+                    document.getElementById('controllerRole').textContent = data.controllerRole || '-';
+                    document.getElementById('lastUpdated').textContent = data.lastUpdated || '-';
+                    
+                    // Check if I'm the controller
+                    const yourId = document.getElementById('yourId').value;
+                    const isController = (data.activeController === yourId);
+                    
+                    log(`Control: ${data.activeController} (${data.controllerRole}) - You ${isController ? 'HAVE' : "DON'T HAVE"} control`, 'success');
+                    
+                    // Highlight if control changed
+                    const prevController = document.getElementById('activeController').dataset.prev;
+                    if (prevController && prevController !== data.activeController) {
+                        log(`🔄 CONTROL CHANGED: ${prevController} → ${data.activeController}`, 'success');
+                    }
+                    document.getElementById('activeController').dataset.prev = data.activeController;
+                    
+                } else {
+                    log(`Error: ${data.error}`, 'error');
+                }
+
+            } catch (error) {
+                log(`Poll failed: ${error.message}`, 'error');
+            }
+        }
+
+        function startPolling() {
+            if (pollingInterval) {
+                log('Already polling', 'error');
+                return;
+            }
+
+            pollCount = 0;
+            log('Starting control polling (every 3 seconds)', 'success');
+            document.getElementById('pollStatus').className = 'status active';
+            document.getElementById('pollStatus').textContent = 'Polling Active';
+            
+            // Poll immediately
+            pollControl();
+            
+            // Then poll every 3 seconds
+            pollingInterval = setInterval(pollControl, 3000);
+        }
+
+        function stopPolling() {
+            if (pollingInterval) {
+                clearInterval(pollingInterval);
+                pollingInterval = null;
+                log('Stopped polling', 'success');
+                document.getElementById('pollStatus').className = 'status inactive';
+                document.getElementById('pollStatus').textContent = 'Not Polling';
+            }
+        }
+
+        async function setControl(role) {
+            const trainerId = document.getElementById('trainerId').value;
+            const newControllerId = role === 'trainer' ? trainerId : document.getElementById('newControllerId').value;
+            
+            if (!trainerId || !newControllerId) {
+                log('Trainer ID and new controller ID required', 'error');
+                return;
+            }
+
+            try {
+                log(`Setting control to: ${newControllerId} (${role})`);
+                
+                const response = await fetch('/trainingShare3/setTrainingControl.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        trainerId: trainerId,
+                        activeController: newControllerId,
+                        controllerRole: role
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    log(`✅ Control set to ${newControllerId} (${role})`, 'success');
+                    // Poll immediately to see the change
+                    if (pollingInterval) {
+                        pollControl();
+                    }
+                } else {
+                    log(`Failed to set control: ${data.error}`, 'error');
+                }
+
+            } catch (error) {
+                log(`Error setting control: ${error.message}`, 'error');
+            }
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            log('Log cleared');
+        }
+
+        // Start with a single poll on load
+        window.addEventListener('load', () => {
+            log('Control polling test ready');
+            log('Configure settings and click "Start Polling" to begin');
+        });
+    </script>
+</body>
+</html>

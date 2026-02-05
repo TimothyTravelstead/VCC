@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScreenSharingControl Stress Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #f5f5f5; 
+        }
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            background: #fafafa;
+        }
+        .stress-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .participant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .participant-box {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background: white;
+            font-size: 11px;
+        }
+        .trainer-participant { border-color: #28a745; background: #f8fff8; }
+        .trainee-participant { border-color: #17a2b8; background: #f8ffff; }
+        .participant-status {
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            margin: 2px 0;
+        }
+        .status-ok { background: #d4edda; color: #155724; }
+        .status-error { background: #f8d7da; color: #721c24; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        button {
+            padding: 8px 16px;
+            margin: 4px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-warning { background: #ffc107; color: black; }
+        button:hover { opacity: 0.8; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .metric-box {
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .metric-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .log-box {
+            height: 300px;
+            overflow-y: scroll;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 10px;
+            white-space: pre-wrap;
+        }
+        .performance-chart {
+            height: 200px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💪 ScreenSharingControl Stress Test</h1>
+        <p><strong>Testing with multiple concurrent sessions and high load</strong></p>
+        
+        <div class="test-section">
+            <h3>🎛️ Stress Test Controls</h3>
+            <div class="stress-controls">
+                <div>
+                    <label>Trainers: <input type="number" id="trainerCount" value="2" min="1" max="5"></label>
+                    <button onclick="createTrainers()" class="btn-success">Create Trainers</button>
+                </div>
+                <div>
+                    <label>Trainees per Trainer: <input type="number" id="traineeCount" value="3" min="1" max="10"></label>
+                    <button onclick="createTrainees()" class="btn-success">Create Trainees</button>
+                </div>
+                <div>
+                    <button onclick="initializeAllSessions()" class="btn-primary">Initialize All</button>
+                    <button onclick="startAllSharing()" class="btn-warning">Start All Sharing</button>
+                </div>
+                <div>
+                    <button onclick="runConnectionStorm()" class="btn-warning">Connection Storm</button>
+                    <button onclick="runReconnectTest()" class="btn-warning">Reconnect Test</button>
+                </div>
+                <div>
+                    <button onclick="cleanupAllSessions()" class="btn-danger">Cleanup All</button>
+                    <button onclick="clearLog()" class="btn-primary">Clear Log</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Real-time Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-value" id="totalSessions">0</div>
+                    <div>Total Sessions</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value" id="activeSessions">0</div>
+                    <div>Active Sessions</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value" id="peerConnections">0</div>
+                    <div>Peer Connections</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value" id="activeStreams">0</div>
+                    <div>Active Streams</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value" id="failedConnections">0</div>
+                    <div>Failed Connections</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value" id="avgLatency">0ms</div>
+                    <div>Avg Latency</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value" id="memoryUsage">0MB</div>
+                    <div>Memory Usage</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value" id="cpuUsage">0%</div>
+                    <div>CPU Usage</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📈 Performance Chart</h3>
+            <div class="performance-chart" id="performanceChart">
+                <canvas id="metricsCanvas" style="width: 100%; height: 100%;"></canvas>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>👥 Participants</h3>
+            <div id="participantGrid" class="participant-grid"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Stress Test Log</h3>
+            <div id="stressLog" class="log-box"></div>
+        </div>
+    </div>
+
+    <!-- Load Socket.IO for WebRTC signaling -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <!-- Load the ScreenSharingControl class -->
+    <script src="trainingShare/screenSharingControl.js"></script>
+
+    <script>
+        // Stress test variables
+        let allSessions = [];
+        let stressMetrics = {
+            totalSessions: 0,
+            activeSessions: 0,
+            peerConnections: 0,
+            activeStreams: 0,
+            failedConnections: 0,
+            latencyData: [],
+            memoryData: [],
+            cpuData: []
+        };
+        let metricsInterval = null;
+        let performanceChart = null;
+
+        // Logging function
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logDiv = document.getElementById('stressLog');
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️';
+            logDiv.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        function clearLog() {
+            document.getElementById('stressLog').textContent = '';
+        }
+
+        function updateMetric(metricId, value) {
+            const element = document.getElementById(metricId);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        function generateSessionId(role, index = 0) {
+            return `${role}-stress-${index}-${Date.now()}`;
+        }
+
+        function generateRoomName(trainerIndex) {
+            return `stress-room-${trainerIndex}`;
+        }
+
+        function createSessionBox(session) {
+            const box = document.createElement('div');
+            box.className = `participant-box ${session.role}-participant`;
+            box.id = `session-${session.sessionId}`;
+            
+            box.innerHTML = `
+                <div><strong>${session.role}: ${session.sessionId.substring(0, 20)}...</strong></div>
+                <div>Room: ${session.roomName}</div>
+                <div class="participant-status status-pending" id="status-${session.sessionId}">Created</div>
+                <div class="participant-status status-pending" id="api-${session.sessionId}">API: ❌</div>
+                <div class="participant-status status-pending" id="sse-${session.sessionId}">SSE: ❌</div>
+                <div class="participant-status status-pending" id="webrtc-${session.sessionId}">WebRTC: ❌</div>
+                <div class="participant-status status-pending" id="peers-${session.sessionId}">Peers: 0</div>
+                <button onclick="initializeSession('${session.sessionId}')" class="btn-primary" style="font-size: 10px;">Init</button>
+                <button onclick="destroySession('${session.sessionId}')" class="btn-danger" style="font-size: 10px;">Destroy</button>
+            `;
+            
+            document.getElementById('participantGrid').appendChild(box);
+        }
+
+        function updateSessionStatus(sessionId, status, type = 'status') {
+            const element = document.getElementById(`${type}-${sessionId}`);
+            if (element) {
+                element.textContent = type === 'status' ? status : `${type.toUpperCase()}: ${status}`;
+                element.className = `participant-status ${status.includes('✅') || status.toLowerCase().includes('connected') || status.toLowerCase().includes('initialized') ? 'status-ok' : 
+                                                          status.includes('❌') || status.toLowerCase().includes('failed') || status.toLowerCase().includes('error') ? 'status-error' : 'status-pending'}`;
+            }
+        }
+
+        async function createTrainers() {
+            const count = parseInt(document.getElementById('trainerCount').value) || 2;
+            log(`Creating ${count} trainer sessions...`);
+
+            for (let i = 0; i < count; i++) {
+                try {
+                    const sessionId = generateSessionId('trainer', i);
+                    const roomName = generateRoomName(i);
+
+                    const session = new ScreenSharingControl({
+                        volunteerID: sessionId,
+                        role: 'trainer',
+                        roomName: roomName,
+                        trainerID: sessionId,
+                        trainees: [], // Will be populated when trainees are created
+                        sessionToken: 'stress-test-token-1234567890'
+                    });
+
+                    const sessionData = {
+                        sessionId,
+                        role: 'trainer',
+                        roomName,
+                        session,
+                        trainerIndex: i,
+                        initialized: false,
+                        sharing: false
+                    };
+
+                    allSessions.push(sessionData);
+                    createSessionBox(sessionData);
+                    
+                    log(`Created trainer ${i + 1}/${count}: ${sessionId}`, 'success');
+
+                } catch (error) {
+                    log(`Failed to create trainer ${i + 1}: ${error.message}`, 'error');
+                }
+            }
+
+            updateGlobalMetrics();
+        }
+
+        async function createTrainees() {
+            const traineeCount = parseInt(document.getElementById('traineeCount').value) || 3;
+            const trainers = allSessions.filter(s => s.role === 'trainer');
+
+            if (trainers.length === 0) {
+                log('No trainers found. Create trainers first.', 'error');
+                return;
+            }
+
+            log(`Creating ${traineeCount} trainees per trainer (${trainers.length} trainers)...`);
+
+            for (const trainer of trainers) {
+                for (let i = 0; i < traineeCount; i++) {
+                    try {
+                        const sessionId = generateSessionId('trainee', i);
+
+                        const session = new ScreenSharingControl({
+                            volunteerID: sessionId,
+                            role: 'trainee',
+                            roomName: trainer.roomName,
+                            trainerID: trainer.sessionId,
+                            trainees: [],
+                            sessionToken: 'stress-test-token-1234567890'
+                        });
+
+                        const sessionData = {
+                            sessionId,
+                            role: 'trainee',
+                            roomName: trainer.roomName,
+                            session,
+                            trainerIndex: trainer.trainerIndex,
+                            trainerId: trainer.sessionId,
+                            initialized: false,
+                            receiving: false
+                        };
+
+                        allSessions.push(sessionData);
+                        createSessionBox(sessionData);
+                        
+                        log(`Created trainee ${i + 1}/${traineeCount} for trainer ${trainer.trainerIndex}: ${sessionId}`, 'success');
+
+                    } catch (error) {
+                        log(`Failed to create trainee ${i + 1} for trainer ${trainer.trainerIndex}: ${error.message}`, 'error');
+                    }
+                }
+            }
+
+            updateGlobalMetrics();
+        }
+
+        async function initializeSession(sessionId) {
+            const sessionData = allSessions.find(s => s.sessionId === sessionId);
+            if (!sessionData) {
+                log(`Session ${sessionId} not found`, 'error');
+                return;
+            }
+
+            try {
+                updateSessionStatus(sessionId, 'Initializing...');
+                log(`Initializing ${sessionData.role} session: ${sessionId}`);
+
+                // Add monitoring to the session
+                monitorSession(sessionData);
+
+                await sessionData.session.init();
+                
+                sessionData.initialized = true;
+                updateSessionStatus(sessionId, 'Initialized');
+                log(`${sessionData.role} session initialized: ${sessionId}`, 'success');
+
+            } catch (error) {
+                updateSessionStatus(sessionId, 'Init Failed');
+                log(`Failed to initialize ${sessionData.role} session ${sessionId}: ${error.message}`, 'error');
+                stressMetrics.failedConnections++;
+            }
+
+            updateGlobalMetrics();
+        }
+
+        async function initializeAllSessions() {
+            log('Initializing all sessions...');
+            const uninitializedSessions = allSessions.filter(s => !s.initialized);
+            
+            updateSessionStatus('bulk', `Initializing ${uninitializedSessions.length} sessions...`);
+
+            // Initialize in batches to avoid overwhelming the server
+            const batchSize = 5;
+            for (let i = 0; i < uninitializedSessions.length; i += batchSize) {
+                const batch = uninitializedSessions.slice(i, i + batchSize);
+                
+                log(`Initializing batch ${Math.floor(i / batchSize) + 1}: ${batch.length} sessions`);
+                
+                const promises = batch.map(sessionData => initializeSession(sessionData.sessionId));
+                await Promise.allSettled(promises);
+                
+                // Brief pause between batches
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+
+            log('All sessions initialization completed', 'success');
+        }
+
+        async function startAllSharing() {
+            const trainers = allSessions.filter(s => s.role === 'trainer' && s.initialized);
+            
+            if (trainers.length === 0) {
+                log('No initialized trainer sessions found', 'error');
+                return;
+            }
+
+            log(`Starting screen sharing for ${trainers.length} trainers...`);
+
+            for (const trainer of trainers) {
+                try {
+                    updateSessionStatus(trainer.sessionId, 'Starting Share...');
+                    
+                    // Mock screen capture for stress testing
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 640;
+                    canvas.height = 480;
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Create animated content
+                    let frame = 0;
+                    const animate = () => {
+                        ctx.fillStyle = `hsl(${frame % 360}, 50%, 50%)`;
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        ctx.fillStyle = 'white';
+                        ctx.font = '48px Arial';
+                        ctx.fillText(`Trainer ${trainer.trainerIndex}`, 50, 250);
+                        ctx.fillText(`Frame ${frame}`, 50, 350);
+                        frame++;
+                        requestAnimationFrame(animate);
+                    };
+                    animate();
+
+                    const stream = canvas.captureStream(30);
+                    trainer.session.localStream = stream;
+                    
+                    await trainer.session.startScreenShare();
+                    
+                    trainer.sharing = true;
+                    updateSessionStatus(trainer.sessionId, 'Sharing Active');
+                    log(`Trainer ${trainer.sessionId} started sharing`, 'success');
+
+                } catch (error) {
+                    updateSessionStatus(trainer.sessionId, 'Share Failed');
+                    log(`Trainer ${trainer.sessionId} sharing failed: ${error.message}`, 'error');
+                    stressMetrics.failedConnections++;
+                }
+            }
+
+            updateGlobalMetrics();
+        }
+
+        async function runConnectionStorm() {
+            log('Running connection storm test...', 'warning');
+            
+            // Rapid connect/disconnect cycles
+            const sessions = allSessions.filter(s => s.initialized);
+            const cycles = 5;
+            
+            for (let cycle = 0; cycle < cycles; cycle++) {
+                log(`Connection storm cycle ${cycle + 1}/${cycles}`);
+                
+                // Disconnect all WebRTC connections
+                for (const sessionData of sessions) {
+                    if (sessionData.session.socket) {
+                        sessionData.session.socket.disconnect();
+                    }
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Reconnect all
+                for (const sessionData of sessions) {
+                    try {
+                        await sessionData.session.initializeWebRTCSignalling();
+                    } catch (error) {
+                        log(`Reconnection failed for ${sessionData.sessionId}: ${error.message}`, 'error');
+                        stressMetrics.failedConnections++;
+                    }
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 3000));
+            }
+            
+            log('Connection storm test completed', 'success');
+        }
+
+        async function runReconnectTest() {
+            log('Running reconnect resilience test...', 'warning');
+            
+            const sessions = allSessions.filter(s => s.initialized);
+            
+            // Test various failure scenarios
+            const scenarios = [
+                { name: 'API Disconnect', test: 'api' },
+                { name: 'SSE Disconnect', test: 'sse' },
+                { name: 'WebRTC Disconnect', test: 'webrtc' }
+            ];
+            
+            for (const scenario of scenarios) {
+                log(`Testing ${scenario.name}...`);
+                
+                for (const sessionData of sessions) {
+                    try {
+                        if (scenario.test === 'webrtc' && sessionData.session.socket) {
+                            sessionData.session.socket.disconnect();
+                        } else if (scenario.test === 'sse' && sessionData.session.sseSource) {
+                            sessionData.session.sseSource.close();
+                        }
+                        
+                        // Wait for reconnection
+                        await new Promise(resolve => setTimeout(resolve, 5000));
+                        
+                    } catch (error) {
+                        log(`${scenario.name} test failed for ${sessionData.sessionId}: ${error.message}`, 'error');
+                        stressMetrics.failedConnections++;
+                    }
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            }
+            
+            log('Reconnect resilience test completed', 'success');
+        }
+
+        function monitorSession(sessionData) {
+            const { session, sessionId } = sessionData;
+            
+            // Monitor connection states
+            const checkConnections = () => {
+                updateSessionStatus(sessionId, session.apiReady ? '✅' : '❌', 'api');
+                updateSessionStatus(sessionId, session.sseReady ? '✅' : '❌', 'sse');
+                updateSessionStatus(sessionId, session.socketReady ? '✅' : '❌', 'webrtc');
+                updateSessionStatus(sessionId, session.peers.size.toString(), 'peers');
+            };
+            
+            // Check every 2 seconds
+            setInterval(checkConnections, 2000);
+            
+            // Monitor peer connections
+            const originalGetOrCreatePeer = session.getOrCreatePeer.bind(session);
+            session.getOrCreatePeer = function(peerId) {
+                const result = originalGetOrCreatePeer(peerId);
+                updateSessionStatus(sessionId, session.peers.size.toString(), 'peers');
+                return result;
+            };
+        }
+
+        async function destroySession(sessionId) {
+            const sessionIndex = allSessions.findIndex(s => s.sessionId === sessionId);
+            if (sessionIndex === -1) return;
+
+            const sessionData = allSessions[sessionIndex];
+            
+            try {
+                updateSessionStatus(sessionId, 'Destroying...');
+                await sessionData.session.destroy();
+                
+                // Remove from DOM and array
+                const element = document.getElementById(`session-${sessionId}`);
+                if (element) element.remove();
+                
+                allSessions.splice(sessionIndex, 1);
+                
+                log(`Session ${sessionId} destroyed`, 'success');
+
+            } catch (error) {
+                log(`Session ${sessionId} destroy failed: ${error.message}`, 'error');
+            }
+
+            updateGlobalMetrics();
+        }
+
+        async function cleanupAllSessions() {
+            log('Cleaning up all sessions...');
+            
+            const cleanupPromises = allSessions.map(sessionData => 
+                sessionData.session.destroy().catch(error => 
+                    log(`Cleanup error for ${sessionData.sessionId}: ${error.message}`, 'error')
+                )
+            );
+            
+            await Promise.allSettled(cleanupPromises);
+            
+            // Clear UI
+            document.getElementById('participantGrid').innerHTML = '';
+            allSessions = [];
+            
+            // Reset metrics
+            stressMetrics = {
+                totalSessions: 0,
+                activeSessions: 0,
+                peerConnections: 0,
+                activeStreams: 0,
+                failedConnections: 0,
+                latencyData: [],
+                memoryData: [],
+                cpuData: []
+            };
+            
+            updateGlobalMetrics();
+            log('All sessions cleaned up', 'success');
+        }
+
+        function updateGlobalMetrics() {
+            const initialized = allSessions.filter(s => s.initialized);
+            const sharing = allSessions.filter(s => s.sharing);
+            const totalPeers = allSessions.reduce((sum, s) => sum + (s.session?.peers?.size || 0), 0);
+            
+            stressMetrics.totalSessions = allSessions.length;
+            stressMetrics.activeSessions = initialized.length;
+            stressMetrics.peerConnections = totalPeers;
+            stressMetrics.activeStreams = sharing.length;
+            
+            updateMetric('totalSessions', stressMetrics.totalSessions);
+            updateMetric('activeSessions', stressMetrics.activeSessions);
+            updateMetric('peerConnections', stressMetrics.peerConnections);
+            updateMetric('activeStreams', stressMetrics.activeStreams);
+            updateMetric('failedConnections', stressMetrics.failedConnections);
+            
+            // Update performance metrics
+            if (performance.memory) {
+                const memoryMB = Math.round(performance.memory.usedJSHeapSize / 1024 / 1024);
+                updateMetric('memoryUsage', `${memoryMB}MB`);
+                stressMetrics.memoryData.push(memoryMB);
+                
+                // Keep only last 50 data points
+                if (stressMetrics.memoryData.length > 50) {
+                    stressMetrics.memoryData.shift();
+                }
+            }
+        }
+
+        function startMetricsCollection() {
+            if (metricsInterval) return;
+            
+            metricsInterval = setInterval(() => {
+                updateGlobalMetrics();
+                
+                // Calculate average latency from recent API calls
+                if (stressMetrics.latencyData.length > 0) {
+                    const avgLatency = stressMetrics.latencyData.reduce((sum, val) => sum + val, 0) / stressMetrics.latencyData.length;
+                    updateMetric('avgLatency', `${Math.round(avgLatency)}ms`);
+                }
+                
+                // Mock CPU usage (in real implementation, this would come from a performance API)
+                const mockCpuUsage = Math.random() * 20 + (stressMetrics.activeSessions * 2);
+                updateMetric('cpuUsage', `${Math.round(mockCpuUsage)}%`);
+                
+            }, 1000);
+        }
+
+        function stopMetricsCollection() {
+            if (metricsInterval) {
+                clearInterval(metricsInterval);
+                metricsInterval = null;
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            log('💪 ScreenSharingControl Stress Test loaded');
+            log('⚠️ This test creates multiple concurrent sessions for stress testing');
+            log('ℹ️ Start with small numbers and increase gradually');
+            
+            startMetricsCollection();
+            updateGlobalMetrics();
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            stopMetricsCollection();
+            cleanupAllSessions();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+.LogonContent {
+    position: relative;
+    top: 2px;
+    left: 10px;
+    height: 720px;
+    width: 1190px;
+    color: silver;
+    background-color: #550000;
+    white-space: nowrap;
+    overflow: auto;
+    display: block;
+    margin: 2px;
+    background: radial-gradient(#770000, #550000);
+    border-radius: 15px;
+    font-family: "Times New Roman",Georgia,Serif;
+}
+
+/* Unified input and select styles */
+input[type="text"],
+input[type="user"],
+input[type="password"],
+select,
+#endOfShiftBox select,
+#trainees select {
+    width: 150px;
+    padding: 5px;
+    margin: 2px 0;
+    border-radius: 5px;
+    border: 1px solid #550000;
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman",Georgia,Serif;
+}
+
+/* Unified hover and focus states */
+input[type="text"]:hover,
+input[type="password"]:hover,
+select:hover,
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+    outline: none;
+    border-color: #770000;
+    box-shadow: 0 0 5px rgba(119, 0, 0, 0.5);
+}
+
+/* Label styles */
+label, th {
+    color: black;
+    margin-right: 5px;
+}
+
+/* Disabled option styling */
+select option:disabled {
+    color: #999;
+    background-color: #f0f0f0;
+}
+
+h1 span {
+	color: yellow;
+}
+
+#endOfShiftBox {
+    position: fixed;            /* So it stays in the same place on scroll */
+    top: 50%;                   /* Position halfway down the viewport */
+    left: 50%;                  /* Position halfway across the viewport */
+    transform: translate(-50%, -50%); 
+    width: 350px;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    background: white;
+    color: black;
+    border: 3px solid blue;
+    box-shadow: 10px 10px 10px black;
+    border-radius: 10px;
+    background-color: silver;
+    display: none; /* or display: block; depending on your logic */
+    white-space: normal;
+}
+
+
+#javascriptWarning {
+    position: absolute;
+    top: 365px;
+    left: 340px;
+    text-align: center;
+    font-size: 200%;
+    color: yellow;
+}
+
+#LogonMessage {
+    position: relative;
+    top: 180px;
+    left: 510px;
+    height: 100px;
+    width: 240px;
+    color: yellow;
+    text-align: center;
+}
+
+#Logon {
+    position: relative;
+    top: 170px;
+    left: 450px;
+    height: 185px;
+    width: 305px;
+    box-shadow: 10px 10px 10px black;
+    border-radius: 10px;
+    background-color: silver;      			
+    padding: 5px;
+    display: block;
+    color: black;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+
+/* Button styles */
+button,
+input[type="button"],
+input[type="submit"] {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #550000;
+    background-color: #f0f0f0;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left:  10px;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background-color: #e0e0e0;
+    border-color: #770000;
+    box-shadow: 0 0 5px rgba(119, 0, 0, 0.3);
+}
+
+#submitButton {
+    background-color: #550000;
+    color: silver;
+}
+
+#submitButton:hover {
+    background-color: #770000;
+}
+
+#buttonContainer {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    padding: 5px;
+}
+
+#LogonButtons {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.LogonButton {
+    position: absolute;
+    bottom: 10px;
+    left: 225px;
+}
+
+#calendarButton {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+}
+
+#editResourcesButton {
+    position: absolute;
+    bottom: 10px;
+    left: 85px;
+}
+
+.ResourcesButton {
+    position: absolute;
+    top: 97px;
+    left: 100px;
+}
+
+#adminButton {
+    position: absolute;
+    top: 97px;
+    left: 20px;
+}
+
+#ColumnWidthSetter {
+    width: 100px;
+}
+
+.LogonHeader {
+    position: absolute;
+    top: 2px;
+    color: silver;
+    background-color: #550000;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: 0px;
+    text-align: center;
+    height: 100px;
+    width: inherit;
+    border-bottom: 6px solid silver;
+    background: radial-gradient(#770000, #550000);
+}
+
+.logonType {
+    visibility: hidden;
+}
+
+#trainees {
+    position: relative;
+    margin-top: 20px;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    margin-right: 5px;
+    cursor: pointer;
+}

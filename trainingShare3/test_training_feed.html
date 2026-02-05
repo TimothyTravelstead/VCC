@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Feed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .log {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        .controls {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover { background-color: #0056b3; }
+        button:disabled { background-color: #6c757d; cursor: not-allowed; }
+        input, select {
+            padding: 6px;
+            margin: 3px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .status.connected { background-color: #d4edda; color: #155724; }
+        .status.disconnected { background-color: #f8d7da; color: #721c24; }
+        .status.connecting { background-color: #fff3cd; color: #856404; }
+        .video-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        video {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            max-width: 300px;
+            height: auto;
+        }
+        .trainer-controls {
+            background-color: #e8f4fd;
+            border: 1px solid #007bff;
+        }
+        .trainee-controls {
+            background-color: #f8f9fa;
+            border: 1px solid #6c757d;
+        }
+        .signal-type {
+            color: #007bff;
+            font-weight: bold;
+        }
+        .timestamp {
+            color: #6c757d;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎓 Training Feed Test System</h1>
+    
+    <div class="controls">
+        <h3>Session Setup</h3>
+        <label>User ID:</label>
+        <input type="text" id="userId" value="TestTrainer" />
+        
+        <label>Role:</label>
+        <select id="role">
+            <option value="trainer">Trainer</option>
+            <option value="trainee">Trainee</option>
+        </select>
+        
+        <button onclick="setupTestSession()">Setup Test Session</button>
+        <button onclick="connectToTrainingFeed()">Connect to Training Feed</button>
+        <button onclick="disconnectFromFeed()">Disconnect</button>
+        <button onclick="clearLog()">Clear Log</button>
+    </div>
+    
+    <div id="connectionStatus" class="status disconnected">
+        Disconnected
+    </div>
+    
+    <div class="controls trainer-controls" id="trainerControls" style="display: none;">
+        <h3>🎯 Trainer Controls</h3>
+        <button onclick="startScreenSharing()">Start Screen Sharing</button>
+        <button onclick="stopScreenSharing()">Stop Screen Sharing</button>
+        <button onclick="sendTestSignal('screen-share-start')">Test Screen Share Start</button>
+        <button onclick="sendTestSignal('screen-share-stop')">Test Screen Share Stop</button>
+    </div>
+    
+    <div class="controls trainee-controls" id="traineeControls" style="display: none;">
+        <h3>🎓 Trainee Controls</h3>
+        <button onclick="joinTrainingRoom()">Join Training Room</button>
+        <button onclick="sendTestSignal('trainee-ready')">Signal Ready</button>
+        <button onclick="checkForTrainer()">Check for Trainer</button>
+    </div>
+    
+    <div class="controls">
+        <h3>Manual Testing</h3>
+        <input type="text" id="customSignalType" placeholder="Signal type" value="test-message" />
+        <input type="text" id="customSignalData" placeholder="Custom data" value="Hello from test" />
+        <button onclick="sendCustomSignal()">Send Custom Signal</button>
+    </div>
+    
+    <div class="video-container">
+        <div>
+            <h4>Local Video (Trainer Screen)</h4>
+            <video id="localVideo" autoplay muted playsinline 
+                   style="display: none;" 
+                   poster="poster.png"></video>
+        </div>
+        <div>
+            <h4>Remote Video (Received Screen)</h4>
+            <video id="remoteVideo" autoplay playsinline 
+                   style="display: none;" 
+                   poster="poster.png"></video>
+        </div>
+    </div>
+    
+    <h3>📡 Event Log</h3>
+    <div class="log" id="log"></div>
+    
+    <!-- Hidden form fields for compatibility -->
+    <input type="hidden" id="trainerID" value="" />
+    <input type="hidden" id="volunteerID" value="" />
+    
+    <script>
+        let eventSource = null;
+        let screenSharing = null;
+        let currentRole = 'trainer';
+        
+        function log(message, type = 'info') {
+            const logEl = document.getElementById('log');
+            const entry = document.createElement('div');
+            const timestamp = new Date().toLocaleTimeString();
+            
+            let prefix = '';
+            switch(type) {
+                case 'event': prefix = '📡'; break;
+                case 'error': prefix = '❌'; break;
+                case 'success': prefix = '✅'; break;
+                case 'signal': prefix = '🔄'; break;
+                case 'connection': prefix = '🔗'; break;
+                default: prefix = 'ℹ️';
+            }
+            
+            entry.innerHTML = `<span class="timestamp">[${timestamp}]</span> ${prefix} ${message}`;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+        
+        function updateConnectionStatus(status) {
+            const statusEl = document.getElementById('connectionStatus');
+            statusEl.className = `status ${status}`;
+            statusEl.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+        }
+        
+        function updateRoleControls(role) {
+            currentRole = role;
+            document.getElementById('trainerControls').style.display = role === 'trainer' ? 'block' : 'none';
+            document.getElementById('traineeControls').style.display = role === 'trainee' ? 'block' : 'none';
+            
+            // Update hidden form fields
+            const userId = document.getElementById('userId').value;
+            if (role === 'trainer') {
+                document.getElementById('trainerID').value = userId;
+                document.getElementById('volunteerID').value = userId;
+            } else {
+                document.getElementById('volunteerID').value = userId;
+                // For trainee, trainerID will be discovered later
+            }
+        }
+        
+        function setupTestSession() {
+            const userId = document.getElementById('userId').value;
+            const role = document.getElementById('role').value;
+            
+            if (!userId) {
+                alert('Please enter User ID');
+                return;
+            }
+            
+            log(`Setting up test session for ${userId} as ${role}`, 'info');
+            updateRoleControls(role);
+            
+            // Setup test session
+            fetch(`setup_test_session.php?userId=${userId}&role=${role}`)
+            .then(response => response.json())
+            .then(result => {
+                log(`Session setup: ${result.message}`, 'success');
+                log(`Session details: ${JSON.stringify(result.session)}`, 'info');
+                updateConnectionStatus('ready');
+            })
+            .catch(error => {
+                log(`Session setup error: ${error.message}`, 'error');
+                console.error('Session error:', error);
+            });
+        }
+        
+        function connectToTrainingFeed() {
+            if (eventSource) {
+                log('Already connected to training feed', 'info');
+                return;
+            }
+            
+            log('Connecting to training feed...', 'connection');
+            updateConnectionStatus('connecting');
+            
+            // Create EventSource connection to training feed with credentials
+            eventSource = new EventSource('/trainingShare3/trainingFeed.php', {
+                withCredentials: true
+            });
+            
+            eventSource.onopen = function(event) {
+                log('Training EventSource connection opened', 'connection');
+                updateConnectionStatus('connected');
+            };
+            
+            eventSource.onerror = function(event) {
+                log(`Training EventSource error: ${JSON.stringify(event)}`, 'error');
+                if (eventSource.readyState === EventSource.CLOSED) {
+                    log('Training EventSource closed, will auto-reconnect', 'connection');
+                    updateConnectionStatus('disconnected');
+                }
+            };
+            
+            // Training connection confirmation
+            eventSource.addEventListener('trainingConnection', function(event) {
+                const data = JSON.parse(event.data);
+                log(`Training connection established: ${data.participantId} (${data.role})`, 'success');
+                updateRoleControls(data.role);
+                
+                // Initialize screen sharing client
+                initializeScreenSharing(data.role);
+            });
+            
+            // Training heartbeat
+            eventSource.addEventListener('trainingHeartbeat', function(event) {
+                const data = JSON.parse(event.data);
+                log(`Heartbeat received (count: ${data.count})`, 'connection');
+            });
+            
+            // Screen sharing events
+            eventSource.addEventListener('trainingScreenShare', function(event) {
+                const data = JSON.parse(event.data);
+                log(`<span class="signal-type">Screen Share Event:</span> ${data.type} from ${data.senderId || data.from}`, 'signal');
+                
+                if (screenSharing) {
+                    screenSharing.handleSignalMessage(event.data);
+                }
+            });
+            
+            // WebRTC events
+            eventSource.addEventListener('trainingWebRTC', function(event) {
+                const data = JSON.parse(event.data);
+                log(`<span class="signal-type">WebRTC Event:</span> ${data.type} from ${data.senderId || data.from}`, 'signal');
+                
+                if (screenSharing) {
+                    screenSharing.handleSignalMessage(event.data);
+                }
+            });
+            
+            // Participant events
+            eventSource.addEventListener('trainingParticipant', function(event) {
+                const data = JSON.parse(event.data);
+                log(`<span class="signal-type">Participant Event:</span> ${data.type} - ${data.participantId} (${data.participantRole})`, 'signal');
+                
+                if (screenSharing) {
+                    screenSharing.handleSignalMessage(event.data);
+                }
+            });
+            
+            // General training signals
+            eventSource.addEventListener('trainingSignal', function(event) {
+                const data = JSON.parse(event.data);
+                log(`<span class="signal-type">Training Signal:</span> ${data.type} from ${data.senderId || data.from}`, 'signal');
+                
+                if (screenSharing) {
+                    screenSharing.handleSignalMessage(event.data);
+                }
+            });
+            
+            // Legacy compatibility
+            eventSource.addEventListener('screenShare', function(event) {
+                const data = JSON.parse(event.data);
+                log(`<span class="signal-type">Legacy Screen Share:</span> ${data.type}`, 'signal');
+                
+                if (screenSharing) {
+                    screenSharing.handleSignalMessage(event.data);
+                }
+            });
+        }
+        
+        function disconnectFromFeed() {
+            if (eventSource) {
+                eventSource.close();
+                eventSource = null;
+                log('Disconnected from training feed', 'connection');
+                updateConnectionStatus('disconnected');
+            }
+            
+            if (screenSharing) {
+                screenSharing.closeConnection();
+                screenSharing = null;
+                log('Screen sharing client closed', 'info');
+            }
+        }
+        
+        function initializeScreenSharing(role) {
+            try {
+                log(`Initializing screen sharing client as ${role}`, 'info');
+                
+                // Create screen sharing instance
+                screenSharing = new MultiTraineeScreenSharing({
+                    role: role,
+                    participantId: document.getElementById('userId').value,
+                    trainerId: role === 'trainer' ? document.getElementById('userId').value : null
+                });
+                
+                log('Screen sharing client initialized', 'success');
+            } catch (error) {
+                log(`Failed to initialize screen sharing: ${error.message}`, 'error');
+                console.error('Screen sharing init error:', error);
+            }
+        }
+        
+        function startScreenSharing() {
+            if (!screenSharing) {
+                log('Screen sharing not initialized', 'error');
+                return;
+            }
+            
+            log('Starting screen sharing...', 'info');
+            screenSharing.startScreenSharing()
+                .then(() => {
+                    log('Screen sharing started successfully', 'success');
+                })
+                .catch(error => {
+                    log(`Failed to start screen sharing: ${error.message}`, 'error');
+                });
+        }
+        
+        function stopScreenSharing() {
+            if (!screenSharing) {
+                log('Screen sharing not initialized', 'error');
+                return;
+            }
+            
+            log('Stopping screen sharing...', 'info');
+            screenSharing.stopScreenSharing();
+            log('Screen sharing stopped', 'success');
+        }
+        
+        function joinTrainingRoom() {
+            if (!screenSharing) {
+                log('Screen sharing not initialized', 'error');
+                return;
+            }
+            
+            log('Joining training room...', 'info');
+            screenSharing.joinRoom();
+            log('Join room signal sent', 'success');
+        }
+        
+        function checkForTrainer() {
+            if (!screenSharing) {
+                log('Screen sharing not initialized', 'error');
+                return;
+            }
+            
+            log('Checking for existing screen share...', 'info');
+            screenSharing.checkForExistingScreenShare();
+        }
+        
+        function sendTestSignal(signalType) {
+            const userId = document.getElementById('userId').value;
+            const testMessage = {
+                type: signalType,
+                message: `Test ${signalType} from ${userId}`,
+                timestamp: Date.now()
+            };
+            
+            log(`Sending test signal: ${signalType}`, 'signal');
+            sendSignalToServer(testMessage);
+        }
+        
+        function sendCustomSignal() {
+            const signalType = document.getElementById('customSignalType').value;
+            const signalData = document.getElementById('customSignalData').value;
+            
+            if (!signalType) {
+                alert('Please enter signal type');
+                return;
+            }
+            
+            const customMessage = {
+                type: signalType,
+                data: signalData,
+                timestamp: Date.now()
+            };
+            
+            log(`Sending custom signal: ${signalType}`, 'signal');
+            sendSignalToServer(customMessage);
+        }
+        
+        function sendSignalToServer(message) {
+            const userId = document.getElementById('userId').value;
+            const roomId = currentRole === 'trainer' ? userId : 'TestRoom';
+            
+            fetch(`signalingServerMulti.php?trainingShareRoom=${roomId}&role=${currentRole}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(message)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(result => {
+                log(`Signal sent successfully: ${result}`, 'success');
+            })
+            .catch(error => {
+                log(`Error sending signal: ${error.message}`, 'error');
+                console.error('Send error:', error);
+            });
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        // Initialize
+        log('Training Feed Test System loaded', 'info');
+        log('1. Enter User ID and select role', 'info');
+        log('2. Click "Setup Test Session" to create session', 'info'); 
+        log('3. Click "Connect to Training Feed" to start EventSource', 'info');
+        log('4. Use trainer/trainee controls to test functionality', 'info');
+        
+        updateConnectionStatus('disconnected');
+    </script>
+    
+    <!-- Include the screen sharing client -->
+    <script src="screenSharingControlMulti.js"></script>
+</body>
+</html>

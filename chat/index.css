@@ -1,0 +1,212 @@
+:root {
+    --container-width: 	90%;
+    --purple: 			#AE8BEF;
+    --darkPurple: 	#4f0c9a;
+	  --green:			#5AAA7E;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 1rem; /* 1rem typically equals 16px, but adapts to user settings */
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 400px;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    width: var(--container-width);
+    max-width: 1000px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 40px;
+    overflow: hidden;
+    border: 15px solid var(--purple);
+}
+
+.chat-header {
+    background-color: white;
+    color: #007aff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 1px solid var(--purple);
+
+    max-height: 100px;
+}
+
+.chat-header h1 {
+    margin-bottom:  3px;
+    margin-top: 40px;
+    font-size: 1.5rem;
+    color:    var(--darkPurple);
+}
+
+.chat-logo {
+    display: block;
+    width: auto;
+    max-width: 350px;
+    min-width: 250px;
+    height: auto;
+    position: absolute;
+    left: 15px;
+    top: 30%;
+    transform: translateY(-50%);
+}
+
+
+#Chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This will center the child elements horizontally */
+    padding: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+
+span.name {
+	font-weight:		bold;
+    left:               0px;
+}
+
+span.Text {
+    position:           relative;
+    left:               175px;
+}
+
+
+
+#Message {
+	    margin-left:		15px;
+}
+
+#MessageItself {
+    flex: 1;
+    line-height: 1rem; /* Line height set to 2rem */
+    padding: 10px;
+    margin-right: 2%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: calc(3rem + 10px); /* Initial height, sum of line-height and vertical padding */
+    resize: none; /* Disable manual resizing */
+    overflow-y: hidden; /* Hide scrollbar initially */
+    font-size: 1rem; /* Explicitly set the font size */
+    width:	96%;
+}
+
+
+.message {
+    max-width: 70%;
+    padding: 6px 8px;
+    border-radius: 18px;
+    color: white;
+    word-wrap: break-word;
+    display: inline-flex; /* Wrap around the content */
+    align-items: center;
+}
+
+
+
+.message-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Default alignment to the left */
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+
+.message-wrapper.sent {
+    align-items: flex-end; /* Align sent messages to the right */
+}
+
+.message.sent {
+    background-color: #007aff; /* Blue background for sent messages */
+}
+
+.message-status {
+    font-size: 0.7rem; /* Smaller font size for delivery status */
+    color: #909090; /* Grey color for the text */
+    margin-top: 4px; /* Space between the message and status text */
+    text-align: right; /* Right-align the status text */
+    width: 70%; /* Match the width of the message bubble */
+    align-self: flex-end; /* Align status to the end for sent messages */
+}
+
+.message.received {
+    background-color: #e5e5ea; /* Gray background for received messages */
+    color: black;
+}
+
+.message p {
+    margin-block-start: .1rem;
+    margin-block-end: .1rem;
+}
+
+.message-status {
+    font-size: 0.7rem; /* Smaller font size for delivery status */
+    color: #909090; /* Grey color for the text */
+    margin-top: 4px; /* Space between the message and status text */
+    text-align: right; /* Right-align the status text */
+    width: 100%;
+}
+
+
+.VolunteerMessage {
+    max-width: 70%;
+    padding: 6px 8px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    display: inline-flex; /* Wrap around the content */
+    align-items: flex-start; /* Default alignment to the left */
+}
+
+
+.CallerMessage {
+    max-width: 70%;
+    padding: 6px 8px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    display: inline-flex; /* Wrap around the content */
+    align-items: flex-end; /* Align sent messages to the right */
+}
+
+
+
+#Send {
+    margin-left:		15px;
+}
+
+
+#SendButton {
+    float:              right;
+    background-color: #007aff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-right:	5%;
+    margin-bottom:	20px;
+}
+
+#endChatButton {
+    float:              left;
+    background-color: var(--green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-left:	5%;
+    margin-bottom:	20px;
+}
+

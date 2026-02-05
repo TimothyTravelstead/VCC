@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebRTC Receiver Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #e8f5e8; }
+        button { padding: 10px 20px; margin: 5px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        #log { background: #f5f5f5; padding: 10px; height: 400px; overflow-y: auto; font-family: monospace; font-size: 12px; }
+        video { width: 300px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>WebRTC Screen Share Receiver</h1>
+    <button onclick="clearLog()">Clear Log</button>
+    
+    <div>
+        <h3>Shared Screen:</h3>
+        <video id="remoteVideo" autoplay></video>
+    </div>
+    
+    <div>
+        <h3>Log:</h3>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        const myId = 'receiver_' + Math.random().toString(36).substr(2, 5); // Unique ID for each receiver
+        const targetId = 'caller';
+        let pc = null;
+        let lastMessageTime = 0;
+        let hasJoined = false;
+        
+        function log(msg) {
+            const logDiv = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${time}] ${msg}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(msg);
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        async function sendMessage(message) {
+            message.from = myId;
+            message.to = targetId;
+            
+            try {
+                const response = await fetch('minimal_signaling_test.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(message)
+                });
+                const result = await response.json();
+                log(`SENT: ${message.type} - ${result.status}`);
+            } catch (error) {
+                log(`ERROR sending: ${error.message}`);
+            }
+        }
+        
+        async function checkForCaller() {
+            try {
+                const response = await fetch('minimal_signaling_test.php?action=check-caller');
+                const result = await response.json();
+                
+                if (result.callerActive && !hasJoined) {
+                    log('Caller is active - requesting to join');
+                    requestToJoin();
+                    hasJoined = true;
+                }
+            } catch (error) {
+                log(`ERROR checking caller: ${error.message}`);
+            }
+        }
+        
+        async function requestToJoin() {
+            try {
+                await sendMessage({
+                    type: 'join-request'
+                });
+                log('Join request sent to caller');
+            } catch (error) {
+                log(`ERROR requesting to join: ${error.message}`);
+            }
+        }
+        
+        async function pollMessages() {
+            try {
+                const response = await fetch(`minimal_signaling_test.php?to=${myId}&since=${lastMessageTime}`);
+                const result = await response.json();
+                
+                if (result.messages) {
+                    for (const msg of result.messages) {
+                        log(`RECEIVED: ${msg.type} from ${msg.from}`);
+                        handleMessage(msg);
+                        lastMessageTime = Math.max(lastMessageTime, msg.timestamp);
+                    }
+                }
+            } catch (error) {
+                log(`ERROR polling: ${error.message}`);
+            }
+        }
+        
+        async function handleMessage(msg) {
+            switch (msg.type) {
+                case 'offer':
+                    // Create peer connection if not exists
+                    if (!pc) {
+                        pc = new RTCPeerConnection({
+                            iceServers: [{'urls': 'stun:stun.l.google.com:19302'}]
+                        });
+                        
+                        // Handle ICE candidates
+                        pc.onicecandidate = (event) => {
+                            if (event.candidate) {
+                                sendMessage({
+                                    type: 'ice-candidate',
+                                    candidate: event.candidate
+                                });
+                            }
+                        };
+                        
+                        // Handle remote stream
+                        pc.ontrack = (event) => {
+                            log(`Remote stream received from ${from} - ${event.streams.length} streams`);
+                            const remoteVideo = document.getElementById('remoteVideo');
+                            remoteVideo.srcObject = event.streams[0];
+                            remoteVideo.style.display = 'block';
+                        };
+                    }
+                    
+                    // Handle offer
+                    await pc.setRemoteDescription(new RTCSessionDescription(msg.offer));
+                    const answer = await pc.createAnswer();
+                    await pc.setLocalDescription(answer);
+                    
+                    // Send answer
+                    sendMessage({
+                        type: 'answer',
+                        answer: answer
+                    });
+                    
+                    log('Answer sent');
+                    break;
+                    
+                case 'ice-candidate':
+                    if (pc) {
+                        await pc.addIceCandidate(new RTCIceCandidate(msg.candidate));
+                        log('ICE candidate added');
+                    }
+                    break;
+            }
+        }
+        
+        // Check for caller immediately on load
+        checkForCaller();
+        
+        // Check for caller every 2 seconds
+        setInterval(checkForCaller, 2000);
+        
+        // Poll for messages every 1 second
+        setInterval(pollMessages, 1000);
+        
+        log(`Receiver page loaded (ID: ${myId})`);
+    </script>
+</body>
+</html>

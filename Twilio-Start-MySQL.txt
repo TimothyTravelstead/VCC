@@ -1,0 +1,2 @@
+INSERT INTO CallRouting (CallSid, Volunteer, Date, callObject, callStatus) 
+          VALUES (?, null, now(), ?, 'firstRing')

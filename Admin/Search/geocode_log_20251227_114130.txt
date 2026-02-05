@@ -1,0 +1,14 @@
+[2025-12-27 11:41:30] === Batch Re-Geocoding Started ===
+[2025-12-27 11:41:30] Dry run: YES
+[2025-12-27 11:41:30] Start offset: 0
+[2025-12-27 11:41:30] Limit: 10
+[2025-12-27 11:41:30] Total open resources: 20982
+[2025-12-27 11:41:30] Resources to process in this run: 10
+[2025-12-27 11:41:32] === Batch Re-Geocoding Complete ===
+[2025-12-27 11:41:32] Time elapsed: 2s
+[2025-12-27 11:41:32] Processed: 10
+[2025-12-27 11:41:32] Updated: 9
+[2025-12-27 11:41:32] Unchanged: 1
+[2025-12-27 11:41:32] Failed: 0
+[2025-12-27 11:41:32] Rate: 300 resources/minute
+[2025-12-27 11:41:32] Log file: /home/1203785.cloudwaysapps.com/hrbnxbfdau/public_html/Admin/Search/geocode_log_20251227_114130.txt

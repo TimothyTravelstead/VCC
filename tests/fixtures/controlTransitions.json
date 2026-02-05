@@ -1,0 +1,77 @@
+{
+  "trainerToTrainee": {
+    "description": "Trainer transfers control to trainee",
+    "before": {
+      "trainerId": "TestTrainer",
+      "activeController": "TestTrainer",
+      "controllerRole": "trainer"
+    },
+    "action": {
+      "newController": "TestTrainee1",
+      "newRole": "trainee"
+    },
+    "expected": {
+      "activeController": "TestTrainee1",
+      "controllerRole": "trainee",
+      "callControlUser": "TestTrainee1",
+      "trainerInCallControl": false,
+      "traineeInCallControl": true
+    }
+  },
+  "traineeToTrainer": {
+    "description": "Control returned to trainer",
+    "before": {
+      "trainerId": "TestTrainer",
+      "activeController": "TestTrainee1",
+      "controllerRole": "trainee"
+    },
+    "action": {
+      "newController": "TestTrainer",
+      "newRole": "trainer"
+    },
+    "expected": {
+      "activeController": "TestTrainer",
+      "controllerRole": "trainer",
+      "callControlUser": "TestTrainer",
+      "trainerInCallControl": true,
+      "traineeInCallControl": false
+    }
+  },
+  "traineeToTrainee": {
+    "description": "Control transferred from one trainee to another",
+    "before": {
+      "trainerId": "TestTrainer",
+      "activeController": "TestTrainee1",
+      "controllerRole": "trainee"
+    },
+    "action": {
+      "newController": "TestTrainee2",
+      "newRole": "trainee"
+    },
+    "expected": {
+      "activeController": "TestTrainee2",
+      "controllerRole": "trainee",
+      "callControlUser": "TestTrainee2",
+      "trainee1InCallControl": false,
+      "trainee2InCallControl": true
+    }
+  },
+  "invalidTransfer": {
+    "description": "Non-trainer attempts control transfer",
+    "before": {
+      "trainerId": "TestTrainer",
+      "activeController": "TestTrainer",
+      "controllerRole": "trainer"
+    },
+    "action": {
+      "requestedBy": "TestTrainee1",
+      "newController": "TestTrainee1",
+      "newRole": "trainee"
+    },
+    "expected": {
+      "error": true,
+      "errorCode": 403,
+      "message": "Only trainers can change control"
+    }
+  }
+}

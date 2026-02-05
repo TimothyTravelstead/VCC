@@ -1,0 +1,8 @@
+{
+  "headers": {
+    "Cookie": "PHPSESSID=2kup1fgdu486hva8h5e6n6e2es"
+  },
+  "chromeLaunchConfig": {
+    "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+  }
+}

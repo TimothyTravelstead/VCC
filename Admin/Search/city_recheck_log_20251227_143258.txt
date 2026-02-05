@@ -1,0 +1,22 @@
+[2025-12-27 14:32:58] === Re-checking CITY Accuracy Records ===
+[2025-12-27 14:32:58] Dry run: NO
+[2025-12-27 14:32:58] Records to check: 370
+[2025-12-27 14:33:07] UPGRADED 2024: CITY → ROOFTOP (moved 1km) - Epiphany Lutheran Church
+[2025-12-27 14:33:20] UPGRADED 11364: CITY → ROOFTOP (moved 3.9km) - First Unitarian Universalist Church
+[2025-12-27 14:33:25] UPGRADED 15806: CITY → ROOFTOP (moved 3.7km) - Fernandez, Rosalinda
+[2025-12-27 14:33:30] UPGRADED 18773: CITY → ROOFTOP (moved 1km) - New England Law Boston
+[2025-12-27 14:34:01] UPGRADED 36663: CITY → ROOFTOP (moved 2.5km) - Twisted Soul Cookhouse & Pours
+[2025-12-27 14:34:01] UPGRADED 36753: CITY → ROOFTOP (moved 8.8km) - Pizazzz Promotions
+[2025-12-27 14:34:02] UPGRADED 37011: CITY → ROOFTOP (moved 6.5km) - Blue Door Electrolysis
+[2025-12-27 14:34:22] UPGRADED 41529: CITY → ROOFTOP (moved 5.5km) - Gaslight
+[2025-12-27 14:34:37] UPGRADED 44629: CITY → ROOFTOP (moved 4.4km) - Koolfi Creamery and Cafe
+[2025-12-27 14:34:39] UPGRADED 45341: CITY → ROOFTOP (moved 2.4km) - Rose & Loon
+[2025-12-27 14:34:41] === Re-check Complete ===
+[2025-12-27 14:34:41] Time elapsed: 2m 43s
+[2025-12-27 14:34:41] Processed: 370
+[2025-12-27 14:34:41] Upgraded to ROOFTOP: 10
+[2025-12-27 14:34:41] Upgraded to STREET: 0
+[2025-12-27 14:34:41] Total upgraded: 10
+[2025-12-27 14:34:41] Unchanged (still CITY): 360
+[2025-12-27 14:34:41] Failed: 0
+[2025-12-27 14:34:41] Log file: /home/1203785.cloudwaysapps.com/hrbnxbfdau/public_html/Admin/Search/city_recheck_log_20251227_143258.txt

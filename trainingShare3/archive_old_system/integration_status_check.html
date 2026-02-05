@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training Integration Status Check</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .warning { background: #fff3cd; color: #856404; }
+        pre { background: #f8f9fa; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Training WebRTC Integration Status</h1>
+    
+    <div id="results"></div>
+    
+    <script src="simpleTrainingScreenShare.js"></script>
+    <script>
+        function addStatus(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            document.getElementById('results').appendChild(div);
+        }
+        
+        function checkIntegration() {
+            // Check if simpleTrainingScreenShare is available
+            if (typeof window.simpleTrainingScreenShare !== 'undefined') {
+                addStatus('✓ SimpleTrainingScreenShare loaded successfully', 'success');
+                
+                // Check methods
+                const requiredMethods = ['initializeTrainer', 'initializeTrainee', 'sendMessage', 'pollMessages'];
+                let allMethodsPresent = true;
+                
+                requiredMethods.forEach(method => {
+                    if (typeof window.simpleTrainingScreenShare[method] === 'function') {
+                        addStatus(`✓ Method ${method} available`, 'success');
+                    } else {
+                        addStatus(`✗ Method ${method} missing`, 'error');
+                        allMethodsPresent = false;
+                    }
+                });
+                
+                if (allMethodsPresent) {
+                    addStatus('✓ All required methods available', 'success');
+                } else {
+                    addStatus('✗ Some methods missing', 'error');
+                }
+                
+            } else {
+                addStatus('✗ SimpleTrainingScreenShare not available', 'error');
+            }
+            
+            // Check signaling server availability
+            fetch('simpleTrainingSignaling.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({type: 'test', from: 'integration-check', to: 'test'})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    addStatus('✓ Signaling server responding correctly', 'success');
+                } else {
+                    addStatus('✗ Signaling server error: ' + JSON.stringify(data), 'error');
+                }
+            })
+            .catch(error => {
+                addStatus('✗ Cannot connect to signaling server: ' + error.message, 'error');
+            });
+            
+            // Check for required HTML elements
+            const requiredElements = ['localVideo', 'remoteVideo'];
+            requiredElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    addStatus(`✓ Element #${id} found`, 'success');
+                } else {
+                    addStatus(`⚠ Element #${id} not found (this is OK for this test page)`, 'warning');
+                }
+            });
+            
+            // Test WebRTC support
+            if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+                addStatus('✓ WebRTC getDisplayMedia supported', 'success');
+            } else {
+                addStatus('✗ WebRTC getDisplayMedia not supported', 'error');
+            }
+            
+            if (window.RTCPeerConnection) {
+                addStatus('✓ RTCPeerConnection supported', 'success');
+            } else {
+                addStatus('✗ RTCPeerConnection not supported', 'error');
+            }
+        }
+        
+        // Run checks
+        setTimeout(checkIntegration, 100);
+    </script>
+</body>
+</html>

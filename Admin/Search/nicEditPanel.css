@@ -1,0 +1,19 @@
+.nicEdit-panelContain {
+	width:		94%;
+	max-width:	1034px;
+}
+
+
+
+
+
+@media only screen and (max-device-width: 480px) {
+
+	.nicEdit-panelContain {
+		display: 	none;
+		width:		inherit;
+		max-width:	inherirt;
+	}
+
+}
+

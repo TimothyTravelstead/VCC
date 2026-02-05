@@ -1,0 +1,411 @@
+body {
+    font-family: "Times New Roman", Georgia, Serif;
+    padding: 0px;
+    text-align: center;
+    background: gray;
+    lang: en;
+    hyphens: auto;
+    color: silver;
+    height: 1400px;
+    width: 652px;
+}
+
+#validationErrorWindow {
+    position: absolute;
+    display: none;
+    box-shadow: 10px 10px 5px grey;
+    background: white;
+    border: 3px solid blue;
+    border-radius: 25px;
+    height: 170px;
+    width: 220px;
+    padding: 15px;
+    color: black;
+    white-space: pre-wrap;
+}
+
+#validationErrorWindow input {
+    text-align: right;
+    margin-right: 5px;
+    margin-left: 180px;
+}
+
+#resourceDetailIDNUM {
+    position: absolute;
+    left: 5px;
+    top: 65px;
+    color: gray;
+    font-size: 90%;
+    background-color: transparent;
+    border: none;
+}
+
+.redGradient {
+    background: linear-gradient(#550000, #770000);
+}
+
+.blueGradient {
+    background: linear-gradient(#550000, #770000);
+}
+
+p {
+    hyphens: auto;
+}
+
+input[type='button'],
+input[type="Submit"] {
+    background-color: white;
+    border-radius: 10px;
+}
+
+input[type='button']:hover,
+input[type='submit']:hover,
+#resourcePane span:hover,
+#ExitButton:hover,
+#Update:hover {
+    background: linear-gradient(rgba(100, 100, 250, 1), white);
+}
+
+#titleBar {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: auto;
+    width: inherit;
+    border: 1px solid gray;
+    text-align: center;
+    border-radius: 10px;
+    color: rgba(150, 150, 150, 1);
+    background-color: white;
+}
+
+#titleBar h1 {
+    position: absolute;
+    top: -10px;
+    text-align: center;
+    width: inherit;
+}
+
+.defaultButton {
+    border-radius: 5px;
+    background-image: -o-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%, #A1D1F9 50%, #D4E9FC 100%);
+    background-image: -moz-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%, #A1D1F9 50%, #D4E9FC 100%);
+    background-image: -webkit-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%, #A1D1F9 50%, #D4E9FC 100%);
+    background-image: -ms-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%, #A1D1F9 50%, #D4E9FC 100%);
+    background-image: linear-gradient(to top, #D3F7FD 0%, #87C5FB 50%, #A1D1F9 50%, #D4E9FC 100%);
+}
+
+.smallButton {
+    height: 30px;
+    width: auto;
+    min-width: 80px;
+}
+
+.rightButton {
+    height: 20px;
+    width: auto;
+    float: right;
+    margin-right: 60px;
+}
+
+#resourcePane {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    display: block;
+    border: 3px solid #770000;
+    border-radius: 10px;
+}
+
+#resourceDetailForm {
+    text-align: left;
+    font-size: 100%;
+    width: 625px;
+    border-right: none;
+}
+
+.resourceDetailNormalWidth {
+    width: 380px;
+    background: transparent;
+}
+
+.resourceDetailEditNormalWidth {
+    width: 380px;
+    background: white;
+}
+
+.resourceDetailEditNarrowWidth {
+    width: 120px;
+    background: white;
+}
+
+.resourceDetailNormalLabelWidth,
+.resourceDetailEditLabelWidth {
+    text-align: right;
+    vertical-align: top;
+    height: 25px;
+    line-height: 22px;
+    display: inline-block;
+    overflow: hidden;
+    color: maroon;
+    font-size: 100%;
+    font-style: italic;
+    width: 80px;
+}
+
+
+.fieldBox {
+    position: relative;
+    margin: 5px;
+    margin-bottom: 10px;
+    border: 1px solid maroon;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background: silver;
+    border-radius: 5px;
+    width: 100%; /* Ensure full width of the container */
+}
+
+.fieldRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Spread the items out evenly */
+    gap: 10px;
+    width: 100%; /* Make sure the fieldRow stretches to 100% */
+}
+
+.editGroup, .fieldContent {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    vertical-align: top;
+}
+
+.fieldTitle {
+    font-weight: bold;
+    margin-top: 0px;
+    color: maroon;
+    text-align: left;
+    width: 110px;
+    word-wrap: break-word;
+    white-space: normal;
+    line-height: 1.2;
+}
+
+h3 {
+    font-weight: bold;
+    margin-top: 0px;
+    color: maroon;
+    text-align: center;
+    width: 650px;
+    word-wrap: break-word;
+    white-space: normal;
+    line-height: 1.2;
+
+}
+
+
+.fieldContent {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.editBlock {
+    display: none;
+    position:relative;
+    left:	200px;
+    top:	0px;
+    width:	auto;
+    height: auto;
+    margin-top: 10px;
+}
+
+
+.fieldContent label, .fieldContent input {
+    margin-right: 10px;
+}
+
+.editGroup {
+    background: transparent;
+    position: relative;
+    height: auto;
+    width: 120px;
+}
+
+.checkboxLabel {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    font-size: 90%;
+    font-weight: normal;
+    color: black;
+    margin-left: 2px;
+    width:	35px;
+}
+
+#resourceDetailEditForm input[type="text"] {
+    display: inline-block;
+    height: 18px;
+    line-height: 15px;
+    font-size: inherit;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    border: none;
+    font-family: inherit;
+    margin-left: 5px;
+    padding-left: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+}
+
+
+/* For Name and Address fields, we will adjust the layout to stack inputs vertically */
+.fieldBox#NameBox .fieldContent,
+.fieldBox#AddressBox .fieldContent {
+    display: block; /* Stack elements vertically */
+}
+
+.fieldBox#NameBox .fieldContent input,
+.fieldBox#AddressBox .fieldContent input {
+    display: block; /* Ensure each input takes a full line */
+    margin-bottom: 5px; /* Add some spacing between input rows */
+}
+
+
+
+
+#resourceDetailDESCRIPT,
+#resourceDetailNOTE {
+    background: transparent;
+}
+
+#resourceDetailEditDESCRIPT,
+#resourceDetailEditNOTE {
+    background: white;
+}
+
+#resourceDetailDESCRIPT,
+#resourceDetailEditDESCRIPT {
+    position: relative;
+    width: 380px;
+    height: 44px;
+    color: black;
+    white-space: normal;
+    padding: 2px;
+    overflow: auto;
+    font-size: 95%;
+    font-weight: normal;
+    white-space: normal;
+    display: block;
+}
+
+#resourceDetailNOTE,
+#resourceDetailEditNOTE {
+    position: relative;
+    width: 380px;
+    height: 318px;
+    color: black;
+    white-space: normal;
+    padding: 2px;
+    overflow: auto;
+    font-size: 95%;
+    font-weight: bold;
+    display: block;
+}
+
+#resourceDetailWWWEB a {
+    overflow: hidden;
+    height: 20px;
+    white-space: nowrap;
+    color: blue;
+    text-decoration: underline;
+}
+
+textarea {
+    border: 1px dotted black;
+    margin-left: 3px;
+}
+
+#notesToAaron {
+    border: 2px solid blue;
+    width: 590px;
+    height: 160px;
+    background: white;
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+
+#resourcePaneControl {
+    position: relative;
+    top: 10px;
+    left: 0px;
+    height: 120px;
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid gray;
+    line-height: 12pt;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: white;
+    border-radius: 10px;
+    vertical-align: middle;
+    text-align: right;
+}
+
+#resourcePaneControl input {
+    margin-left: 10px;
+}
+
+#resourcePaneControlLabel {
+    min-width: 0px;
+    display: inline-block;
+}
+
+#ExitButton {
+    background: radial-gradient(#BB0000, #880000);
+    width: 120px;
+    font-weight: bold;
+    font-size: 90%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    vertical-align: middle;
+    margin-left: 200px;
+}
+
+#Update {
+    font-weight: bold;
+    background: rgba(130, 130, 250, 1);
+    width: 150px;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+.volunteerUpdateInfo label {
+    display: inline;
+    width: auto;
+    text-align: left;
+}
+
+.volunteerUpdateInfo {
+    background: transparent;
+    color: gray;
+    display: none;
+    width: 100%;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-top: 0px;
+}
+
+#webSiteUpdateVolunteer,
+#webSiteUpdateVolunteerDate {
+    display: inline;
+    color: gray;
+    width: auto;
+    margin-right: 10%;
+    border: none;
+}

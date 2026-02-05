@@ -1,0 +1,871 @@
+/* Additional Action Buttons */
+.input-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}@keyframes highlight {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* iOS Messages-style Chat Input Area */
+#groupChatTypingWrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 8px 16px 24px 16px;
+    background: #F2F2F7;
+    border-top: 1px solid #D1D1D6;
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    flex-shrink: 0;
+}
+
+/* Adjust main window bottom padding to account for fixed input */
+#groupChatMainWindow {
+    padding-bottom: 120px; /* Space for fixed input area */
+    background: #FFFFFF;
+}:root {
+    --container-width: 	100%;
+    --purple: 			#770000;  /* Changed to red theme */
+	--green:			#006600;  /* Darker green for better contrast */
+	--white:			#F5F5F5;
+}
+
+/* Ensure full height layout throughout the entire iframe */
+html, body {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 1rem;
+    background-color: #ffcccc;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    color: #220000;
+    position: relative;
+}
+
+/* Main container takes full viewport */
+#groupChatContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Header (if present) */
+.chat-header {
+    flex-shrink: 0;
+    background: var(--purple);
+    color: white;
+    padding: 8px 16px;
+    border-bottom: 2px solid var(--purple);
+}
+
+#groupChatPortraitMode {
+	display:		block;
+	width:			96vw;
+	height:			96vh;
+}
+
+input, textarea, div, body {
+	font-size:		1em;
+}
+
+h1 {
+	font-size: 1.35em;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align:		center;
+}
+
+h2 {
+	font-size: 1.35em;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align:		center;
+}
+
+h3 {
+	font-size: 1.25em;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align:		center;
+}
+
+.div {
+	background: 	var(--white);
+	border: 		2px solid var(--purple);
+	border-radius: 	5px;
+	display: 		block;
+	margin-bottom: 	5px;
+	padding:		3px;
+	vertical-align: middle;
+}
+
+/* Chat area takes remaining space and ensures full height */
+#groupChatUpperChatArea {
+	background: 	transparent;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	min-height: 0; /* Important: allows flex child to shrink */
+	padding: 		0px;
+	margin: 0;
+	width: 100%;
+	position: relative;
+}
+
+/* Main window fills available space */
+#groupChatMainWindow {
+	flex: 1;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 100%;
+	border: 0px solid transparent;
+	border-radius: 25px;
+	background: white;
+	padding: 15px;
+	min-height: 0; /* Important: allows flex child to shrink */
+	display: flex;
+	flex-direction: column;
+}
+
+/* When no messages, ensure minimum height */
+#groupChatMainWindow:empty::before {
+    content: "Welcome to the training chat. Start typing to send your first message.";
+    color: #cc6666;
+    font-style: italic;
+    text-align: center;
+    padding: 40px 20px;
+    display: block;
+    opacity: 0.7;
+}
+
+#groupChatMemberListContainer { 
+	height: 		98%;
+	overflow: 		hidden;
+	width: 			90%;
+	vertical-align:	top;
+	overflow: 		scroll;
+	border:			3px solid var(--purple);
+	border-radius:	25px;
+	background:		white;
+}
+
+/* Custom Scrollbar for Main Window */
+#groupChatMainWindow::-webkit-scrollbar {
+    width: 8px;
+}
+
+#groupChatMainWindow::-webkit-scrollbar-track {
+    background: #fff5f5;
+    border-radius: 10px;
+}
+
+#groupChatMainWindow::-webkit-scrollbar-thumb {
+    background: var(--purple);
+    border-radius: 10px;
+    border: 1px solid #550000;
+}
+
+#groupChatMainWindow::-webkit-scrollbar-thumb:hover {
+    background: #990000;
+}
+
+.messageSelection {
+	background-color:	red;
+}
+
+.groupChatMessageContainer {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 8px;
+	animation: slideIn 0.3s ease-out;
+	padding: 0 16px;
+}
+
+/* Consecutive messages from same user get reduced spacing */
+.groupChatMessageContainer + .groupChatMessageContainer[data-same-user="true"] {
+	margin-top: -6px;
+}
+
+.groupChatMessageContainer + .groupChatMessageContainer[data-same-user="true"] .nameBlock {
+	display: none;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nameBlock {
+	font-size: 11px;
+	font-weight: 600;
+	color: #8e8e93;
+	margin-bottom: 4px;
+	padding: 0 4px;
+	text-align: left;
+}
+
+/* iOS-style message bubbles */
+.groupChatWindowMessage {
+	display: inline-block;
+	max-width: 75%;
+	padding: 8px 12px;
+	border-radius: 18px;
+	margin-bottom: 2px;
+	word-wrap: break-word;
+	line-height: 1.4;
+	font-size: 16px;
+	position: relative;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s ease;
+}
+
+.groupChatWindowMessage:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(85, 0, 0, 0.15);
+}
+
+.highlightMessage {
+	background-color:  #fff3c7 !important;
+	border-color: #cc6600 !important;
+	animation: highlight 0.5s ease-in-out;
+}
+
+@keyframes highlight {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Fixed position typing wrapper at bottom */
+#groupChatTypingWrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 15px;
+    background: white;
+    border-top: 3px solid var(--purple);
+    box-shadow: 0 -8px 25px rgba(85, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    flex-shrink: 0;
+}
+
+/* Adjust main window bottom padding to account for fixed input */
+#groupChatMainWindow {
+    padding-bottom: 120px; /* Space for fixed input area */
+}
+
+/* iOS Messages Input Container */
+.input-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background: white;
+    border-radius: 20px;
+    padding: 6px;
+    border: 1px solid #D1D1D6;
+    transition: all 0.2s ease;
+    max-width: none;
+    margin: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.input-container:focus-within {
+    border-color: #007AFF;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+    background: white;
+}
+
+/* iOS Messages Text Input */
+#groupChatTypingWindow {
+    flex: 1;
+    min-height: 20px;
+    max-height: 120px;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    resize: none;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000000;
+    overflow-y: auto;
+    border-radius: 14px;
+    transition: all 0.2s ease;
+}
+
+#groupChatTypingWindow:focus {
+    outline: none;
+    background: transparent;
+}
+
+#groupChatTypingWindow::placeholder {
+    color: #8E8E93;
+    font-weight: 400;
+}
+
+/* Placeholder for empty contenteditable */
+#groupChatTypingWindow.empty::before {
+    content: "Message";
+    color: #8E8E93;
+    font-weight: 400;
+    pointer-events: none;
+    opacity: 1;
+}
+
+#groupChatTypingWindow.empty:focus::before {
+    display: none;
+}
+
+/* Better scrollbar for typing window */
+#groupChatTypingWindow::-webkit-scrollbar {
+    width: 6px;
+}
+
+#groupChatTypingWindow::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#groupChatTypingWindow::-webkit-scrollbar-thumb {
+    background: #cc6666;
+    border-radius: 3px;
+}
+
+#groupChatTypingWindow::-webkit-scrollbar-thumb:hover {
+    background: var(--purple);
+}
+
+.systemMessage {
+	display:  			block;
+	width: 				100%;
+	vertical-align: 	middle;
+	background-color:	transparent;
+	padding:		  	5px;
+	margin-bottom:		6px;
+	height:				auto;
+	text-align:			center;
+	color:				var(--purple);
+	font-weight:		bold;
+}
+
+.timeStamp {
+	display: 			inline-block;
+	font-size:			70%;
+	color:				#990000;
+	overflow:			hidden;
+	text-decoration:	none;
+	text-align:			right;
+	font-weight:		normal;
+	float:				right;
+	vertical-align:		middle;
+	font-style:			normal;
+}
+
+#groupChatControlButtonArea {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    height: auto;
+    background: transparent;
+    border: none;
+    z-index: 999;
+    pointer-events: none;
+}
+
+#groupChatControlButtonArea > * {
+    pointer-events: auto;
+}
+
+/* iOS Messages Send Button - Narrow Arrow Only */
+#groupChatSubmitButton {
+    width: 24px;
+    height: 32px;
+    background: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-transform: none;
+    letter-spacing: normal;
+    padding: 0;
+    min-width: 24px;
+    line-height: 1;
+    margin-right: 4px; /* Add space from right edge */
+}
+
+/* Removed ::before content since arrow is in HTML */
+
+#groupChatSubmitButton:hover {
+    background: #0056CC;
+    transform: none;
+    box-shadow: none;
+}
+
+#groupChatSubmitButton:active {
+    transform: scale(0.95);
+    background: #004399;
+}
+
+#groupChatSubmitButton:disabled,
+#groupChatSubmitButton.loading {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    background: #8E8E93;
+}
+
+#groupChatSubmitButton.loading::before {
+    display: none;
+}
+
+#groupChatSubmitButton.loading::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Generic button styling */
+input[type='button']:hover, input[type='submit']:hover {
+	background:	linear-gradient(rgba(100,100,250,1),white);
+}
+
+input[type='button'], input[type='submit'] {
+	height:			2em;
+	width:			auto;
+	min-width:		40px;
+	padding:		3px;
+	border-radius:	10px;
+	background:		var(--purple);
+	color:			var(--white);
+	margin-top:		0px;
+	vertical-align: bottom;
+	border:			2px solid #550000;
+	font-weight:	bold;
+	cursor:			pointer;
+	transition:		all 0.3s ease;
+}
+
+input[type='submit'] {
+	background-image: linear-gradient(to bottom, #d3f7fd 0%, #87c5fb 50%, #a1d1f9 50%, #d4e9fc 100%);
+	color: var(--purple);
+}
+
+input[type='submit']:hover {
+    background: linear-gradient(rgba(100, 100, 250, 1), white);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(85, 0, 0, 0.3);
+}
+
+#groupChatScroll {
+	position:		fixed;
+	margin-left:   	100px;
+	display:		none;
+	bottom:			0.5%;
+}
+
+/* iOS Messages Emoji Button */
+.action-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    border: none;
+    background: transparent;
+    color: #8E8E93;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 20px;
+    padding: 0;
+}
+
+.action-button:hover {
+    background: #F2F2F7;
+    color: #007AFF;
+    transform: none;
+    box-shadow: none;
+}
+
+/* User Avatar Styles */
+.user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    border: 2px solid #550000;
+    box-shadow: 0 1px 2px 0 rgba(85, 0, 0, 0.1);
+    margin-right: 8px;
+}
+
+/* Own messages (sent) - iOS blue bubbles aligned right */
+.own-message {
+	align-items: flex-end;
+}
+
+.own-message .nameBlock {
+	text-align: right;
+	color: #8e8e93;
+}
+
+.own-message .groupChatWindowMessage {
+	background: linear-gradient(135deg, rgba(0, 122, 255, 0.85) 0%, rgba(0, 81, 213, 0.85) 100%);
+	color: white;
+	align-self: flex-end;
+	border-bottom-right-radius: 4px;
+}
+
+/* Other users' messages - iOS gray bubbles aligned left */
+.other-message {
+	align-items: flex-start;
+}
+
+.other-message .nameBlock {
+	text-align: left;
+	color: #8e8e93;
+}
+
+.other-message .groupChatWindowMessage {
+	background: #E9E9EB;
+	color: #000000;
+	align-self: flex-start;
+	border-bottom-left-radius: 4px;
+}
+
+/* iOS-style message tails for the last message in a sequence */
+.groupChatMessageContainer:not([data-same-user="true"]) .own-message .groupChatWindowMessage::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	right: -6px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-left-color: rgba(0, 122, 255, 0.85);
+	border-bottom: 0;
+}
+
+.groupChatMessageContainer:not([data-same-user="true"]) .other-message .groupChatWindowMessage::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: -6px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-right-color: #E9E9EB;
+	border-bottom: 0;
+}
+
+/* Character Counter */
+.character-counter {
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+    font-size: 11px;
+    color: #996666;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2px 6px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#groupChatTypingWindow:focus + .character-counter,
+.character-counter.show {
+    opacity: 1;
+}
+
+/* Send hint */
+.send-hint {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    font-size: 11px;
+    color: #996666;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Alternative button states */
+#groupChatSubmitButton.success {
+    background: linear-gradient(135deg, var(--green) 0%, #008800 50%, var(--green) 100%);
+    border-color: #004400;
+}
+
+#groupChatSubmitButton.error {
+    background: linear-gradient(135deg, #cc0000 0%, #ee0000 50%, #cc0000 100%);
+    border-color: #990000;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #groupChatTypingWrapper {
+        padding: 12px;
+    }
+    
+    .input-container {
+        gap: 8px;
+        padding: 6px;
+    }
+    
+    #groupChatTypingWindow {
+        min-height: 36px;
+        max-height: 100px;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    #groupChatSubmitButton {
+        width: 24px;
+        height: 32px;
+        min-width: 24px;
+        font-size: 16px;
+    }
+    
+    .action-button {
+        width: 36px;
+        height: 36px;
+    }
+    
+    #groupChatMainWindow {
+        padding: 10px;
+        padding-bottom: 100px;
+    }
+    
+    .groupChatMessageContainer {
+        margin-bottom: 10px;
+    }
+    
+    .nameBlock {
+        margin-left: 20px;
+        font-size: 9pt;
+    }
+    
+    .groupChatWindowMessage {
+        margin-left: 20px;
+        padding: 6px 10px;
+    }
+    
+    .own-message .groupChatWindowMessage {
+        margin-right: 20px;
+    }
+    
+    .own-message .nameBlock {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #groupChatTypingWrapper {
+        padding: 10px;
+    }
+    
+    #groupChatTypingWindow {
+        min-height: 32px;
+        max-height: 80px;
+        font-size: 14px;
+    }
+    
+    #groupChatSubmitButton {
+        width: 24px;
+        height: 32px;
+        min-width: 24px;
+        font-size: 16px;
+    }
+    
+    #groupChatMainWindow {
+        padding: 8px;
+        padding-bottom: 90px;
+    }
+    
+    .nameBlock {
+        margin-left: 10px;
+    }
+    
+    .groupChatWindowMessage {
+        margin-left: 10px;
+    }
+    
+    .own-message .groupChatWindowMessage {
+        margin-right: 10px;
+    }
+    
+    .own-message .nameBlock {
+        margin-right: 10px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    #groupChatSubmitButton {
+        border-width: 3px;
+        font-weight: 900;
+    }
+    
+    .input-container {
+        border-width: 3px;
+    }
+    
+    #groupChatTypingWrapper {
+        border-width: 4px;
+    }
+    
+    .groupChatWindowMessage {
+        border-width: 3px;
+    }
+    
+    #groupChatMainWindow {
+        border-width: 4px;
+    }
+}
+
+/* Dark mode support with iOS colors */
+@media (prefers-color-scheme: dark) {
+    html, body {
+        background-color: #000000;
+        color: #FFFFFF;
+    }
+    
+    #groupChatMainWindow {
+        background: #000000;
+        border-color: #1C1C1E;
+    }
+    
+    #groupChatTypingWrapper {
+        background: #1C1C1E;
+        border-color: #38383A;
+    }
+    
+    .input-container {
+        background: #2C2C2E;
+        border-color: #38383A;
+    }
+    
+    .input-container:focus-within {
+        border-color: #007AFF;
+        background: #2C2C2E;
+    }
+    
+    #groupChatTypingWindow {
+        color: #FFFFFF;
+    }
+    
+    #groupChatTypingWindow.empty::before {
+        color: #8E8E93;
+    }
+    
+    .other-message .groupChatWindowMessage {
+        background: #2C2C2E;
+        color: #FFFFFF;
+    }
+    
+    .other-message .groupChatWindowMessage::after {
+        border-right-color: #2C2C2E;
+    }
+    
+    .nameBlock {
+        color: #8E8E93;
+    }
+    
+    .timeStamp {
+        color: #8E8E93;
+    }
+    
+    .action-button {
+        color: #8E8E93;
+    }
+    
+    .action-button:hover {
+        background: #38383A;
+        color: #007AFF;
+    }
+}
+
+/* Notification styles */
+.notification {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 0.875rem;
+    font-weight: bold;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: white;
+    z-index: 10000;
+    box-shadow: 0 4px 6px -1px rgba(85, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.notification-info {
+    background-color: var(--green);
+    border: 2px solid #004400;
+}
+
+.notification-error {
+    background-color: #cc0000;
+    border: 2px solid #990000;
+}
+
+.notification-warning {
+    background-color: #cc6600;
+    border: 2px solid #994d00;
+}
+
+.notification-success {
+    background-color: var(--green);
+    border: 2px solid #004400;
+}

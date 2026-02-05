@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+         bootstrap="setup/phpBootstrap.php"
+         colors="true"
+         stopOnFailure="false"
+         cacheDirectory=".phpunit.cache">
+
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>unit/php</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>integration</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage>
+        <include>
+            <directory suffix=".php">../trainingShare3</directory>
+        </include>
+        <exclude>
+            <directory>../trainingShare3/Signals</directory>
+        </exclude>
+        <report>
+            <html outputDirectory="coverage/html"/>
+            <text outputFile="coverage/coverage.txt"/>
+        </report>
+    </coverage>
+
+    <php>
+        <!-- Test database configuration (uses transactions, rolled back after each test) -->
+        <env name="TEST_MODE" value="true"/>
+        <env name="DB_NAME" value="test_vcc"/>
+    </php>
+</phpunit>

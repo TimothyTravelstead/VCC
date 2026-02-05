@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Session Test</title>
+</head>
+<body>
+    <h1>Simple Session Test</h1>
+    
+    <div id="log" style="font-family: monospace; white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: auto;"></div>
+    
+    <div style="margin: 10px 0;">
+        <button onclick="setupSession()">1. Setup Session</button>
+        <button onclick="checkSession()">2. Check Session</button>
+        <button onclick="testMinimalEventSource()">3a. Test Minimal EventSource</button>
+        <button onclick="testEventSource()">3b. Test Full EventSource</button>
+        <button onclick="clearLog()">Clear Log</button>
+    </div>
+    
+    <script>
+        function log(msg) {
+            const logEl = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            logEl.textContent += `[${time}] ${msg}\n`;
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log(msg);
+        }
+        
+        function setupSession() {
+            log('Setting up test session...');
+            fetch('setup_test_session.php?userId=TestUser&role=trainer')
+                .then(response => response.json())
+                .then(data => {
+                    log('✅ Session setup: ' + JSON.stringify(data));
+                })
+                .catch(error => {
+                    log('❌ Session setup error: ' + error.message);
+                });
+        }
+        
+        function checkSession() {
+            log('Checking current session...');
+            fetch('debug_session.php')
+                .then(response => response.json())
+                .then(data => {
+                    log('🔍 Session debug: ' + JSON.stringify(data, null, 2));
+                })
+                .catch(error => {
+                    log('❌ Session check error: ' + error.message);
+                });
+        }
+        
+        function testEventSource() {
+            log('Testing EventSource connection...');
+            
+            const es = new EventSource('trainingFeed_debug.php', {
+                withCredentials: true
+            });
+            
+            es.onopen = function() {
+                log('✅ EventSource opened successfully');
+                setTimeout(() => {
+                    es.close();
+                    log('🔒 EventSource closed');
+                }, 3000);
+            };
+            
+            es.onerror = function(error) {
+                log('❌ EventSource error: ' + JSON.stringify(error));
+                log('EventSource readyState: ' + es.readyState);
+                es.close();
+            };
+            
+            es.addEventListener('trainingConnection', function(event) {
+                log('✅ Training connection event: ' + event.data);
+            });
+            
+            es.addEventListener('trainingHeartbeat', function(event) {
+                log('💓 Heartbeat: ' + event.data);
+            });
+        }
+        
+        function testMinimalEventSource() {
+            log('Testing minimal EventSource...');
+            
+            const es = new EventSource('test_feed_minimal.php', {
+                withCredentials: true
+            });
+            
+            es.onopen = function() {
+                log('✅ Minimal EventSource opened successfully');
+                setTimeout(() => {
+                    es.close();
+                    log('🔒 Minimal EventSource closed');
+                }, 5000);
+            };
+            
+            es.onerror = function(error) {
+                log('❌ Minimal EventSource error: ' + JSON.stringify(error));
+                log('Minimal EventSource readyState: ' + es.readyState);
+                es.close();
+            };
+            
+            es.addEventListener('test', function(event) {
+                log('📩 Test message: ' + event.data);
+            });
+        }
+        
+        function clearLog() {
+            document.getElementById('log').textContent = '';
+        }
+        
+        log('Simple session test loaded. Follow the numbered buttons in order.');
+    </script>
+</body>
+</html>

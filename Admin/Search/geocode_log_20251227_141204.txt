@@ -1,0 +1,17 @@
+[2025-12-27 14:12:04] === Batch Re-Geocoding Started ===
+[2025-12-27 14:12:04] Dry run: NO
+[2025-12-27 14:12:04] Start offset: 0
+[2025-12-27 14:12:04] Limit: 500
+[2025-12-27 14:12:04] Total open resources: 20982
+[2025-12-27 14:12:04] Resources to process in this run: 500
+[2025-12-27 14:13:53] === Batch Re-Geocoding Complete ===
+[2025-12-27 14:13:53] Time elapsed: 2m 49s
+[2025-12-27 14:13:53] Processed: 500
+[2025-12-27 14:13:53] Updated: 499
+[2025-12-27 14:13:53] Unchanged: 1
+[2025-12-27 14:13:53] Failed: 0
+[2025-12-27 14:13:53] Rate: 275.2 resources/minute
+[2025-12-27 14:13:53] Log file: /home/1203785.cloudwaysapps.com/hrbnxbfdau/public_html/Admin/Search/geocode_log_20251227_141204.txt
+[2025-12-27 14:13:53] 
+To restore from backup:
+[2025-12-27 14:13:53] mysql -u hrbnxbfdau -p hrbnxbfdau < /home/1203785.cloudwaysapps.com/hrbnxbfdau/private_html/database_backups/resource_backup_20251227_193944.sql

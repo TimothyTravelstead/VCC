@@ -1,0 +1,83 @@
+body 	{
+	position:		relative;
+	font-size:		14px;
+}
+
+
+
+#OfficeLabel {
+	position:		absolute;
+	font-weight:	bold;
+}
+
+
+#ExtLabel {
+	position:		absolute;
+	font-weight:	bold;
+	left:			150px;
+}
+
+
+#HotlineLabel {
+	position:		absolute;
+	font-weight:	bold;
+	left:			250px;
+}
+
+
+
+#FaxLabel {
+	position:		absolute;
+	font-weight:	bold;
+	left:			350px;
+}
+
+
+.Label {
+	font-weight:	bold;
+}
+
+
+
+
+.Data {
+	left:			5px;
+	font-weight:	normal;
+	margin-bottom:	20px;
+}
+
+
+#OfficeData {
+	position:		absolute;
+	font-weight:	normal;
+}
+
+
+
+#ExtData {
+	position:		absolute;
+	font-weight:	normal;
+	left:			150px;
+}
+
+
+
+#HotlineData   {
+	position:		absolute;
+	font-weight:	normal;
+	left:			250px;
+}
+
+
+
+#FaxData {
+	position:		absolute;
+	font-weight:	normal;
+	left:			350px;
+}
+
+
+#Notes {
+	position:			relative;
+	page-break-after:	always;
+}

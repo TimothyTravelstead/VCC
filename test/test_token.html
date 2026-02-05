@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twilio Token Test</title>
+    <script src="//sdk.twilio.com/js/client/releases/1.14.0/twilio.js"></script>
+</head>
+<body>
+    <div id="status">Testing token...</div>
+    <pre id="output"></pre>
+
+    <script>
+        async function testToken() {
+            const statusDiv = document.getElementById('status');
+            const outputDiv = document.getElementById('output');
+            
+            try {
+                // Fetch token
+                const response = await fetch('your_token_script.php');
+                const data = await response.json();
+                
+                if (!data.token) {
+                    throw new Error('No token received');
+                }
+                
+                outputDiv.textContent += `Token received: ${data.token}\n`;
+                
+                // Initialize Twilio.Device
+                const device = new Twilio.Device();
+                
+                // Try to initialize with the token
+                await device.setup(data.token);
+                
+                // Check device status
+                outputDiv.textContent += `Device status: ${device.status()}\n`;
+                outputDiv.textContent += 'Device capabilities:\n';
+                outputDiv.textContent += JSON.stringify(device.capabilities, null, 2);
+                
+                statusDiv.textContent = 'Token test successful!';
+                
+            } catch (error) {
+                statusDiv.textContent = 'Error: ' + error.message;
+                outputDiv.textContent += `\nError details: ${JSON.stringify(error, null, 2)}`;
+            }
+        }
+
+        testToken();
+    </script>
+</body>
+</html>

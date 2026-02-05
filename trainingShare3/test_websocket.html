@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training WebSocket Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.connecting {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .status.connected {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .controls {
+            margin: 20px 0;
+        }
+        
+        .controls input, .controls select, .controls button {
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .controls button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+        
+        .controls button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .log {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 20px 0;
+        }
+        
+        .log-entry {
+            margin: 2px 0;
+            padding: 2px 5px;
+        }
+        
+        .log-entry.info {
+            color: #007bff;
+        }
+        
+        .log-entry.success {
+            color: #28a745;
+        }
+        
+        .log-entry.warning {
+            color: #ffc107;
+        }
+        
+        .log-entry.error {
+            color: #dc3545;
+        }
+        
+        .participants {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .test-section h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔌 Training WebSocket Test Page</h1>
+        
+        <div id="status" class="status disconnected">
+            ❌ Disconnected
+        </div>
+        
+        <div class="controls">
+            <h3>Connection Settings</h3>
+            <label for="roomId">Room ID:</label>
+            <input type="text" id="roomId" value="TestRoom" placeholder="Enter room ID">
+            
+            <label for="userId">User ID:</label>
+            <input type="text" id="userId" value="TestUser" placeholder="Enter user ID">
+            
+            <label for="sessionId">Session ID:</label>
+            <input type="text" id="sessionId" value="test-session-123" placeholder="Enter session ID">
+            
+            <br><br>
+            
+            <button id="connectBtn" onclick="connect()">Connect</button>
+            <button id="disconnectBtn" onclick="disconnect()" disabled>Disconnect</button>
+            <button onclick="clearLog()">Clear Log</button>
+        </div>
+        
+        <div class="participants">
+            <h3>👥 Participants</h3>
+            <div id="participantsList">No participants</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🧪 WebRTC Signaling Tests</h3>
+            <button onclick="sendTestOffer()" id="offerBtn" disabled>Send Test Offer</button>
+            <button onclick="sendTestAnswer()" id="answerBtn" disabled>Send Test Answer</button>
+            <button onclick="sendTestIceCandidate()" id="iceCandidateBtn" disabled>Send Test ICE Candidate</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>🖥️ Screen Sharing Tests</h3>
+            <button onclick="sendScreenShareStart()" id="screenShareStartBtn" disabled>Start Screen Share</button>
+            <button onclick="sendScreenShareStop()" id="screenShareStopBtn" disabled>Stop Screen Share</button>
+            <button onclick="sendTrainerActive()" id="trainerActiveBtn" disabled>Send Trainer Active</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>📨 Custom Message Test</h3>
+            <input type="text" id="customMessage" placeholder="Enter custom message" style="width: 300px;">
+            <button onclick="sendCustomMessage()" id="customBtn" disabled>Send Custom</button>
+        </div>
+        
+        <div class="log" id="log"></div>
+    </div>
+
+    <script src="trainingWebSocketClient.js"></script>
+    <script>
+        let wsClient = null;
+        
+        function updateStatus(status, message) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${status}`;
+            statusEl.textContent = message;
+        }
+        
+        function log(message, level = 'info') {
+            const logEl = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${level}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function updateParticipants(participants) {
+            const participantsEl = document.getElementById('participantsList');
+            if (participants && participants.length > 0) {
+                participantsEl.innerHTML = participants.map(p => `<span style="margin-right: 10px; padding: 5px; background: #007bff; color: white; border-radius: 3px;">${p}</span>`).join('');
+            } else {
+                participantsEl.textContent = 'No participants';
+            }
+        }
+        
+        function updateButtons(connected) {
+            document.getElementById('connectBtn').disabled = connected;
+            document.getElementById('disconnectBtn').disabled = !connected;
+            document.getElementById('offerBtn').disabled = !connected;
+            document.getElementById('answerBtn').disabled = !connected;
+            document.getElementById('iceCandidateBtn').disabled = !connected;
+            document.getElementById('screenShareStartBtn').disabled = !connected;
+            document.getElementById('screenShareStopBtn').disabled = !connected;
+            document.getElementById('trainerActiveBtn').disabled = !connected;
+            document.getElementById('customBtn').disabled = !connected;
+        }
+        
+        function connect() {
+            const roomId = document.getElementById('roomId').value;
+            const userId = document.getElementById('userId').value;
+            const sessionId = document.getElementById('sessionId').value;
+            
+            if (!roomId || !userId || !sessionId) {
+                alert('Please fill in all connection fields');
+                return;
+            }
+            
+            updateStatus('connecting', '🔄 Connecting...');
+            log('Attempting to connect to WebSocket server...', 'info');
+            
+            wsClient = new TrainingWebSocketClient({
+                url: 'ws://localhost:8080'
+            });
+            
+            // Event handlers
+            wsClient.on('connected', () => {
+                updateStatus('connected', '✅ Connected');
+                updateButtons(true);
+                log('Successfully connected to WebSocket server', 'success');
+            });
+            
+            wsClient.on('disconnected', (event) => {
+                updateStatus('disconnected', '❌ Disconnected');
+                updateButtons(false);
+                log(`Disconnected: ${event.reason} (code: ${event.code})`, 'warning');
+            });
+            
+            wsClient.on('error', (error) => {
+                updateStatus('error', '🚨 Error');
+                log(`Error: ${error.message}`, 'error');
+            });
+            
+            wsClient.on('welcome', (message) => {
+                log(`Welcome! Role: ${message.role}, Room: ${message.roomId}`, 'success');
+                updateParticipants(message.participants);
+            });
+            
+            wsClient.on('participant-joined', (message) => {
+                log(`Participant joined: ${message.userId} (${message.role})`, 'info');
+                updateParticipants(message.participants);
+            });
+            
+            wsClient.on('participant-left', (message) => {
+                log(`Participant left: ${message.userId}`, 'info');
+                updateParticipants(message.participants);
+            });
+            
+            wsClient.on('offer', (message) => {
+                log(`Received WebRTC offer from ${message.from}`, 'info');
+            });
+            
+            wsClient.on('answer', (message) => {
+                log(`Received WebRTC answer from ${message.from}`, 'info');
+            });
+            
+            wsClient.on('ice-candidate', (message) => {
+                log(`Received ICE candidate from ${message.from}`, 'info');
+            });
+            
+            wsClient.on('screen-share-start', (message) => {
+                log(`Screen sharing started by ${message.from}`, 'success');
+            });
+            
+            wsClient.on('screen-share-stop', (message) => {
+                log(`Screen sharing stopped by ${message.from}`, 'warning');
+            });
+            
+            wsClient.on('trainer-active', (message) => {
+                log(`Trainer is active: ${message.from}`, 'success');
+            });
+            
+            wsClient.on('message', (message) => {
+                if (!['welcome', 'participant-joined', 'participant-left', 'offer', 'answer', 'ice-candidate', 'screen-share-start', 'screen-share-stop', 'trainer-active'].includes(message.type)) {
+                    log(`Custom message (${message.type}): ${JSON.stringify(message)}`, 'info');
+                }
+            });
+            
+            // Connect
+            wsClient.connect(roomId, userId, sessionId);
+        }
+        
+        function disconnect() {
+            if (wsClient) {
+                wsClient.disconnect();
+                wsClient = null;
+                updateStatus('disconnected', '❌ Disconnected');
+                updateButtons(false);
+                updateParticipants([]);
+                log('Disconnected by user', 'info');
+            }
+        }
+        
+        function sendTestOffer() {
+            if (wsClient) {
+                const fakeOffer = {
+                    type: 'offer',
+                    sdp: 'v=0\r\no=- 123456789 123456789 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\n'
+                };
+                wsClient.sendOffer(fakeOffer);
+                log('Sent test WebRTC offer', 'info');
+            }
+        }
+        
+        function sendTestAnswer() {
+            if (wsClient) {
+                const fakeAnswer = {
+                    type: 'answer',
+                    sdp: 'v=0\r\no=- 987654321 987654321 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\n'
+                };
+                wsClient.sendAnswer(fakeAnswer, 'TestTarget');
+                log('Sent test WebRTC answer', 'info');
+            }
+        }
+        
+        function sendTestIceCandidate() {
+            if (wsClient) {
+                const fakeCandidate = {
+                    candidate: 'candidate:1 1 UDP 2113667326 192.168.1.100 54400 typ host',
+                    sdpMLineIndex: 0,
+                    sdpMid: '0'
+                };
+                wsClient.sendIceCandidate(fakeCandidate);
+                log('Sent test ICE candidate', 'info');
+            }
+        }
+        
+        function sendScreenShareStart() {
+            if (wsClient) {
+                wsClient.sendScreenShareStart();
+                log('Sent screen share start signal', 'success');
+            }
+        }
+        
+        function sendScreenShareStop() {
+            if (wsClient) {
+                wsClient.sendScreenShareStop();
+                log('Sent screen share stop signal', 'warning');
+            }
+        }
+        
+        function sendTrainerActive() {
+            if (wsClient) {
+                wsClient.sendTrainerActive();
+                log('Sent trainer active signal', 'success');
+            }
+        }
+        
+        function sendCustomMessage() {
+            const message = document.getElementById('customMessage').value;
+            if (wsClient && message) {
+                wsClient.send({
+                    type: 'custom',
+                    content: message
+                });
+                log(`Sent custom message: ${message}`, 'info');
+                document.getElementById('customMessage').value = '';
+            }
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        // Initialize
+        updateButtons(false);
+        log('WebSocket test page loaded. Ready to connect.', 'info');
+    </script>
+</body>
+</html>

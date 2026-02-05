@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Debug Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .debug-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        
+        .hidden-fields {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden fields to simulate training session DOM structure -->
+    <div class="hidden-fields">
+        <input type="hidden" id="volunteerID" value="TestUser">
+        <input type="hidden" id="currentUserName" value="TestUser">
+        <input type="hidden" id="trainerID" value="TestRoom">
+        <input type="hidden" id="traineeID" value="">
+    </div>
+
+    <h1>🔍 WebRTC Debug Test</h1>
+    
+    <div class="debug-section">
+        <h3>Step 1: Check Dependencies</h3>
+        <div id="dependencyCheck">Checking...</div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Step 2: Test WebSocket Connection</h3>
+        <button onclick="testWebSocketConnection()">Test WebSocket</button>
+        <div id="websocketResult"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Step 3: Test WebRTC Client Creation</h3>
+        <button onclick="testWebRTCClientCreation()">Test WebRTC Client</button>
+        <div id="webrtcResult"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Step 4: Test Full Initialization</h3>
+        <button onclick="testFullInitialization()">Test Full Init</button>
+        <div id="fullInitResult"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Console Output</h3>
+        <pre id="consoleOutput"></pre>
+        <button onclick="clearConsole()">Clear Console</button>
+    </div>
+
+    <!-- Include scripts in order -->
+    <script src="trainingWebSocketClient.js"></script>
+    <script src="webrtcScreenSharingClient.js"></script>
+    
+    <script>
+        let originalConsoleLog = console.log;
+        let originalConsoleError = console.error;
+        let originalConsoleWarn = console.warn;
+        let consoleOutput = [];
+        
+        // Capture console output
+        function captureConsole() {
+            console.log = function(...args) {
+                consoleOutput.push('LOG: ' + args.join(' '));
+                updateConsoleDisplay();
+                originalConsoleLog.apply(console, args);
+            };
+            
+            console.error = function(...args) {
+                consoleOutput.push('ERROR: ' + args.join(' '));
+                updateConsoleDisplay();
+                originalConsoleError.apply(console, args);
+            };
+            
+            console.warn = function(...args) {
+                consoleOutput.push('WARN: ' + args.join(' '));
+                updateConsoleDisplay();
+                originalConsoleWarn.apply(console, args);
+            };
+        }
+        
+        function updateConsoleDisplay() {
+            document.getElementById('consoleOutput').textContent = consoleOutput.slice(-20).join('\n');
+        }
+        
+        function clearConsole() {
+            consoleOutput = [];
+            updateConsoleDisplay();
+        }
+        
+        function setResult(elementId, message, type = 'success') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="${type}">${message}</div>`;
+        }
+        
+        // Start capturing console
+        captureConsole();
+        
+        // Step 1: Check Dependencies
+        function checkDependencies() {
+            const results = [];
+            
+            // Check if TrainingWebSocketClient exists
+            if (typeof TrainingWebSocketClient !== 'undefined') {
+                results.push('✅ TrainingWebSocketClient is available');
+            } else {
+                results.push('❌ TrainingWebSocketClient is NOT available');
+            }
+            
+            // Check if WebRTCScreenSharingClient exists
+            if (typeof WebRTCScreenSharingClient !== 'undefined') {
+                results.push('✅ WebRTCScreenSharingClient is available');
+            } else {
+                results.push('❌ WebRTCScreenSharingClient is NOT available');
+            }
+            
+            // Check if window.webrtcScreenSharingClient exists
+            if (typeof window.webrtcScreenSharingClient !== 'undefined') {
+                results.push('✅ window.webrtcScreenSharingClient global instance is available');
+            } else {
+                results.push('❌ window.webrtcScreenSharingClient global instance is NOT available');
+            }
+            
+            // Check WebRTC support
+            if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+                results.push('✅ Screen sharing (getDisplayMedia) is supported');
+            } else {
+                results.push('❌ Screen sharing (getDisplayMedia) is NOT supported');
+            }
+            
+            // Check WebSocket support
+            if (typeof WebSocket !== 'undefined') {
+                results.push('✅ WebSocket is supported');
+            } else {
+                results.push('❌ WebSocket is NOT supported');
+            }
+            
+            // Check RTCPeerConnection support
+            if (typeof RTCPeerConnection !== 'undefined') {
+                results.push('✅ RTCPeerConnection is supported');
+            } else {
+                results.push('❌ RTCPeerConnection is NOT supported');
+            }
+            
+            // Check DOM elements
+            const volunteerID = document.getElementById('volunteerID');
+            const trainerID = document.getElementById('trainerID');
+            if (volunteerID && volunteerID.value) {
+                results.push('✅ volunteerID field found with value: ' + volunteerID.value);
+            } else {
+                results.push('❌ volunteerID field not found or empty');
+            }
+            
+            if (trainerID && trainerID.value) {
+                results.push('✅ trainerID field found with value: ' + trainerID.value);
+            } else {
+                results.push('❌ trainerID field not found or empty');
+            }
+            
+            const hasErrors = results.some(r => r.includes('❌'));
+            setResult('dependencyCheck', results.join('<br>'), hasErrors ? 'error' : 'success');
+        }
+        
+        // Step 2: Test WebSocket Connection
+        async function testWebSocketConnection() {
+            setResult('websocketResult', 'Testing WebSocket connection...', 'warning');
+            
+            try {
+                const wsClient = new TrainingWebSocketClient({
+                    url: 'ws://localhost:8080'
+                });
+                
+                const connected = await new Promise((resolve, reject) => {
+                    const timeout = setTimeout(() => {
+                        reject(new Error('Connection timeout after 5 seconds'));
+                    }, 5000);
+                    
+                    wsClient.on('connected', () => {
+                        clearTimeout(timeout);
+                        resolve(true);
+                    });
+                    
+                    wsClient.on('error', (error) => {
+                        clearTimeout(timeout);
+                        reject(error);
+                    });
+                    
+                    wsClient.connect('TestRoom', 'TestUser', 'test-session-123');
+                });
+                
+                if (connected) {
+                    setResult('websocketResult', '✅ WebSocket connection successful!', 'success');
+                    wsClient.disconnect();
+                } else {
+                    setResult('websocketResult', '❌ WebSocket connection failed', 'error');
+                }
+                
+            } catch (error) {
+                setResult('websocketResult', `❌ WebSocket connection error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Step 3: Test WebRTC Client Creation
+        function testWebRTCClientCreation() {
+            setResult('webrtcResult', 'Testing WebRTC client creation...', 'warning');
+            
+            try {
+                const client = new WebRTCScreenSharingClient({
+                    wsUrl: 'ws://localhost:8080'
+                });
+                
+                if (client) {
+                    setResult('webrtcResult', '✅ WebRTC client created successfully!', 'success');
+                    
+                    // Test status method
+                    const status = client.getStatus();
+                    console.log('WebRTC Client Status:', status);
+                } else {
+                    setResult('webrtcResult', '❌ WebRTC client creation failed', 'error');
+                }
+                
+            } catch (error) {
+                setResult('webrtcResult', `❌ WebRTC client creation error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Step 4: Test Full Initialization
+        async function testFullInitialization() {
+            setResult('fullInitResult', 'Testing full initialization...', 'warning');
+            
+            try {
+                const client = new WebRTCScreenSharingClient({
+                    wsUrl: 'ws://localhost:8080'
+                });
+                
+                // Set role and initialize
+                await client.initializeTrainer();
+                
+                setResult('fullInitResult', '✅ Full initialization successful!', 'success');
+                
+                // Clean up
+                setTimeout(() => {
+                    client.destroy();
+                }, 2000);
+                
+            } catch (error) {
+                setResult('fullInitResult', `❌ Full initialization error: ${error.message}`, 'error');
+                console.error('Full initialization error details:', error);
+            }
+        }
+        
+        // Run dependency check on load
+        checkDependencies();
+        
+        console.log('🔍 Debug page loaded. Dependencies checked.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twilio Device Test</title>
+    <script src="//sdk.twilio.com/js/client/releases/1.14.0/twilio.js"></script>
+</head>
+<body>
+    <div id="status">Initializing...</div>
+    <pre id="log"></pre>
+    <button id="testCall" onclick="makeTestCall()">Test Call</button>
+    <button id="resumeAudio" onclick="resumeAudio()">Resume Audio</button>
+
+    <script>
+        let currentDevice;
+        const logDiv = document.getElementById('log');
+        const statusDiv = document.getElementById('status');
+
+        function log(message) {
+            console.log(message);
+            logDiv.textContent += new Date().toISOString() + ': ' + message + '\n';
+        }
+
+        async function resumeAudio() {
+            try {
+                if (currentDevice) {
+                    await currentDevice.audio.resume();
+                    log('Audio context resumed');
+                }
+            } catch (error) {
+                log('Error resuming audio: ' + error.message);
+            }
+        }
+
+        async function makeTestCall() {
+            try {
+                if (!currentDevice) {
+                    log('Device not initialized');
+                    return;
+                }
+
+                log('Attempting test call...');
+                await resumeAudio();
+                
+                const params = {
+                    To: 'test'
+                };
+                
+                log('Connecting with params: ' + JSON.stringify(params));
+                const connection = await currentDevice.connect(params);
+                
+                log('Connection initiated');
+                log('Connection state: ' + connection.status());
+                
+                // Monitor connection events
+                connection.on('accept', () => {
+                    log('Call accepted');
+                });
+                
+                connection.on('disconnect', () => {
+                    log('Call disconnected');
+                });
+                
+                connection.on('error', (error) => {
+                    log('Connection error: ' + error.message);
+                    if (error.code) {
+                        log('Error code: ' + error.code);
+                    }
+                });
+                
+            } catch (error) {
+                log('Call Error: ' + error.message);
+                if (error.code) {
+                    log('Error code: ' + error.code);
+                }
+            }
+        }
+
+        async function initDevice() {
+            try {
+                log('Fetching token...');
+                const response = await fetch('newTwilioToken.php');
+                const data = await response.json();
+                
+                if (!data.token) {
+                    throw new Error('No token received');
+                }
+                
+                log('Token received, length: ' + data.token.length);
+                log('Initializing Twilio.Device...');
+                
+                currentDevice = new Twilio.Device();
+                
+                // Device event handlers
+                currentDevice.on('error', function(error) {
+                    log('Device Error: ' + error.message);
+                    if (error.code) {
+                        log('Error code: ' + error.code);
+                    }
+                    statusDiv.textContent = 'Error: ' + error.message;
+                });
+
+                currentDevice.on('ready', function() {
+                    log('Device Ready');
+                    statusDiv.textContent = 'Ready';
+                    log('Device state details:');
+                    log('- Status: ' + currentDevice.status());
+                });
+
+                currentDevice.on('connect', function(connection) {
+                    log('Device Connected');
+                    statusDiv.textContent = 'Connected';
+                });
+
+                currentDevice.on('disconnect', function() {
+                    log('Device Disconnected');
+                    statusDiv.textContent = 'Ready';
+                });
+
+                log('Setting up device with token...');
+                await currentDevice.setup(data.token);
+                
+                log('Setup completed');
+                log('Device status: ' + currentDevice.status());
+                
+            } catch (error) {
+                log('ERROR: ' + error.message);
+                if (error.code) {
+                    log('Error code: ' + error.code);
+                }
+                statusDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        // Start initialization
+        initDevice();
+    </script>
+</body>
+</html>

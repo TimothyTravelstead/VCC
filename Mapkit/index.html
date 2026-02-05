@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<script
+  src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js"
+  crossorigin async
+  data-callback="initMapKit"
+  data-libraries="map"
+  data-initial-token="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ilc4MlU2SjNSTUcifQ.eyJpc3MiOiJKOEtNSlNTUlRIIiwiaWF0IjoxNzAxOTgwNzE5LCJleHAiOjE3MzM0NDMyMDAsIm9yaWdpbiI6Imh0dHBzOi8vdm9sdW50ZWVybG9naW4ub3JnIn0.57JCQN_ZUMGmdmxNlTz0coDmaBBF-DBddmsA2cDBvlEaOeRTQIh_fXekBwV-6co6T8QbBJyhTnkQADCd7p1WQQ"
+></script>
+
+<style>
+#map {
+    width: 100%;
+    height: 600px;
+}
+</style>
+
+</head>
+
+<body>
+<div id="map"></div>
+
+<script type="module">
+
+(async () => {
+    const tokenID = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ilc4MlU2SjNSTUcifQ.eyJpc3MiOiJKOEtNSlNTUlRIIiwiaWF0IjoxNzAxOTgwNzE5LCJleHAiOjE3MzM0NDMyMDAsIm9yaWdpbiI6Imh0dHBzOi8vdm9sdW50ZWVybG9naW4ub3JnIn0.57JCQN_ZUMGmdmxNlTz0coDmaBBF-DBddmsA2cDBvlEaOeRTQIh_fXekBwV-6co6T8QbBJyhTnkQADCd7p1WQQ";
+
+    if (!window.mapkit || window.mapkit.loadedLibraries.length === 0) {
+        // mapkit.core.js or the libraries are not loaded yet.
+        // Set up the callback and wait for it to be called.
+        await new Promise(resolve => { window.initMapKit = resolve });
+
+        // Clean up
+        delete window.initMapKit;
+    }
+
+    mapkit.init({
+        authorizationCallback: function(done) {
+            done(tokenID);
+        }
+    });
+
+    const map = new mapkit.Map("map");
+})();
+
+</script>
+</body>
+</html>

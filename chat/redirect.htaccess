@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteRule ^index.html http://www.volunteerlogin.org/chat/$1 [R=301,L]
+
+redirect 301 index.html http://www.volunteerlogin.org/chat/index.html

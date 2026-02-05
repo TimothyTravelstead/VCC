@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple WebSocket Test</title>
+</head>
+<body>
+    <h1>🔌 Simple WebSocket Test</h1>
+    
+    <button onclick="testWebSocketConnection()">Test WebSocket Connection</button>
+    <button onclick="testWithRealUser()">Test With Real User</button>
+    
+    <div id="output"></div>
+    
+    <script src="trainingWebSocketClient.js"></script>
+    
+    <script>
+        function log(message) {
+            document.getElementById('output').innerHTML += '<br>' + message;
+            console.log(message);
+        }
+        
+        async function testWebSocketConnection() {
+            log('Testing WebSocket connection with test user...');
+            
+            try {
+                const wsClient = new TrainingWebSocketClient({
+                    url: 'ws://localhost:8080'
+                });
+                
+                // Set up event handlers
+                wsClient.on('connected', () => {
+                    log('✅ WebSocket connected successfully!');
+                });
+                
+                wsClient.on('error', (error) => {
+                    log('❌ WebSocket error: ' + error.message);
+                    console.error('WebSocket error details:', error);
+                });
+                
+                wsClient.on('welcome', (data) => {
+                    log('🎉 Received welcome message: ' + JSON.stringify(data));
+                });
+                
+                // Try to connect
+                log('Attempting to connect...');
+                wsClient.connect('TestRoom', 'TestUser', 'test-session-123');
+                
+            } catch (error) {
+                log('❌ Connection setup error: ' + error.message);
+                console.error('Connection setup error:', error);
+            }
+        }
+        
+        async function testWithRealUser() {
+            log('Testing with a real volunteer username...');
+            
+            const username = prompt('Enter a real volunteer username that exists in the database:');
+            if (!username) {
+                log('❌ No username provided');
+                return;
+            }
+            
+            try {
+                const wsClient = new TrainingWebSocketClient({
+                    url: 'ws://localhost:8080'
+                });
+                
+                wsClient.on('connected', () => {
+                    log('✅ WebSocket connected with real user!');
+                });
+                
+                wsClient.on('error', (error) => {
+                    log('❌ WebSocket error: ' + error.message);
+                });
+                
+                wsClient.on('welcome', (data) => {
+                    log('🎉 Welcome: ' + JSON.stringify(data));
+                });
+                
+                log('Connecting with username: ' + username);
+                wsClient.connect('TestRoom', username, 'test-session-123');
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+            }
+        }
+        
+        log('Page loaded. Click a button to test WebSocket connection.');
+    </script>
+</body>
+</html>

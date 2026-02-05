@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Sharer Test (No Auth)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1976d2;
+            text-align: center;
+        }
+        button {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1565c0;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .debug {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        video {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .video-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖥️ Screen Sharer Test (No Authentication)</h1>
+        
+        <div class="controls">
+            <button onclick="initializeSharer()">Initialize Sharer</button>
+            <button onclick="startSharing()">Start Screen Sharing</button>
+            <button onclick="stopSharing()">Stop Screen Sharing</button>
+            <button onclick="clearDebugLog()">Clear Debug Log</button>
+        </div>
+        
+        <div class="video-container">
+            <h3>Local Screen (Preview)</h3>
+            <video id="localVideo" autoplay muted style="display: none;"></video>
+            <p id="localVideoStatus">No local video</p>
+        </div>
+        
+        <div id="debugContainer">
+            <h3>Debug Log</h3>
+            <div id="debugLog" class="debug">
+                [Page loaded - waiting for initialization]
+            </div>
+        </div>
+    </div>
+
+    <script src="noAuthScreenSharing.js"></script>
+    <script>
+        let screenSharing = null;
+        
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            const debugLog = document.getElementById('debugLog');
+            debugLog.innerHTML += `[${timestamp}] ${message}<br>`;
+            debugLog.scrollTop = debugLog.scrollHeight;
+            console.log(message);
+        }
+        
+        function initializeSharer() {
+            log("INFO: Initializing screen sharer...");
+            
+            try {
+                screenSharing = new NoAuthScreenSharing({
+                    participantId: 'TestSharer',
+                    roomId: 'TestRoom',
+                    role: 'sharer'
+                });
+                
+                log("SUCCESS: Screen sharer initialized");
+                
+                // Monitor local video
+                const localVideo = document.getElementById('localVideo');
+                const localVideoStatus = document.getElementById('localVideoStatus');
+                
+                if (localVideo) {
+                    localVideo.addEventListener('loadedmetadata', () => {
+                        localVideoStatus.textContent = `Local video: ${localVideo.videoWidth}x${localVideo.videoHeight}`;
+                        log("INFO: Local video stream loaded");
+                    });
+                }
+                
+            } catch (error) {
+                log("ERROR: Failed to initialize - " + error.message);
+            }
+        }
+        
+        function startSharing() {
+            if (!screenSharing) {
+                log("ERROR: Screen sharing not initialized");
+                return;
+            }
+            
+            log("INFO: Starting screen sharing...");
+            screenSharing.startScreenSharing();
+        }
+        
+        function stopSharing() {
+            if (!screenSharing) {
+                log("ERROR: Screen sharing not initialized");
+                return;
+            }
+            
+            log("INFO: Stopping screen sharing...");
+            screenSharing.stopScreenSharing();
+        }
+        
+        function clearDebugLog() {
+            document.getElementById('debugLog').innerHTML = '';
+        }
+        
+        // Auto-log any console errors
+        window.addEventListener('error', (event) => {
+            log("ERROR: " + event.message);
+        });
+        
+        log("INFO: Sharer page loaded - Click 'Initialize Sharer' to begin");
+    </script>
+</body>
+</html>

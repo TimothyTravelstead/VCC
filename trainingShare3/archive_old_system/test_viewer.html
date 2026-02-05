@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Viewer Test (No Auth)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e8;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2e7d32;
+            text-align: center;
+        }
+        button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1b5e20;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .debug {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        video {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .video-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #remoteVideo {
+            background: #000;
+            min-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👁️ Screen Viewer Test (No Authentication)</h1>
+        
+        <div class="controls">
+            <button onclick="initializeViewer()">Initialize Viewer</button>
+            <button onclick="clearDebugLog()">Clear Debug Log</button>
+        </div>
+        
+        <div class="video-container">
+            <h3>Shared Screen</h3>
+            <video id="remoteVideo" autoplay style="display: none;"></video>
+            <p id="remoteVideoStatus">Waiting for shared screen...</p>
+        </div>
+        
+        <div id="debugContainer">
+            <h3>Debug Log</h3>
+            <div id="debugLog" class="debug">
+                [Page loaded - waiting for initialization]
+            </div>
+        </div>
+    </div>
+
+    <script src="noAuthScreenSharing.js"></script>
+    <script>
+        let screenSharing = null;
+        
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            const debugLog = document.getElementById('debugLog');
+            debugLog.innerHTML += `[${timestamp}] ${message}<br>`;
+            debugLog.scrollTop = debugLog.scrollHeight;
+            console.log(message);
+        }
+        
+        function initializeViewer() {
+            log("INFO: Initializing screen viewer...");
+            
+            try {
+                screenSharing = new NoAuthScreenSharing({
+                    participantId: 'TestViewer',
+                    roomId: 'TestRoom',
+                    role: 'viewer'
+                });
+                
+                log("SUCCESS: Screen viewer initialized");
+                
+                // Monitor remote video
+                const remoteVideo = document.getElementById('remoteVideo');
+                const remoteVideoStatus = document.getElementById('remoteVideoStatus');
+                
+                if (remoteVideo) {
+                    remoteVideo.addEventListener('loadedmetadata', () => {
+                        remoteVideoStatus.textContent = `Receiving: ${remoteVideo.videoWidth}x${remoteVideo.videoHeight}`;
+                        log("INFO: Remote video stream loaded");
+                    });
+                    
+                    remoteVideo.addEventListener('play', () => {
+                        log("INFO: Remote video started playing");
+                    });
+                }
+                
+            } catch (error) {
+                log("ERROR: Failed to initialize - " + error.message);
+            }
+        }
+        
+        function clearDebugLog() {
+            document.getElementById('debugLog').innerHTML = '';
+        }
+        
+        // Auto-log any console errors
+        window.addEventListener('error', (event) => {
+            log("ERROR: " + event.message);
+        });
+        
+        log("INFO: Viewer page loaded - Click 'Initialize Viewer' to begin");
+    </script>
+</body>
+</html>

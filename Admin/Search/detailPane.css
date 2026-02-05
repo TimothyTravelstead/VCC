@@ -1,0 +1,1360 @@
+body  {
+    float:              left;
+    background-color:   silver;
+    
+}
+
+
+a {
+    text-decoration:    none;
+    color:              blue;
+}
+
+
+.CenterBold {
+    text-align:         center;
+    font-weight:        bold;
+    color:              silver;
+    font-size:          300%;
+}
+
+
+#Request td {
+    width:              600px;
+}
+
+.highlightMenu {
+    border-color:		white;
+    background-color:   #770000;
+}
+
+
+.normalMenu {
+    border-color:		transparent;
+    background-color:   #550000;
+}
+
+
+#Categories option {
+    background-color:   #660000;
+    padding:            1%;
+    background: -webkit-gradient(linear, left top, left bottom, from(#440000), to(#990000)); /* Safari */
+
+}
+
+#Location {
+    font-weight:        bold;
+	position:			absolute;
+    font-weight:        bold;
+    font-size:          125%;
+    text-align:         right;
+    line-height:        100%;
+    top:				1px;
+	left:				120px;
+	width:				680px;
+    padding:            0px;
+    margin:             0px;
+    display:            block;
+}
+
+
+#CategoryLabel {
+	position:			absolute;
+    font-weight:        bold;
+    text-align:         left;
+    font-size:          150%;
+    line-height:        100%;
+    top:				140px;
+	left:				10px;
+	width:				700px;
+    padding:            0px;
+    margin:             0px;
+    display:            block;
+}
+
+
+
+
+#FoundCount {
+	position:			absolute;
+    font-weight:        bold;
+    font-size:          150%;
+    text-align:         right;
+    line-height:        100%;
+    top:				140px;
+	left:				100px;
+	width:				700px;
+    padding:            0px;
+    margin:             0px;
+    display:            block;
+}
+
+
+
+#resourceDetailControl {
+	background-color:	transparent;
+	position:			absolute;
+	top:				580px;
+	left:				20px;
+	height:				25px;
+	width:				775px;
+	white-space:		nowrap;
+	overflow:			visible;
+	display:			block;
+    padding:            5px;
+    text-align:         left;
+}
+
+
+#CancelNewRecordButton {
+    position:           absolute;
+    margin-top:          5px;
+    left:               610px;
+    margin-right:       50px;
+}
+
+
+
+#saveRecord {
+    position:           absolute;
+    left:               675px;
+    margin-top:          5px;
+    margin-right:       10px;
+    color:              green;
+}
+
+
+#PreviousButton, #NextButton, #BackButton {
+    position:           relative;
+    left:               2px;
+    margin-top:          5px;
+    margin-right:		5px;
+    width:				80px;
+    color:				white;
+}
+
+#duplicateCurrentRecordButton {
+    position:	     relative;
+    margin-top:          5px;
+    margin-left:		5px;
+	font-weight:        bold;
+    color:              blue;
+}
+
+#NewSearch {
+    position:           absolute;
+    left:               440px;
+    margin-top:          5px;
+    color:				black;
+}
+
+#addNewRecordButton {
+    position:           absolute;
+    left:               330px;
+    margin-top:          5px;
+    color:				black;
+}
+
+#deleteButton {
+    position:           absolute;
+    left:               540px;
+    margin-top:          5px;
+	font-weight:        bold;
+    color:              red;
+}
+
+
+
+
+#resourceDetailBulkEmailButton {
+    position:           absolute;
+    left:               30px;
+    margin-top:          5px;
+    color:				black;
+	visibility:			hidden;
+}
+
+
+
+#TableContainer table tr {
+	margin-top:			0px;
+	color:				black;
+    line-height:        175%;
+    font-family:        Arial, "Times New Roman", Times, serif;
+    font-size:          100%;
+}
+
+
+#TableContainer td, .Columns td {
+    color:              black;
+   	float:				left;
+	white-space:		nowrap;
+	overflow:			hidden;
+	display:			block;
+    border-bottom:      2px solid #555555;
+    border-right:       1px dotted #333333;
+    background:			white;
+  	text-overflow: 		ellipsis;
+  	padding:			1px;
+  	height:				20px;
+}
+
+
+
+
+#TableContainer table tr td.Closed {
+    background:   #FF8888;
+}
+
+
+
+#TableContainer input[type="Button"] {
+    margin-left:        4px;
+}
+
+
+.Closed {
+	background:			#FF8888;
+}
+
+/* Also support the List.Closed class combination used in JavaScript */
+.List.Closed, tr.Closed {
+	background:			#FF8888;
+}
+
+
+
+#dCity {
+	display:			inline;
+	width:				130px;
+}
+
+
+#Zip {
+	width:				42px;
+}
+
+#Distance {
+	width:				35px;
+    text-align:         center;
+}
+
+
+
+#dPhone {
+	display:			inline;
+	width:				95px;
+}
+
+#dExt {
+	display:			inline;
+	width:				95px;
+	margin-left:		40px;
+}
+
+
+#dHotline {
+	display:			inline;
+	width:				95px;
+}
+
+#dFax {
+	display:			inline;
+	width:				95px;
+	margin-left:		40px;
+}
+
+
+
+
+
+//New Detail Form Formatting
+
+
+.Data1 {
+	position:			absolute;
+	background-color:	silver;
+	top:				5px;
+	left:				5px;
+	width:				900px;
+	height:				800px;
+}
+	
+
+
+.Detail {
+	position:			absolute;
+	top:				600px;
+	background-color:	silver;
+	width:				330px;
+	padding:			0px;
+	margin-left:		0px;
+}
+
+
+
+.label1 {
+	position:			absolute;
+	margin-left:		3px;
+	font-weight:		bold;
+}
+
+#countries {
+	display:			inline-block;
+	left:				75px;
+}
+
+
+.label2 {
+	position:			absolute;
+	margin-left:		28px;
+	font-weight:		bold;
+}
+
+
+.label3 {
+	position:			absolute;
+	font-weight:		bold;
+	margin-left:		32px;
+}
+
+.label4 {
+	position:			absolute;
+	font-weight:		bold;
+	margin-left:		310px;
+    color:              gray;
+}
+
+.small {
+	font-size:			81%;
+	font-weight:		normal;
+	padding-left:		5px;
+}
+
+
+#emailLabel, #websiteLabel, #website2Label, #website3Label {
+    color:              blue;
+}
+
+#updateEdate {
+    position:           absolute;
+    left:               410px;
+}
+
+
+
+.Detail input[type="text"] {
+	display:			block;
+	width:				240px;
+}
+
+
+
+.Block1 {
+	position:			absolute;
+	top:				2px;
+	left:				2px;
+    height:				154px;
+
+}
+
+
+.Block2 {
+	position:			absolute;
+	top:				160px;
+	left:				2px;
+    height:				155px;
+	margin-top:			2px;
+}
+
+
+
+.checkboxes {
+	position:			absolute;
+	top:				312px;
+	height:				55px;
+	left:				2px;
+	margin-top:			10px;
+}
+
+
+.Block1 input[type="text"], .Block1 input[type="checkbox"] {
+	display:			block;
+	margin-left:		75px;
+	margin-top:			0px;
+	margin-bottom:		0px;
+}
+
+
+.Block2 input[type="text"] {
+	display:			block;
+	margin-left:		75px;
+	margin-top:			0px;
+	margin-bottom:		0px;
+}
+
+
+.Block2 input[type="checkbox"], .checkboxes input[type="checkbox"] {
+	display:			inline;
+	margin-left:		85px;
+	margin-top:			0px;
+	margin-bottom:		0px;
+
+}
+
+
+
+
+
+.inlineItems input[type="text"] {
+	display:			inline;
+	margin-left:		5px;
+	width:				40px;
+
+}
+
+#detailForm div select {
+	display:			inline;
+	margin-left:		5px;
+	width:				100px;
+}
+
+#detailForm div div select {
+	display:			inline;
+	margin-left:		75px;
+	width:				150px;
+}
+
+
+
+
+.Block3 {
+	position:			absolute;
+	top:				2px;
+	left:				338px;
+	width:				435px;
+	height:				375px;
+}
+
+
+
+.Block3 textarea {
+	display:			block;
+	margin-left:		20px;
+	width:				395px;
+}
+
+
+
+#dIdnum, #dIdNumLabel {
+	position:			absolute;
+	top:				0px;
+	left:				3px;
+	color:				black;
+	font-size:			80%;
+	font-style:			italic;
+	width:				auto;
+	background:			transparent;
+	border:				0px solid transparent;
+	
+}
+
+#dIdnum {
+	left:				38px;
+}
+
+
+#dEdate, #dEdateLabel {
+	position:			absolute;
+	top:				0px;
+	left:				285px;
+	color:				black;
+	font-size:			80%;
+	font-style:			italic;
+	width:				auto;
+	background:			transparent;
+	border:				0px solid transparent;
+	text-align:			right;
+	
+}
+
+
+.Block3 select {
+	display:			inline;
+	margin-left:		20px;
+	width:				185px;
+
+}
+
+
+.ddescription {
+	height:				38px;
+}
+
+
+.dnotes {
+	height:				205px;
+	font-size:			80%;
+	font-weight:		bold;
+	overflow:			scroll;
+}
+
+
+#detailInfo {
+	position:			absolute;
+	top:				-30px;
+	left:				0px;
+	width:				770px;
+	height:				30px;
+	border-radius:		5px;
+	overflow:			visible;
+	color:				black;
+	font-size:			100%;
+}
+
+
+
+#detailScreenCategory {
+	width:				300px;
+	float:				left;
+	display:			inline-block;
+	text-align:			left;
+	margin-left:		5px;
+	font-weight:		bold;
+}
+
+#detailScreenCount {
+	width: 				133px;
+	float:				right;
+	text-align:			right;
+	font-weight:		bold;
+}
+
+
+
+#detailPane {
+	border-style:		inset;
+	border-right-width: 5px;
+    border-left-width:  5px;
+    border-bottom-width:5px;
+    border-top-width:   3px;
+    border-color:		#550000;
+
+	position:			absolute;
+	top:				140px;
+	left:				12px;
+	height:				383px;
+	width:				778px;
+	white-space:		nowrap;
+	overflow:			visible;
+	display:			none; 
+}
+
+#detailPane {
+	background-color:	maroon;
+    background: -moz-linear-gradient(top,  #550000,  #770000); /* for firefox 3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, from(#550000), to(#770000)); /* Safari */
+}
+
+
+#StreetviewPane {
+	position:			absolute;
+	top:				2px;
+	left:				338px;
+	width:				435px;
+	height:				375px;
+	visibility:			hidden;
+	background-color:	silver;
+}
+
+
+#lStreetview, #ldetailview { 
+ 
+    position:           absolute;
+    left:               150px;
+    text-align:         center;
+    color:              blue;
+    cursor:            pointer;
+}
+
+
+
+
+#dStreetview {
+    color:              yellow;
+	position:			absolute;
+	top:				20px;
+	left:				5px;
+	width:				428px;
+	height:				355px;
+}
+
+
+.BrightButtons {
+	color:				yellow;
+	text-decoration:	underline;
+	width:				100px;
+}
+
+
+
+.redGradient {
+	background: 		linear-gradient(#550000,  #770000);
+}
+
+.blueGradient {
+	background: 		linear-gradient(#550000,  #770000);
+}
+
+p {
+	hyphens:			auto;
+}
+
+input[type='button'], input[type="Submit"] {
+	background-color:	white;
+	border-radius:		10px;
+}
+
+input[type='button']:hover, input[type='submit']:hover, #resourceDetail span:hover{
+	background:	linear-gradient(rgba(100,100,250,1),white);
+}
+
+
+#titleBar {
+	position:			relative;
+	top:				0px;
+	left:				0px;
+	height:				55px;
+	width:				790px;
+	border:				1px solid gray;
+	text-align:			center;
+	border-radius:		10px;
+	color:				rgba(150,150,150,1);
+	background-color:	white;
+
+
+}
+
+#titleBar h1 {
+	position:			absolute;
+	width:				790px;
+	font-size:			120%;
+}
+
+#volunteerDetails {
+	position:           absolute;
+	top:                10px;
+	left:               5px;
+	font-size:          80%;
+	line-height:        110%;
+	color:              silver;
+	text-align:         left;
+	z-index:			100000;
+}
+
+
+#volunteerDetailsTitle {
+	color:				yellow;
+	cursor:				pointer;
+}
+
+#volunteerDetailsButtons {
+	position:			relative;
+	top:				0px;
+	visibility:			hidden;
+}
+
+
+.defaultButton  {
+	border-radius:		5px;
+	background-image: -o-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+	background-image: -moz-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+	background-image: -webkit-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+	background-image: -ms-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+	background-image: linear-gradient(to top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+}
+
+
+
+#searchParameters {
+	float:				right;
+	line-height:		15pt;
+	padding-right:		5px;
+	margin-top:			15px;
+	border:				none;
+	font-weight:		bold;
+	text-align:			right;
+}
+
+
+#searchBox  {
+    position:           relative;
+    top:                5px;
+    left:               0px;
+    height:             505px;
+    width:              770px;
+    padding-left:       15px;
+    text-align:         center;
+    z-index:			1000;
+    padding:			10px;
+    border-radius:		10px;
+	border:				1px solid gray;
+	text-align:			center;
+	color:				rgba(150,150,150,1);
+	background-color:	white;
+	font-size:			150%;
+}
+
+.label {
+	text-align:		right;
+	width:			300px;
+	padding-right:	10px;
+}
+
+#searchBox input[type="button"], #searchBox select {
+	font-size:			100%;
+	width:				90%;
+	height:				800%;
+	border-radius:		10px;
+	text-align:			center;
+	font-size:			80%;
+}
+
+#searchBox h2 {
+	font-weight:		bold;
+	text-decoration:	underline;
+	font-size:			120%;
+	margin-bottom:		5px;
+}
+
+
+#searchBox td {
+	text-align:			left;
+}	
+
+#searchBox input[type="text"] {
+	width:				65%;
+	font-size:			60%;
+}
+			
+.mainSearch {
+	position:			absolute;
+	top:				5px;
+	left:				258px;
+	width:				105px;
+	height:				50px;
+	text-align:			center;
+	font-weight:		bold;
+	font-size:			95%;
+}
+
+
+.nationalSearch {
+	position:			absolute;
+	top:				65px;
+	left:				258px;
+	width:				105px;
+	height:				50px;
+	background: 		linear-gradient(to top, green 0%, aqua 50%,aqua 50%,green 100%);
+	text-align:			center;
+	font-weight:		bold;
+	font-size:			95%;
+}
+
+.internationalSearch {
+	position:			absolute;
+	top:				125px;
+	left:				258px;
+	width:				105px;
+	height:				50px;
+	background: 		linear-gradient(to top, pink 0%, white 50%,white 50%,pink 100%);
+	font-weight:		bold;
+	border: 0 !important;  /*Removes border*/
+	-webkit-appearance: none;  /*Removes default chrome and safari style*/
+	-moz-appearance: none; /* Removes Default Firefox style*/
+	text-indent: 0.01px; /* Removes default arrow from firefox*/
+	text-overflow: "";  /*Removes default arrow from firefox*/
+	font-size:			70%;
+	padding-left:		5px;
+
+}
+
+
+
+#resourceList, #resourceDetail, #newSearchPane  {
+	position:			relative;
+	top:				3px;
+	left:				0px;
+	height:				549px;
+	width:				790px;
+	white-space:		nowrap;
+	overflow:			hidden;
+	border:				1px solid gray;
+	border-color:		gray;
+	border-style:		solid;
+	display:			none;
+	border-radius:		10px;
+	margin-bottom:		0px;
+}
+			
+
+
+
+#newSearchPane a {
+	text-decoration:	none;
+}
+
+
+#newSearchPaneControls {
+	position:			relative;
+	top:				-35px;
+	left:				0px;
+	height:				30px;
+	width:				805px;
+	white-space:		nowrap;
+	overflow:			hidden;
+	border:				1px solid gray;
+	line-height:		12pt;
+	padding-top:		3px;
+	padding-bottom:		3px;
+	color:				white;
+	border-radius:		10px;
+	vertical-align:		middle;
+}
+
+#newSearchPaneControls {
+	display:			block;
+}
+
+
+
+#
+
+.smallButton {
+	height:				30px;
+	width:				40px;
+}
+
+
+
+#mainNewSearchButton {
+	position:			absolute;
+	left:				720px;
+}
+
+
+#infoCenterButtons {
+	position:           absolute;
+	top:                60px;
+	left:               2px;
+	width:              200px;
+	height:             200px;
+	border-radius:		0px;
+	height:				479px;
+	overflow:			scroll;
+	font-size:			90%;	
+}
+
+
+
+#mainPane {
+	position:			relative;
+	top:				0px;
+	left:				0px;
+	display:			block;
+}
+
+
+
+
+
+/* Category Menu Formatting */
+
+		.category-wrapper {
+			position:			relative;
+			display:			inline-block;
+			vertical-align:		middle;
+		}
+
+		.category-trigger {
+			position:			absolute;
+			top:				0;
+			left:				0;
+			width:				108px;
+			height:				16px;
+			margin-left:		4px;
+			margin-top:			1px;
+			margin-bottom:		1px;
+			border:				none;
+			background:			transparent;
+			cursor:				pointer;
+			z-index:			10;
+		}
+
+		.category-wrapper select {
+			pointer-events:		none;
+		}
+
+		#Categories select {
+			font-weight:		bold;
+			padding-left:		5px;
+			width:              108px;
+			height:				16px;
+			font-size:			9pt;
+			white-space:		nowrap;
+			cursor:             pointer;
+			margin-left:		4px;
+			margin-top:			1px;
+			margin-bottom:		1px;
+			border-radius:		3px;
+			box-sizing:			border-box;
+			vertical-align:		middle;
+		}
+		
+		#Categories select:hover {
+			background:			radial-gradient(white,rgba(200,175,175,1));
+		}
+
+		select.normalMenu {
+			border: 0 !important;  /*Removes border*/
+			-webkit-appearance: none;  /*Removes default chrome and safari style*/
+			-moz-appearance: none; /* Removes Default Firefox style*/
+			text-indent: 0.01px; /* Removes default arrow from firefox*/
+			text-overflow: "";  /*Removes default arrow from firefox*/
+			
+			background-color:	rgba(200,175,175,1);  
+			color:              black;
+			
+		}
+
+		select.highlightMenu {
+			border: 0 !important;  /*Removes border*/
+			-webkit-appearance: none;  /*Removes default chrome and safari style*/
+			-moz-appearance: none; /* Removes Default Firefox style*/
+			text-indent: 0.01px; /* Removes default arrow from firefox*/
+			text-overflow: "";  /*Removes default arrow from firefox*/
+			
+			background-color:	white;
+			color:				red;
+		}
+
+		#Categories option {
+			background-color:   transparent;
+			text-align:			left;
+		}
+
+		/* Category button styling (for categories without subtypes) */
+		/* Must match #Categories select exactly for alignment */
+		#Categories .categoryButton {
+			font-weight:		bold;
+			padding-left:		5px;
+			padding-right:		0;
+			width:              108px;
+			height:				16px;
+			font-size:			9pt;
+			white-space:		nowrap;
+			cursor:             pointer;
+			margin-left:		4px;
+			margin-top:			1px;
+			margin-bottom:		1px;
+			border-radius:		3px;
+			border:				0;
+			text-align:			left;
+			box-sizing:			border-box;
+			overflow:			hidden;
+			vertical-align:		middle;
+		}
+
+		#Categories .categoryButton:hover {
+			background:			radial-gradient(white,rgba(200,175,175,1));
+		}
+
+		#Categories .categoryButton.normalMenu {
+			background-color:	rgba(200,175,175,1);
+			color:              black;
+		}
+
+		#Categories .categoryButton.highlightMenu {
+			background-color:	white;
+			color:				red;
+		}
+
+		#Categories {
+			position:           relative;
+			top:                0px;
+			left:               0px;
+			width:              inherit;
+			height:             77px;
+			text-align:         left;
+			font-size:          10pt;
+			white-space:		normal;
+			border-bottom:		0px solid transparent;
+		}
+
+/* END Category Menu Formatting */
+
+
+/* START Resource List formatting  */
+
+			#resourceResults {
+				position:			relative;
+				top:				0px;
+				left:				0px;
+				height:				390px;
+				width:				805px;
+				color:				silver;
+				white-space:		nowrap;
+				overflow-y:			scroll;
+				overflow-x:			hidden;
+				border-top:			1px solid black;
+				border-bottom:		1px solid black;
+				margin-bottom:      8px;
+				background:			radial-gradient(white,#EEEEEE);
+			}			
+			
+
+			#resourceListCategory {
+				width:				300px;
+				float:				left;
+				display:			inline-block;
+				text-align:			left;
+				margin-left:		5px;
+				font-weight:		bold;
+				color:				white;
+			}
+			
+			#resourceListCount {
+				width: 				33px;
+				margin-left:		640px;
+				color:				white;
+
+			}
+			
+					
+			td div {
+				color:              #550000;
+				border-color:       #333333;
+				height:             19px;
+				overflow: 			hidden;
+				text-overflow: 		ellipsis;
+				line-height:		19px;
+				background-color:	transparent;
+			}
+
+			.resourceCounter {
+				width:				30px;
+			}
+
+			.Name {
+				width: 				213px;
+				text-align:			left;
+			}
+					
+			#sortByType1Button, #sortByType2Button {
+				width:				136px;
+			}	
+			
+			
+			.Distance {
+				text-align:			right;
+				width:				35px;
+			}
+						
+			.Type1, .Type2, .Type3, .Type4 {
+				width:	 			140px;
+				text-align:			left;
+			
+			}
+			
+			.Type3, .Type4 {
+				display:			none;
+			}
+			
+			.Location {
+				width:				135px;
+				text-align:			left;
+			}
+
+			.Zip {
+				width:				60px;
+				text-align:			center;
+			}
+
+			
+			
+			
+			#resourceResultsControlButtons {
+				position:			relative;
+				width:				1150px;
+				height:				40px;
+			}
+
+			#resourceShowListButton {
+				width:				50px;
+				font-weight:		bold;
+			}
+			
+			
+			#resourceResults td {
+				border-right:		1px dotted gray;
+				border-bottom:		1px solid gray;
+			}
+			
+			#resourceResults tr:hover {
+				cursor:				pointer;
+				background-color: 	#87C5FB;
+			}
+
+
+/* Geo Info Button - positioned in StreetviewPane flush right */
+#lGeoInfo {
+	position:			absolute;
+	right:				10px;
+	text-align:			center;
+	color:				#006600;
+	cursor:				pointer;
+	font-weight:		bold;
+}
+
+#lGeoInfo:hover {
+	color:				#00AA00;
+	text-decoration:	underline;
+}
+
+/* Geo Accuracy Overlay on Map */
+#geoAccuracyOverlay {
+	position:			absolute;
+	bottom:				55px;
+	right:				10px;
+	padding:			4px 10px;
+	border-radius:		4px;
+	font-size:			11px;
+	font-weight:		bold;
+	z-index:			1000;
+	box-shadow:			0 1px 3px rgba(0, 0, 0, 0.3);
+	pointer-events:		none;
+}
+
+#geoAccuracyOverlay.high {
+	background:			rgba(212, 237, 218, 0.95);
+	color:				#155724;
+}
+
+#geoAccuracyOverlay.medium {
+	background:			rgba(255, 243, 205, 0.95);
+	color:				#856404;
+}
+
+#geoAccuracyOverlay.low {
+	background:			rgba(248, 215, 218, 0.95);
+	color:				#721c24;
+}
+
+#geoAccuracyOverlay.none {
+	background:			rgba(226, 227, 229, 0.95);
+	color:				#383d41;
+}
+
+#geoAccuracyOverlay:empty {
+	display:			none;
+}
+
+/* Re-geocode button in modal */
+.geo-regeocode-btn {
+	display:			block;
+	width:				100%;
+	margin-top:			12px;
+	padding:			10px 16px;
+	background:			linear-gradient(#ff9500, #ff7b00);
+	color:				white;
+	border:				none;
+	border-radius:		4px;
+	font-size:			14px;
+	font-weight:		bold;
+	cursor:				pointer;
+	text-align:			center;
+}
+
+.geo-regeocode-btn:hover {
+	background:			linear-gradient(#ffa500, #ff8c00);
+}
+
+.geo-regeocode-btn:disabled {
+	background:			#ccc;
+	cursor:				not-allowed;
+}
+
+.geo-regeocode-status {
+	margin-top:			8px;
+	padding:			8px;
+	border-radius:		4px;
+	font-size:			13px;
+	text-align:			center;
+}
+
+.geo-regeocode-status.success {
+	background:			#d4edda;
+	color:				#155724;
+}
+
+.geo-regeocode-status.error {
+	background:			#f8d7da;
+	color:				#721c24;
+}
+
+.geo-regeocode-status.pending {
+	background:			#fff3cd;
+	color:				#856404;
+}
+
+
+/* Geolocation Modal Styles */
+.geo-modal-overlay {
+	display:			none;
+	position:			fixed;
+	top:				0;
+	left:				0;
+	width:				100%;
+	height:				100%;
+	background-color:	rgba(0, 0, 0, 0.6);
+	z-index:			10000;
+	justify-content:	center;
+	align-items:		center;
+}
+
+.geo-modal-overlay.visible {
+	display:			flex;
+}
+
+.geo-modal-content {
+	background:			white;
+	border-radius:		8px;
+	box-shadow:			0 4px 20px rgba(0, 0, 0, 0.3);
+	max-width:			500px;
+	width:				90%;
+	max-height:			95vh;
+	overflow:			visible;
+}
+
+.geo-modal-header {
+	display:			flex;
+	align-items:		center;
+	padding:			12px 16px;
+	background:			linear-gradient(#006600, #008800);
+	color:				white;
+	border-radius:		8px 8px 0 0;
+}
+
+.geo-modal-icon {
+	font-size:			20px;
+	margin-right:		10px;
+}
+
+.geo-modal-title {
+	flex:				1;
+	font-weight:		bold;
+	font-size:			16px;
+}
+
+.geo-modal-close {
+	font-size:			24px;
+	cursor:				pointer;
+	opacity:			0.8;
+	line-height:		1;
+}
+
+.geo-modal-close:hover {
+	opacity:			1;
+}
+
+.geo-modal-body {
+	padding:			16px;
+}
+
+.geo-info-section {
+	margin-bottom:		16px;
+}
+
+.geo-info-section:last-child {
+	margin-bottom:		0;
+}
+
+.geo-info-section h4 {
+	margin:				0 0 8px 0;
+	color:				#333;
+	font-size:			14px;
+	border-bottom:		1px solid #ddd;
+	padding-bottom:		4px;
+}
+
+.geo-info-row {
+	display:			flex;
+	margin-bottom:		6px;
+	font-size:			13px;
+}
+
+.geo-info-label {
+	width:				120px;
+	font-weight:		bold;
+	color:				#555;
+}
+
+.geo-info-value {
+	flex:				1;
+	color:				#333;
+	word-break:			break-word;
+}
+
+.geo-info-value.no-data {
+	color:				#999;
+	font-style:			italic;
+}
+
+.geo-accuracy-badge {
+	display:			inline-block;
+	padding:			2px 8px;
+	border-radius:		4px;
+	font-size:			12px;
+	font-weight:		bold;
+}
+
+.geo-accuracy-badge.high {
+	background:			#d4edda;
+	color:				#155724;
+}
+
+.geo-accuracy-badge.medium {
+	background:			#fff3cd;
+	color:				#856404;
+}
+
+.geo-accuracy-badge.low {
+	background:			#f8d7da;
+	color:				#721c24;
+}
+
+.geo-accuracy-badge.none {
+	background:			#e2e3e5;
+	color:				#383d41;
+}
+
+.geo-map-link {
+	display:			inline-block;
+	margin-top:			10px;
+	padding:			8px 16px;
+	background:			linear-gradient(#4285f4, #366ac0);
+	color:				white;
+	text-decoration:	none;
+	border-radius:		4px;
+	font-size:			13px;
+}
+
+.geo-map-link:hover {
+	background:			linear-gradient(#5a9af5, #4285f4);
+}
+			
+			
+			
+
+
+

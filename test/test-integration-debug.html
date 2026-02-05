@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScreenSharingControl Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .debug-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background: #fafafa; }
+        .log-box { height: 400px; overflow-y: scroll; background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; font-family: monospace; font-size: 11px; white-space: pre-wrap; }
+        button { padding: 8px 16px; margin: 4px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        video { width: 300px; height: 200px; background: #000; border: 1px solid #ddd; margin: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 ScreenSharingControl Debug Test</h1>
+        <p><strong>Step-by-step debugging of screen sharing issues</strong></p>
+        
+        <div class="debug-section">
+            <h3>🔧 Debug Controls</h3>
+            <button onclick="testWebRTCOnly()" class="btn-primary">Test WebRTC Only</button>
+            <button onclick="createMockRoom()" class="btn-success">Create Mock Room</button>
+            <button onclick="testScreenCapture()" class="btn-success">Test Screen Capture</button>
+            <button onclick="debugPeerConnections()" class="btn-success">Debug Peer Connections</button>
+            <button onclick="clearLog()" class="btn-danger">Clear Log</button>
+        </div>
+
+        <div class="debug-section">
+            <h3>🎥 Test Videos</h3>
+            <video id="localVideo" muted autoplay></video>
+            <video id="remoteVideo" muted autoplay></video>
+        </div>
+
+        <div class="debug-section">
+            <h3>📝 Debug Log</h3>
+            <div id="debugLog" class="log-box"></div>
+        </div>
+    </div>
+
+    <!-- Load Socket.IO for WebRTC signaling -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <!-- Load the ScreenSharingControl class -->
+    <script src="trainingShare/screenSharingControl.js"></script>
+
+    <script>
+        let trainerSession = null;
+        let traineeSession = null;
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logDiv = document.getElementById('debugLog');
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️';
+            logDiv.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        function clearLog() {
+            document.getElementById('debugLog').textContent = '';
+        }
+
+        // Create a simplified version that focuses only on WebRTC signaling
+        class WebRTCOnlyControl extends ScreenSharingControl {
+            constructor(options) {
+                super(options);
+                this.debugMode = true;
+            }
+
+            async initializeAPI() {
+                log(`${this.volunteerID}: Mocking API initialization...`);
+                this.apiReady = true;
+                this.roomId = `mock-room-${this.roomName}`;
+                return Promise.resolve();
+            }
+
+            async joinRoomViaAPI() {
+                log(`${this.volunteerID}: Mocking room join...`);
+                return Promise.resolve();
+            }
+
+            async initializeSSE() {
+                log(`${this.volunteerID}: Mocking SSE initialization...`);
+                this.sseReady = true;
+                
+                // Simulate some SSE events for testing
+                setTimeout(() => {
+                    this.handleSSEMessage({
+                        type: 'connection_established',
+                        room_id: this.roomId
+                    });
+                }, 1000);
+
+                setTimeout(() => {
+                    this.handleSSEMessage({
+                        type: 'participants_update',
+                        participants: [
+                            { user_id: this.volunteerID, user_name: this.volunteerID, role: this.role }
+                        ]
+                    });
+                }, 2000);
+
+                return Promise.resolve();
+            }
+
+            async apiCall(endpoint, method, data) {
+                log(`${this.volunteerID}: Mock API call: ${method} ${endpoint}`);
+                
+                // Mock successful responses
+                if (endpoint.includes('screenshare/start')) {
+                    return { success: true, sessionId: 'mock-session' };
+                }
+                if (endpoint.includes('screenshare/stop')) {
+                    return { success: true };
+                }
+                if (endpoint.includes('leave')) {
+                    return { success: true };
+                }
+                
+                return { success: true };
+            }
+
+            // Override to add more logging
+            getOrCreatePeer(peerId) {
+                log(`${this.volunteerID}: Creating/getting peer connection for ${peerId}`);
+                return super.getOrCreatePeer(peerId);
+            }
+
+            handleWebRTCSignal(data) {
+                log(`${this.volunteerID}: Received WebRTC signal: ${data.type} from ${data.fromUserId || data.from}`);
+                return super.handleWebRTCSignal(data);
+            }
+
+            async createOfferForPeer(peerId) {
+                log(`${this.volunteerID}: Creating offer for peer ${peerId}`);
+                return super.createOfferForPeer(peerId);
+            }
+
+            async handleOffer(from, offer) {
+                log(`${this.volunteerID}: Handling offer from ${from}`);
+                return super.handleOffer(from, offer);
+            }
+
+            async handleAnswer(from, answer) {
+                log(`${this.volunteerID}: Handling answer from ${from}`);
+                return super.handleAnswer(from, answer);
+            }
+
+            updateUI(status) {
+                log(`${this.volunteerID}: UI update: ${status}`);
+                return super.updateUI(status);
+            }
+        }
+
+        async function testWebRTCOnly() {
+            log('🚀 Testing WebRTC-only implementation...');
+            clearLog();
+
+            try {
+                // Create trainer
+                log('Creating trainer session...');
+                trainerSession = new WebRTCOnlyControl({
+                    volunteerID: 'debug-trainer',
+                    role: 'trainer',
+                    roomName: 'debug-room',
+                    trainerID: 'debug-trainer',
+                    sessionToken: 'debug-token-1234567890'
+                });
+
+                trainerSession.remoteVideo = document.getElementById('localVideo');
+
+                // Create trainee  
+                log('Creating trainee session...');
+                traineeSession = new WebRTCOnlyControl({
+                    volunteerID: 'debug-trainee',
+                    role: 'trainee',
+                    roomName: 'debug-room',
+                    trainerID: 'debug-trainer',
+                    sessionToken: 'debug-token-1234567890'
+                });
+
+                traineeSession.remoteVideo = document.getElementById('remoteVideo');
+
+                // Initialize both
+                log('Initializing trainer...');
+                await trainerSession.init();
+
+                log('Initializing trainee...');
+                await traineeSession.init();
+
+                log('✅ Both sessions initialized successfully!', 'success');
+
+                // Wait a bit then try to establish peer connections
+                setTimeout(() => {
+                    log('Attempting to establish peer connections...');
+                    
+                    // Simulate trainer starting to share
+                    if (trainerSession.peers.has('debug-trainee')) {
+                        log('Trainer already has peer connection to trainee', 'success');
+                    } else {
+                        log('Creating peer connection from trainer to trainee...');
+                        trainerSession.scheduleOfferCreation('debug-trainee');
+                    }
+
+                    // Check connections after a delay
+                    setTimeout(() => {
+                        log(`Trainer peers: ${trainerSession.peers.size}`);
+                        log(`Trainee peers: ${traineeSession.peers.size}`);
+                        
+                        if (trainerSession.peers.size === 0 && traineeSession.peers.size === 0) {
+                            log('❌ No peer connections established. This suggests WebRTC signaling issue.', 'error');
+                        }
+                    }, 5000);
+                }, 3000);
+
+            } catch (error) {
+                log(`❌ Test failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function createMockRoom() {
+            log('🏠 Creating mock room with peer connections...');
+
+            if (!trainerSession || !traineeSession) {
+                log('❌ Run "Test WebRTC Only" first', 'error');
+                return;
+            }
+
+            try {
+                // Manually create peer connections to test WebRTC
+                log('Manually creating peer connections...');
+                
+                const trainerPeer = trainerSession.getOrCreatePeer('debug-trainee');
+                const traineePeer = traineeSession.getOrCreatePeer('debug-trainer');
+                
+                log(`Trainer peer created: ${trainerPeer instanceof RTCPeerConnection}`, 'success');
+                log(`Trainee peer created: ${traineePeer instanceof RTCPeerConnection}`, 'success');
+
+                // Set up peer connection event handlers for debugging
+                trainerPeer.oniceconnectionstatechange = () => {
+                    log(`Trainer ICE state: ${trainerPeer.iceConnectionState}`);
+                };
+
+                traineePeer.oniceconnectionstatechange = () => {
+                    log(`Trainee ICE state: ${traineePeer.iceConnectionState}`);
+                };
+
+                trainerPeer.onconnectionstatechange = () => {
+                    log(`Trainer connection state: ${trainerPeer.connectionState}`);
+                };
+
+                traineePeer.onconnectionstatechange = () => {
+                    log(`Trainee connection state: ${traineePeer.connectionState}`);
+                };
+
+            } catch (error) {
+                log(`❌ Mock room creation failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function testScreenCapture() {
+            log('📺 Testing screen capture...');
+
+            try {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+                    log('❌ Screen capture not supported in this browser', 'error');
+                    return;
+                }
+
+                log('Requesting screen capture...');
+                const stream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { width: 1920, height: 1080 },
+                    audio: false
+                });
+
+                log('✅ Screen capture successful!', 'success');
+                
+                // Display in local video
+                const localVideo = document.getElementById('localVideo');
+                localVideo.srcObject = stream;
+
+                log(`Stream has ${stream.getVideoTracks().length} video tracks`);
+
+                // If we have a trainer session, add the stream
+                if (trainerSession) {
+                    trainerSession.localStream = stream;
+                    trainerSession.isSharing = true;
+                    
+                    // Add stream to any existing peer connections
+                    trainerSession.peers.forEach((pc, peerId) => {
+                        log(`Adding stream to peer ${peerId}`);
+                        stream.getTracks().forEach(track => {
+                            pc.addTrack(track, stream);
+                        });
+                    });
+                }
+
+                // Stop stream after 10 seconds for testing
+                setTimeout(() => {
+                    stream.getTracks().forEach(track => track.stop());
+                    localVideo.srcObject = null;
+                    log('Stream stopped for testing');
+                }, 10000);
+
+            } catch (error) {
+                if (error.name === 'NotAllowedError') {
+                    log('❌ Screen capture permission denied', 'error');
+                } else {
+                    log(`❌ Screen capture failed: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        async function debugPeerConnections() {
+            log('🔗 Debugging peer connections...');
+
+            if (!trainerSession || !traineeSession) {
+                log('❌ Sessions not created', 'error');
+                return;
+            }
+
+            // Check WebRTC signaling connections
+            log(`Trainer WebRTC ready: ${trainerSession.socketReady}`);
+            log(`Trainee WebRTC ready: ${traineeSession.socketReady}`);
+
+            if (trainerSession.socket) {
+                log(`Trainer socket connected: ${trainerSession.socket.connected}`);
+                log(`Trainer socket ID: ${trainerSession.socket.id}`);
+            }
+
+            if (traineeSession.socket) {
+                log(`Trainee socket connected: ${traineeSession.socket.connected}`);
+                log(`Trainee socket ID: ${traineeSession.socket.id}`);
+            }
+
+            // Check peer connections
+            log(`Trainer peers: ${Array.from(trainerSession.peers.keys()).join(', ')}`);
+            log(`Trainee peers: ${Array.from(traineeSession.peers.keys()).join(', ')}`);
+
+            // Force peer connection creation if WebRTC is working
+            if (trainerSession.socketReady && traineeSession.socketReady) {
+                log('Both sessions have WebRTC signaling. Forcing peer connection...');
+                
+                // Simulate the peer-joined event that should trigger offer creation
+                setTimeout(() => {
+                    trainerSession.scheduleOfferCreation('debug-trainee');
+                }, 1000);
+            } else {
+                log('❌ WebRTC signaling not ready for both sessions', 'error');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            log('🔍 ScreenSharingControl Debug Test loaded');
+            log('📡 This test will help identify exactly where screen sharing is failing');
+            log('ℹ️ Start with "Test WebRTC Only" to check basic functionality');
+        });
+    </script>
+</body>
+</html>

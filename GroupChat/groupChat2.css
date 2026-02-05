@@ -1,0 +1,789 @@
+:root {
+    --container-width: 	90%;
+    --purple: 			#AE8BEF;
+	--green:			#5AAA7E;
+	--white:			#F5F5F5;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 1rem; /* 1rem typically equals 16px, but adapts to user settings */
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 400px;
+}
+
+#groupChatPortraitMode {
+	display:		block;
+	width:			96vw;
+	height:			96vh;
+}
+
+
+#groupChatLandscapeMode {
+	display:		none;
+}
+
+
+input, textarea, div, body {
+	font-size:		1em;
+}
+
+input[type='checkbox'] {
+	margin-left:	20px;
+}
+
+h1 {
+	font-size: 1.35em;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align:		center;
+}
+
+h2 {
+	font-size: 1.35em;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align:		center;
+}
+
+h3 {
+	font-size: 1.25em;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align:		center;
+}
+
+.div {
+	background: 	var(--white);
+	border: 		2px solid black;
+	border-radius: 	5px;
+	border: 		2px solid black;
+	display: 		block;
+	margin-bottom: 	5px;
+	padding:		3px;
+	vertical-align: middle;
+}
+
+
+#groupChatRoomName {
+	height:			40px;
+	max-height:		40px;
+	font-weight:	bold;
+	text-align:		center;
+	text-decoration:underline;
+	line-height:	2em;
+	width:			100%;
+}
+
+
+
+#groupChatUpperChatArea {
+	background: 	transparent;
+	margin-bottom:	3px;
+	height: 		70vh;
+	width: 			100%;
+	border: 		0px;
+	padding: 		0px;
+	overflow:		hidden;
+}
+
+
+#groupChatMainWindow, #groupChatMemberListContainer { 
+	height: 		98%;
+	overflow: 		hidden;
+	width: 			62%;
+	vertical-align:	top;
+	overflow: 		scroll;
+	border:			3px solid var(--purple);
+	border-radius:	25px;
+}
+
+
+#groupChatMemberListContainer {
+	height: 		100%;
+	border:			none;
+}
+
+
+
+
+#groupChatMainWindow {
+	display:		inline-block;
+}
+
+
+#groupChatMainWindow img {
+	height:			48px;
+	width:			auto;
+	opacity:		1;
+	margin-right:	20px;
+	display:		inline-block;
+}
+
+#menuButton {
+	position:		fixed;
+	top:			-20px;
+	left:			90%;
+	font-size:		2em;
+	font-weight:	bold;
+	display:		none;
+}
+
+
+#groupChatMemberListContainer {
+	width:			35%;
+	background:		transparent;
+}
+
+
+#groupChatMembersListWindow {
+	width: 		95%;
+	float:		left;
+	display:	inline-block;
+    height: 	calc(100% - 135px);
+	overflow:	scroll;
+	border:			3px solid var(--purple);
+	border-radius:	25px;
+	background:		var(--white);
+}
+
+#groupChatMembersListWindow h3, #emojiInstructions, #roomMemberCount  {
+	background:	var(--green);
+	border-radius:	15px;
+	color:			black;
+	text-decoration: none;
+	height:			3rem;
+	vertical-align:	middle;
+	line-height:	3rem;
+	margin-top:		-15px;
+}
+
+#emojiInstructions {
+	position:		relative;
+	width: 			95%;
+	text-align:		center;
+	height:			75px;
+	display:		inline-block;
+	vertical-align:	middle;
+	overflow:		hidden;
+	line-height:	1em;
+	font-size:		85%;
+	margin-top:		0px;
+	border:			none;
+}
+
+
+#roomMemberCount {	
+	width: 			95%;
+	text-align:		center;
+	height:			20px;
+	display:		inline-block;
+	vertical-align:	middle;
+	overflow:		hidden;
+	line-height:	20px;
+	margin-top:		0px;
+	border:			none;
+}
+
+.messageSelection {
+	background-color:	red;
+}
+
+.groupChatMessageContainer {
+	display:		block;
+	width:			auto;
+	height:			auto;
+	vertical-align:	middle;
+	border:			none;
+	min-height:		64px;
+	overflow:		hidden;
+}
+
+
+
+.nameBlock {
+	display:  		block;
+	width: 			auto;
+	text-align: 	left;
+	vertical-align: middle;
+	height:			auto;
+	overflow:		hidden;
+	margin-left:	52px;
+	font-weight:	bold;
+	font-style:		italic;
+	margin-bottom:	5px;
+}
+
+.avatarBlock {
+	display:  	block;
+	width: 		48px;
+	text-align: center;
+	vertical-align: middle;
+	height:		64px;
+	float:		left;
+}
+
+.avatarImage {
+	height:	auto;
+	width:	auto;
+	text-align: center;
+	opacity: 1;
+	margin:	auto;
+}
+
+
+.groupChatWindowMessage {
+	display:  			block;
+	width: 				auto;
+	vertical-align: 	middle;
+	background-color:	rgba(200,200,250,.5);
+	padding:		  	5px;
+	border-radius:		12px;
+	margin-bottom:		6px;
+	height:				auto;
+	margin-left:		52px;
+
+}
+
+
+.highlightMessage {
+	background-color:  yellow;
+}
+
+
+#groupChatTypingWrapper {
+	position:		fixed;
+	height:			10vh;
+	width:			inherit;
+	max-width:		1100px;
+	vertical-align:	bottom;
+	width:	 		100%;
+	bottom:			10%;
+	left:			10px;
+}
+
+#groupChatTypingWrapper, footer {
+	display:	none;
+}
+
+
+#groupChatTypingWindow {
+	overflow:	scroll;
+}
+
+#groupChatTypingWindow {
+	height: 	80%;
+	width: 		94%;
+	font-size: 	120%;
+	background: white;
+}
+
+
+.systemMessage {
+	display:  			block;
+	width: 				100%;
+	vertical-align: 	middle;
+	background-color:	transparent;
+	padding:		  	5px;
+	margin-bottom:		6px;
+	height:				auto;
+	text-align:			center;
+}
+
+	
+.timeStamp {
+	display: 			inline-block;
+	font-size:			70%;
+	color:				blue;
+	overflow:			hidden;
+	text-decoration:	none;
+	text-align:			right;
+	font-weight:		normal;
+	float:				right;
+	vertical-align:		middle;
+}
+
+#groupChatSignIn {
+	position: 	relative;
+	display: 		block;
+	width: 			93vw;
+	height:			22vh;
+	border-radius:	15px;
+	padding:		5px;
+	background: var(--green);
+	line-height:	100%;
+	top:          0;
+	left:         0;
+}
+
+#groupChatSignIn label {
+	display:	inline-block;
+	width:		80px;
+}
+
+#groupChatSignIn h3 {
+	height:				20px;
+	width:				100%;
+	text-align:			center;
+	font-weight: 		bold;
+	text-decoration:	underline;
+	vertical-align:		top;
+	margin:				0px;
+}
+
+
+
+#groupChatSignInForm {
+	height:	150px;
+}
+
+#groupChatSignInForm input[type='button'] {
+	position: 		absolute;
+	float: 			right;
+	height:			30px;
+	width:			auto;
+	padding:		3px;
+	border-radius:	10px;
+	font-weight:	bold;
+	margin:			10px;
+	margin-top: 	35px;
+	background:		var(--purple);
+}
+
+#groupChatAvatarSelectionArea {
+	position:		relative;
+	top:			10px;
+	height:			96px;
+	width:			70%;
+	overflow-y:		scroll;
+	overflow-x:		hidden;
+	vertical-align:	middle;
+	line-height:	64px;	
+	background:		transparent;
+	display: 		inline-block;
+	border: 		1px solid var(--white);
+	padding: 		2px;
+}
+
+
+
+
+.avatar {
+	display: inline-block;
+	height:	48px;
+    width: auto;
+	opacity:.8;
+	border: 1px solid transparent;
+}
+
+.avatar:hover {
+	display: inline-block;
+	height:	48px;
+	opacity:1;
+	background: var(--purple);
+	border: 1px solid transparent;
+}
+
+
+.avatarMemberList {
+	display: inline-block;
+	height:	54px;
+    width: auto;
+	margin:	5px;
+	opacity:1;
+	vertical-align: middle;
+}
+
+.avatarSelected {
+	display: inline-block;
+	height:	48px;
+	opacity:1;
+	border: 1px solid black;
+	background: yellow;
+}
+
+
+#groupChatControlButtonArea {
+	position:		fixed;
+	border: 		none;
+	background: 	transparent;
+	margin-top: 	2px;
+	margin-bottom: 	15px;
+	height:			5%;
+	min-height:		5%;
+	vertical-align:	middle;
+	width:	    		100%;
+	max-width:		1100px;
+	bottom:			0px;
+	left:			0px;
+}
+
+
+#groupChatExitButton {
+	position: absolute;
+	left:    	2.5%;
+	bottom:		0.5%;
+}
+
+#groupChatSubmitButton {
+	position: absolute;
+	right:    	4.5%;
+	bottom:		0.5%;
+}
+
+input[type='button']:hover, input[type='submit']:hover {
+	background:	linear-gradient(rgba(100,100,250,1),white);
+}
+
+
+
+#groupChatMembersListWindow .avatarMemberList:hover {
+}
+
+input[type='button'], input[type='submit'] {
+	height:			2em;
+	width:			auto;
+	min-width:		40px;
+	padding:		3px;
+	border-radius:	10px;
+	background:		var(--purple);
+	color:			var(--white);
+	margin-top:		0px;
+	vertical-align: bottom;
+}
+
+
+input[type='submit'] {
+	background-image: -o-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+	background-image: -moz-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+	background-image: -webkit-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+	background-image: -ms-linear-gradient(top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+	background-image: linear-gradient(to top, #D3F7FD 0%, #87C5FB 50%,#A1D1F9 50%,#D4E9FC 100%);
+
+}
+
+
+#groupChatScroll {
+	position:		fixed;
+	margin-left:   	100px;
+	display:		none;
+	bottom:			0.5%;
+}
+
+
+
+/* IM Pane Formatting */
+
+.imPane {
+	position:			fixed;
+	top:				15%;
+	left:				20%;
+	height:				310px;
+	width:				280px;
+	background:			rgba(265,165,0,1);
+	z-index:			100000;
+	box-shadow:			10px 10px 10px black;
+	border-radius:		10px;
+	display:			none;
+	color:				black;
+	text-align:			center;
+	font-size:			16px;
+	line-height:		.8em;
+
+
+}
+	
+.imPane div {
+	position:			relative;
+	margin-left:		10px;
+	margin-top:			20px;
+	height:				140px;
+	width:				265px;
+	text-align:			left;
+	overflow:			scroll;
+	overflow-y:			scroll;
+	overflow-x:			hidden;
+	border-radius:		5px;
+	background-color:	white;
+	font-size:			16px;
+
+}	
+
+.imMessage {
+	display:			block;
+	position:			relative;
+	margin-left:		10px;
+	margin-top:			5px;
+	width:				252px;
+	height:				38px;
+	border-radius:		5px;
+	display:			block;
+	background-color:	white;
+	font-family:		Times New Roman;
+	font-size:			16px;
+	line-height:		.8em;
+}
+
+#enlargedAvatar {
+	position:			fixed;
+	top:				20%;
+	left:				20%;
+	height:				auto;
+	width:				auto;
+	z-index:			1;
+	box-shadow:			10px 10px 10px black;
+	border-radius:		10px;
+	display:			none;
+	color:				black;
+	text-align:			center;
+}			
+
+.hideMembers {
+	display:	inline-block;
+}
+
+
+
+
+
+@media only screen and (max-device-width: 480px) and (orientation: portrait){
+
+	body {
+		position:		fixed;
+		width: 			97vw;
+		max-width:		1100px;
+		height: 		95vh;
+		line-height:	1.2em;
+		overflow:		hidden;
+		display: block;
+	}
+
+
+
+	@keyframes membersListIn {
+		 0%   	{left:105%;visibility: hidden}
+		100% 	{left:45%; visibility: visible;}	
+	}
+	
+	@keyframes membersListOut {
+		 0%   	{left:45%; visibility: visible}
+		100% 	{left:105%;visibility: hidden;}	
+	}
+
+	h1 {
+		font-size: 1.25em;
+		font-weight: bold;
+		text-decoration: underline;
+		text-align:		center;
+	}
+
+	h2 {
+		font-size: 1.15em;
+		font-weight: bold;
+		text-decoration: underline;
+		text-align:		center;
+	}
+
+	h3 {
+		font-size: 1em;
+		font-weight: bold;
+		text-decoration: underline;
+		text-align:		center;
+	}
+
+	#groupChatMainWindow, #groupChatUpperChatArea { 
+		width: 		96%;
+		height:		95%;
+	}
+	
+	#groupChatRoomName {
+		height:			3em;
+		max-height:		30px;
+		font-weight:	bold;
+		text-align:		center;
+		text-decoration:underline;
+		line-height:	2em;
+		width:			100%;
+	}
+	
+	
+	#menuButton {
+		position:	fixed;
+		top:		10px;
+		left:		90%;
+		display:	block;
+		background: white;
+		height: 	30px;
+		line-height:30px;
+		vertical-align:middle;
+
+	}
+	
+	#groupChatUpperChatArea {
+		position:	fixed;
+		width:  	98%;
+		overflow: 	hidden;
+		height:		55vh;
+	}
+	
+	#groupChatTypingWindow {
+		position:	fixed;
+		width:		98%;
+		height:		6em;
+		margin:		auto;
+		font-size:	16px;
+		overflow: 	hidden;
+	}
+
+
+	
+	#groupChatSignIn {
+		width: 	90%;
+		margin-left: 3%;
+		bottom: 5px;
+		min-width: 350px;
+	}
+	
+	#groupChatAvatarSelectionArea {
+		position:		relative;
+		top:			10px;
+		height:			52px;
+		width:			50%;
+	}
+	
+	
+	.hideMembers {
+		position:			absolute;
+		visibility:			hidden;
+		top:				10%;
+		left:				0px;
+		height:				0px;
+		width:				opx;
+		border-radius:		10px;
+	    z-index:			50;
+	    animation-name: 	membersListOut;
+	    animation-duration: 1s;
+	}
+
+	.showMembers {
+		position:			absolute;
+		left:				45vw;
+		top:				10%;
+		border-radius:		10px;
+	    animation-name: 	membersListIn;
+	    animation-duration: 1s;
+	    background:			transparent;
+	    z-index:			50;
+	}		
+
+	#emojiInstructions {
+		display:			none;
+	}
+	
+	#groupChatMemberListContainer {
+	    width:		50%;
+	    height: 	80%;
+		background:	transparent;
+	}
+	
+	#groupChatMembersListWindow {
+		width: 		93%;
+		float:		left;
+		display:	inline-block;
+		height: 	calc(100% - 50px);
+		overflow:	scroll;
+		background:	transparent;
+	}
+
+	
+	#groupChatScroll {
+		display:		none;
+	}
+
+	
+	/* IM Pane Formatting */
+
+	.imPane {
+		position:			fixed;
+		top:				5%;
+		left:				10%;
+		height:				250px;
+		width:				280px;
+		background:			rgba(265,165,0,1);
+		z-index:			100000;
+		box-shadow:			4px 4px 4px black;
+		border-radius:		5px;
+		display:			none;
+		color:				black;
+		text-align:			center;
+		font-size:	16px;
+
+
+	}
+	
+	.imPane div {
+		position:			relative;
+		margin-left:		5px;
+		margin-top:			10px;
+		height:				100px;
+		width:				265px;
+		text-align:			left;
+		overflow:			scroll;
+		overflow-y:			scroll;
+		overflow-x:			hidden;
+		border-radius:		5px;
+		background-color:	white;
+		font-size:	16px;
+
+	}	
+
+	.imMessage {
+		display:			block;
+		position:			relative;
+		margin-left:		10px;
+		margin-top:			5px;
+		width:				252px;
+		height:				38px;
+		border-radius:		5px;
+		display:			block;
+		background-color:	white;
+		font-family:		Times New Roman;
+		font-size:	16px;
+
+	}
+	
+	
+	
+/* Shrinks the typing area for non-iOS mobile devices to facilitate smaller window when softkeyboard is present */
+	@supports not (-webkit-overflow-scrolling: touch) {  
+		#groupChatTypingWindow:focus {
+			height:		3em;
+		}
+	}	
+}
+
+	#groupChatPortraitMode {
+		display:		block;
+	}
+
+	#groupChatLandscapeMode {
+		height:			97vh;
+		width:			97vw;
+		vertical-align:	middle;
+		display:		none;
+		line-height:	97vh;
+		font-size:		200%;
+		font-weight:	bold;
+		text-align:		center;
+	}
+
+
+
+}
+

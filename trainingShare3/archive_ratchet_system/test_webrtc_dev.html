@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Screen Sharing Test (DEV)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.connecting {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .status.connected {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .controls {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        
+        .controls input, .controls select, .controls button {
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .controls button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+        
+        .controls button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .dev-notice {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .video-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        video {
+            max-width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .log {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 20px 0;
+        }
+        
+        .hidden-fields {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden fields to simulate training session DOM structure -->
+    <div class="hidden-fields">
+        <input type="hidden" id="volunteerID" value="">
+        <input type="hidden" id="currentUserName" value="">
+        <input type="hidden" id="trainerID" value="">
+        <input type="hidden" id="traineeID" value="">
+    </div>
+
+    <div class="container">
+        <h1>🎥 WebRTC Screen Sharing Test (DEV MODE)</h1>
+        
+        <div class="dev-notice">
+            <h3>🔐 SSL WebSocket Server</h3>
+            <p>This test connects to the production SSL WebSocket server on <strong>share.volunteerlogin.org:8443</strong>. Port 8443 is the standard WebSocket SSL port for managed hosting platforms like Cloudways.</p>
+        </div>
+        
+        <div id="status" class="status disconnected">
+            ❌ Not Connected
+        </div>
+        
+        <div class="controls">
+            <h3>Test Setup</h3>
+            <label for="testRole">Role:</label>
+            <select id="testRole">
+                <option value="trainer">Trainer</option>
+                <option value="trainee">Trainee</option>
+            </select>
+            
+            <label for="testUserId">User ID:</label>
+            <input type="text" id="testUserId" value="TestTrainer" placeholder="Enter user ID">
+            
+            <label for="testRoomId">Room ID:</label>
+            <input type="text" id="testRoomId" value="TestRoom" placeholder="Enter room ID">
+            
+            <br><br>
+            
+            <button id="initBtn" onclick="initializeClient()">Initialize Client</button>
+            <button id="startShareBtn" onclick="startSharing()" disabled>Start Screen Sharing</button>
+            <button id="stopShareBtn" onclick="stopSharing()" disabled>Stop Screen Sharing</button>
+            <button onclick="clearLog()">Clear Log</button>
+        </div>
+        
+        <div class="video-container">
+            <h4>Screen Sharing Video</h4>
+            <video id="localVideo" autoplay muted style="max-width: 400px; display: none;"></video>
+            <video id="remoteVideo" autoplay playsInline poster="poster.png" style="max-width: 800px;"></video>
+        </div>
+        
+        <div class="log" id="log"></div>
+    </div>
+
+    <!-- Include required scripts -->
+    <script src="trainingWebSocketClient.js"></script>
+    <script src="webrtcScreenSharingClient.js"></script>
+    
+    <script>
+        let screenClient = null;
+        
+        function log(message, level = 'info') {
+            const logEl = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.style.color = level === 'error' ? '#dc3545' : level === 'success' ? '#28a745' : '#007bff';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log(message);
+        }
+        
+        function updateStatus(status, message) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${status}`;
+            statusEl.textContent = message;
+        }
+        
+        async function initializeClient() {
+            const role = document.getElementById('testRole').value;
+            const userId = document.getElementById('testUserId').value;
+            const roomId = document.getElementById('testRoomId').value;
+            
+            if (!userId || !roomId) {
+                alert('Please fill in User ID and Room ID');
+                return;
+            }
+            
+            try {
+                updateStatus('connecting', '🔄 Initializing...');
+                log(`Initializing WebRTC client as ${role} with DEV server...`, 'info');
+                
+                // Set up DOM fields that the client expects
+                document.getElementById('volunteerID').value = userId;
+                document.getElementById('currentUserName').value = userId;
+                
+                if (role === 'trainer') {
+                    document.getElementById('trainerID').value = userId;
+                } else {
+                    document.getElementById('trainerID').value = roomId;
+                    document.getElementById('traineeID').value = userId;
+                }
+                
+                // Create new client instance with SSL WebSocket server
+                // Use standard HTTPS port 443 with WebSocket path
+                const wsProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+                screenClient = new WebRTCScreenSharingClient({
+                    wsUrl: `${wsProtocol}://share.volunteerlogin.org/websocket.php`  // Standard SSL port with WebSocket endpoint
+                });
+                
+                // Set up event handlers
+                setupEventHandlers();
+                
+                // Initialize based on role
+                if (role === 'trainer') {
+                    log('Calling initializeTrainer...', 'info');
+                    await screenClient.initializeTrainer();
+                    log('Trainer initialized successfully!', 'success');
+                } else {
+                    log('Calling initializeTrainee...', 'info');
+                    await screenClient.initializeTrainee();
+                    log('Trainee initialized successfully!', 'success');
+                }
+                
+                updateStatus('connected', '✅ Connected and Ready');
+                updateButtons(true, role);
+                log(`Successfully initialized as ${role}`, 'success');
+                
+            } catch (error) {
+                updateStatus('error', '❌ Initialization Failed');
+                log(`Initialization failed: ${error.message}`, 'error');
+                console.error('Initialization error:', error);
+            }
+        }
+        
+        function setupEventHandlers() {
+            if (!screenClient) return;
+            
+            screenClient.on('trainer-ready', () => {
+                log('✅ Trainer ready - can start screen sharing', 'success');
+                document.getElementById('startShareBtn').disabled = false;
+            });
+            
+            screenClient.on('trainee-ready', () => {
+                log('✅ Trainee ready - waiting for trainer to share', 'success');
+            });
+            
+            screenClient.on('sharing-started', () => {
+                log('🎥 Screen sharing started successfully', 'success');
+                document.getElementById('startShareBtn').disabled = true;
+                document.getElementById('stopShareBtn').disabled = false;
+            });
+            
+            screenClient.on('sharing-stopped', () => {
+                log('🛑 Screen sharing stopped', 'info');
+                document.getElementById('startShareBtn').disabled = false;
+                document.getElementById('stopShareBtn').disabled = true;
+            });
+            
+            screenClient.on('trainer-screen-shown', () => {
+                log('📺 Now viewing trainer screen', 'success');
+            });
+            
+            screenClient.on('trainer-screen-stopped', () => {
+                log('📺 Trainer stopped sharing', 'info');
+            });
+            
+            screenClient.on('error', (error) => {
+                log(`❌ Error: ${error.message}`, 'error');
+            });
+        }
+        
+        async function startSharing() {
+            if (!screenClient) {
+                log('❌ Client not initialized', 'error');
+                return;
+            }
+            
+            try {
+                log('🎥 Starting screen sharing...', 'info');
+                await screenClient.startScreenShare();
+            } catch (error) {
+                log(`❌ Failed to start sharing: ${error.message}`, 'error');
+            }
+        }
+        
+        async function stopSharing() {
+            if (!screenClient) {
+                log('❌ Client not initialized', 'error');
+                return;
+            }
+            
+            try {
+                await screenClient.stopScreenShare();
+                log('🛑 Screen sharing stopped by user', 'info');
+            } catch (error) {
+                log(`❌ Failed to stop sharing: ${error.message}`, 'error');
+            }
+        }
+        
+        function updateButtons(initialized, role) {
+            document.getElementById('initBtn').disabled = initialized;
+            
+            if (role === 'trainer') {
+                document.getElementById('startShareBtn').style.display = 'inline';
+                document.getElementById('stopShareBtn').style.display = 'inline';
+            } else {
+                document.getElementById('startShareBtn').style.display = 'none';
+                document.getElementById('stopShareBtn').style.display = 'none';
+            }
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        // Initialize
+        updateButtons(false);
+        log('DEV Mode WebRTC test loaded. Uses development server on port 8083.', 'info');
+        log('Configure settings and click Initialize to test.', 'info');
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (screenClient) {
+                screenClient.destroy();
+            }
+        });
+    </script>
+</body>
+</html>

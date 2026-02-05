@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScreenSharingControl Integration Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #f5f5f5; 
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            background: #fafafa;
+        }
+        .session-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .session-box {
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f8f9ff;
+        }
+        .trainer-box { border-color: #28a745; background: #f8fff8; }
+        .trainee-box { border-color: #17a2b8; background: #f8ffff; }
+        video {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 8px 16px;
+            margin: 4px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-warning { background: #ffc107; color: black; }
+        button:hover { opacity: 0.8; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .status {
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .status-connected { background: #d4edda; color: #155724; }
+        .status-disconnected { background: #f8d7da; color: #721c24; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .log-box {
+            height: 300px;
+            overflow-y: scroll;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 11px;
+            white-space: pre-wrap;
+        }
+        .connection-info {
+            font-size: 10px;
+            color: #666;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 ScreenSharingControl Integration Test</h1>
+        <p><strong>Real-world testing with live servers</strong></p>
+        
+        <div class="test-section">
+            <h3>🎮 Integration Controls</h3>
+            <button onclick="initializeSessions()" class="btn-primary">Initialize Both Sessions</button>
+            <button onclick="startTrainerSharing()" class="btn-success">Start Trainer Sharing</button>
+            <button onclick="stopTrainerSharing()" class="btn-warning">Stop Trainer Sharing</button>
+            <button onclick="cleanupSessions()" class="btn-danger">Cleanup Sessions</button>
+            <button onclick="clearLog()" class="btn-primary">Clear Log</button>
+        </div>
+
+        <div class="session-container">
+            <div class="session-box trainer-box">
+                <h3>👨‍🏫 Trainer Session</h3>
+                <div id="trainerStatus" class="status status-disconnected">Disconnected</div>
+                <video id="trainerVideo" muted></video>
+                <div class="connection-info">
+                    <div>API: <span id="trainerAPI">❌</span></div>
+                    <div>SSE: <span id="trainerSSE">❌</span></div>
+                    <div>WebRTC: <span id="trainerWebRTC">❌</span></div>
+                    <div>Sharing: <span id="trainerSharing">❌</span></div>
+                </div>
+                <button onclick="getTrainerScreen()" class="btn-success">Get Screen</button>
+                <button onclick="toggleTrainerSharing()" class="btn-warning">Toggle Share</button>
+                <button onclick="showTrainerStatus()" class="btn-primary">Show Status</button>
+            </div>
+
+            <div class="session-box trainee-box">
+                <h3>👨‍🎓 Trainee Session</h3>
+                <div id="traineeStatus" class="status status-disconnected">Disconnected</div>
+                <video id="traineeVideo" muted autoplay></video>
+                <div class="connection-info">
+                    <div>API: <span id="traineeAPI">❌</span></div>
+                    <div>SSE: <span id="traineeSSE">❌</span></div>
+                    <div>WebRTC: <span id="traineeWebRTC">❌</span></div>
+                    <div>Receiving: <span id="traineeReceiving">❌</span></div>
+                </div>
+                <button onclick="connectToTrainer()" class="btn-success">Connect to Trainer</button>
+                <button onclick="showTraineeStatus()" class="btn-primary">Show Status</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Integration Metrics</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                <div style="padding: 10px; background: #e9ecef; border-radius: 4px; text-align: center;">
+                    <strong>Connection Time:</strong><br>
+                    <span id="connectionTime">-</span>
+                </div>
+                <div style="padding: 10px; background: #e9ecef; border-radius: 4px; text-align: center;">
+                    <strong>Peer Connections:</strong><br>
+                    <span id="peerCount">0</span>
+                </div>
+                <div style="padding: 10px; background: #e9ecef; border-radius: 4px; text-align: center;">
+                    <strong>Signal Latency:</strong><br>
+                    <span id="signalLatency">-</span>
+                </div>
+                <div style="padding: 10px; background: #e9ecef; border-radius: 4px; text-align: center;">
+                    <strong>Video Quality:</strong><br>
+                    <span id="videoQuality">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Integration Log</h3>
+            <div id="integrationLog" class="log-box"></div>
+        </div>
+    </div>
+
+    <!-- Load Socket.IO for WebRTC signaling -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <!-- Load the ScreenSharingControl class -->
+    <script src="trainingShare/screenSharingControl.js"></script>
+
+    <script>
+        // Global session variables
+        let trainerSession = null;
+        let traineeSession = null;
+        let connectionStartTime = null;
+        let isInitialized = false;
+
+        // Logging function
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logDiv = document.getElementById('integrationLog');
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️';
+            logDiv.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        function clearLog() {
+            document.getElementById('integrationLog').textContent = '';
+        }
+
+        function updateStatus(role, status) {
+            const statusElement = document.getElementById(`${role}Status`);
+            statusElement.textContent = status;
+            statusElement.className = `status ${status.toLowerCase().includes('connected') || status.toLowerCase().includes('sharing') ? 'status-connected' : 
+                                              status.toLowerCase().includes('error') || status.toLowerCase().includes('failed') ? 'status-disconnected' : 'status-pending'}`;
+        }
+
+        function updateConnectionIndicator(role, type, connected) {
+            const element = document.getElementById(`${role}${type}`);
+            if (element) {
+                element.textContent = connected ? '✅' : '❌';
+            }
+        }
+
+        function updateMetric(metric, value) {
+            const element = document.getElementById(metric);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        // Session initialization
+        async function initializeSessions() {
+            if (isInitialized) {
+                log('Sessions already initialized', 'warning');
+                return;
+            }
+
+            connectionStartTime = Date.now();
+            log('Initializing trainer and trainee sessions...');
+
+            try {
+                // Create trainer session
+                log('Creating trainer session...');
+                updateStatus('trainer', 'Creating...');
+                
+                trainerSession = new ScreenSharingControl({
+                    volunteerID: 'trainer-integration-test',
+                    role: 'trainer',
+                    roomName: 'integration-test-room',
+                    trainerID: 'trainer-integration-test',
+                    trainees: [{ id: 'trainee-integration-test', isSignedOn: true }],
+                    sessionToken: getTestSessionToken()
+                });
+
+                // Override video element
+                trainerSession.remoteVideo = document.getElementById('trainerVideo');
+
+                // Add connection monitoring
+                monitorSession(trainerSession, 'trainer');
+
+                log('Initializing trainer session...');
+                await trainerSession.init();
+                updateStatus('trainer', 'Initialized');
+                log('Trainer session initialized successfully', 'success');
+
+                // Create trainee session
+                log('Creating trainee session...');
+                updateStatus('trainee', 'Creating...');
+                
+                traineeSession = new ScreenSharingControl({
+                    volunteerID: 'trainee-integration-test',
+                    role: 'trainee',
+                    roomName: 'integration-test-room',
+                    trainerID: 'trainer-integration-test',
+                    trainees: [],
+                    sessionToken: getTestSessionToken()
+                });
+
+                // Override video element
+                traineeSession.remoteVideo = document.getElementById('traineeVideo');
+
+                // Add connection monitoring
+                monitorSession(traineeSession, 'trainee');
+
+                log('Initializing trainee session...');
+                await traineeSession.init();
+                updateStatus('trainee', 'Initialized');
+                log('Trainee session initialized successfully', 'success');
+
+                const connectionTime = Date.now() - connectionStartTime;
+                updateMetric('connectionTime', `${connectionTime}ms`);
+                
+                isInitialized = true;
+                log('Both sessions initialized successfully!', 'success');
+
+            } catch (error) {
+                log(`Initialization failed: ${error.message}`, 'error');
+                updateStatus('trainer', 'Init Failed');
+                updateStatus('trainee', 'Init Failed');
+            }
+        }
+
+        function monitorSession(session, role) {
+            // Monitor connection states
+            const originalUpdateUI = session.updateUI.bind(session);
+            session.updateUI = function(status) {
+                log(`${role} UI update: ${status}`);
+                updateConnectionIndicator(role, 'Receiving', status === 'other');
+                updateConnectionIndicator(role, 'Sharing', status === 'self');
+                return originalUpdateUI(status);
+            };
+
+            // Monitor API calls
+            const originalApiCall = session.apiCall.bind(session);
+            session.apiCall = async function(endpoint, method, data) {
+                const startTime = Date.now();
+                const result = await originalApiCall(endpoint, method, data);
+                const latency = Date.now() - startTime;
+                
+                updateConnectionIndicator(role, 'API', session.apiReady);
+                updateMetric('signalLatency', `${latency}ms`);
+                
+                return result;
+            };
+
+            // Monitor SSE
+            const originalInitializeSSE = session.initializeSSE.bind(session);
+            session.initializeSSE = async function() {
+                const result = await originalInitializeSSE();
+                updateConnectionIndicator(role, 'SSE', session.sseReady);
+                return result;
+            };
+
+            // Monitor WebRTC
+            const originalInitializeWebRTC = session.initializeWebRTCSignalling.bind(session);
+            session.initializeWebRTCSignalling = async function() {
+                const result = await originalInitializeWebRTC();
+                updateConnectionIndicator(role, 'WebRTC', session.socketReady);
+                return result;
+            };
+
+            // Monitor peer connections
+            const originalGetOrCreatePeer = session.getOrCreatePeer.bind(session);
+            session.getOrCreatePeer = function(peerId) {
+                const result = originalGetOrCreatePeer(peerId);
+                updateMetric('peerCount', session.peers.size);
+                return result;
+            };
+        }
+
+        async function getTrainerScreen() {
+            if (!trainerSession) {
+                log('Trainer session not initialized', 'error');
+                return;
+            }
+
+            try {
+                log('Requesting trainer screen access...');
+                updateStatus('trainer', 'Requesting Screen...');
+
+                // Get screen capture
+                const stream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { width: 1920, height: 1080 },
+                    audio: false
+                });
+
+                // Set the stream on trainer video for preview
+                document.getElementById('trainerVideo').srcObject = stream;
+                
+                updateStatus('trainer', 'Screen Captured');
+                log('Screen capture successful', 'success');
+
+                // Store stream for sharing
+                trainerSession.localStream = stream;
+
+            } catch (error) {
+                log(`Screen capture failed: ${error.message}`, 'error');
+                updateStatus('trainer', 'Screen Capture Failed');
+            }
+        }
+
+        async function startTrainerSharing() {
+            if (!trainerSession) {
+                log('Trainer session not initialized', 'error');
+                return;
+            }
+
+            try {
+                log('Starting trainer screen sharing...');
+                updateStatus('trainer', 'Starting Share...');
+
+                await trainerSession.startScreenShare();
+                
+                updateStatus('trainer', 'Sharing Active');
+                updateConnectionIndicator('trainer', 'Sharing', true);
+                log('Trainer sharing started successfully', 'success');
+
+            } catch (error) {
+                log(`Trainer sharing failed: ${error.message}`, 'error');
+                updateStatus('trainer', 'Share Failed');
+            }
+        }
+
+        async function stopTrainerSharing() {
+            if (!trainerSession) {
+                log('Trainer session not initialized', 'error');
+                return;
+            }
+
+            try {
+                log('Stopping trainer screen sharing...');
+                updateStatus('trainer', 'Stopping Share...');
+
+                await trainerSession.stopScreenShare();
+                
+                updateStatus('trainer', 'Share Stopped');
+                updateConnectionIndicator('trainer', 'Sharing', false);
+                log('Trainer sharing stopped successfully', 'success');
+
+            } catch (error) {
+                log(`Stop sharing failed: ${error.message}`, 'error');
+                updateStatus('trainer', 'Stop Failed');
+            }
+        }
+
+        function toggleTrainerSharing() {
+            if (!trainerSession) return;
+            
+            if (trainerSession.isSharing) {
+                stopTrainerSharing();
+            } else {
+                startTrainerSharing();
+            }
+        }
+
+        function connectToTrainer() {
+            if (!traineeSession) {
+                log('Trainee session not initialized', 'error');
+                return;
+            }
+
+            log('Trainee connecting to trainer...');
+            updateStatus('trainee', 'Connecting...');
+
+            traineeSession.connectToSharer('trainer-integration-test');
+            
+            updateStatus('trainee', 'Waiting for Stream');
+            log('Trainee connection requested', 'success');
+        }
+
+        function showTrainerStatus() {
+            if (!trainerSession) {
+                log('Trainer session not available', 'error');
+                return;
+            }
+
+            const status = trainerSession.getConnectionStates();
+            log('Trainer Status: ' + JSON.stringify(status, null, 2));
+        }
+
+        function showTraineeStatus() {
+            if (!traineeSession) {
+                log('Trainee session not available', 'error');
+                return;
+            }
+
+            const status = traineeSession.getConnectionStates();
+            log('Trainee Status: ' + JSON.stringify(status, null, 2));
+        }
+
+        async function cleanupSessions() {
+            log('Cleaning up sessions...');
+
+            if (trainerSession) {
+                try {
+                    await trainerSession.destroy();
+                    log('Trainer session destroyed', 'success');
+                } catch (error) {
+                    log(`Trainer cleanup error: ${error.message}`, 'error');
+                }
+                trainerSession = null;
+            }
+
+            if (traineeSession) {
+                try {
+                    await traineeSession.destroy();
+                    log('Trainee session destroyed', 'success');
+                } catch (error) {
+                    log(`Trainee cleanup error: ${error.message}`, 'error');
+                }
+                traineeSession = null;
+            }
+
+            // Reset UI
+            updateStatus('trainer', 'Disconnected');
+            updateStatus('trainee', 'Disconnected');
+            
+            ['trainer', 'trainee'].forEach(role => {
+                ['API', 'SSE', 'WebRTC', 'Sharing', 'Receiving'].forEach(type => {
+                    updateConnectionIndicator(role, type, false);
+                });
+            });
+
+            // Reset metrics
+            updateMetric('connectionTime', '-');
+            updateMetric('peerCount', '0');
+            updateMetric('signalLatency', '-');
+            updateMetric('videoQuality', '-');
+
+            // Clear videos
+            document.getElementById('trainerVideo').srcObject = null;
+            document.getElementById('traineeVideo').srcObject = null;
+
+            isInitialized = false;
+            log('Cleanup completed', 'success');
+        }
+
+        function getTestSessionToken() {
+            // Try to get a real session token from the page
+            const sources = [
+                () => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
+                () => document.getElementById('sessionToken')?.value,
+                () => localStorage.getItem('volunteerSessionToken'),
+                () => 'integration-test-token-1234567890' // Fallback for testing
+            ];
+            
+            for (const source of sources) {
+                const token = source();
+                if (token && token.length > 10) {
+                    return token;
+                }
+            }
+            
+            return 'integration-test-token-1234567890';
+        }
+
+        // Monitor video quality
+        function monitorVideoQuality() {
+            const traineeVideo = document.getElementById('traineeVideo');
+            
+            if (traineeVideo.srcObject) {
+                const stream = traineeVideo.srcObject;
+                const tracks = stream.getVideoTracks();
+                
+                if (tracks.length > 0) {
+                    const track = tracks[0];
+                    const settings = track.getSettings();
+                    updateMetric('videoQuality', `${settings.width}x${settings.height}`);
+                }
+            }
+        }
+
+        // Start monitoring
+        setInterval(monitorVideoQuality, 2000);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            log('🎯 ScreenSharingControl Integration Test loaded');
+            log('📡 This test uses live servers and real WebRTC connections');
+            log('ℹ️ Click "Initialize Both Sessions" to begin testing');
+        });
+    </script>
+</body>
+</html>

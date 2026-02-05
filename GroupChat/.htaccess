@@ -1,0 +1,37 @@
+# Set directory index
+DirectoryIndex index.php index.html
+
+# Disable ETags globally
+FileETag None
+
+# Force no-cache for ALL PHP files (including index.php)
+<FilesMatch "\.php$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "no-cache, no-store, must-revalidate, private, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+        Header unset ETag
+        Header set Last-Modified "Thu, 01 Jan 1970 00:00:00 GMT"
+    </IfModule>
+</FilesMatch>
+
+# Additional specific rules for index.php if needed
+<FilesMatch "^index\.php$">
+    <IfModule mod_headers.c>
+        # Add any index.php-specific headers here if different from other PHP files
+        Header set X-Robots-Tag "noindex, nofollow, noarchive"
+    </IfModule>
+</FilesMatch>
+
+# Prevent caching of PHP responses via mod_expires
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType application/x-httpd-php "access plus 0 seconds"
+    ExpiresByType application/x-httpd-php-source "access plus 0 seconds"
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # Ensure PHP files expire immediately
+    <FilesMatch "\.php$">
+        ExpiresDefault "access plus 0 seconds"
+    </FilesMatch>
+</IfModule>

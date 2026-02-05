@@ -1,0 +1,31 @@
+{
+  "name": "mapkit-token",
+  "version": "0.0.0-semantic-release",
+  "description": "🗺 Easily generate MapKit authorization tokens.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "posttest": "standard",
+    "precommit": "npm test"
+  },
+  "keywords": [
+    "mapkit",
+    "jwt",
+    "token",
+    "apple"
+  ],
+  "author": "herrmannplatz <rene@herrmannplatz.de>",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "jest": "^27.2.0",
+    "semantic-release": "^18.0.0",
+    "standard": "^16.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herrmannplatz/mapkit-token.git"
+  }
+}
