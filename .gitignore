@@ -25,6 +25,7 @@ config.local.php
 /log/
 debug_*.txt
 session_debug.txt
+deploy.log
 
 # OS files
 .DS_Store
