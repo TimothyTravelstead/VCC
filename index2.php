@@ -515,7 +515,7 @@ if ($handle = opendir('InfoCenter/')) {
 				echo "<input type='hidden' id='trainee' value = '".$trainee."'>";
 				echo "<input type='hidden' id='monitor' value = '".$monitor."'>";
 				echo "<input type='hidden' id='serverOffsetMinutes' value = '".$mins."'>";
-				echo "<input type='hidden' id='volunteerSessionId' value = '".$_SESSION['volunteer_session_id']."'>";
+				echo "<input type='hidden' id='volunteerSessionId' value = '".($_SESSION['volunteer_session_id'] ?? '')."'>";
 				
 				// Additional fields for multi-trainee screen sharing compatibility
 				$trainerIDValue = $trainerID ?? '';
