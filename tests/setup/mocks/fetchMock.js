@@ -169,16 +169,6 @@ function setupTrainingEndpointMocks() {
     }
   });
 
-  // notifyCallStart.php
-  setFetchResponse(/notifyCallStart\.php/, {
-    body: { success: true }
-  });
-
-  // notifyCallEnd.php
-  setFetchResponse(/notifyCallEnd\.php/, {
-    body: { success: true }
-  });
-
   // roomManager.php
   setFetchResponse(/roomManager\.php/, {
     body: {

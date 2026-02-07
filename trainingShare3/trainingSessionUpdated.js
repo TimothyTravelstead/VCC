@@ -1315,37 +1315,18 @@ class TrainingSession {
         await this._serverSideMute(false, 'unMuteMe');
     }
 
-    // Call management notifications - Each participant mutes themselves
+    // Call management notifications - broadcast via DB signaling
     async notifyCallStart() {
         try {
-            // Determine the correct trainer ID to use
-            let notifyTrainerId;
-            if (this.role === 'trainer') {
-                notifyTrainerId = this.volunteerID; // Trainer uses their own ID
-            } else {
-                // Trainee uses the conference ID (which is the trainer ID)
-                notifyTrainerId = this.conferenceID;
-            }
-
-            // trainerId should come from hidden field (populated during login)
-            // callerId/callerRole provided as fallback for edge cases
-            const requestBody = {
-                trainerId: notifyTrainerId || '', // Should be populated from hidden field
-                activeController: this.activeController,
-                callerId: this.volunteerID, // Fallback for server if trainerId empty
-                callerRole: this.role, // Fallback for server if trainerId empty
-                notifyAll: true
-            };
-
-            console.log('Notifying call start with:', requestBody);
-
-            // Notify all participants that an external call started
-            const response = await fetch('/trainingShare3/notifyCallStart.php', {
+            const response = await fetch('/trainingShare3/signalSend.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'call-start',
+                    activeController: this.activeController,
+                    callSid: this.myCallSid
+                }),
+                credentials: 'same-origin'
             });
 
             if (response.ok) {
@@ -1362,34 +1343,13 @@ class TrainingSession {
 
     async notifyCallEnd() {
         try {
-            // Determine the correct trainer ID to use
-            let notifyTrainerId;
-            if (this.role === 'trainer') {
-                notifyTrainerId = this.volunteerID; // Trainer uses their own ID
-            } else {
-                // Trainee uses the conference ID (which is the trainer ID)
-                notifyTrainerId = this.conferenceID;
-            }
-
-            // trainerId should come from hidden field (populated during login)
-            // callerId/callerRole provided as fallback for edge cases
-            const requestBody = {
-                trainerId: notifyTrainerId || '', // Should be populated from hidden field
-                activeController: this.activeController,
-                callerId: this.volunteerID, // Fallback for server if trainerId empty
-                callerRole: this.role, // Fallback for server if trainerId empty
-                notifyAll: true
-            };
-
-            console.log('Notifying call end with:', requestBody);
-
-            // Notify all participants that an external call ended
-            const response = await fetch('/trainingShare3/notifyCallEnd.php', {
+            const response = await fetch('/trainingShare3/signalSend.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'call-end'
+                }),
+                credentials: 'same-origin'
             });
 
             if (response.ok) {
@@ -2651,7 +2611,7 @@ class TrainingSession {
                 body: JSON.stringify({
                     trainerId,
                     participantId,
-                    isMuted: shouldMute,
+                    muted: shouldMute,
                     reason,
                     callSid: this.myCallSid
                 }),
@@ -2677,7 +2637,7 @@ class TrainingSession {
                 body: JSON.stringify({
                     trainerId,
                     action: 'mute_non_controllers',
-                    excludeParticipant: this.activeController,
+                    controllerId: this.activeController,
                     reason
                 }),
                 credentials: 'same-origin'

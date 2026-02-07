@@ -407,11 +407,12 @@ class SignalQueue
     /**
      * Broadcast call started
      */
-    public static function broadcastCallStart($roomId, $senderId, $callSid)
+    public static function broadcastCallStart($roomId, $senderId, $callSid, $activeController = null)
     {
         return self::broadcastToRoom($roomId, $senderId, self::TYPE_CALL_START, [
             'callSid' => $callSid,
-            'answeredBy' => $senderId
+            'answeredBy' => $senderId,
+            'activeController' => $activeController ?? $senderId
         ]);
     }
 

@@ -168,8 +168,9 @@ switch ($signalType) {
 
     case 'call-start':
         $callSid = $signalData['callSid'] ?? null;
-        $result = SignalQueue::broadcastCallStart($roomId, $participantId, $callSid);
-        TrainingDB::logEvent($roomId, 'call_start', ['callSid' => $callSid], $participantId);
+        $activeController = $signalData['activeController'] ?? null;
+        $result = SignalQueue::broadcastCallStart($roomId, $participantId, $callSid, $activeController);
+        TrainingDB::logEvent($roomId, 'call_start', ['callSid' => $callSid, 'activeController' => $activeController], $participantId);
         break;
 
     case 'call-end':

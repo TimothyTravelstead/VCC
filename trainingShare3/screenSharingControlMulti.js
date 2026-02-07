@@ -496,11 +496,11 @@ class MultiTraineeScreenSharing {
                     console.log(`🔄 Conference restart notification from ${senderId}`);
                     this.handleConferenceRestart(message);
                     break;
-                case 'external-call-start':
+                case 'call-start':
                     console.log(`📞 External call start notification from ${senderId}`);
                     this.handleExternalCallStart(message);
                     break;
-                case 'external-call-end':
+                case 'call-end':
                     console.log(`📞 External call end notification from ${senderId}`);
                     this.handleExternalCallEnd(message);
                     break;
