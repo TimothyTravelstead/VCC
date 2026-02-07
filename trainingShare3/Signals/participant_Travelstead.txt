@@ -1,2 +1,0 @@
-{"type":"trainee-exited","traineeId":"TimTesting","timestamp":1769727120,"message":"TimTesting has left the training session"}
-{"type":"trainee-exited","traineeId":"TimTesting","timestamp":1769730240,"message":"TimTesting has left the training session"}

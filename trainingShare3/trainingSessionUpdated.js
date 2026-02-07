@@ -709,27 +709,17 @@ class TrainingSession {
             // This just sends a notification to the trainer that the trainee wants control
             // The trainer must manually transfer control using transferControlTo()
             
-            // Send notification to trainer (via signal files or other notification system)
-            const notificationData = {
-                type: 'control-request',
-                from: this.volunteerID,
-                to: trainerId,
-                message: `${this.volunteerID} is requesting control`,
-                timestamp: Date.now()
-            };
-            
-            // Write to trainer's signal file for notification
-            const response = await fetch('/trainingShare3/signalingServerMulti.php', {
+            // Send control request notification to trainer via DB signaling
+            const response = await fetch('/trainingShare3/signalSend.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: 'same-origin',
                 body: JSON.stringify({
-                    action: 'signal',
-                    room: `training_${trainerId}`,
-                    participantId: this.volunteerID,
-                    targetId: trainerId,
-                    signal: notificationData
+                    type: 'control-request',
+                    to: trainerId,
+                    message: `${this.volunteerID} is requesting control`
                 })
             });
             
@@ -836,6 +826,34 @@ class TrainingSession {
         console.log(`   To deny: No action needed (or take back control if needed)`);
     }
     
+    // Handle trainer exit notification (received by trainees)
+    handleTrainerExited(message) {
+        console.log(`🚪 Trainer has exited the session: ${message.trainerId || message.from}`);
+        this._showAlert('Your trainer has signed off. You have been logged out.');
+        // Trainer exit already logs out trainees server-side; redirect to login
+        setTimeout(() => {
+            window.location.href = '/login.php';
+        }, 3000);
+    }
+
+    // Handle trainee exit notification (received by trainer)
+    handleTraineeExited(message) {
+        const traineeId = message.traineeId || message.from;
+        console.log(`🚪 Trainee has exited the session: ${traineeId}`);
+
+        // Remove trainee from local list
+        this.trainees = this.trainees.filter(t => t.id !== traineeId);
+
+        // If the exiting trainee had control, server transferred it back to trainer
+        if (message.controlReturnedToTrainer) {
+            console.log(`🎮 Control returned to trainer (${this.volunteerID}) after trainee exit`);
+            this.activeController = this.volunteerID;
+            this.isController = true;
+        }
+
+        this._showAlert(`${traineeId} has left the training session.`);
+    }
+
     // Method for trainers to take back control
     async takeBackControl() {
         console.log('🎮 Trainer taking back control');
@@ -1498,16 +1516,16 @@ class TrainingSession {
             
             console.log(`DEBUG: All participants: [${allParticipants.join(', ')}], Others to notify: [${othersToNotify.join(', ')}]`);
             
-            const response = await fetch('/trainingShare3/notifyConferenceRestart.php', {
+            const response = await fetch('/trainingShare3/signalSend.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'same-origin',
                 body: JSON.stringify({
-                    trainerId: this.trainer.id,
+                    type: 'conference-restart',
                     activeController: this.activeController,
-                    newConferenceId: this.conferenceID,
-                    participants: othersToNotify
+                    newConferenceId: this.conferenceID
                 })
             });
             
@@ -1520,10 +1538,12 @@ class TrainingSession {
     }
 
     handleConferenceRestart(message) {
+        // activeController and newConferenceId passed through from sender via signalSend.php
+        const activeController = message.activeController || message.from;
+        const newConferenceId = message.newConferenceId || this.conferenceID;
+
         // Any participant (not the active controller) can receive restart notification
-        if (this.volunteerID !== message.activeController) {
-            const newConferenceId = message.newConferenceId;
-            const activeController = message.activeController;
+        if (this.volunteerID !== activeController) {
             
             console.log(`${this.role}: Received conference restart notification from ${activeController}, new ID: ${newConferenceId}`);
             
@@ -1593,30 +1613,6 @@ class TrainingSession {
         }
     }
 
-    startConferenceNotificationPolling() {
-        // Poll for conference restart notifications every 3 seconds
-        this.conferencePollingInterval = setInterval(async () => {
-            try {
-                const response = await fetch(`/trainingShare3/Signals/conference_restart_${this.trainer.id}.json`);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.action === 'conference_restart' && data.trainees.includes(this.volunteerID)) {
-                        // Clear the notification file
-                        fetch(`/trainingShare3/clearConferenceNotification.php?file=conference_restart_${this.trainer.id}.json`);
-                        
-                        // Handle the restart
-                        this.handleConferenceRestart({
-                            newConferenceId: data.newConferenceId,
-                            trainerId: data.trainerId
-                        });
-                    }
-                }
-            } catch (error) {
-                // Ignore errors (file might not exist)
-            }
-        }, 3000);
-    }
-
     async notifyControlChange() {
         try {
             // Determine the correct trainer ID to use
@@ -1633,17 +1629,17 @@ class TrainingSession {
                 return;
             }
             
-            // Send notification about control change to all participants
-            const response = await fetch('/trainingShare3/notifyControlChange.php', {
+            // Send notification about control change to all participants via DB signaling
+            const response = await fetch('/trainingShare3/signalSend.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'same-origin',
                 body: JSON.stringify({
-                    trainerId: notifyTrainerId,
-                    activeController: this.activeController,
-                    controllerRole: this.role,
-                    trainees: this.trainees.map(t => t.id)
+                    type: 'control-change',
+                    newController: this.activeController,
+                    controllerRole: this.role
                 })
             });
             
@@ -1656,8 +1652,9 @@ class TrainingSession {
     }
 
     handleControlChangeNotification(message) {
-        const newActiveController = message.activeController;
-        
+        // DB signaling sends 'newController', legacy sent 'activeController'
+        const newActiveController = message.newController || message.activeController;
+
         console.log(`Control change notification: new controller is ${newActiveController}`);
         
         // IMPORTANT: Only trainers can CHANGE control, but both trainers and trainees can HAVE control

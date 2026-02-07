@@ -27,7 +27,6 @@ module.exports = {
   // Coverage configuration
   collectCoverageFrom: [
     'trainingShare3/**/*.js',
-    '!trainingShare3/Signals/**',
     '!**/node_modules/**'
   ],
   coverageDirectory: '<rootDir>/tests/coverage',

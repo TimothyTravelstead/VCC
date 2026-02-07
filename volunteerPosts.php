@@ -869,16 +869,13 @@ if (!empty($results)) {
                     // Delete IMs
                     dataQuery("DELETE FROM VolunteerIM WHERE imTo = ? OR imFrom = ?", [$traineeIdToExit, $traineeIdToExit]);
 
-                    // Write signal file to notify trainee's browser that they've been logged out
-                    $signalDir = __DIR__ . '/trainingShare3/Signals/';
-                    $signalFile = $signalDir . 'participant_' . $traineeIdToExit . '.txt';
-                    $message = json_encode([
-                        'type' => 'trainer-exited',
+                    // Send DB signal to notify trainee's browser that they've been logged out
+                    require_once(__DIR__ . '/trainingShare3/lib/TrainingDB.php');
+                    require_once(__DIR__ . '/trainingShare3/lib/SignalQueue.php');
+                    SignalQueue::sendToParticipant($VolunteerID, $VolunteerID, $traineeIdToExit, 'trainer-exited', [
                         'trainerId' => $VolunteerID,
-                        'timestamp' => time(),
                         'message' => 'Your trainer has signed off. You have been logged out.'
                     ]);
-                    file_put_contents($signalFile, $message . "\n", FILE_APPEND | LOCK_EX);
 
                     error_log("🎓 exitProgram: Logged out trainee '$traineeIdToExit' (trainer '$VolunteerID' exited)");
                 }
@@ -900,6 +897,12 @@ if (!empty($results)) {
                     error_log("VCCFeedPublisher error on trainee logout: " . $e->getMessage());
                 }
             }
+
+            // Clean up training_rooms and training_participants
+            require_once(__DIR__ . '/trainingShare3/lib/TrainingDB.php');
+            TrainingDB::cleanupSession($VolunteerID);
+            error_log("🎓 exitProgram: Cleaned up training session tables for trainer '$VolunteerID'");
+
         } elseif ($isTrainee && $roomName) {
             // Trainee exiting: Check if they had control, transfer back to trainer
             $checkControl = "SELECT active_controller FROM training_session_control WHERE trainer_id = ?";
@@ -921,20 +924,22 @@ if (!empty($results)) {
                 error_log("🎓 exitProgram: Re-added trainer '$roomName' to CallControl");
             }
 
-            // Write signal file to notify trainer that trainee has left
-            $signalDir = __DIR__ . '/trainingShare3/Signals/';
-            $signalFile = $signalDir . 'participant_' . $roomName . '.txt';
+            // Send DB signal to notify trainer that trainee has left
+            require_once(__DIR__ . '/trainingShare3/lib/TrainingDB.php');
+            require_once(__DIR__ . '/trainingShare3/lib/SignalQueue.php');
 
-            $message = json_encode([
-                'type' => 'trainee-exited',
+            // Include whether control was transferred back so trainer JS can update state
+            $hadControl = ($controlResult && count($controlResult) > 0 && $controlResult[0]->active_controller === $VolunteerID);
+            SignalQueue::sendToParticipant($roomName, $VolunteerID, $roomName, 'trainee-exited', [
                 'traineeId' => $VolunteerID,
-                'timestamp' => time(),
-                'message' => $VolunteerID . ' has left the training session'
+                'message' => $VolunteerID . ' has left the training session',
+                'controlReturnedToTrainer' => $hadControl
             ]);
+            error_log("🎓 exitProgram: Sent trainee-exited DB signal for trainer '$roomName'" . ($hadControl ? ' (control returned)' : ''));
 
-            // Append to signal file (trainer will pick it up via polling)
-            file_put_contents($signalFile, $message . "\n", FILE_APPEND | LOCK_EX);
-            error_log("🎓 exitProgram: Wrote trainee-exited signal for trainer '$roomName'");
+            // Remove trainee from training_participants
+            TrainingDB::removeParticipant($roomName, $VolunteerID);
+            error_log("🎓 exitProgram: Removed trainee '$VolunteerID' from training_participants");
         }
 
         // Notify media server of exit
@@ -1022,15 +1027,59 @@ if (!empty($results)) {
                     dataQuery("DELETE FROM training_session_control WHERE trainer_id = ?", [$staleId]);
                     error_log("heartbeat cleanup: Deleted training_session_control for trainer '$staleId'");
 
-                    // Clear OnCall/Ringing for their trainees
+                    // Fully log out all trainees assigned to this trainer (mirrors exit button flow)
                     if (!empty($staleTraineeID)) {
                         $traineeIds = array_map('trim', explode(',', $staleTraineeID));
-                        if (count($traineeIds) > 0) {
-                            $placeholders = implode(',', array_fill(0, count($traineeIds), '?'));
-                            dataQuery("UPDATE Volunteers SET OnCall = 0, Ringing = NULL WHERE UserName IN ($placeholders)", $traineeIds);
-                            error_log("heartbeat cleanup: Cleared OnCall for " . count($traineeIds) . " trainee(s) of trainer '$staleId'");
+                        foreach ($traineeIds as $traineeIdToExit) {
+                            if (empty($traineeIdToExit)) continue;
+
+                            // Log trainee exit
+                            dataQuery("INSERT INTO volunteerlog VALUES (null, ?, now(), 0, 0)", [$traineeIdToExit]);
+
+                            // Fully log out the trainee
+                            dataQuery("UPDATE volunteers SET LoggedOn = 0, Active1 = NULL, Active2 = NULL, OnCall = 0, ChatInvite = NULL, Ringing = NULL, Muted = 0, IncomingCallSid = NULL WHERE UserName = ?", [$traineeIdToExit]);
+
+                            // Remove from CallControl
+                            dataQuery("DELETE FROM CallControl WHERE user_id = ?", [$traineeIdToExit]);
+
+                            // Delete IMs
+                            dataQuery("DELETE FROM VolunteerIM WHERE imTo = ? OR imFrom = ?", [$traineeIdToExit, $traineeIdToExit]);
+
+                            // Send DB signal to notify trainee's browser
+                            require_once(__DIR__ . '/trainingShare3/lib/TrainingDB.php');
+                            require_once(__DIR__ . '/trainingShare3/lib/SignalQueue.php');
+                            SignalQueue::sendToParticipant($staleId, $staleId, $traineeIdToExit, 'trainer-exited', [
+                                'trainerId' => $staleId,
+                                'message' => 'Your trainer has signed off. You have been logged out.',
+                                'reason' => 'heartbeat-timeout'
+                            ]);
+
+                            error_log("heartbeat cleanup: Logged out trainee '$traineeIdToExit' (trainer '$staleId' went stale)");
+                        }
+
+                        // Publish logout events for all trainees
+                        try {
+                            require_once(__DIR__ . '/lib/VCCFeedPublisher.php');
+                            $publisher = new VCCFeedPublisher();
+                            foreach ($traineeIds as $traineeIdToExit) {
+                                if (empty($traineeIdToExit)) continue;
+                                $publisher->publishUserListChange('logout', [
+                                    'username' => $traineeIdToExit,
+                                    'timestamp' => time(),
+                                    'reason' => 'trainer_heartbeat_timeout'
+                                ]);
+                            }
+                            $publisher->refreshUserListCache();
+                        } catch (Exception $e) {
+                            error_log("VCCFeedPublisher error on trainee logout (heartbeat): " . $e->getMessage());
                         }
                     }
+
+                    // Clean up training_rooms and training_participants
+                    require_once(__DIR__ . '/trainingShare3/lib/TrainingDB.php');
+                    TrainingDB::cleanupSession($staleId);
+                    error_log("heartbeat cleanup: Cleaned up training session tables for trainer '$staleId'");
+
                 } elseif ($staleLoggedOn == 6) {
                     // Stale trainee: check if they had control, transfer back to trainer
                     $trainerQuery = "SELECT UserName FROM volunteers WHERE FIND_IN_SET(?, TraineeID) > 0";
@@ -1041,13 +1090,29 @@ if (!empty($results)) {
                         $checkControl = "SELECT active_controller FROM training_session_control WHERE trainer_id = ?";
                         $controlResult = dataQuery($checkControl, [$trainerId]);
 
-                        if (!empty($controlResult) && $controlResult[0]->active_controller === $staleId) {
+                        $hadControl = (!empty($controlResult) && $controlResult[0]->active_controller === $staleId);
+
+                        if ($hadControl) {
                             // Transfer control back to trainer
                             dataQuery("UPDATE training_session_control SET active_controller = trainer_id, controller_role = 'trainer' WHERE trainer_id = ?", [$trainerId]);
                             // Re-add trainer to CallControl so they can receive calls
                             dataQuery("INSERT INTO CallControl (user_id, logged_on_status, can_receive_calls, can_receive_chats) VALUES (?, 4, 1, 1) ON DUPLICATE KEY UPDATE can_receive_calls = 1, can_receive_chats = 1", [$trainerId]);
                             error_log("heartbeat cleanup: Trainee '$staleId' had control - transferred back to trainer '$trainerId'");
                         }
+
+                        // Send DB signal to notify trainer that trainee has left
+                        require_once(__DIR__ . '/trainingShare3/lib/TrainingDB.php');
+                        require_once(__DIR__ . '/trainingShare3/lib/SignalQueue.php');
+                        SignalQueue::sendToParticipant($trainerId, $staleId, $trainerId, 'trainee-exited', [
+                            'traineeId' => $staleId,
+                            'message' => $staleId . ' has left the training session (heartbeat timeout)',
+                            'reason' => 'heartbeat-timeout',
+                            'controlReturnedToTrainer' => $hadControl
+                        ]);
+                        error_log("heartbeat cleanup: Sent trainee-exited DB signal for trainer '$trainerId'" . ($hadControl ? ' (control returned)' : ''));
+
+                        // Remove stale trainee from training_participants
+                        TrainingDB::removeParticipant($trainerId, $staleId);
                     }
                 }
 

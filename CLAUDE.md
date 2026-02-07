@@ -269,9 +269,9 @@ php initializeRedisCache.php
 - `trainingShare3/` - **CURRENT** Multi-trainee training system (PHP-based)
   - `screenSharingControlMulti.js` - Multi-peer WebRTC client
   - `trainingSessionUpdated.js` - Training session management
-  - `signalingServerMulti.php` - Room-based signaling server
-  - `roomManager.php` - REST API for room operations
-  - `/Signals/` - File-based message queue directory
+  - `signalSend.php` / `signalPollDB.php` - DB-backed signaling (send/poll)
+  - `lib/TrainingDB.php` - Database abstraction layer
+  - `lib/SignalQueue.php` - Atomic signal send/receive
 - `trainingShare/` - Legacy 1:1 training system (preserved for reference)
 
 ### Key Architectural Principles
@@ -279,7 +279,7 @@ php initializeRedisCache.php
 - **Unified EventSource** - Screen sharing uses main `vccFeed.php` stream
 - **Session locking prevention** - `session_write_close()` in all endpoints
 - **Multi-trainee support** - 1 trainer with multiple trainees simultaneously
-- **File-based signaling** - Messages queued as JSON files, auto-cleanup after delivery
+- **DB-backed signaling** - Atomic signal delivery via `training_signals` table, 500ms polling
 
 ### 🚨 CRITICAL: Training Call Separation
 
@@ -519,7 +519,7 @@ CREATE INDEX idx_date_time ON CallerHistory(Date DESC, Time DESC);
 ### Active Tasks
 - **Redis Polling Mode Testing**: User list display working. Need to test call/chat state updates.
 - **Screen Reader Accessibility**: Phases 1-5 complete, Phases 6-8 remaining. See `SCREEN_READER_ACCESSIBILITY_PLAN.md`.
-- **Training System Redesign**: Parallel running DB signaling + legacy file signaling (2-week test period).
+- **Training System Redesign**: Complete. DB signaling is the sole signaling system.
 
 ### Recently Completed
 - `c9eaae7` - Sync exit and heartbeat fixes from production (trainer exit logs out trainees, enhanced heartbeat cleanup, inactive chatroom handling, server-side trainee signoffs)
@@ -586,13 +586,6 @@ training_events_log      -- Debugging/audit trail
 
 **Critical fix in `unAnsweredCall.php`**: When trainer/trainee answers a call, `answerCall.php` redirects it via Twilio API. However, Twilio's `<Dial>` action still fires `unAnsweredCall.php` as a callback. The fix detects training mode (LoggedOn 4 or 6) and returns empty `<Response>` instead of marking the call as unanswered.
 
-### Parallel Running Mode
+### Signaling System (Complete)
 
-Currently running both old and new signaling systems:
-- **DB signaling**: 500ms polling via `signalPollDB.php`
-- **Legacy signaling**: Falls back to `pollSignals.php` + `/Signals/` files
-
-After 2-week verification period, legacy files can be removed:
-- `trainingShare3/signalingServerMulti.php`
-- `trainingShare3/pollSignals.php`
-- `trainingShare3/Signals/` directory
+DB-backed signaling is the sole signaling system. Legacy file-based signaling has been fully removed.

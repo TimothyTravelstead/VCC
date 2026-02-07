@@ -31,9 +31,6 @@ class MultiTraineeScreenSharing {
             this.remoteVideo.poster = "trainingShare3/poster.png";
         }
         
-        // Signaling URLs
-        this.signalingUrl = `/trainingShare3/signalingServerMulti.php?trainingShareRoom=${this.roomId}&role=${this.role}&participantId=${this.participantId}`;
-        
         // WebRTC configuration
         this.rtcConfiguration = {
             'iceServers': [
@@ -510,6 +507,24 @@ class MultiTraineeScreenSharing {
                 case 'reconnect-request':
                     console.log(`🔄 Reconnect request from ${senderId}`);
                     this.handleReconnectRequest(message);
+                    break;
+                case 'control-request':
+                    console.log(`🎮 Control request from ${senderId}`);
+                    if (window.trainingSession && typeof window.trainingSession.handleControlRequestNotification === 'function') {
+                        window.trainingSession.handleControlRequestNotification(message);
+                    }
+                    break;
+                case 'trainer-exited':
+                    console.log(`🚪 Trainer exited: ${senderId}`);
+                    if (window.trainingSession && typeof window.trainingSession.handleTrainerExited === 'function') {
+                        window.trainingSession.handleTrainerExited(message);
+                    }
+                    break;
+                case 'trainee-exited':
+                    console.log(`🚪 Trainee exited: ${message.traineeId || senderId}`);
+                    if (window.trainingSession && typeof window.trainingSession.handleTraineeExited === 'function') {
+                        window.trainingSession.handleTraineeExited(message);
+                    }
                     break;
                 default:
                     console.log('❓ Unknown message type:', message.type);

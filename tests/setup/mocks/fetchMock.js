@@ -190,8 +190,8 @@ function setupTrainingEndpointMocks() {
     }
   });
 
-  // signalingServerMulti.php
-  setFetchResponse(/signalingServerMulti\.php/, {
+  // signalSend.php (DB-backed signaling)
+  setFetchResponse(/signalSend\.php/, {
     body: {
       success: true,
       messages: []

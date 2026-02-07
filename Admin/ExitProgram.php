@@ -151,16 +151,60 @@ if ($isTrainer) {
     dataQuery($deleteTrainingControl, [$VolunteerID]);
     writeAdminLog("TrainingControl: Deleted training_session_control for trainer $VolunteerID", "EXIT_TRAINING");
 
-    // Clear OnCall status for all trainees assigned to this trainer
+    // Fully log out all trainees assigned to this trainer (mirrors volunteerPosts.php exit flow)
     // ($traineeID was captured earlier before TraineeID was set to NULL)
     if (!empty($traineeID)) {
         $traineeIds = array_map('trim', explode(',', $traineeID));
-        if (count($traineeIds) > 0) {
-            $placeholders = implode(',', array_fill(0, count($traineeIds), '?'));
-            dataQuery("UPDATE Volunteers SET OnCall = 0, Ringing = NULL WHERE UserName IN ($placeholders)", $traineeIds);
-            writeAdminLog("TrainingControl: Cleared OnCall for " . count($traineeIds) . " trainee(s)", "EXIT_TRAINING");
+        foreach ($traineeIds as $traineeIdToExit) {
+            if (empty($traineeIdToExit)) continue;
+
+            // Log trainee exit
+            dataQuery("INSERT INTO Volunteerlog VALUES (null, ?, NOW(), 0, null)", [$traineeIdToExit]);
+
+            // Fully log out the trainee
+            dataQuery("UPDATE Volunteers SET LoggedOn = 0, Active1 = NULL, Active2 = NULL, OnCall = 0, ChatInvite = NULL, Ringing = NULL, Muted = 0, IncomingCallSid = NULL WHERE UserName = ?", [$traineeIdToExit]);
+
+            // Remove from CallControl
+            dataQuery("DELETE FROM CallControl WHERE user_id = ?", [$traineeIdToExit]);
+
+            // Delete IMs
+            dataQuery("DELETE FROM VolunteerIM WHERE imTo = ? OR imFrom = ?", [$traineeIdToExit, $traineeIdToExit]);
+
+            // Send DB signal to notify trainee's browser
+            require_once(dirname(__FILE__) . '/../trainingShare3/lib/TrainingDB.php');
+            require_once(dirname(__FILE__) . '/../trainingShare3/lib/SignalQueue.php');
+            SignalQueue::sendToParticipant($VolunteerID, $VolunteerID, $traineeIdToExit, 'trainer-exited', [
+                'trainerId' => $VolunteerID,
+                'message' => 'Your trainer has signed off. You have been logged out.',
+                'reason' => 'admin-forced-exit'
+            ]);
+
+            writeAdminLog("TrainingControl: Logged out trainee $traineeIdToExit (trainer $VolunteerID exited)", "EXIT_TRAINING");
+        }
+
+        // Publish logout events for all trainees
+        try {
+            require_once(__DIR__ . '/../lib/VCCFeedPublisher.php');
+            $publisher = new VCCFeedPublisher();
+            foreach ($traineeIds as $traineeIdToExit) {
+                if (empty($traineeIdToExit)) continue;
+                $publisher->publishUserListChange('logout', [
+                    'username' => $traineeIdToExit,
+                    'timestamp' => time(),
+                    'reason' => 'trainer_admin_exit'
+                ]);
+            }
+            $publisher->refreshUserListCache();
+        } catch (Exception $e) {
+            error_log("VCCFeedPublisher error on trainee logout (admin exit): " . $e->getMessage());
         }
     }
+
+    // Clean up training_rooms and training_participants
+    require_once(dirname(__FILE__) . '/../trainingShare3/lib/TrainingDB.php');
+    TrainingDB::cleanupSession($VolunteerID);
+    writeAdminLog("TrainingControl: Cleaned up training session tables for trainer $VolunteerID", "EXIT_TRAINING");
+
 } elseif ($isTrainee && $roomName) {
     // Trainee exiting: Check if they had control, transfer back to trainer
     $checkControl = "SELECT active_controller FROM training_session_control WHERE trainer_id = ?";
@@ -182,21 +226,23 @@ if ($isTrainer) {
         writeAdminLog("TrainingControl: Re-added trainer $roomName to CallControl", "EXIT_TRAINING");
     }
 
-    // Write signal file to notify trainer that trainee has left
-    $signalDir = dirname(__FILE__) . '/../trainingShare3/Signals/';
-    $signalFile = $signalDir . 'participant_' . $roomName . '.txt';
+    // Send DB signal to notify trainer that trainee has left
+    require_once(dirname(__FILE__) . '/../trainingShare3/lib/TrainingDB.php');
+    require_once(dirname(__FILE__) . '/../trainingShare3/lib/SignalQueue.php');
 
-    $message = json_encode([
-        'type' => 'trainee-exited',
+    // Include whether control was transferred back so trainer JS can update state
+    $hadControl = ($controlResult && count($controlResult) > 0 && $controlResult[0]->active_controller === $VolunteerID);
+    SignalQueue::sendToParticipant($roomName, $VolunteerID, $roomName, 'trainee-exited', [
         'traineeId' => $VolunteerID,
-        'timestamp' => time(),
         'message' => $VolunteerID . ' has left the training session (admin logout)',
-        'reason' => 'admin-forced-exit'
+        'reason' => 'admin-forced-exit',
+        'controlReturnedToTrainer' => $hadControl
     ]);
+    writeAdminLog("TrainingControl: Sent trainee-exited DB signal for trainer $roomName", "EXIT_TRAINING");
 
-    // Append to signal file (trainer will pick it up via polling)
-    file_put_contents($signalFile, $message . "\n", FILE_APPEND | LOCK_EX);
-    writeAdminLog("TrainingControl: Wrote trainee-exited signal for trainer $roomName", "EXIT_TRAINING");
+    // Remove trainee from training_participants
+    TrainingDB::removeParticipant($roomName, $VolunteerID);
+    writeAdminLog("TrainingControl: Removed trainee $VolunteerID from training_participants", "EXIT_TRAINING");
 }
 
 // **PUBLISH LOGOUT EVENT TO REDIS FOR REAL-TIME UPDATES**

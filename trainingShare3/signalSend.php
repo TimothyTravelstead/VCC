@@ -117,16 +117,6 @@ $signalData['timestamp'] = microtime(true);
 $result = false;
 
 switch ($signalType) {
-    case 'join-room':
-        // DEPRECATED: Use roomJoin.php instead to avoid duplicate participant-joined broadcasts
-        // This case is kept for backwards compatibility but does NOT broadcast
-        // roomJoin.php handles addParticipant AND broadcasts
-        error_log("signalSend.php: join-room signal is deprecated, use roomJoin.php instead");
-        TrainingDB::addParticipant($roomId, $participantId, $participantRole);
-        // DO NOT broadcast here - roomJoin.php already broadcasts
-        $result = true;
-        break;
-
     case 'leave-room':
         // Remove participant
         TrainingDB::removeParticipant($roomId, $participantId);
@@ -188,8 +178,12 @@ switch ($signalType) {
         break;
 
     case 'conference-restart':
-        $result = SignalQueue::broadcastConferenceRestart($roomId, $participantId);
-        TrainingDB::logEvent($roomId, 'conference_restart', null, $participantId);
+        // Pass through full signal data so activeController and newConferenceId reach clients
+        $result = SignalQueue::broadcastToRoom($roomId, $participantId, 'conference-restart', $signalData);
+        TrainingDB::logEvent($roomId, 'conference_restart', [
+            'activeController' => $signalData['activeController'] ?? null,
+            'newConferenceId' => $signalData['newConferenceId'] ?? null
+        ], $participantId);
         break;
 
     default:
