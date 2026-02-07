@@ -519,25 +519,19 @@ CREATE INDEX idx_date_time ON CallerHistory(Date DESC, Time DESC);
 ### Active Tasks
 - **Redis Polling Mode Testing**: User list display working. Need to test call/chat state updates.
 - **Screen Reader Accessibility**: Phases 1-5 complete, Phases 6-8 remaining. See `SCREEN_READER_ACCESSIBILITY_PLAN.md`.
-- **Training System Redesign**: Complete. DB signaling is the sole signaling system.
 
 ### Recently Completed
-- `c9eaae7` - Sync exit and heartbeat fixes from production (trainer exit logs out trainees, enhanced heartbeat cleanup, inactive chatroom handling, server-side trainee signoffs)
-- Training System Redesign Phase A-E (see below for details)
+- `479f403` - Remove legacy file-based signaling; fix exit flow gaps (see details below)
+- `c9eaae7` - Sync exit and heartbeat fixes from production
 - `301a650` - Add CallSid flow logging (📋 [CALLSID] prefix for filtering)
 - `63d0cf1` - Fix CallSid capture gap (check call.sid first in Twilio SDK v2)
 - `9817687` - Remove fallbacks, add critical error logging (no silent failures)
 - `70cb87f` - Fix excessive muting (state tracking, removed bulk ops)
-- `a5ef421` - Add system mute events to Full Call Details modal
-- `27eeea0` - Fix training mute event display (participant-mute vs mute)
-- `b5ff9f4` - Skip intermediate modal in Admin CallHistoryList
-- `a8aca13` - Fix incoming call ringing audio
-- `3ad4a8d` - Fix Admin Full Call Details modal (CallLog query, volunteer name)
 - `c34949c` - Training System Test Suite (112 tests)
 
-## Training System Redesign (January 2025)
+## Training System Redesign (January-February 2025)
 
-Fundamental redesign of `trainingShare3` module to fix stability issues.
+Fundamental redesign of `trainingShare3` module to fix stability issues. Completed in two phases: DB signaling implementation (January) and legacy removal + exit flow fixes (February).
 
 ### Problems Fixed
 | Problem | Solution |
@@ -547,45 +541,88 @@ Fundamental redesign of `trainingShare3` module to fix stability issues.
 | Call drop on trainer Accept | Training detection in `unAnsweredCall.php` |
 | 3-tier muting inconsistencies | Server-authoritative mute state |
 | 30+ state variables | Formal 5-state machine |
+| Inconsistent exit flows | All 3 paths (exit button, admin, heartbeat) fully synchronized |
+| Orphaned trainees on trainer browser close | Heartbeat cleanup now cascade-logouts trainees |
+| Training table accumulation | `cleanupSession()`/`removeParticipant()` in all exit paths |
 
-### New Database Tables
+### Database Tables
 
 ```sql
 -- Run migration: php trainingShare3/migrations/run_migration.php
 training_rooms           -- Active training sessions
 training_participants    -- Who's in each room
-training_signals         -- WebRTC signaling (replaces /Signals/ files)
+training_signals         -- WebRTC signaling
 training_session_state   -- State machine (INITIALIZING→CONNECTED→ON_CALL→RECONNECTING→DISCONNECTED)
+training_session_control -- Who currently has control (trainer_id, active_controller, controller_role)
 training_mute_state      -- Server-authoritative mute tracking
 training_events_log      -- Debugging/audit trail
 ```
 
-### New PHP Endpoints
+### PHP Endpoints
 
 | Endpoint | Purpose |
 |----------|---------|
-| `signalSend.php` | Send WebRTC signals to DB |
+| `signalSend.php` | Send signals to DB (WebRTC, control-change, conference-restart, etc.) |
 | `signalPollDB.php` | Poll for signals (500ms) |
 | `roomJoin.php` | Join training room |
 | `roomLeave.php` | Leave training room |
+| `setTrainingControl.php` | Transfer control (updates training_session_control + CallControl) |
+| `getTrainingControl.php` | Get current control state |
 | `setMuteState.php` | Set mute (DB + Twilio API) |
 | `getMuteState.php` | Get mute states |
 | `bulkMute.php` | Mute all non-controllers |
-| `transitionState.php` | State machine transitions |
-| `getSessionState.php` | Get full session state |
+| `muteConferenceParticipants.php` | Server-side Twilio REST API muting |
 
-### New Library Files
+### Library Files
 
 | File | Purpose |
 |------|---------|
-| `trainingShare3/lib/TrainingDB.php` | Database abstraction layer |
-| `trainingShare3/lib/SignalQueue.php` | Atomic signal send/receive |
-| `trainingShare3/lib/TrainingSignalingClient.js` | JS client for DB signaling |
+| `trainingShare3/lib/TrainingDB.php` | Database abstraction (rooms, participants, state, cleanup) |
+| `trainingShare3/lib/SignalQueue.php` | Atomic signal send/receive/broadcast |
+
+**CRITICAL**: `SignalQueue.php` depends on `TrainingDB.php` (calls `TrainingDB::getSessionVersion()`) but does NOT require it. Callers must `require_once` both files.
 
 ### Call Drop Fix
 
 **Critical fix in `unAnsweredCall.php`**: When trainer/trainee answers a call, `answerCall.php` redirects it via Twilio API. However, Twilio's `<Dial>` action still fires `unAnsweredCall.php` as a callback. The fix detects training mode (LoggedOn 4 or 6) and returns empty `<Response>` instead of marking the call as unanswered.
 
-### Signaling System (Complete)
+### Signaling System
 
-DB-backed signaling is the sole signaling system. Legacy file-based signaling has been fully removed.
+DB-backed signaling is the sole signaling system. Legacy file-based signaling was fully removed in February 2025.
+
+**Signal types handled in `signalSend.php`:**
+- `offer`, `answer`, `ice-candidate` — WebRTC negotiation (direct to recipient)
+- `control-change` — Broadcast via `SignalQueue::broadcastControlChange()` (sends `newController` field)
+- `conference-restart` — Broadcast via `broadcastToRoom()` with full data passthrough (`activeController`, `newConferenceId`)
+- `control-request` — Direct message from trainee to trainer (uses default case)
+- `screen-share-start`, `screen-share-stop`, `call-start`, `call-end` — Broadcast events
+- `leave-room` — Removes participant, broadcasts departure
+
+**Exit signals** (`trainer-exited`, `trainee-exited`) are sent from PHP exit paths via `SignalQueue::sendToParticipant()`, NOT through `signalSend.php`.
+
+### Training Exit Flow Architecture
+
+All three exit paths are fully synchronized:
+
+| Path | Trigger | Files |
+|------|---------|-------|
+| Exit button | User clicks exit | `volunteerPosts.php` case `exitProgram` |
+| Admin force-exit | Admin logs out user | `Admin/ExitProgram.php` |
+| Browser close | Heartbeat stops for 2+ min | `volunteerPosts.php` case `heartbeat` |
+
+**Trainer exit** (all 3 paths):
+1. Delete `training_session_control` record
+2. Cascade-logout each trainee: volunteerlog, `LoggedOn=0`, CallControl delete, IM delete
+3. Send `trainer-exited` DB signal to each trainee
+4. Publish Redis logout events for all trainees
+5. `TrainingDB::cleanupSession()` — closes room, deletes participants, clears state/mute
+
+**Trainee exit** (all 3 paths):
+1. Check if trainee had control → transfer back to trainer + re-add trainer to CallControl
+2. Send `trainee-exited` DB signal with `controlReturnedToTrainer` flag
+3. `TrainingDB::removeParticipant()` — removes trainee from training_participants
+
+**Browser-side handlers** (`trainingSessionUpdated.js`):
+- `handleTrainerExited()` — shows alert, redirects to `/login.php` after 3 seconds
+- `handleTraineeExited()` — removes from list, updates control state if `controlReturnedToTrainer`, shows alert
+- `trainerSignedOff()` — fallback safety net (detects trainer offline via user list, exits after 10s delay)
