@@ -46,6 +46,7 @@ $casesNeedingSessionWrite = [
     'startCall',       // Writes call start time
     'endCall',         // Writes call/chat end times, unsets vars
     'exitProgram',     // Clears session auth on intentional exit
+    'clearSession',    // Clears session auth on cascade logout
 ];
 
 if (!in_array($PostType, $casesNeedingSessionWrite)) {
@@ -976,6 +977,15 @@ if (!empty($results)) {
 
         // Release session lock for clean shutdown
         session_write_close();
+        break;
+
+    // clearSession - Called when server detects LoggedOn=0 (cascade logout)
+    // Clears the PHP session so login.php doesn't redirect back to index2.php
+    case 'clearSession':
+        $_SESSION['auth'] = '';
+        $_SESSION['UserID'] = '';
+        session_write_close();
+        echo "OK";
         break;
 
     // restoreSession is no longer needed since sendBeacon no longer changes LoggedOn status

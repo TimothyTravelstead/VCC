@@ -3083,14 +3083,21 @@ function ChatMonitor(name) {
             // Logout Handler - server detected LoggedOn=0 for this user
             // This catches cascade logouts (e.g., trainer exited, admin force-exit)
             source.addEventListener('logout', (event) => {
-                console.log("EventSource: Received logout event from server - redirecting to login");
+                console.log("EventSource: Received logout event from server - clearing session and redirecting");
                 // Close the EventSource to prevent reconnection loop
                 source.close();
-                // Redirect to login page
                 if (!exiting) {
                     exiting = true;
                     window.onbeforeunload = null;
-                    window.location.href = 'login.php';
+                    // Clear the PHP session so login.php doesn't redirect back
+                    // Use sendBeacon for reliable delivery during page unload
+                    const clearData = new FormData();
+                    clearData.append('postType', 'clearSession');
+                    navigator.sendBeacon('volunteerPosts.php', clearData);
+                    // Brief delay to let sendBeacon fire, then redirect
+                    setTimeout(() => {
+                        window.location.href = 'login.php';
+                    }, 200);
                 }
             }, false);
 
