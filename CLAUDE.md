@@ -202,6 +202,34 @@ require_once('../private_html/db_login.php');
 - HTTPS is required for WebRTC features (getUserMedia/getDisplayMedia)
 - Multiple duplicate files exist - check timestamps when editing
 
+## Staging Auto-Deploy
+
+Staging (`vcctest.org`) auto-deploys from GitHub on push to `main`. Uses a two-part system because `exec()` is blocked in PHP-FPM by Imunify360.
+
+### Architecture
+
+| Component | File | Runs As | Purpose |
+|-----------|------|---------|---------|
+| Webhook | `api/github-webhook.php` | `dgqtkqjasj` (www-data) | Validates GitHub HMAC signature, writes `.deploy_trigger` |
+| Cron job | `api/deploy-cron.sh` | `timtravelstead` (crontab) | Every minute: checks trigger, runs `git fetch` + `git reset --hard origin/main` + `git clean -fd` |
+
+### Key Details
+
+- **Deploy strategy**: `git reset --hard` (not `git pull`) so local changes never block deploys
+- **Webhook secret**: Configured in GitHub repo Settings > Webhooks
+- **Logs**: Webhook writes to `deploy.log`, cron writes to `deploy-cron.log` (different OS users can't share log files)
+- **Concurrency**: `.deploy_lock` file prevents overlapping deploys (5-minute stale check)
+- **Gitignored**: `.deploy_trigger`, `.deploy_lock`, `deploy.log`, `deploy-cron.log`
+- **SSH access**: `ssh timtravelstead@vcctest.org`
+- **Repo path**: `/home/1203785.cloudwaysapps.com/dgqtkqjasj/public_html`
+- **Known limitation**: Some locked files can't be cleaned by `git clean` (`archive_old_system/Signals/`, `testShare/vendor/`) — owned by `dgqtkqjasj` with sticky bit, harmless
+
+### Manual Deploy (if webhook/cron fails)
+
+```bash
+ssh timtravelstead@vcctest.org "cd /home/1203785.cloudwaysapps.com/dgqtkqjasj/public_html && git fetch origin main && git reset --hard origin/main"
+```
+
 ## Real-Time Update System
 
 ### Current Mode: Legacy SSE (vccFeed.php)
