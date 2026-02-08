@@ -3,7 +3,9 @@
  * GitHub Webhook - Auto-deploy on push to main
  *
  * GitHub sends a POST request here when code is pushed.
- * This script verifies the signature and runs git pull.
+ * Since exec() is blocked in PHP-FPM by the server security layer,
+ * this script validates the signature and writes a trigger file.
+ * A cron job (deploy-cron.sh) checks for the trigger and runs git commands.
  */
 
 // Webhook secret - must match what's configured in GitHub
@@ -45,29 +47,32 @@ if ($ref !== 'refs/heads/main') {
     exit('Not main branch, skipping');
 }
 
-// Log the deployment
-$logFile = __DIR__ . '/../deploy.log';
-$timestamp = date('Y-m-d H:i:s');
+// Extract info for logging
 $pusher = $data['pusher']['name'] ?? 'unknown';
 $commitMsg = $data['head_commit']['message'] ?? 'no message';
+$commitSummary = strtok($commitMsg, "\n");
 
-file_put_contents($logFile, "[$timestamp] Deploy triggered by $pusher: $commitMsg\n", FILE_APPEND);
+// Write trigger file for the cron job to pick up
+$triggerFile = dirname(__DIR__) . '/.deploy_trigger';
+$triggerData = json_encode([
+    'timestamp' => date('Y-m-d H:i:s'),
+    'pusher' => $pusher,
+    'commit' => $commitSummary
+]);
 
-// Change to the repo directory and pull
-$repoDir = dirname(__DIR__);
-$output = [];
-$returnCode = 0;
-
-// Run git pull
-exec("cd " . escapeshellarg($repoDir) . " && git pull origin main 2>&1", $output, $returnCode);
-
-$result = implode("\n", $output);
-file_put_contents($logFile, "[$timestamp] Result (code $returnCode): $result\n\n", FILE_APPEND);
-
-if ($returnCode === 0) {
-    http_response_code(200);
-    echo "Deploy successful: $result";
-} else {
+if (file_put_contents($triggerFile, $triggerData) === false) {
     http_response_code(500);
-    echo "Deploy failed: $result";
+    exit('Failed to write deploy trigger');
 }
+
+// Log that webhook was received
+$logFile = dirname(__DIR__) . '/deploy.log';
+$timestamp = date('Y-m-d H:i:s');
+file_put_contents(
+    $logFile,
+    "[$timestamp] Webhook received from $pusher: $commitSummary (waiting for cron)\n",
+    FILE_APPEND
+);
+
+http_response_code(200);
+echo "Deploy queued for: $commitSummary";
