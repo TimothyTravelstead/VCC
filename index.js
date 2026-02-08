@@ -3080,6 +3080,20 @@ function ChatMonitor(name) {
                 }
             }, false);
 
+            // Logout Handler - server detected LoggedOn=0 for this user
+            // This catches cascade logouts (e.g., trainer exited, admin force-exit)
+            source.addEventListener('logout', (event) => {
+                console.log("EventSource: Received logout event from server - redirecting to login");
+                // Close the EventSource to prevent reconnection loop
+                source.close();
+                // Redirect to login page
+                if (!exiting) {
+                    exiting = true;
+                    window.onbeforeunload = null;
+                    window.location.href = 'login.php';
+                }
+            }, false);
+
             // Chat Message Handler
             source.addEventListener('chatMessage', (event) => {
                 const message = JSON.parse(event.data);        
