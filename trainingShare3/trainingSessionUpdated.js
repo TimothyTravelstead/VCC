@@ -640,9 +640,10 @@ class TrainingSession {
             this.connectConference();
         }
         
-        // For trainees, the PHP implementation handles connections automatically
-        if (this.role === "trainee" && this.shareScreen) {
-            console.log("Trainee ready - PHP implementation will handle trainer connection automatically");
+        // For trainees, retry room join if it failed earlier (e.g., trainee logged in before trainer)
+        if (this.role === "trainee" && this.shareScreen && !this.shareScreen.hasJoinedRoom) {
+            console.log("Trainee retrying room join now that trainer is online");
+            this.shareScreen.joinRoom();
         }
     }
 
@@ -843,8 +844,11 @@ class TrainingSession {
         const traineeId = message.traineeId || message.from;
         console.log(`🚪 Trainee has exited the session: ${traineeId}`);
 
-        // Remove trainee from local list
-        this.trainees = this.trainees.filter(t => t.id !== traineeId);
+        // Mark trainee as offline (don't remove — keeps them visible in yellow)
+        const trainee = this.trainees.find(t => t.id === traineeId);
+        if (trainee) {
+            trainee.isSignedOn = false;
+        }
 
         // If the exiting trainee had control, server transferred it back to trainer
         if (message.controlReturnedToTrainer) {
@@ -854,6 +858,7 @@ class TrainingSession {
         }
 
         this._showAlert(`${traineeId} has left the training session.`);
+        this.updateTraineeList();
     }
 
     // Method for trainers to take back control
