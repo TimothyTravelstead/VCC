@@ -31,20 +31,17 @@ class MultiTraineeScreenSharing {
             this.remoteVideo.poster = "trainingShare3/poster.png";
         }
         
-        // WebRTC configuration
+        // WebRTC configuration — starts with STUN only; TURN credentials
+        // are fetched from the server during init() so they stay out of source
         this.rtcConfiguration = {
             'iceServers': [
                 {'urls': 'stun:stun.stunprotocol.org:3478'},
                 {'urls': 'stun:stun.l.google.com:19302'},
                 {'urls': 'stun:stun1.l.google.com:19302'},
-                {'urls': 'stun:stun2.l.google.com:19302'},
-                {
-                    'urls': 'turns:match.volunteerlogin.org:5349',
-                    'username': 'travelstead@mac.com',
-                    'credential': 'BarbMassapequa99+'
-                }
+                {'urls': 'stun:stun2.l.google.com:19302'}
             ]
         };
+        this.iceServersLoaded = false;
         
         // State management
         this.participants = new Map(); // participantId -> {role, peerConnection, status}
@@ -111,8 +108,11 @@ class MultiTraineeScreenSharing {
     async init() {
         this.debugLog("INIT_START");
         console.log(`Initializing multi-trainee screen sharing as ${this.role} in room ${this.roomId}`);
-        
+
         try {
+            // Fetch TURN credentials from server before any peer connections
+            await this.loadIceServers();
+
             // Setup signaling first
             this.setupSignaling();
             
@@ -157,6 +157,32 @@ class MultiTraineeScreenSharing {
         }
     }
     
+    /**
+     * Fetch TURN server credentials from the authenticated PHP endpoint.
+     * Merges them into rtcConfiguration so peer connections use TURN relay.
+     * Falls back to STUN-only if fetch fails (works on same network).
+     */
+    async loadIceServers() {
+        try {
+            const response = await fetch('/trainingShare3/getIceServers.php', {
+                credentials: 'same-origin',
+                cache: 'no-cache'
+            });
+            if (response.ok) {
+                const data = await response.json();
+                if (data.success && data.iceServers) {
+                    this.rtcConfiguration.iceServers = data.iceServers;
+                    this.iceServersLoaded = true;
+                    console.log(`🔑 ICE servers loaded from server (${data.iceServers.length} servers)`);
+                }
+            } else {
+                console.warn('⚠️ Failed to load ICE servers from server, using STUN only');
+            }
+        } catch (error) {
+            console.warn('⚠️ Error loading ICE servers, using STUN only:', error.message);
+        }
+    }
+
     async setupLocalStream() {
         this.debugLog("SETUP_LOCAL_STREAM_START", { role: this.role });
 
@@ -254,11 +280,6 @@ class MultiTraineeScreenSharing {
         // Initial join room
         setTimeout(() => {
             this.joinRoom();
-            if (this.role === 'trainee') {
-                setTimeout(() => {
-                    this.checkForExistingScreenShare();
-                }, 2000);
-            }
         }, 500);
     }
 
@@ -435,30 +456,30 @@ class MultiTraineeScreenSharing {
         }
     }
     
-    handleSignalMessage(data) {
+    async handleSignalMessage(data) {
         // Data is always an object from DB-backed polling
         if (typeof data === 'object') {
-            this.processSingleMessage(data);
+            await this.processSingleMessage(data);
         } else {
             // Unexpected string data - log error but try to process
             console.warn('⚠️ Received unexpected string data instead of object:', data);
             try {
                 const parsed = JSON.parse(data);
-                this.processSingleMessage(parsed);
+                await this.processSingleMessage(parsed);
             } catch (e) {
                 console.error('🚨 Failed to parse signal data:', data);
             }
         }
     }
     
-    processSingleMessage(data) {
+    async processSingleMessage(data) {
         try {
             const message = typeof data === 'string' ? JSON.parse(data) : data;
             // Support both new and legacy sender field formats
             const senderId = message.senderId || message.from || message.participantId;
             console.log(`📥 Processing ${message.type} from ${senderId}`);
             this.debugLog("RECEIVED_MESSAGE", { type: message.type, senderId, message });
-            
+
             switch (message.type) {
                 case 'participant-joined':
                     console.log(`✅ Participant joined: ${message.participantId} as ${message.participantRole}`);
@@ -470,15 +491,15 @@ class MultiTraineeScreenSharing {
                     break;
                 case 'offer':
                     console.log(`📤 Received WebRTC offer from ${senderId}`);
-                    this.handleOffer(message);
+                    await this.handleOffer(message);
                     break;
                 case 'answer':
                     console.log(`📥 Received WebRTC answer from ${senderId}`);
-                    this.handleAnswer(message);
+                    await this.handleAnswer(message);
                     break;
                 case 'ice-candidate':
                     console.log(`🧊 Received ICE candidate from ${senderId}`);
-                    this.handleIceCandidate(message);
+                    await this.handleIceCandidate(message);
                     break;
                 case 'screen-share-start':
                     console.log(`🖥️ Screen share started by ${senderId}`);
@@ -646,45 +667,6 @@ class MultiTraineeScreenSharing {
         this.initiateConnection(participantId);
     }
     
-    checkForExistingScreenShare() {
-        this.debugLog("CHECK_EXISTING_SCREEN_SHARE_START");
-        
-        // Check if there's already a screen sharer by looking at room participants
-        // and checking if any trainer is in "sharing" state
-        fetch(`/trainingShare3/roomManager.php?action=room-status&roomId=${this.roomId}`)
-            .then(response => response.json())
-            .then(data => {
-                this.debugLog("ROOM_STATUS_RESPONSE", { data });
-                
-                if (data && data.participants) {
-                    // Look for trainers in the room
-                    for (const [participantId, participant] of Object.entries(data.participants)) {
-                        if (participant.role === 'trainer') {
-                            this.debugLog("FOUND_TRAINER_IN_ROOM", { participantId });
-                            
-                            // Create peer connection for trainer if not exists
-                            if (!this.participants.has(participantId)) {
-                                this.debugLog("CREATING_PEER_CONNECTION_FOR_EXISTING_TRAINER", { participantId });
-                                this.createPeerConnection(participantId, 'trainer');
-                            }
-                            
-                            // Assume trainer is sharing (since we're checking for existing sharing)
-                            // Trigger the screen share display
-                            this.debugLog("SIMULATING_SCREEN_SHARE_START_FOR_EXISTING");
-                            this.handleScreenShareStart({
-                                senderId: participantId,
-                                senderRole: 'trainer',
-                                type: 'screen-share-start'
-                            });
-                        }
-                    }
-                }
-            })
-            .catch(error => {
-                this.debugLog("CHECK_EXISTING_SCREEN_SHARE_ERROR", { error: error.message });
-            });
-    }
-    
     sendSignal(message) {
         // This method is now defined in setupSignaling()
         // It will be overridden when signaling is set up
@@ -733,13 +715,21 @@ class MultiTraineeScreenSharing {
     handleParticipantLeft(message) {
         const { participantId } = message;
         console.log(`Participant ${participantId} left`);
-        
+
         if (this.participants.has(participantId)) {
             const participant = this.participants.get(participantId);
             if (participant.peerConnection) {
                 participant.peerConnection.close();
             }
             this.participants.delete(participantId);
+        }
+
+        // If the departing participant was sharing their screen, clean up the UI
+        if (this.currentSharer === participantId) {
+            console.log(`🖥️ Screen sharer ${participantId} left - cleaning up shared screen UI`);
+            this.currentSharer = null;
+            this.stopVideoHealthCheck();
+            this.hideSharedScreen();
         }
     }
     
@@ -1000,7 +990,9 @@ class MultiTraineeScreenSharing {
      * Check if video is actually receiving frames
      */
     checkVideoHealth() {
-        if (!this.remoteVideo || this.role !== 'trainee') {
+        // Run health check for anyone viewing a remote stream (trainers can also
+        // receive screen shares when a trainee has control)
+        if (!this.remoteVideo || !this.currentSharer) {
             return;
         }
 
@@ -1109,9 +1101,8 @@ class MultiTraineeScreenSharing {
                 });
             }
 
-            // Also check for existing screen share again
+            // Allow reconnection attempts again after delay
             setTimeout(() => {
-                this.checkForExistingScreenShare();
                 this.isReconnecting = false;
             }, 1000);
         }, this.reconnectDelayMs);
@@ -1390,9 +1381,9 @@ class MultiTraineeScreenSharing {
             this.currentSharer = null;
             // Stop health check since no one is sharing
             this.stopVideoHealthCheck();
-            if (this.role === 'trainee') {
-                this.hideSharedScreen();
-            }
+            // Both trainers and trainees call showSharedScreen() in ontrack,
+            // so both must call hideSharedScreen() when sharing stops
+            this.hideSharedScreen();
         }
     }
 
@@ -1584,19 +1575,30 @@ class MultiTraineeScreenSharing {
         console.trace('closeConnection stack trace');
         // Stop polling
         this.stopPolling();
-        
+        // Cancel any pending connection timeout
+        this.cancelConnectionTimeout();
+        this.stopVideoHealthCheck();
+
+        // Notify peers that screen sharing has stopped before leaving
+        if (this.isSharing) {
+            console.log(`🛑 Sending screen-share-stop before leaving room`);
+            this.sendSignal({
+                type: 'screen-share-stop'
+            });
+            this.isSharing = false;
+        }
+
         // Close any remaining peer connections
-        
         this.participants.forEach((participant, participantId) => {
             if (participant.peerConnection) {
                 participant.peerConnection.close();
             }
         });
-        
+
         if (this.localStream) {
             this.localStream.getTracks().forEach(track => track.stop());
         }
-        
+
         // Send leave message
         this.sendSignal({
             type: 'leave-room'
@@ -1629,8 +1631,33 @@ class MultiTraineeScreenSharing {
             this.localStream = null;
         }
         this.isSharing = false;
+        this.cleanupStaleSenders();
         this.sendSignal({ type: 'screen-share-stop' });
         console.log('Screen sharing stopped');
+    }
+
+    /**
+     * Remove RTCRtpSender objects with ended tracks from all peer connections.
+     * Prevents stale senders from accumulating when control transfers happen —
+     * without this, addTrack() adds new senders alongside dead ones.
+     */
+    cleanupStaleSenders() {
+        for (const [participantId, participant] of this.participants) {
+            const pc = participant.peerConnection;
+            if (!pc || pc.signalingState === 'closed') continue;
+
+            const senders = pc.getSenders();
+            for (const sender of senders) {
+                if (sender.track && sender.track.readyState === 'ended') {
+                    try {
+                        pc.removeTrack(sender);
+                        console.log(`🧹 Removed stale sender from peer ${participantId}`);
+                    } catch (e) {
+                        console.warn(`⚠️ Could not remove stale sender from peer ${participantId}:`, e);
+                    }
+                }
+            }
+        }
     }
     
     getParticipants() {

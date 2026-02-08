@@ -152,14 +152,20 @@ class TrainingSession {
                 window.traineeDebugLogger.log('INIT_ASYNC', 'About to call _initializeCommon');
             }
             
-            // Common initialization
+            // Common initialization (creates this.shareScreen)
             await this._initializeCommon();
-            
+
+            // Sync control state AFTER screen sharing is initialized so
+            // updateControlState() can access this.shareScreen for prompts
+            if (this.role === 'trainee') {
+                await this._syncControlState();
+            }
+
             // 🔍 DEBUG: After common initialization
             if (window.traineeDebugLogger) {
                 window.traineeDebugLogger.log('INIT_ASYNC', 'Common initialization completed');
             }
-            
+
             this.initialized = true;
             this.initializing = false;
             this.initError = null;
@@ -290,10 +296,6 @@ class TrainingSession {
         const traineeName = currentUserNameField && currentUserNameField.value ?
             currentUserNameField.value : "";
         this.trainees.push({ id: this.volunteerID, name: traineeName, isSignedOn: true });
-
-        // CRITICAL: Sync control state from database on page load/refresh
-        // This prevents state mismatch if trainee had control before refresh
-        this._syncControlState();
 
         // Configure UI for trainee mode
         this._configureTraineeUI();
@@ -1745,16 +1747,6 @@ class TrainingSession {
         console.log(`Participant sync complete: Trainer=${this.trainer.id}, Trainees=[${this.trainees.map(t => t.id).join(', ')}]`);
         console.log(`DEBUG: Trainees array details:`, this.trainees.map(t => ({id: t.id, name: t.name, isSignedOn: t.isSignedOn})));
         
-        // Check trainer validation after sync (moved to separate method)
-        this._checkTrainerValidation();
-    }
-
-    _checkTrainerValidation() {
-        // DISABLED: No longer check trainer validation - allow all trainees to connect
-        if (this.role === 'trainee' && !this.trainerValidationCompleted) {
-            this.trainerValidationCompleted = true; // Mark as completed
-            console.log(`✅ Trainee ${this.volunteerID} validation: DISABLED - allowing connection`);
-        }
     }
 
     startParticipantSync() {
@@ -2049,8 +2041,27 @@ class TrainingSession {
         document.getElementById('skipScreenShareBtn').addEventListener('click', () => {
             console.log('📺 User skipped screen sharing');
             overlay.remove();
-            this._showAlert('You have control. You can start screen sharing later from the training controls.');
+            this._showAlert('You have control. To start screen sharing later, run trainingSession.reshowScreenSharePrompt() in the browser console or use the training chat control panel.');
         });
+    }
+
+    /**
+     * Re-show the screen share prompt if the user is the current controller
+     * and not already sharing. Exposed on window.trainingSession for easy access.
+     */
+    reshowScreenSharePrompt() {
+        if (!this.isController) {
+            console.log('📺 Cannot start screen sharing - you do not have control');
+            this._showAlert('You must have control to start screen sharing.');
+            return;
+        }
+        if (this.shareScreen && this.shareScreen.isSharing) {
+            console.log('📺 Screen sharing is already active');
+            this._showAlert('Screen sharing is already active.');
+            return;
+        }
+        console.log('📺 Re-showing screen share prompt');
+        this._showScreenSharePrompt();
     }
 
     _showAllElements() {
@@ -2561,10 +2572,16 @@ class TrainingSession {
                         stateChanged: wasController !== this.isController
                     });
 
-                    // If state changed from default, update UI and log it
+                    // If state changed from default, apply full control state update
+                    // This triggers screen share prompt, mute state, and UI alerts
                     if (wasController !== this.isController) {
                         console.log(`⚠️ Control state differs from default - ${this.volunteerID} ${this.isController ? 'HAS' : 'does NOT have'} control`);
-                        this._updateControlUI();
+                        // Reset to previous values so updateControlState() detects the change
+                        this.activeController = wasController ? this.volunteerID : this.trainer.id;
+                        this.isController = wasController;
+                        this.incomingCallsTo = this.activeController;
+                        // Now apply the change through the standard path
+                        this.updateControlState(data);
                     }
                 } else {
                     console.error('Failed to sync control state:', data.error);

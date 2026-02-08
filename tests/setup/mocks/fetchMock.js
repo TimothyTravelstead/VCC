@@ -187,6 +187,20 @@ function setupTrainingEndpointMocks() {
       messages: []
     }
   });
+
+  // getIceServers.php (ICE server config with TURN credentials)
+  setFetchResponse(/getIceServers\.php/, {
+    body: {
+      success: true,
+      iceServers: [
+        { urls: 'stun:stun.stunprotocol.org:3478' },
+        { urls: 'stun:stun.l.google.com:19302' },
+        { urls: 'stun:stun1.l.google.com:19302' },
+        { urls: 'stun:stun2.l.google.com:19302' },
+        { urls: 'turns:mock-turn-server:5349', username: 'test', credential: 'test' }
+      ]
+    }
+  });
 }
 
 module.exports = {

@@ -296,24 +296,23 @@ class SignalQueue
     /**
      * Clear all signals for a participant (on leave)
      *
+     * Only clears signals TO the departing participant (they won't poll anymore).
+     * Signals FROM the departing participant are preserved so remaining
+     * participants can still receive them (e.g., screen-share-stop broadcasts).
+     * The periodic cleanup() method handles eventual deletion of stale signals.
+     *
      * @param string $participantId Participant username
      * @return bool Success status
      */
     public static function clearParticipantSignals($participantId)
     {
-        // Clear signals TO this participant
-        $result1 = dataQuery(
+        // Clear signals TO this participant (they won't poll anymore)
+        $result = dataQuery(
             "DELETE FROM training_signals WHERE recipient_id = ?",
             [$participantId]
         );
 
-        // Clear undelivered signals FROM this participant
-        $result2 = dataQuery(
-            "DELETE FROM training_signals WHERE sender_id = ? AND delivered = FALSE",
-            [$participantId]
-        );
-
-        return !self::isError($result1) && !self::isError($result2);
+        return !self::isError($result);
     }
 
     // ==========================================================================
