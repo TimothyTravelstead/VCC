@@ -3227,6 +3227,17 @@ function ChatMonitor(name) {
 						});
 					}
 					
+					// For trainees with no trainer assigned yet — detect when a trainer comes online and reload
+					if (trainingSession.role === "trainee" && !trainingSession.trainer.id && !window._trainerReloadAttempted) {
+						const anyTrainerOnline = messages.some(msg => msg.AdminLoggedOn == 4);
+						if (anyTrainerOnline) {
+							console.log("🔄 Trainer detected — reloading to establish training session");
+							window._trainerReloadAttempted = true;
+							window.location.reload();
+							return;
+						}
+					}
+
 					// For trainees - check if trainer is online/offline
 					if (trainingSession.role === "trainee") {
 						// Check if trainer is online

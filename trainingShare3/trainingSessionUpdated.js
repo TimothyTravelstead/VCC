@@ -272,6 +272,9 @@ class TrainingSession {
     }
 
     _initializeAsTrainee(trainerID) {
+        if (!trainerID) {
+            console.warn("⏳ No trainer assigned yet — waiting for trainer to sign in");
+        }
         this.trainer.id = trainerID;
         this.trainer.isSignedOn = false;
         this.muted = false; // Trainees start unmuted in normal training
